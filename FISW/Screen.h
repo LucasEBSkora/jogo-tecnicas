@@ -1,22 +1,31 @@
-#pragma once
+#ifndef SCREEN_H
+#define SCREEN_H
 
-#include "FISW.h"
+#include "Drawable.h"
 #include <vector>
+#include <list>
 #include <string>
+#include <map>
+#include <SFML/Graphics.hpp>
 
-class FISW::Screen {
-    private:
-    std::vector<Drawable> children;
+namespace FISW {
+
+  class Screen {
+      private:
+      std::vector<FISW::Drawable> children;
+      
     
-    std::vector<const char*> getAssetList();
-    int init();
-    void update();
-    int draw();
-  
-  public:
-    Screen(const FISW::Drawable *children);
-    ~Screen();
-    int run();
+    public:
+      int init(std::map<const char*, sf::Texture*> *assets);
+      Screen(const FISW::Drawable *children);
+      std::list<const char*> getAssetPathList();
+      ~Screen();
+      
+      void update();
+      int draw(sf::RenderWindow *window);
 
 
-};
+  };
+}
+
+#endif

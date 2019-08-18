@@ -1,20 +1,31 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 
-#include "FISW.h"
+#include "Screen.h"
 #include "SFML/Graphics.hpp"
 #include <vector>
 #include <map>
-class FISW::Game {
-  private:
-    std::vector<Screen> screens;
-    std::map<const char*, sf::Texture*> assets;
-    int init();
+#include <iostream>
+#include <list>
+
+namespace FISW {
+
+  class Game {
+    private:
+      std::vector<FISW::Screen> screens;
+      std::map<const char*, sf::Texture*> assets;
+      long unsigned int currentScreen;
+      bool closeGame;
+      int init();
+      
     
-  
-  public:
-    Game(const FISW::Screen *Screens);
-    ~Game();
-    int run();
+    public:
+      Game(FISW::Screen Screens[]);
+      ~Game();
+      int run();
 
 
-};
+  };
+}
+
+#endif

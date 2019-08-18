@@ -1,12 +1,29 @@
-#pragma once
+#ifndef DRAWABLE_H
+#define DRAWABLE_H
 
-#include "FISW.h"
 
-class FISW::Drawable {
+#include <SFML/Graphics.hpp>
+#include <list>
+#include <map>
 
-public:
-  virtual bool init() = 0;
-  virtual void update() = 0;
-  virtual void draw() = 0;
+namespace FISW {
 
-};
+  class Drawable {
+  private:
+    const char* path;
+    float x;
+    float y;
+    sf::Texture *texture;
+
+  public:
+    Drawable(const char* Path, float X, float Y);
+    ~Drawable();
+    virtual std::list<const char*> getAssetPathList();
+    virtual int init(std::map<const char*, sf::Texture*> *assets);
+    virtual void update();
+    virtual void draw(sf::RenderWindow *window);
+
+  };
+}
+
+#endif 

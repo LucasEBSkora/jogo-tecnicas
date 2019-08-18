@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS =  main.cpp
+OBJS =  main.cpp FISW/Game.cpp FISW/Drawable.cpp FISW/Screen.cpp
 
 
 #CC specifies which compiler we're using
