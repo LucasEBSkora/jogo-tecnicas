@@ -46,7 +46,7 @@ int FISW::Screen::draw(sf::RenderWindow *window, std::map<std::string, sf::Textu
     window->clear();
 
   for(FISW::Drawable d : children) {
-    d.init(assets);
+    //d.init(assets);
     d.draw(window);
   }
   

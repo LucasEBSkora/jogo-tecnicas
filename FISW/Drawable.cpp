@@ -2,6 +2,7 @@
 #include <iostream>
 
 FISW::Drawable::Drawable(const char* Path, float X, float Y) : path{Path}, x{X}, y{Y}, texture{NULL} {
+  std::cout << "mano";
 
 }
 
@@ -25,7 +26,6 @@ int FISW::Drawable::init(std::map<std::string, sf::Texture*> assets) {
 
   texture = assets[path];
 
-  std::cout << "texture at: " << texture << '\n' ;
   std::cout << "texture at: " << assets[path] << '\n' ;
 
   return 0;
