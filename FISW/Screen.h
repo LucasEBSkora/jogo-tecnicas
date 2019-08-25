@@ -13,16 +13,15 @@ namespace FISW {
   class Screen {
       private:
       std::vector<FISW::Drawable> children;
-      
     
     public:
-      int init(std::map<const char*, sf::Texture*> *assets);
-      Screen(const FISW::Drawable *children);
+      int init(std::map<std::string, sf::Texture*> assets);
+      Screen(std::vector<FISW::Drawable> Children);
       std::list<const char*> getAssetPathList();
       ~Screen();
       
       void update();
-      int draw(sf::RenderWindow *window);
+      int draw(sf::RenderWindow *window, std::map<std::string, sf::Texture*> assets);
 
 
   };

@@ -13,13 +13,13 @@ namespace FISW {
     const char* path;
     float x;
     float y;
-    sf::Texture *texture;
-
+    
   public:
+    sf::Texture *texture;
     Drawable(const char* Path, float X, float Y);
     ~Drawable();
     virtual std::list<const char*> getAssetPathList();
-    virtual int init(std::map<const char*, sf::Texture*> *assets);
+    virtual int init(std::map<std::string, sf::Texture*> assets);
     virtual void update();
     virtual void draw(sf::RenderWindow *window);
 

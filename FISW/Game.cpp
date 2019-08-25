@@ -8,43 +8,47 @@ int FISW::Game::init() {
   //gets the list of necessary assets for every screen, which gets its list from its children
   
   for( FISW::Screen s : screens) {
+
     std::list<const char*> screenPaths = s.getAssetPathList();
     paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());
-
 
   }
 
   //attempts to load the files into a map which is given to each Drawable on inicialization
 
+  std::cout << "number of assets to load: " << paths.size() << '\n';
+
   for(const char* s : paths) {
     sf::Texture *tex = new sf::Texture();
     if (!tex->loadFromFile(s)) {
       
-      std::cout << "unable to load file: " << s << std::endl; 
+      std::cout << "unable to load file at: " << s << '\n'; 
       ret = 1;
 
-    } 
+    } else {
+      std::cout << "file at " << s << " loaded succesfully: " << tex << '\n';
+    }
 
     assets.insert({s, tex});
 
   }
 
+  std::cout << "assets loaded: " << assets.size() << '\n';
+  
+
   //initializes each screen and its assets
   for( FISW::Screen s : screens) {
-    s.init(&assets);
+    if (s.init(assets) == 1) ret = 1;
   }
 
+  std::cout.flush();
   return ret;
 
 
 }
     
-FISW::Game::Game(FISW::Screen Screens[]) : currentScreen(0), closeGame(false) {
-
-  int n = sizeof(Screens)/sizeof(Screens[0]);
-
-  screens = std::vector<FISW::Screen>(Screens, Screens + n);
-
+FISW::Game::Game(std::vector<FISW::Screen> Screens) : screens{Screens}, currentScreen(0), closeGame(false) {
+  
 }
   
 
@@ -52,7 +56,7 @@ FISW::Game::Game(FISW::Screen Screens[]) : currentScreen(0), closeGame(false) {
 FISW::Game::~Game() {
 
   //destroys asset list
-  for(std::pair<const char *, sf::Texture*> p : assets) {
+  for(std::pair<std::string, sf::Texture*> p : assets) {
     delete p.second;
 
   }
@@ -61,6 +65,7 @@ FISW::Game::~Game() {
 
 int FISW::Game::run() {
   int ret = init();
+  std::cout << "init result:" << ret << '\n';
 
   sf::RenderWindow window(sf::VideoMode(800, 600.0f), "SFML tutorial", sf::Style::Close);
 	//sf::RectangleShape player(sf::Vector2f(200.0f, 200.0f));
@@ -69,9 +74,19 @@ int FISW::Game::run() {
   
   while (!closeGame) {
 
-    screens[currentScreen].update();
+    /*   
+    window.clear();
+    sf::RectangleShape box(sf::Vector2f(100.0f, 100.0f));
+    box.setPosition(sf::Vector2f(100.0f,100.0f));
+    box.setTexture(assets["bloodboi.png"], true);
+    window.draw(box);
+    window.display();
+    */
+
+
+    //screens[currentScreen].update();
     
-    screens[currentScreen].draw(&window);
+    screens[currentScreen].draw(&window, assets);
 
   }
 

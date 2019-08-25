@@ -1,26 +1,25 @@
 #include "Screen.h"
 #include "Drawable.h"
+#include <iostream>
 
-int FISW::Screen::init(std::map<const char*, sf::Texture*> *assets){
+int FISW::Screen::init(std::map<std::string, sf::Texture*> assets){
   
-  //passes on the textures to the children
-
+  //passes the textures to the children
+  
+  
   int ret = 0;
-
   for(FISW::Drawable d : children) {
-   if (d.init(assets)) ret = 1; 
+    if (d.init(assets) == 1) ret = 1; 
   }
+
   return ret;
 
 }
 
 
-//transform list into vector
-FISW::Screen::Screen(const FISW::Drawable *Children){
 
-    int n = sizeof(Children)/sizeof(Children[0]);
+FISW::Screen::Screen(std::vector<FISW::Drawable> Children) : children{Children} {
 
-  children = std::vector<FISW::Drawable>(Children, Children + n);
 }
 
 //gets the list of necessary assets for this screen from the children
@@ -34,6 +33,7 @@ std::list<const char*> FISW::Screen::getAssetPathList(){
     paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());  
   }
   
+  return paths;
 }
 
 FISW::Screen::~Screen(){}
@@ -42,8 +42,14 @@ void FISW::Screen::update(){}
 
 //just draws each of the children (for now)
 
-int FISW::Screen::draw(sf::RenderWindow *window){
+int FISW::Screen::draw(sf::RenderWindow *window, std::map<std::string, sf::Texture*> assets){
+    window->clear();
+
   for(FISW::Drawable d : children) {
+    d.init(assets);
     d.draw(window);
   }
+  
+    window->display();
+  return 0;
 }

@@ -1,18 +1,17 @@
 #include "FISW/Game.h"
 #include "FISW/Screen.h"
 #include "FISW/Drawable.h"
+#include <vector>
 
 int main() {
 
-	FISW::Drawable drawables[] = {
-			FISW::Drawable("bloodboi.png", 10.0f, 10.0f),
-	};
-
-	FISW::Screen Screens[] = {
-		FISW::Screen(drawables), 		
-	};
-
-	FISW::Game game = FISW::Game(Screens);
+	FISW::Game game = FISW::Game(
+		{
+			FISW::Screen({
+				FISW::Drawable("bloodboi.png", 10.0f, 10.0f),
+			}),
+		}
+	);
 
 	int ret = game.run();
 

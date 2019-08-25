@@ -1,6 +1,7 @@
 #include "Drawable.h"
+#include <iostream>
 
-FISW::Drawable::Drawable(const char* Path, float X, float Y) : path(Path), x(X), y(Y) {
+FISW::Drawable::Drawable(const char* Path, float X, float Y) : path{Path}, x{X}, y{Y}, texture{NULL} {
 
 }
 
@@ -15,11 +16,17 @@ std::list<const char*> FISW::Drawable::getAssetPathList() {
   return list;
 }
 
-int FISW::Drawable::init(std::map<const char*, sf::Texture*> *assets) {
+int FISW::Drawable::init(std::map<std::string, sf::Texture*> assets) {
 
-  if (assets->find(path) == assets->end) return 1;
+  if (assets.find(path) == assets.end())  {
+    std::cout << "error! asset " << path << "could not be initialized properly!\n";
+    return 1;
+  }
 
-  texture = (*assets)[path];
+  texture = assets[path];
+
+  std::cout << "texture at: " << texture << '\n' ;
+  std::cout << "texture at: " << assets[path] << '\n' ;
 
   return 0;
 }
@@ -29,10 +36,15 @@ void FISW::Drawable::update() {
 }
 
 void FISW::Drawable::draw(sf::RenderWindow *window) {
-  sf::RectangleShape box;
+  
+  sf::RectangleShape box(sf::Vector2f(100.0f, 100.0f));
   box.setPosition(sf::Vector2f(100.0f,100.0f));
-  box.setTexture(texture);
+  std::cout << "texture at wtf: " << texture << '\n' ;
 
+  box.setTexture(texture, true);
+
+  
+  
   window->draw(box);
 
 }
