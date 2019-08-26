@@ -7,8 +7,8 @@ int main() {
 
 	FISW::Game game = FISW::Game(
 		{
-			FISW::Screen({
-				FISW::Drawable("bloodboi.png", 10.0f, 10.0f),
+			new FISW::Screen({
+				new FISW::Drawable("bloodboi.png", 10.0f, 10.0f),
 			}),
 		}
 	);

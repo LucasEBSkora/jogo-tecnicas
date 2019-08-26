@@ -13,7 +13,7 @@ namespace FISW {
   class Game {
     private:
 
-      std::vector<FISW::Screen> screens;
+      std::vector<FISW::Screen*> screens;
       std::map<std::string, sf::Texture*> assets;
       long unsigned int currentScreen;
       bool closeGame;
@@ -22,7 +22,7 @@ namespace FISW {
       
     
     public:
-      Game(std::vector<FISW::Screen> Screens);
+      Game(std::vector<FISW::Screen*> Screens);
       ~Game();
       int run();
 

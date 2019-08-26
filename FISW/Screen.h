@@ -12,11 +12,11 @@ namespace FISW {
 
   class Screen {
       private:
-      std::vector<FISW::Drawable> children;
+      std::vector<FISW::Drawable*> children;
     
     public:
       int init(std::map<std::string, sf::Texture*> assets);
-      Screen(std::vector<FISW::Drawable> Children);
+      Screen(std::vector<FISW::Drawable*> Children);
       std::list<const char*> getAssetPathList();
       ~Screen();
       

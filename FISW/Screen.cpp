@@ -8,8 +8,8 @@ int FISW::Screen::init(std::map<std::string, sf::Texture*> assets){
   
   
   int ret = 0;
-  for(FISW::Drawable d : children) {
-    if (d.init(assets) == 1) ret = 1; 
+  for(FISW::Drawable *d : children) {
+    if (d->init(assets) == 1) ret = 1; 
   }
 
   return ret;
@@ -18,8 +18,8 @@ int FISW::Screen::init(std::map<std::string, sf::Texture*> assets){
 
 
 
-FISW::Screen::Screen(std::vector<FISW::Drawable> Children) : children{Children} {
-
+FISW::Screen::Screen(std::vector<FISW::Drawable*> Children) : children{Children} {
+  
 }
 
 //gets the list of necessary assets for this screen from the children
@@ -28,15 +28,19 @@ std::list<const char*> FISW::Screen::getAssetPathList(){
     std::list<const char*> paths;
 
   
-  for( FISW::Drawable d : children) {
-    std::list<const char*> screenPaths = d.getAssetPathList();
+  for( FISW::Drawable *d : children) {
+    std::list<const char*> screenPaths = d->getAssetPathList();
     paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());  
   }
   
   return paths;
 }
 
-FISW::Screen::~Screen(){}
+FISW::Screen::~Screen(){
+  for (FISW::Drawable *d : children) {
+    delete d;
+  }
+}
     
 void FISW::Screen::update(){}
 
@@ -45,9 +49,9 @@ void FISW::Screen::update(){}
 int FISW::Screen::draw(sf::RenderWindow *window, std::map<std::string, sf::Texture*> assets){
     window->clear();
 
-  for(FISW::Drawable d : children) {
+  for(FISW::Drawable *d : children) {
     //d.init(assets);
-    d.draw(window);
+    d->draw(window);
   }
   
     window->display();

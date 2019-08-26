@@ -17,7 +17,7 @@ namespace FISW {
     
   public:
     Drawable(const char* Path, float X, float Y);
-    ~Drawable();
+    virtual ~Drawable();
     virtual std::list<const char*> getAssetPathList();
     virtual int init(std::map<std::string, sf::Texture*> assets);
     virtual void update();

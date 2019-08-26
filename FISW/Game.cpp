@@ -7,9 +7,9 @@ int FISW::Game::init() {
 
   //gets the list of necessary assets for every screen, which gets its list from its children
   
-  for( FISW::Screen s : screens) {
+  for( FISW::Screen *s : screens) {
 
-    std::list<const char*> screenPaths = s.getAssetPathList();
+    std::list<const char*> screenPaths = s->getAssetPathList();
     paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());
 
   }
@@ -37,8 +37,8 @@ int FISW::Game::init() {
   
 
   //initializes each screen and its assets
-  for( FISW::Screen s : screens) {
-    if (s.init(assets) == 1) ret = 1;
+  for( FISW::Screen *s : screens) {
+    if (s->init(assets) == 1) ret = 1;
   }
 
   std::cout.flush();
@@ -47,7 +47,7 @@ int FISW::Game::init() {
 
 }
     
-FISW::Game::Game(std::vector<FISW::Screen> Screens) : screens{Screens}, currentScreen(0), closeGame(false) {
+FISW::Game::Game(std::vector<FISW::Screen*> Screens) : screens{Screens}, currentScreen(0), closeGame(false) {
   
 }
   
@@ -59,6 +59,10 @@ FISW::Game::~Game() {
   for(std::pair<std::string, sf::Texture*> p : assets) {
     delete p.second;
 
+  }
+
+  for(FISW::Screen* s : screens) {
+    delete s;
   }
 
 }
@@ -86,11 +90,9 @@ int FISW::Game::run() {
 
     //screens[currentScreen].update();
     
-    screens[currentScreen].draw(&window, assets);
+    screens[currentScreen]->draw(&window, assets);
 
   }
-
-
 
   return ret;
   

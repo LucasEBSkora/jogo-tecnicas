@@ -26,7 +26,6 @@ int FISW::Drawable::init(std::map<std::string, sf::Texture*> assets) {
 
   texture = assets[path];
 
-  std::cout << "texture at: " << assets[path] << '\n' ;
 
   return 0;
 }
@@ -39,11 +38,7 @@ void FISW::Drawable::draw(sf::RenderWindow *window) {
   
   sf::RectangleShape box(sf::Vector2f(100.0f, 100.0f));
   box.setPosition(sf::Vector2f(100.0f,100.0f));
-  std::cout << "texture at wtf: " << texture << '\n' ;
-
   box.setTexture(texture, true);
-
-  
   
   window->draw(box);
 
