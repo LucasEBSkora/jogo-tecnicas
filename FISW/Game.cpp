@@ -47,7 +47,10 @@ int FISW::Game::init() {
 
 }
     
-FISW::Game::Game(std::vector<FISW::Screen*> Screens) : screens{Screens}, currentScreen(0), closeGame(false) {
+FISW::Game::Game(std::vector<FISW::Screen*> Screens) : 
+  screens{Screens}, currentScreen(0), closeGame(false), 
+  window{new sf::RenderWindow(sf::VideoMode(800, 600.0f), "SFML tutorial", sf::Style::Close)}
+  {
   
 }
   
@@ -65,35 +68,55 @@ FISW::Game::~Game() {
     delete s;
   }
 
+  delete window;
 }
 
 int FISW::Game::run() {
   int ret = init();
   std::cout << "init result:" << ret << '\n';
 
-  sf::RenderWindow window(sf::VideoMode(800, 600.0f), "SFML tutorial", sf::Style::Close);
+
 	//sf::RectangleShape player(sf::Vector2f(200.0f, 200.0f));
 	
 	sf::View view(sf::Vector2f(0.0f,0.0f),sf::Vector2f(800.0f, 600.0f));
   
+	
   while (!closeGame) {
 
-    /*   
-    window.clear();
-    sf::RectangleShape box(sf::Vector2f(100.0f, 100.0f));
-    box.setPosition(sf::Vector2f(100.0f,100.0f));
-    box.setTexture(assets["bloodboi.png"], true);
-    window.draw(box);
-    window.display();
-    */
 
+  processEvents();
 
-    //screens[currentScreen].update();
+    screens[currentScreen]->update();
     
-    screens[currentScreen]->draw(&window, assets);
+    screens[currentScreen]->draw(window, assets);
 
   }
 
+  window->close();
+
   return ret;
   
+}
+
+void FISW::Game::processEvents() {
+
+	sf::Clock clock;
+
+	float deltaTime = 0.0f;
+  deltaTime = clock.restart().asSeconds();
+
+  sf::Event evnt;
+
+  while (window->pollEvent(evnt)) {
+    
+    if (evnt.type == sf::Event::Closed) {
+      closeGame = true;
+    }
+    else if (evnt.type == sf::Event::TextEntered) {
+      if (evnt.text.unicode < 128)
+        printf("%c", evnt.text.unicode);
+        
+    }
+  }
+
 }

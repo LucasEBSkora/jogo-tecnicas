@@ -23,7 +23,7 @@ FISW::Screen::Screen(std::vector<FISW::Drawable*> Children) : children{Children}
 }
 
 //gets the list of necessary assets for this screen from the children
-std::list<const char*> FISW::Screen::getAssetPathList(){
+std::list<const char*> FISW::Screen::getAssetPathList() const {
 
     std::list<const char*> paths;
 

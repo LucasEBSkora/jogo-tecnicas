@@ -9,7 +9,7 @@
 namespace FISW {
 
   class Drawable {
-  private:
+  protected:
     const char* path;
     float x;
     float y;
@@ -18,7 +18,7 @@ namespace FISW {
   public:
     Drawable(const char* Path, float X, float Y);
     virtual ~Drawable();
-    virtual std::list<const char*> getAssetPathList();
+    virtual std::list<const char*> getAssetPathList() const;
     virtual int init(std::map<std::string, sf::Texture*> assets);
     virtual void update();
     virtual void draw(sf::RenderWindow *window);

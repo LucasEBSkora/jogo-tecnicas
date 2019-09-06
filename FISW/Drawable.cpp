@@ -11,7 +11,7 @@ FISW::Drawable::~Drawable() {
 }
 
 
-std::list<const char*> FISW::Drawable::getAssetPathList() {
+std::list<const char*> FISW::Drawable::getAssetPathList() const {
   std::list<const char*> list;
   list.push_back(path);
   return list;
