@@ -52,7 +52,7 @@ int main()
 					
 			}
 		}
-
+			
 			/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				sf::Vector2i mouse = sf::Mouse::getPosition(window);
 				player.setPosition((float)mouse.x, (float)mouse.y);
@@ -70,6 +70,7 @@ int main()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
 				player.move(0, 3);
 			}*/
+
 
 			player.Update(deltaTime);
 			window.clear();

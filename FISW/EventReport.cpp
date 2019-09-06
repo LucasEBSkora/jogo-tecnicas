@@ -1,10 +1,13 @@
 #include "EventReport.h"
-  
-FISW::EventReport::EventReport() :
-  closeGame{false}, errorHappened{false} {
 
-}
+namespace FISW {
 
-FISW::EventReport::~EventReport() {
+  EventReport::EventReport() :
+    closeGame{false}, errorHappened{false} {
 
+  }
+
+  EventReport::~EventReport() {
+
+  }
 }
