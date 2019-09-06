@@ -2,7 +2,6 @@
 #include <iostream>
 
 FISW::Drawable::Drawable(const char* Path, float X, float Y) : path{Path}, x{X}, y{Y}, texture{NULL} {
-  std::cout << "mano";
 
 }
 

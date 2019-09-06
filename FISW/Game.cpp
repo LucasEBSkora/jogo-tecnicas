@@ -26,7 +26,7 @@ int FISW::Game::init() {
       ret = 1;
 
     } else {
-      std::cout << "file at " << s << " loaded succesfully: " << tex << '\n';
+      std::cout << "file at " << s << " loaded succesfully:\n";
     }
 
     assets.insert({s, tex});
@@ -73,24 +73,26 @@ FISW::Game::~Game() {
 
 int FISW::Game::run() {
   int ret = init();
-  std::cout << "init result:" << ret << '\n';
+  std::cout << "init result: " << ret << '\n';
 
 
 	//sf::RectangleShape player(sf::Vector2f(200.0f, 200.0f));
 	
 	sf::View view(sf::Vector2f(0.0f,0.0f),sf::Vector2f(800.0f, 600.0f));
-  
+
+  FISW::EventReport report;
 	
-  while (!closeGame) {
+  do {
+  
+    report = eventHandler.processEvents(window);
 
-
-  processEvents();
+    if (report.errorHappened) ret = 1;
 
     screens[currentScreen]->update();
     
     screens[currentScreen]->draw(window, assets);
 
-  }
+  } while (!report.closeGame) ;
 
   window->close();
 

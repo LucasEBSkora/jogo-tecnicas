@@ -1,12 +1,17 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Screen.h"
-#include "SFML/Graphics.hpp"
 #include <vector>
 #include <map>
 #include <iostream>
 #include <list>
+
+#include <SFML/Graphics.hpp>
+
+#include "Screen.h"
+#include "EventHandler.h"
+#include "EventHandlerSettings.h"
+#include "EventReport.h"
 
 namespace FISW {
 
@@ -18,7 +23,8 @@ namespace FISW {
       long unsigned int currentScreen;
       bool closeGame;
       sf::RenderWindow* window;
-
+      FISW::EventHandler eventHandler;
+      
       int init();
       void processEvents();
     
