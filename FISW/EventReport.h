@@ -7,9 +7,9 @@ namespace FISW {
   
   private:
   public:
-
     bool closeGame;
     bool errorHappened; 
+    float passedTime; 
 
     EventReport();
     ~EventReport();

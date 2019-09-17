@@ -13,9 +13,10 @@ namespace FISW {
   class EventHandlerSettings {
   
   private:
-    std::set<FISW::KeyboardKey> registeredKeyboardKeys;
-    std::set<FISW::MouseButton> registeredMouseButtons;
-    std::set<FISW::MouseWheel> registeredMouseWheels;
+    //list of codes (same as SFML) that represent the keys that should be listened to
+    std::set<KeyboardKey> registeredKeyboardKeys;
+    std::set<MouseButton> registeredMouseButtons;
+    std::set<MouseWheel> registeredMouseWheels;
 
   public:
     EventHandlerSettings(   
@@ -25,6 +26,8 @@ namespace FISW {
     );
     
     ~EventHandlerSettings();
+    
+    //join the sets that compose the settings
     void join(const EventHandlerSettings& settings);
   
     friend class EventHandler;

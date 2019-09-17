@@ -4,6 +4,16 @@
 
 namespace FISW {
 
+  Screen::Screen(std::vector<Drawable*> Children) : children{Children} {
+    
+  }
+
+  Screen::~Screen(){
+    for (Drawable *d : children) {
+      delete d;
+    }
+  }
+
   int Screen::init(std::map<std::string, sf::Texture*> assets){
     
     //passes the textures to the children
@@ -16,32 +26,6 @@ namespace FISW {
 
     return ret;
 
-  }
-
-
-
-  Screen::Screen(std::vector<Drawable*> Children) : children{Children} {
-    
-  }
-
-  //gets the list of necessary assets for this screen from the children
-  std::list<const char*> Screen::getAssetPathList() const {
-
-      std::list<const char*> paths;
-
-    
-    for( Drawable *d : children) {
-      std::list<const char*> screenPaths = d->getAssetPathList();
-      paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());  
-    }
-    
-    return paths;
-  }
-
-  Screen::~Screen(){
-    for (Drawable *d : children) {
-      delete d;
-    }
   }
       
   void Screen::update(){}
@@ -58,6 +42,32 @@ namespace FISW {
     
       window->display();
     return 0;
+  }
+
+  //gets the list of necessary assets for this screen from the children
+  std::list<const char*> Screen::getAssetPathList() const {
+
+      std::list<const char*> paths;
+
+    
+    for( Drawable *d : children) {
+      std::list<const char*> screenPaths = d->getAssetPathList();
+      paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());  
+    }
+    
+    return paths;
+  }
+
+  EventHandlerSettings Screen::getSettings() const {
+
+    EventHandlerSettings sets;
+
+    for( Drawable *d : children) {
+      sets.join(d->getSettings());
+    }
+
+    return sets;
+
   }
 
 }

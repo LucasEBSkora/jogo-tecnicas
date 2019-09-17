@@ -20,5 +20,11 @@ namespace FISW
 
   void EventHandlerSettings::join(const EventHandlerSettings& settings) {
 
+
+    //joins the sets
+    registeredKeyboardKeys.insert(settings.registeredKeyboardKeys.begin(), settings.registeredKeyboardKeys.end());
+    registeredMouseButtons.insert(settings.registeredMouseButtons.begin(), settings.registeredMouseButtons.end());
+    registeredMouseWheels.insert(settings.registeredMouseWheels.begin(), settings.registeredMouseWheels.end());
+
   }
 } 

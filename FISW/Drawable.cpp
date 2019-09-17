@@ -18,6 +18,10 @@ namespace FISW {
     return list;
   }
 
+  EventHandlerSettings Drawable::getSettings() const {
+    return EventHandlerSettings();
+  }
+
   int Drawable::init(std::map<std::string, sf::Texture*> assets) {
 
     if (assets.find(path) == assets.end())  {

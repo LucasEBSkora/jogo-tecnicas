@@ -12,6 +12,7 @@ namespace FISW {
     private:
       FISW::EventHandlerSettings settings;
       FISW::EventReport report;
+      sf::Clock clock;
     public:
 
     EventHandler(FISW::EventHandlerSettings Settings = FISW::EventHandlerSettings());

@@ -20,10 +20,7 @@ namespace FISW {
 
   const EventReport& EventHandler::processEvents(sf::RenderWindow* window) {
 
-    sf::Clock clock;
-
-    float deltaTime = 0.0f;
-    deltaTime = clock.restart().asSeconds();
+    report.passedTime = clock.restart().asSeconds();
 
     sf::Event evnt;
 
@@ -38,7 +35,6 @@ namespace FISW {
       else if (evnt.type == sf::Event::TextEntered) {
         if (evnt.text.unicode < 128)
 
-          //Funciona, mas é assim que faz?
           std::cout << static_cast<char>(evnt.text.unicode) << std::flush;
           
       }
