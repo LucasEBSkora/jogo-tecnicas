@@ -19,7 +19,7 @@ namespace FISW {
     
     public:
       Screen(std::vector<FISW::Drawable*> Children);
-      ~Screen();
+      virtual ~Screen();
       
       virtual int init(std::map<std::string, sf::Texture*> assets);
       virtual std::list<const char*> getAssetPathList() const;
