@@ -1,15 +1,11 @@
 #include "FISW/Game.h"
-#include "FISW/Screen.h"
 #include "FISW/Drawable.h"
-#include <vector>
 
 int main() {
 
-	FISW::Game game = FISW::Game(
+	FISW::Game game = FISW::Game( 800.0f, 600.0f, "dia 1", FISW::WindowStyle::Default,
 		{
-			new FISW::Screen({
-				new FISW::Drawable("bloodboi.png", 10.0f, 10.0f),
-			}),
+				new FISW::Drawable("bloodboi.png", 100.0f, 100.0f, 256.0f, 256.0f),
 		}
 	);
 

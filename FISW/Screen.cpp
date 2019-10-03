@@ -1,15 +1,15 @@
 #include "Screen.h"
-#include "Drawable.h"
+#include "Element.h"
 #include <iostream>
 
 namespace FISW {
 
-  Screen::Screen(std::vector<Drawable*> Children) : children{Children} {
+  Screen::Screen(std::vector<Element*> Children) : children{Children} {
     
   }
 
   Screen::~Screen(){
-    for (Drawable *d : children) {
+    for (Element *d : children) {
       delete d;
     }
   }
@@ -20,7 +20,7 @@ namespace FISW {
     
     
     int ret = 0;
-    for(Drawable *d : children) {
+    for(Element *d : children) {
       if (d->init(assets) == 1) ret = 1; 
     }
 
@@ -32,16 +32,13 @@ namespace FISW {
 
   //just draws each of the children (for now)
 
-  int Screen::draw(sf::RenderWindow *window, std::map<std::string, sf::Texture*> assets){
-      window->clear();
+  void Screen::draw(sf::RenderWindow *window){
 
-    for(Drawable *d : children) {
+    for(Element *d : children) {
       //d.init(assets);
       d->draw(window);
     }
     
-      window->display();
-    return 0;
   }
 
   //gets the list of necessary assets for this screen from the children
@@ -50,7 +47,7 @@ namespace FISW {
       std::list<const char*> paths;
 
     
-    for( Drawable *d : children) {
+    for( Element *d : children) {
       std::list<const char*> screenPaths = d->getAssetPathList();
       paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());  
     }
@@ -62,7 +59,7 @@ namespace FISW {
 
     EventHandlerSettings sets;
 
-    for( Drawable *d : children) {
+    for( Element *d : children) {
       sets.join(d->getSettings());
     }
 

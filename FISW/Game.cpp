@@ -9,7 +9,7 @@ namespace FISW {
 
     //gets the list of necessary assets for every screen, which gets its list from its children
     
-    for (Screen *s : screens) {
+    for (Element *s : elements) {
 
       std::list<const char*> screenPaths = s->getAssetPathList();
       paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());
@@ -39,7 +39,7 @@ namespace FISW {
     
 
     //initializes each screen and its assets
-    for (Screen *s : screens) {
+    for (Element *s : elements) {
       if (s->init(assets) == 1) ret = 1;
     }
 
@@ -49,9 +49,9 @@ namespace FISW {
 
   }
       
-  Game::Game(std::vector<Screen*> Screens) : 
-    screens{Screens}, currentScreen(0), closeGame(false), 
-    window{new sf::RenderWindow(sf::VideoMode(800, 600.0f), "SFML tutorial", sf::Style::Close)}
+  Game::Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements) : 
+    elements{Elements}, currentElement(0), closeGame(false), 
+    window{new sf::RenderWindow(sf::VideoMode(width, height), windowTitle, style)}
   {
     
   }
@@ -66,7 +66,7 @@ namespace FISW {
 
     }
 
-    for(Screen* s : screens) {
+    for(Element* s : elements) {
       delete s;
     }
 
@@ -90,9 +90,13 @@ namespace FISW {
 
       if (report.errorHappened) ret = 1;
 
-      screens[currentScreen]->update();
+      elements[currentElement]->update();
+
+      window->clear();
+
+      elements[currentElement]->draw(window);
       
-      screens[currentScreen]->draw(window, assets);
+      window->display();
 
     } while (!report.closeGame) ;
 

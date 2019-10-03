@@ -8,25 +8,24 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Drawable.h"
+#include "Element.h"
 #include "EventHandlerSettings.h"
 
 namespace FISW {
 
-  class Screen {
+  class Screen : public Element {
       protected:
-      std::vector<FISW::Drawable*> children;
+      std::vector<FISW::Element*> children;
     
     public:
-      Screen(std::vector<FISW::Drawable*> Children);
+      Screen(std::vector<FISW::Element*> Children);
       virtual ~Screen();
       
-      virtual int init(std::map<std::string, sf::Texture*> assets);
-      virtual std::list<const char*> getAssetPathList() const;
-      virtual EventHandlerSettings getSettings() const; 
-
-      virtual void update();
-      virtual int draw(sf::RenderWindow *window, std::map<std::string, sf::Texture*> assets);
+      virtual int init(std::map<std::string, sf::Texture*> assets) override;
+      virtual std::list<const char*> getAssetPathList() const override;
+      virtual EventHandlerSettings getSettings() const override; 
+      virtual void update() override;
+      virtual void draw(sf::RenderWindow *window) override;
 
 
   };

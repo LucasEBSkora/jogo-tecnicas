@@ -9,11 +9,11 @@
 
 namespace FISW {
 
-
+  //classe que armazena o que deve ser observado. Precisa ser refeita para contemplar notificações
   class EventHandlerSettings {
   
   private:
-    //list of codes (same as SFML) that represent the keys that should be listened to
+    
     std::set<KeyboardKey> registeredKeyboardKeys;
     std::set<MouseButton> registeredMouseButtons;
     std::set<MouseWheel> registeredMouseWheels;

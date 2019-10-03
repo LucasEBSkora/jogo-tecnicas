@@ -7,6 +7,9 @@
 
 namespace FISW {
 
+
+  //classe que lerá os eventos provindos do sistema e os distribui através da classe EventReport pela estrutura. 
+  //Tem que ser refeito para funcionar por notificação
   class EventHandler {
     
     private:
