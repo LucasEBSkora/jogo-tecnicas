@@ -17,17 +17,16 @@ namespace FISW {
   class Drawable : public Element {
   protected:
 
-    //caminho para a imagem usada
+    //path to the desired image
     const char* path;
     float x;
     float y;
     float length;
     float height;
     
-    //ponteiro para a imagem usada
+    //pointer to the desired image
     sf::Texture *texture;
 
-    //"Caixa" onde a imagem será desenhada
     sf::RectangleShape box;
     
   public:

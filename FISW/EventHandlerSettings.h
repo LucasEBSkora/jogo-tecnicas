@@ -9,7 +9,8 @@
 
 namespace FISW {
 
-  //classe que armazena o que deve ser observado. Precisa ser refeita para contemplar notificações
+  //needs to be redone in a more event oriented way
+
   class EventHandlerSettings {
   
   private:

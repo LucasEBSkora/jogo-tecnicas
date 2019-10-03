@@ -18,22 +18,21 @@ namespace FISW {
   class Game {
     protected:
 
-      //Lista de elementos que são "filhos" diretos do jogo
+      //List of elements which are direct "children" of the game
       std::vector<FISW::Element*> elements;
-      //Lista de todas as texturas que o jogo usará (precisa ser expandida para permitir sons e tilemaps tbm)
+      //List of every texture which the game will use (needs to be improved to allow any type of file)
       std::map<std::string, sf::Texture*> assets;
-      //qual dos elementos está sendo carregado no momento (essa classe só permite um de cada vez)
+      //Which of the elements is currently being processed and show on screen (this class only allows one at a time)
       long unsigned int currentElement;
-      //Se o jogo deve ser fechado
       bool closeGame;
-      //Janela do SFML onde tudo será desenhado
+
       sf::RenderWindow* window;
 
       FISW::EventHandler eventHandler;
 
-      //carrega todos os assets, inicializa o gerenciador de eventos      
+      //loads assets, sets up event handler
       int init();
-      //chama o gerenciador de eventos (precisa ser completamente refeita)
+      //calls event handler (needs to be redone)
       void processEvents();
     
     public:

@@ -6,6 +6,7 @@ namespace FISW {
   typedef sf::Mouse::Button MouseButton;
   typedef sf::Mouse::Wheel MouseWheel;
 
+  //shamelessly copied from SFML
   namespace WindowStyle {
 
       enum {

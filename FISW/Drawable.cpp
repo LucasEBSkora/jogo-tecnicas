@@ -14,20 +14,19 @@ namespace FISW {
 
   }
 
-  //retorna uma lista apenas com o próprio caminho
+  //returns a list containing only the texture 
   std::list<const char*> Drawable::getAssetPathList() const {
     std::list<const char*> list;
     list.push_back(path);
     return list;
   }
 
-  //Como ela não depende de nenhum evento, retorna uma lista vazia
+  //As this class doesn't depend on any events, returns an enpty settings object
   EventHandlerSettings Drawable::getSettings() const {
     return EventHandlerSettings();
   }
 
-
-  //Encontra o asset dentro do mapa usando o caminho como chave, retorna 1 se não conseguir
+  //Finds the asset in the map using the path as a key, returns 1 if it isn't able to
   int Drawable::init(std::map<std::string, sf::Texture*> assets) {
 
     if (assets.find(path) == assets.end())  {
