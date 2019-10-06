@@ -22,7 +22,7 @@ protected:
     // List of every texture which the game will use (needs to be improved to allow any type of file)
     std::map<std::string, sf::Texture*> assets;
     // Which of the elements is currently being processed and show on screen (this class only allows one at a time)
-    long unsigned int currentElement;
+    unsigned long int currentElement;
     bool closeGame;
 
     sf::RenderWindow* window;
@@ -31,8 +31,6 @@ protected:
 
     // loads assets, sets up event handler
     int init();
-    // calls event handler (needs to be redone)
-    void processEvents();
 
 public:
     Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements);

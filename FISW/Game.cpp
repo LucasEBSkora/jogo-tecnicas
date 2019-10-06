@@ -97,25 +97,4 @@ int Game::run() {
 
     return ret;
 }
-
-void Game::processEvents() {
-
-    sf::Clock clock;
-
-    float deltaTime = 0.0f;
-    deltaTime       = clock.restart().asSeconds();
-
-    sf::Event evnt;
-
-    while (window->pollEvent(evnt)) {
-
-        if (evnt.type == sf::Event::Closed) {
-            closeGame = true;
-        } else if (evnt.type == sf::Event::TextEntered) {
-            if (evnt.text.unicode < 128)
-                printf("%c", evnt.text.unicode);
-        }
-    }
-}
-
 } // namespace FISW
