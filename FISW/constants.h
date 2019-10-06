@@ -2,14 +2,14 @@
 
 namespace FISW {
 
-  typedef sf::Keyboard::Key KeyboardKey; 
-  typedef sf::Mouse::Button MouseButton;
-  typedef sf::Mouse::Wheel MouseWheel;
+typedef sf::Keyboard::Key KeyboardKey;
+typedef sf::Mouse::Button MouseButton;
+typedef sf::Mouse::Wheel MouseWheel;
 
-  //shamelessly copied from SFML
-  namespace WindowStyle {
+// shamelessly copied from SFML
+namespace WindowStyle {
 
-      enum {
+    enum {
         None       = 0,      ///< No border / title bar (this flag and all others are mutually exclusive)
         Titlebar   = 1 << 0, ///< Title bar + fixed border
         Resize     = 1 << 1, ///< Title bar + resizable border + maximize button
@@ -18,6 +18,6 @@ namespace FISW {
 
         Default = Titlebar | Resize | Close ///< Default window style
     };
-  }
-
 }
+
+} // namespace FISW

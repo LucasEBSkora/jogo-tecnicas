@@ -1,7 +1,6 @@
 #include "Element.h"
 
 namespace FISW {
-   Element::~Element() {
-     
-   }
+Element::~Element() {
 }
+} // namespace FISW

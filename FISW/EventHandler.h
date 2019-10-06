@@ -7,26 +7,23 @@
 
 namespace FISW {
 
-  //needs to be redone in a more event oriented way
+// needs to be redone in a more event oriented way
 
-  class EventHandler {
-    
-    private:
-      FISW::EventHandlerSettings settings;
-      FISW::EventReport report;
-      sf::Clock clock;
-    public:
+class EventHandler {
 
+private:
+    FISW::EventHandlerSettings settings;
+    FISW::EventReport report;
+    sf::Clock clock;
+
+public:
     EventHandler(FISW::EventHandlerSettings Settings = FISW::EventHandlerSettings());
     ~EventHandler();
 
     void updateSettings(FISW::EventHandlerSettings Settings);
     const FISW::EventReport& processEvents(sf::RenderWindow* window);
+};
 
-
-
-  };
-
-}
+} // namespace FISW
 
 #endif

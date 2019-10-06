@@ -2,12 +2,12 @@
 
 namespace FISW {
 
-  EventReport::EventReport() :
-    closeGame{false}, errorHappened{false}, passedTime{0.0} {
-
-  }
-
-  EventReport::~EventReport() {
-
-  }
+EventReport::EventReport()
+    : closeGame { false }
+    , errorHappened { false }
+    , passedTime { 0.0 } {
 }
+
+EventReport::~EventReport() {
+}
+} // namespace FISW

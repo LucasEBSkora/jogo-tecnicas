@@ -6,41 +6,37 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "EventHandlerSettings.h"
 #include "Element.h"
+#include "EventHandlerSettings.h"
 
-
-//Elemento mais básico possível, que simplesmente coloca uma imagem estática na tela.
+// Elemento mais básico possível, que simplesmente coloca uma imagem estática na tela.
 
 namespace FISW {
 
-  class Drawable : public Element {
-  protected:
-
-    //path to the desired image
+class Drawable : public Element {
+protected:
+    // path to the desired image
     const char* path;
     float x;
     float y;
     float length;
     float height;
-    
-    //pointer to the desired image
-    sf::Texture *texture;
+
+    // pointer to the desired image
+    sf::Texture* texture;
 
     sf::RectangleShape box;
-    
-  public:
+
+public:
     Drawable(const char* Path, float X, float Y, float Length, float Height);
     virtual ~Drawable() override;
-
 
     virtual std::list<const char*> getAssetPathList() const override;
     virtual int init(std::map<std::string, sf::Texture*> assets) override;
     virtual EventHandlerSettings getSettings() const override;
     virtual void update() override;
-    virtual void draw(sf::RenderWindow *window) override;
+    virtual void draw(sf::RenderWindow* window) override;
+};
+} // namespace FISW
 
-  };
-}
-
-#endif 
+#endif
