@@ -1,7 +1,8 @@
 #ifndef EVENTHANDLERSETTINGS_H
 #define EVENTHANDLERSETTINGS_H
 
-#include <set>
+#include <functional>
+#include <vector>
 
 #include <SFML/Graphics.hpp>
 
@@ -10,23 +11,31 @@
 namespace FISW {
 
 // needs to be redone in a more event oriented way
+// being redone
+// enum EventTypes {
+//     UpdateEvent,
+//     DrawEvent,
+//     KeyboardEvent,
+//     MouseEvent,
+// };
 
 class EventHandlerSettings {
 
 private:
-    std::set<KeyboardKey> registeredKeyboardKeys;
-    std::set<MouseButton> registeredMouseButtons;
-    std::set<MouseWheel> registeredMouseWheels;
+    std::vector<std::function<void(float)>> updates;
+    std::vector<std::function<void(sf::RenderWindow*)>> draws;
 
 public:
-    EventHandlerSettings(std::set<KeyboardKey> keyboardKeys = std::set<KeyboardKey>(),
-        std::set<MouseButton> mouseButtons                  = std::set<MouseButton>(),
-        std::set<MouseWheel> mouseWheels                    = std::set<MouseWheel>());
+    EventHandlerSettings();
 
     ~EventHandlerSettings();
 
     // join the sets that compose the settings
     void join(const EventHandlerSettings& settings);
+
+    // adds functions to the vectors
+    void addUpdate(std::function<void(float)> f);
+    void addDraw(std::function<void(sf::RenderWindow*)> f);
 
     friend class EventHandler;
 };

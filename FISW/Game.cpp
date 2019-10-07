@@ -41,6 +41,14 @@ int Game::init() {
             ret = 1;
     }
 
+    // maybe (probably) there is a better way, but it works
+    EventHandlerSettings settings;
+    // yet another loop
+    for (Element* s : elements) {
+        settings.join(s->getSettings());
+    }
+    eventHandler.updateSettings(settings);
+
     std::cout.flush();
     return ret;
 }
@@ -75,7 +83,7 @@ int Game::run() {
     sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(800.0f, 600.0f));
 
     EventReport report;
-
+    eventHandler.resetTime();
     do {
 
         report = eventHandler.processEvents(window);
@@ -83,13 +91,14 @@ int Game::run() {
         if (report.errorHappened)
             ret = 1;
 
-        elements[currentElement]->update();
+        // all of that is now done in the eventHandler (as update and draw are now events)
+        // elements[currentElement]->update();
 
-        window->clear();
+        // window->clear();
 
-        elements[currentElement]->draw(window);
+        // elements[currentElement]->draw(window);
 
-        window->display();
+        // window->display();
 
     } while (!report.closeGame);
 

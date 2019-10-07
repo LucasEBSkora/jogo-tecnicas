@@ -7,7 +7,8 @@ namespace FISW {
 const sf::Time EventHandler::timePerFrame = sf::seconds(1.0f / 60.0f);
 
 EventHandler::EventHandler(EventHandlerSettings Settings)
-    : settings { Settings } {
+    : settings { Settings }
+    , timeSinceLastUpdate { sf::Time::Zero } {
 }
 
 EventHandler::~EventHandler() {
@@ -39,9 +40,21 @@ const EventReport& EventHandler::processEvents(sf::RenderWindow* window) {
             }
         }
         // update things
+        for (auto f : settings.updates) {
+            f(timePerFrame.asSeconds());
+        }
     }
     // draw things
+    window->clear();
+    for (auto f : settings.draws) {
+        f(window);
+    }
+    window->display();
     return report;
+}
+
+void EventHandler::resetTime() {
+    timeSinceLastUpdate = sf::Time::Zero;
 }
 
 } // namespace FISW

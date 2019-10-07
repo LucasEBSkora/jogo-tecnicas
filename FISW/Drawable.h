@@ -33,8 +33,8 @@ public:
 
     virtual std::list<const char*> getAssetPathList() const override;
     virtual int init(std::map<std::string, sf::Texture*> assets) override;
-    virtual EventHandlerSettings getSettings() const override;
-    virtual void update() override;
+    virtual EventHandlerSettings getSettings() override;
+    virtual void update(float) override;
     virtual void draw(sf::RenderWindow* window) override;
 };
 } // namespace FISW

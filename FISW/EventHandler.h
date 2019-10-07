@@ -12,18 +12,19 @@ namespace FISW {
 class EventHandler {
 
 private:
-    FISW::EventHandlerSettings settings;
-    FISW::EventReport report;
+    EventHandlerSettings settings;
+    EventReport report;
     sf::Clock clock;
     static const sf::Time timePerFrame;
     sf::Time timeSinceLastUpdate;
 
 public:
-    EventHandler(FISW::EventHandlerSettings Settings = FISW::EventHandlerSettings());
+    EventHandler(EventHandlerSettings Settings = EventHandlerSettings());
     ~EventHandler();
 
-    void updateSettings(FISW::EventHandlerSettings Settings);
-    const FISW::EventReport& processEvents(sf::RenderWindow* window);
+    void updateSettings(EventHandlerSettings Settings);
+    const EventReport& processEvents(sf::RenderWindow* window);
+    void resetTime();
 };
 
 } // namespace FISW

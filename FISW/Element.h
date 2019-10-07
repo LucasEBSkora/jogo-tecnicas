@@ -22,11 +22,12 @@ public:
     // Armazena os ponteiros para os assets necessários. Retorna se houve sucesso em encontrar todos os assets.
     virtual int init(std::map<std::string, sf::Texture*> assets) = 0;
     // Retorna a quais eventos o elemento se inscreverá
-    virtual EventHandlerSettings getSettings() const = 0;
+    // Não é const para que seja possível inscrever funções não const
+    virtual EventHandlerSettings getSettings() = 0;
 
     // Seria a função que atualizaria as coisas, mas dependendo do modelo de tratamento de eventos pode se tornar
     // desnecessária (o desejado)
-    virtual void update() = 0;
+    virtual void update(float) = 0;
 
     // Desenha o elemento na tela. Pode simplesmente chamar a mesma função nos elementos agregados.
     virtual void draw(sf::RenderWindow* window) = 0;
