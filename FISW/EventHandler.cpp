@@ -4,6 +4,7 @@
 #include <string>
 
 namespace FISW {
+const sf::Time EventHandler::timePerFrame = sf::seconds(1.0f / 60.0f);
 
 EventHandler::EventHandler(EventHandlerSettings Settings)
     : settings { Settings } {
@@ -18,24 +19,28 @@ void EventHandler::updateSettings(EventHandlerSettings Settings) {
 
 const EventReport& EventHandler::processEvents(sf::RenderWindow* window) {
 
-    report.passedTime = clock.restart().asSeconds();
+    sf::Time elapsedTime = clock.restart();
+    report.passedTime    = elapsedTime.asSeconds();
+    timeSinceLastUpdate += elapsedTime;
 
-    sf::Event evnt;
+    while (timeSinceLastUpdate > timePerFrame) {
+        timeSinceLastUpdate -= timePerFrame;
+        sf::Event evnt;
+        while (window->pollEvent(evnt)) {
 
-    while (window->pollEvent(evnt)) {
+            if (evnt.type == sf::Event::Closed) {
 
-        if (evnt.type == sf::Event::Closed) {
+                std::cout << "close button pressed!" << std::endl;
+                report.closeGame = true;
 
-            std::cout << "close button pressed!" << std::endl;
-            report.closeGame = true;
-
-        } else if (evnt.type == sf::Event::TextEntered) {
-            if (evnt.text.unicode < 128)
-
-                std::cout << static_cast<char>(evnt.text.unicode) << std::flush;
+            } else if (evnt.type == sf::Event::TextEntered) {
+                if (evnt.text.unicode < 128)
+                    std::cout << static_cast<char>(evnt.text.unicode) << std::flush;
+            }
         }
+        // update things
     }
-
+    // draw things
     return report;
 }
 

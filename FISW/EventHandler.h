@@ -15,6 +15,8 @@ private:
     FISW::EventHandlerSettings settings;
     FISW::EventReport report;
     sf::Clock clock;
+    static const sf::Time timePerFrame;
+    sf::Time timeSinceLastUpdate;
 
 public:
     EventHandler(FISW::EventHandlerSettings Settings = FISW::EventHandlerSettings());
