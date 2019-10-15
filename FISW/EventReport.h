@@ -7,12 +7,12 @@ class EventReport {
 
 private:
 public:
-    bool closeGame;
-    bool errorHappened;
-    float passedTime;
+  bool closeGame;
+  bool errorHappened;
+  float passedTime;
 
-    EventReport();
-    ~EventReport();
+  EventReport();
+  ~EventReport();
 };
 
 } // namespace FISW

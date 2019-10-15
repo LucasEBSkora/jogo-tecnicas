@@ -22,22 +22,22 @@ namespace FISW {
 class EventHandlerSettings {
 
 private:
-    std::vector<std::function<void(float)>> updates;
-    std::vector<std::function<void(sf::RenderWindow*)>> draws;
+  std::vector<std::function<void(float)>> updates;
+  std::vector<std::function<void(sf::RenderWindow*)>> draws;
 
 public:
-    EventHandlerSettings();
+  EventHandlerSettings();
 
-    ~EventHandlerSettings();
+  ~EventHandlerSettings();
 
-    // join the sets that compose the settings
-    void join(const EventHandlerSettings& settings);
+  // join the sets that compose the settings
+  void join(const EventHandlerSettings& settings);
 
-    // adds functions to the vectors
-    void addUpdate(std::function<void(float)> f);
-    void addDraw(std::function<void(sf::RenderWindow*)> f);
+  // adds functions to the vectors
+  void addUpdate(std::function<void(float)> f);
+  void addDraw(std::function<void(sf::RenderWindow*)> f);
 
-    friend class EventHandler;
+  friend class EventHandler;
 };
 
 } // namespace FISW
