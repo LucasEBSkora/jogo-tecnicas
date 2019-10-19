@@ -1,5 +1,5 @@
-#include "FISW/Drawable.h"
-#include "FISW/Game.h"
+#include "FISW/Drawable.hpp"
+#include "FISW/Game.hpp"
 
 int main() {
 

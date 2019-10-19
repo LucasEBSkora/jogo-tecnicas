@@ -81,6 +81,7 @@
     "locale": "cpp",
     "queue": "cpp",
     "stack": "cpp",
-    "__functional_03": "cpp"
+    "__functional_03": "cpp",
+    "hash_map": "cpp"
   }
 }

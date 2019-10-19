@@ -8,9 +8,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Element.h"
-#include "EventHandler.h"
-#include "EventListeners.h"
+#include "Element.hpp"
+#include "EventHandler.hpp"
+#include "EventListeners.hpp"
 
 namespace FISW {
 

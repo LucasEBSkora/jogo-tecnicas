@@ -1,4 +1,4 @@
-#include "EventHandler.h"
+#include "EventHandler.hpp"
 
 #include <iostream>
 #include <string>
@@ -6,52 +6,48 @@
 namespace FISW {
 const sf::Time EventHandler::timePerFrame{sf::seconds(1.0f / 60.0f)};
 
-EventHandler::EventHandler(EventListeners Settings)
-  : settings { Settings }
+EventHandler::EventHandler(EventListeners Listeners)
+  : listeners { Listeners }
   , timeSinceLastUpdate { sf::Time::Zero } {
 }
 
 EventHandler::~EventHandler() {
 }
 
-void EventHandler::updateSettings(EventListeners Settings) {
-  settings = Settings;
-  timers.clear();
-
-  for (auto it = settings.timers.begin(); it != settings.timers.end(); ) {
-    auto key = it->first;
-    timers.push_back(sf::Time::Zero);
-    do {
-      ++it;
-    } while (it != settings.timers.end() && key == it->first);
-  }
-}
-
-//Se a gente fizer um evento de "botão de fechar apertado" essa função retornaria apenas se aconteceu algum erro
-
 bool EventHandler::processEvents(sf::RenderWindow* window) {
 
   sf::Time elapsedTime = clock.restart();
   timeSinceLastUpdate += elapsedTime;
 
-  for (auto& t : timers) {
-    t += elapsedTime;
+  for (auto& t : listeners.timers) {
+    std::get<0>(t.second) += elapsedTime;
   }
 
-  std::size_t i = 0;
-  for (auto it = settings.timers.begin(); it != settings.timers.end(); ) {
-    auto key = it->first;
-    if (timers[i] >= key) {
-      auto range = settings.timers.equal_range(key);
-      for (auto pair = range.first; pair != range.second; ++pair) {
-        pair->second();
-      }
-      timers[i] -= key;
+  // for (auto& t : listeners.timers) {
+  //   std::cout << std::get<0>(t.second).asMilliseconds() << std::endl;
+  // }
+
+  // std::size_t i = 0;
+  // for (auto it = listeners.timers.begin(); it != listeners.timers.end(); ) {
+  //   auto key = it->first;
+  //   if (timers[i] >= key) {
+  //     auto range = listeners.timers.equal_range(key);
+  //     for (auto pair = range.first; pair != range.second; ++pair) {
+  //       pair->second();
+  //     }
+  //     timers[i] -= key;
+  //   }
+  //   do {
+  //     ++it;
+  //   } while (it != listeners.timers.end() && key == it->first);
+  //   ++i;
+  // }
+  for (auto& t : listeners.timers) {
+
+    if (std::get<0>(t.second) >= std::get<1>(t.second)) {
+      std::get<0>(t.second) -= std::get<1>(t.second);
+      std::get<2>(t.second)();
     }
-    do {
-      ++it;
-    } while (it != settings.timers.end() && key == it->first);
-    ++i;
   }
 
   while (timeSinceLastUpdate > timePerFrame) {
@@ -66,29 +62,29 @@ bool EventHandler::processEvents(sf::RenderWindow* window) {
           std::cout << static_cast<char>(evnt.text.unicode) << std::flush;
 
       } else if (evnt.type == sf::Event::KeyPressed) {
-        for (auto f : settings.keyboards) {
-          f(&evnt);
+        for (auto& f : listeners.keyboards) {
+          f.second(&evnt);
         }
       } 
        else if (evnt.type == sf::Event::MouseMoved) {
-        for (auto f : settings.mouses) {
-          f(&evnt);
+        for (auto& f : listeners.mouses) {
+          f.second(&evnt);
         }
       } else { 
-        for (auto f : settings.systemEvents) {
-          f(&evnt);
+        for (auto& f : listeners.systemEvents) {
+          f.second(&evnt);
         }
       }
     }
     // update things
-    for (auto f : settings.updates) {
-      f(timePerFrame.asSeconds());
+    for (auto& f : listeners.updates) {
+      f.second(timePerFrame.asSeconds());
     }
   }
   // draw things
   window->clear();
-  for (auto f : settings.draws) {
-    f(window);
+  for (auto& f : listeners.draws) {
+    f.second(window);
   }
   window->display();
   return true;
@@ -96,6 +92,14 @@ bool EventHandler::processEvents(sf::RenderWindow* window) {
 
 void EventHandler::resetTime() {
   timeSinceLastUpdate = sf::Time::Zero;
+}
+
+const EventListeners* EventHandler::getListener() const {
+  return &(listeners);
+}
+
+EventListeners* EventHandler::getListener() {
+  return &(listeners);
 }
 
 } // namespace FISW

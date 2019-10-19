@@ -1,4 +1,4 @@
-#include "Drawable.h"
+#include "Drawable.hpp"
 
 #include <functional>
 #include <iostream>
@@ -28,25 +28,28 @@ std::list<const char*> Drawable::getAssetPathList() const {
 }
 
 // this class depends on update and draw events
-EventListeners Drawable::getSettings() {
-  // it can be done either way:
-  // with lambdas
-  auto update_fun = [this](float time) { update(time); };
-  // std::function<void(float)> update = std::bind(static_cast<void(Drawable::*)(float)>(&Drawable::update), this,
-  // std::placeholders::_1);
+// EventListeners Drawable::getSettings() {
+//   // it can be done either way:
+//   // with lambdas
+//   auto update_fun = [this](float time) { update(time); };
+//   // std::function<void(float)> update = std::bind(static_cast<void(Drawable::*)(float)>(&Drawable::update), this,
+//   // std::placeholders::_1);
 
-  // with std::bind
-  auto draw_fun = std::bind(&Drawable::draw, this, std::placeholders::_1);
+//   // with std::bind
+//   auto draw_fun = std::bind(&Drawable::draw, this, std::placeholders::_1);
 
-  EventListeners settings;
-  settings.addUpdate(update_fun);
-  settings.addDraw(draw_fun);
-  settings.addTimer(sf::seconds(1), [this]() {update(-1);});
-  return settings;
-}
+//   EventListeners settings;
+//   settings.addUpdate(update_fun);
+//   settings.addDraw(draw_fun);
+//   settings.addTimer(sf::seconds(1), [this]() {update(-1);});
+//   return settings;
+// }
 
 // Finds the asset in the map using the path as a key, returns 1 if it isn't able to
-int Drawable::init(std::map<std::string, sf::Texture*> assets) {
+int Drawable::init(std::map<std::string, sf::Texture*> assets, EventListeners* l) {
+  
+  listeners = l; // se ele é const como a gente vai mudar?
+
 
   if (assets.find(path) == assets.end()) {
     std::cout << "error! asset " << path << "could not be initialized properly!\n";
@@ -56,6 +59,16 @@ int Drawable::init(std::map<std::string, sf::Texture*> assets) {
   texture = assets[path];
 
   box.setTexture(texture, true);
+
+  listeners->subscribe("update", [this](float time) { update(time); }, this);
+  listeners->subscribe("draw", [this](sf::RenderWindow* w) { draw(w); }, this);
+
+  listeners->unsubscribe("update", this);
+  listeners->subscribe("update", [this](float time) { update(time); }, this);
+
+  listeners->subscribe("timer_1000", [this]() { update(-1); }, this);
+  listeners->subscribe("timer_7000", [this]() { listeners->unsubscribe("timer_1000", this); });
+  listeners->pushEvent("drawable_init");
 
   return 0;
 }

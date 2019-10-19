@@ -6,8 +6,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Element.h"
-#include "EventListeners.h"
+#include "Element.hpp"
+#include "EventListeners.hpp"
 
 //Simplest possible element, only prints an static image
 
@@ -32,8 +32,7 @@ public:
   virtual ~Drawable() override;
 
   virtual std::list<const char*> getAssetPathList() const override;
-  virtual int init(std::map<std::string, sf::Texture*> assets) override;
-  virtual EventListeners getSettings() override;
+  virtual int init(std::map<std::string, sf::Texture*> assets, EventListeners* l) override;
   virtual void update(float) override;
   virtual void draw(sf::RenderWindow* window) override;
 };

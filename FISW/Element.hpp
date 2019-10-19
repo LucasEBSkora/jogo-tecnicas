@@ -4,13 +4,16 @@
 #include <list>
 #include <map>
 
-#include "EventListeners.h"
+#include "EventListeners.hpp"
 
 namespace FISW {
 
 // Classe base da qual todos os elementos tem que ser derivadas (sejam desenhados ou não)
 
 class Element {
+
+protected:
+  EventListeners* listeners;
 
 public:
   virtual ~Element();
@@ -20,10 +23,8 @@ public:
   virtual std::list<const char*> getAssetPathList() const = 0;
 
   // Armazena os ponteiros para os assets necessários. Retorna se houve sucesso em encontrar todos os assets.
-  virtual int init(std::map<std::string, sf::Texture*> assets) = 0;
+  virtual int init(std::map<std::string, sf::Texture*> assets, EventListeners* l) = 0;
   // Retorna a quais eventos o elemento se inscreverá
-  // Não é const para que seja possível inscrever funções não const
-  virtual EventListeners getSettings() = 0;
 
   // Seria a função que atualizaria as coisas, mas dependendo do modelo de tratamento de eventos pode se tornar
   // desnecessária (o desejado)

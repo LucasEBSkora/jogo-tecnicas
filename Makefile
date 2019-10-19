@@ -12,7 +12,7 @@ INCLUDE_PATHS =
 LIBRARY_PATHS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
-COMPILER_FLAGS = -Wall -Wextra -Wsign-conversion -pedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option  #-Weffc++
+COMPILER_FLAGS = -std=c++17 -Wall -Wextra -Wsign-conversion -pedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option  #-Weffc++
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS =

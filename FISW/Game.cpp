@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 namespace FISW {
 
@@ -37,20 +37,20 @@ int Game::init() {
 
   // initializes each screen and its assets
   for (Element* s : elements) {
-    if (s->init(assets) == 1)
+    if (s->init(assets, eventHandler.getListener()) == 1)
       ret = 1;
   }
 
   // maybe (probably) there is a better way, but it works
-  EventListeners settings;
+  // EventListeners settings;
   // yet another loop
-  for (Element* s : elements) {
-    settings.join(s->getSettings());
-  }
+  // for (Element* s : elements) {
+  //   settings.join(s->getSettings());
+  // }
 
-  settings.addSystem([this](sf::Event* E){ gameCloseEvent(E); });
+  eventHandler.getListener()->subscribe("system", [this](sf::Event* e){ gameCloseEvent(e); });
 
-  eventHandler.updateSettings(settings);
+  // eventHandler.updateListeners(settings);
 
   std::cout.flush();
   return ret;
