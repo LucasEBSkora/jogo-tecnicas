@@ -4,7 +4,7 @@
 #include <list>
 #include <map>
 
-#include "EventHandlerSettings.h"
+#include "EventListeners.h"
 
 namespace FISW {
 
@@ -23,7 +23,7 @@ public:
   virtual int init(std::map<std::string, sf::Texture*> assets) = 0;
   // Retorna a quais eventos o elemento se inscreverá
   // Não é const para que seja possível inscrever funções não const
-  virtual EventHandlerSettings getSettings() = 0;
+  virtual EventListeners getSettings() = 0;
 
   // Seria a função que atualizaria as coisas, mas dependendo do modelo de tratamento de eventos pode se tornar
   // desnecessária (o desejado)

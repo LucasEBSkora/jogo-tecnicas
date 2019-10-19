@@ -42,11 +42,14 @@ int Game::init() {
   }
 
   // maybe (probably) there is a better way, but it works
-  EventHandlerSettings settings;
+  EventListeners settings;
   // yet another loop
   for (Element* s : elements) {
     settings.join(s->getSettings());
   }
+
+  settings.addSystem([this](sf::Event* E){ gameCloseEvent(E); });
+
   eventHandler.updateSettings(settings);
 
   std::cout.flush();
@@ -82,28 +85,28 @@ int Game::run() {
 
   sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(800.0f, 600.0f));
 
-  EventReport report;
   eventHandler.resetTime();
+
   do {
 
-    report = eventHandler.processEvents(window);
+    
 
-    if (report.errorHappened)
+    if (!eventHandler.processEvents(window))
       ret = 1;
 
-    // all of that is now done in the eventHandler (as update and draw are now events)
-    // elements[currentElement]->update();
-
-    // window->clear();
-
-    // elements[currentElement]->draw(window);
-
-    // window->display();
-
-  } while (!report.closeGame);
+  } while (!closeGame);
 
   window->close();
 
   return ret;
 }
+
+void Game::gameCloseEvent(sf::Event *e) {
+  if (e->type == sf::Event::Closed) {
+    std::cout << "close button pressed!" << std::endl;
+    closeGame = true;
+  }
+}
+
+
 } // namespace FISW

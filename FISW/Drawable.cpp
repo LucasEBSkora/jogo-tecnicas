@@ -27,9 +27,8 @@ std::list<const char*> Drawable::getAssetPathList() const {
   return list;
 }
 
-// // As this class doesn't depend on any events, returns an enpty settings object
 // this class depends on update and draw events
-EventHandlerSettings Drawable::getSettings() {
+EventListeners Drawable::getSettings() {
   // it can be done either way:
   // with lambdas
   auto update_fun = [this](float time) { update(time); };
@@ -39,9 +38,10 @@ EventHandlerSettings Drawable::getSettings() {
   // with std::bind
   auto draw_fun = std::bind(&Drawable::draw, this, std::placeholders::_1);
 
-  EventHandlerSettings settings;
+  EventListeners settings;
   settings.addUpdate(update_fun);
   settings.addDraw(draw_fun);
+  settings.addTimer(sf::seconds(1), [this]() {update(-1);});
   return settings;
 }
 

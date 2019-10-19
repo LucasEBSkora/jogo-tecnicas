@@ -7,9 +7,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "Element.h"
-#include "EventHandlerSettings.h"
+#include "EventListeners.h"
 
-// Elemento mais básico possível, que simplesmente coloca uma imagem estática na tela.
+//Simplest possible element, only prints an static image
 
 namespace FISW {
 
@@ -33,7 +33,7 @@ public:
 
   virtual std::list<const char*> getAssetPathList() const override;
   virtual int init(std::map<std::string, sf::Texture*> assets) override;
-  virtual EventHandlerSettings getSettings() override;
+  virtual EventListeners getSettings() override;
   virtual void update(float) override;
   virtual void draw(sf::RenderWindow* window) override;
 };

@@ -10,8 +10,7 @@
 
 #include "Element.h"
 #include "EventHandler.h"
-#include "EventHandlerSettings.h"
-#include "EventReport.h"
+#include "EventListeners.h"
 
 namespace FISW {
 
@@ -31,6 +30,8 @@ protected:
 
   // loads assets, sets up event handler
   int init();
+
+  void gameCloseEvent(sf::Event *e);
 
 public:
   Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements);
