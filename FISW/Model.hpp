@@ -11,7 +11,7 @@ namespace FISW {
   //basically a way to decouple characters and their appearance on the screen
   class Model {
 
-  private:
+  protected:
     sf::Vector2f position;
     sf::Vector2i texturePosition;
     const char* path;

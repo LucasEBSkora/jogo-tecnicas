@@ -16,7 +16,7 @@ namespace FISW {
       const char* path;
       sf::Vector2f position;
       sf::Vector2f size;
-      sf::Vector2i texturePosition;
+      sf::IntRect texturePosition;
 
       std::map<std::string, AnyCallable<void>> lambdas; 
       
@@ -27,7 +27,7 @@ namespace FISW {
 
     public:
 
-      Animatable(const char* Path, sf::Vector2f pos, sf::Vector2f Size, std::map<std::string, AnyCallable<void>> events);
+      Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size, std::map<std::string, AnyCallable<void>> events);
       virtual ~Animatable() override;
 
       virtual std::list<const char*> getAssetPathList() const override;

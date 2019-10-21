@@ -73,7 +73,7 @@ namespace FISW {
     return 0;
   }*/
 
-  
+  typedef std::pair<std::string, AnyCallable<void>> LambdaPair;  
 }
 
 #endif
