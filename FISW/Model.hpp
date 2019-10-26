@@ -2,7 +2,10 @@
 #define MODEL_H
 
 
-#include<SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
+
+#include "ModelDrawer.hpp" 
+#include "EventListeners.hpp"
 
 namespace FISW {
 
@@ -16,7 +19,7 @@ namespace FISW {
     sf::Vector2i texturePosition;
     const char* path;
     bool facingRight;
-
+    EventListeners* listener;
   public:
     
     virtual ~Model();
@@ -24,9 +27,12 @@ namespace FISW {
     const sf::Vector2i getTexturePosition() const;
     const char* getAssetPath() const;
     bool isFacingRight() const;
+    virtual ModelDrawer* generateModelDrawer() const = 0;
+    void init(EventListeners* listener);
+
+
   };
   
-
 }
 
 #endif

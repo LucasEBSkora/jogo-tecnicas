@@ -4,12 +4,11 @@
 
 namespace FISW {
 
-Animatable::Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size, std::map<std::string, AnyCallable<void>> events)
+Animatable::Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size)
   : path { Path }
   , position{initialPosition}
   , size {Size}
   , texturePosition{initialTexturePosition}
-  , lambdas{events} 
   , texture {nullptr }
   , box {Size} {
 
@@ -40,12 +39,13 @@ int Animatable::init(std::map<std::string, sf::Texture*> assets, EventListeners*
 
   box.setTexture(texture, true);
 
-  for (auto p : lambdas) {
-    listeners->subscribe(p.first, p.second);
-  }
-
   listeners->subscribe("update", [this](float time) { update(time); }, this);
   listeners->subscribe("draw", [this](sf::RenderWindow* w) { draw(w); }, this);
+  listeners->subscribe("timer_300", [this](){
+    texturePosition.left += texture->getSize().x/9;
+    if (texturePosition.left >= texture->getSize().x)  texturePosition.left = 0;
+  
+  }, this);
   
 
   return 0;

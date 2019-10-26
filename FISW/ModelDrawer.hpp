@@ -1,30 +1,30 @@
-#ifndef ANIMATABLE_HPP
-#define ANIMATABLE_HPP
+#ifndef MODELDRAWER_HPP
+#define MODELDRAWER_HPP
 
 #include <map>
 
 #include <SFML/Graphics.hpp>
 
-#include "Element.hpp"
+#include "Animatable.hpp"
+#include "Model.hpp"
 
 namespace FISW {
 
-  class Animatable : public Element {
+  class ModelDrawer : public Element {
     protected:
       // path to the desired image
       const char* path;
-      sf::Vector2f position;
-      sf::Vector2f size;
       sf::IntRect texturePosition;
+      sf::Vector2f size;
       // pointer to the desired image
       sf::Texture* texture;
-
       sf::RectangleShape box;
+      Model* model;
 
     public:
 
-      Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size);
-      virtual ~Animatable() override;
+      ModelDrawer(const char* Path, sf::Vector2f Size, Model* model);
+      virtual ~ModelDrawer() override;
 
       virtual std::list<const char*> getAssetPathList() const override;
       virtual int init(std::map<std::string, sf::Texture*> assets, EventListeners* l) override;

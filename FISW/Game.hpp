@@ -11,13 +11,16 @@
 #include "Element.hpp"
 #include "EventHandler.hpp"
 #include "EventListeners.hpp"
+#include "Model.hpp"
 
 namespace FISW {
 
 class Game {
 protected:
   // List of elements which are direct "children" of the game
-  std::vector<FISW::Element*> elements;
+  std::vector<Element*> elements;
+
+  std::vector<Model*> models;
   // List of every texture which the game will use (needs to be improved to allow any type of file)
   std::map<std::string, sf::Texture*> assets;
   // Which of the elements is currently being processed and show on screen (this class only allows one at a time)
@@ -34,7 +37,7 @@ protected:
   void gameCloseEvent(sf::Event *e);
 
 public:
-  Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements);
+  Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models);
   ~Game();
   int run();
 };

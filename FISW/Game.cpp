@@ -7,6 +7,12 @@ int Game::init() {
 
   std::list<const char*> paths;
 
+  for (Model* m : models) {
+    m->init(eventHandler.getListener());
+    elements.insert(elements.end(), m->generateModelDrawer());
+
+  }
+
   // gets the list of necessary assets for every screen, which gets its list from its children
 
   for (Element* s : elements) {
@@ -56,8 +62,9 @@ int Game::init() {
   return ret;
 }
 
-Game::Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements)
+Game::Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models)
   : elements { Elements }
+  , models {Models}
   , currentElement(0)
   , closeGame(false)
   , window { new sf::RenderWindow(sf::VideoMode(width, height), windowTitle, style) } {
