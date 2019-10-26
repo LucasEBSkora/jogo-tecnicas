@@ -18,15 +18,8 @@ ModelDrawer::ModelDrawer(const char* Path, sf::Vector2f Size, const Model* Model
 ModelDrawer::~ModelDrawer() {
 }
 
-// returns a list containing only the texture
-std::list<const char*> ModelDrawer::getAssetPathList() const {
-  std::list<const char*> list;
-  list.push_back(path);
-  return list;
-}
-
 // Finds the asset in the map using the path as a key, returns 1 if it isn't able to
-int ModelDrawer::init(std::map<std::string, sf::Texture*> assets, EventListeners* l) {
+int ModelDrawer::init(std::map<std::string, Asset> assets, EventListeners* l) {
   
   listeners = l;
 
@@ -35,7 +28,7 @@ int ModelDrawer::init(std::map<std::string, sf::Texture*> assets, EventListeners
     return 1;
   }
 
-  texture = assets[path];
+  texture = assets[path].getTexture();
 
   box.setTexture(texture, true);
 
@@ -60,9 +53,17 @@ void ModelDrawer::draw(sf::RenderWindow* window) {
   
 }
 
+
+// returns a list containing only the texture
+std::set<const char*> ModelDrawer::getAssetPathList() const {
+  std::set<const char*> list;
+  list.insert(path);
+  return list;
+}
+
 const sf::IntRect ModelDrawer::getTexturePosition() const {
   
-  return (model->isFacingRight()) ?  
+return (model->isFacingRight()) ?  
   
   sf::IntRect{
     sf::Vector2i{
@@ -77,7 +78,16 @@ const sf::IntRect ModelDrawer::getTexturePosition() const {
       static_cast<int>(texture->getSize().y) * model->getTexturePosition().y / (frames.y)
     },
    sf::Vector2i{- static_cast<int>(texture->getSize().x) / frames.x, static_cast<int>(texture->getSize().y) / frames.y}};
-   
+ /* 
+  return sf::IntRect{
+    sf::Vector2i{
+      static_cast<int>(texture->getSize().x) * (model->getTexturePosition().x + (model->isFacingRight()) ? 0 : 1) / (frames.x), 
+      static_cast<int>(texture->getSize().y) * model->getTexturePosition().y / (frames.y)
+    },
+    sf::Vector2i{( (model->isFacingRight()) ? (1) : (-1)) *static_cast<int>(texture->getSize().x) / frames.x, static_cast<int>(texture->getSize().y) / frames.y}
+  };
+     */ 
+
 }
 
 } // namespace FISW

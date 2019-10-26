@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include <iostream>
-#include <list>
 #include <map>
 #include <vector>
 
@@ -12,6 +11,7 @@
 #include "EventHandler.hpp"
 #include "EventListeners.hpp"
 #include "Model.hpp"
+#include "Asset.hpp"
 
 namespace FISW {
 
@@ -22,7 +22,7 @@ protected:
 
   std::vector<Model*> models;
   // List of every texture which the game will use (needs to be improved to allow any type of file)
-  std::map<std::string, sf::Texture*> assets;
+  std::map<std::string, Asset> assets;
   // Which of the elements is currently being processed and show on screen (this class only allows one at a time)
   unsigned long int currentElement;
   bool closeGame;
@@ -33,6 +33,7 @@ protected:
 
   // loads assets, sets up event handler
   int init();
+  int getAssets(); 
 
   void gameCloseEvent(sf::Event *e);
 

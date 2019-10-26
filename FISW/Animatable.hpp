@@ -2,10 +2,12 @@
 #define ANIMATABLE_HPP
 
 #include <map>
+#include <set>
 
 #include <SFML/Graphics.hpp>
 
 #include "Element.hpp"
+#include "Asset.hpp"
 
 namespace FISW {
 
@@ -26,8 +28,8 @@ namespace FISW {
       Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size);
       virtual ~Animatable() override;
 
-      virtual std::list<const char*> getAssetPathList() const override;
-      virtual int init(std::map<std::string, sf::Texture*> assets, EventListeners* l) override;
+      virtual std::set<const char*> getAssetPathList() const override;
+      virtual int init(std::map<std::string, Asset> assets, EventListeners* l) override;
       virtual void update(float) override;
       virtual void draw(sf::RenderWindow* window) override;
 

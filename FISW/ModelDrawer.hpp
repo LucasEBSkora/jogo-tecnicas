@@ -36,9 +36,8 @@ namespace FISW {
 
       ModelDrawer(const char* Path, sf::Vector2f Size, const Model* model, sf::Vector2i numberFrames);
       virtual ~ModelDrawer() override;
-
-      virtual std::list<const char*> getAssetPathList() const override;
-      virtual int init(std::map<std::string, sf::Texture*> assets, EventListeners* l) override;
+      virtual std::set<const char*> getAssetPathList() const override;
+      virtual int init(std::map<std::string, Asset> assets, EventListeners* l) override;
       virtual void update(float) override;
       virtual void draw(sf::RenderWindow* window) override;
 

@@ -1,13 +1,14 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
-#include <list>
+#include <set>
 #include <map>
 
 #include <SFML/Graphics.hpp>
 
 #include "Element.hpp"
 #include "EventListeners.hpp"
+#include "Asset.hpp"
 
 //Simplest possible element, only prints an static image
 
@@ -31,8 +32,8 @@ public:
   Drawable(const char* Path, float X, float Y, float Length, float Height);
   virtual ~Drawable() override;
 
-  virtual std::list<const char*> getAssetPathList() const override;
-  virtual int init(std::map<std::string, sf::Texture*> assets, EventListeners* l) override;
+  virtual std::set<const char*> getAssetPathList() const override;
+  virtual int init(std::map<std::string, Asset> assets, EventListeners* l) override;
   virtual void update(float) override;
   virtual void draw(sf::RenderWindow* window) override;
 };

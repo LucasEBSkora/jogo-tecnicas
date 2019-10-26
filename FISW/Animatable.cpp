@@ -19,14 +19,14 @@ Animatable::~Animatable() {
 }
 
 // returns a list containing only the texture
-std::list<const char*> Animatable::getAssetPathList() const {
-  std::list<const char*> list;
-  list.push_back(path);
+std::set<const char*> Animatable::getAssetPathList() const {
+  std::set<const char*> list;
+  list.insert(path);
   return list;
 }
 
 // Finds the asset in the map using the path as a key, returns 1 if it isn't able to
-int Animatable::init(std::map<std::string, sf::Texture*> assets, EventListeners* l) {
+int Animatable::init(std::map<std::string, Asset> assets, EventListeners* l) {
   
   listeners = l;
 
@@ -35,7 +35,7 @@ int Animatable::init(std::map<std::string, sf::Texture*> assets, EventListeners*
     return 1;
   }
 
-  texture = assets[path];
+  texture = assets[path].getTexture();
 
   box.setTexture(texture, true);
 

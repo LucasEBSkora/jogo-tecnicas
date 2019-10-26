@@ -1,11 +1,11 @@
 #include "Game.hpp"
 
+#include <set>
+
 namespace FISW {
 
 int Game::init() {
   int ret = 0;
-
-  std::list<const char*> paths;
 
   for (Model* m : models) {
     m->init(eventHandler.getListener());
@@ -13,33 +13,7 @@ int Game::init() {
 
   }
 
-  // gets the list of necessary assets for every screen, which gets its list from its children
-
-  for (Element* s : elements) {
-
-    std::list<const char*> screenPaths = s->getAssetPathList();
-    paths.insert(paths.end(), screenPaths.begin(), screenPaths.end());
-  }
-
-  // attempts to load the files into a map which is given to each Drawable on inicialization
-
-  std::cout << "number of assets to load: " << paths.size() << '\n';
-
-  for (const char* s : paths) {
-    sf::Texture* tex = new sf::Texture();
-    if (!tex->loadFromFile(s)) {
-
-      std::cout << "unable to load file at: " << s << '\n';
-      ret = 1;
-
-    } else {
-      std::cout << "file at " << s << " loaded succesfully:\n";
-    }
-
-    assets.insert({ s, tex });
-  }
-
-  std::cout << "assets loaded: " << assets.size() << '\n';
+  getAssets();
 
   // initializes each screen and its assets
   for (Element* s : elements) {
@@ -62,6 +36,48 @@ int Game::init() {
   return ret;
 }
 
+int Game::getAssets() {
+  int ret = 0;
+
+
+  std::set<const char*> paths;
+
+  // gets the list of necessary assets for every element
+
+  for (Element* s : elements) {
+
+    std::set<const char*> screenPaths = s->getAssetPathList();
+    paths.insert(screenPaths.begin(), screenPaths.end());
+
+  }
+
+  // attempts to load the files into a map which is given to each Drawable on inicialization
+
+  std::cout << "number of assets to load: " << paths.size() << '\n';
+
+  for (const char* s : paths) {
+    
+
+    Asset asset;
+     
+    if (!asset.load(s)) {
+
+      std::cout << "unable to load file at: " << s << '\n';
+      ret = 1;
+
+    } else {
+      std::cout << "file at " << s << " loaded succesfully:\n";
+    }
+
+    assets.insert({ s, asset});
+  }
+
+  std::cout << "assets loaded: " << assets.size() << '\n';
+
+  return ret;
+}
+
+
 Game::Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models)
   : elements { Elements }
   , models {Models}
@@ -75,12 +91,16 @@ Game::Game(float width, float height, std::string windowTitle, unsigned int styl
 Game::~Game() {
 
   // destroys asset list
-  for (std::pair<std::string, sf::Texture*> p : assets) {
-    delete p.second;
+  for (auto &p : assets) {
+    p.second.destroy();
   }
 
   for (Element* s : elements) {
     delete s;
+  }
+
+  for (Model* m : models) {
+    delete m;
   }
 
   delete window;
@@ -97,8 +117,6 @@ int Game::run() {
   eventHandler.resetTime();
 
   do {
-
-    
 
     if (!eventHandler.processEvents(window))
       ret = 1;

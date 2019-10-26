@@ -21,9 +21,9 @@ Drawable::~Drawable() {
 }
 
 // returns a list containing only the texture
-std::list<const char*> Drawable::getAssetPathList() const {
-  std::list<const char*> list;
-  list.push_back(path);
+std::set<const char*> Drawable::getAssetPathList() const {
+  std::set<const char*> list;
+  list.insert(path);
   return list;
 }
 
@@ -46,7 +46,7 @@ std::list<const char*> Drawable::getAssetPathList() const {
 // }
 
 // Finds the asset in the map using the path as a key, returns 1 if it isn't able to
-int Drawable::init(std::map<std::string, sf::Texture*> assets, EventListeners* l) {
+int Drawable::init(std::map<std::string, Asset> assets, EventListeners* l) {
   
   listeners = l; // se ele é const como a gente vai mudar?
 
@@ -56,7 +56,7 @@ int Drawable::init(std::map<std::string, sf::Texture*> assets, EventListeners* l
     return 1;
   }
 
-  texture = assets[path];
+  texture = assets[path].getTexture();
 
   box.setTexture(texture, true);
 
