@@ -9,7 +9,7 @@ int Game::init() {
 
   for (Model* m : models) {
     m->init(eventHandler.getListener());
-    elements.insert(elements.end(), m->generateModelDrawer());
+    elements.insert(elements.end(), static_cast<Element*>(m->generateModelDrawer()) );
 
   }
 
@@ -68,6 +68,8 @@ Game::Game(float width, float height, std::string windowTitle, unsigned int styl
   , currentElement(0)
   , closeGame(false)
   , window { new sf::RenderWindow(sf::VideoMode(width, height), windowTitle, style) } {
+
+    window->setKeyRepeatEnabled(false);
 }
 
 Game::~Game() {

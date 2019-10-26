@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS =  main.cpp FISW/*.cpp
+OBJS =  *.cpp FISW/*.cpp
 
 
 #CC specifies which compiler we're using

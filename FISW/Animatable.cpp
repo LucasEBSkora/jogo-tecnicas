@@ -41,9 +41,10 @@ int Animatable::init(std::map<std::string, sf::Texture*> assets, EventListeners*
 
   listeners->subscribe("update", [this](float time) { update(time); }, this);
   listeners->subscribe("draw", [this](sf::RenderWindow* w) { draw(w); }, this);
+  
   listeners->subscribe("timer_300", [this](){
-    texturePosition.left += texture->getSize().x/9;
-    if (texturePosition.left >= texture->getSize().x)  texturePosition.left = 0;
+    texturePosition.left += static_cast<int> (texture->getSize().x/9);
+    if (static_cast<unsigned int> (texturePosition.left) >= texture->getSize().x)  texturePosition.left = 0;
   
   }, this);
   

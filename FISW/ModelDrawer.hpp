@@ -6,24 +6,35 @@
 #include <SFML/Graphics.hpp>
 
 #include "Animatable.hpp"
-#include "Model.hpp"
+
 
 namespace FISW {
 
+  class Model;
+
   class ModelDrawer : public Element {
-    protected:
+    private:
       // path to the desired image
+
       const char* path;
-      sf::IntRect texturePosition;
       sf::Vector2f size;
+      sf::Vector2i frames;
+      
+      const Model* model;
+      
+      sf::RectangleShape box;
+      
+      sf::IntRect texturePosition;
+      
       // pointer to the desired image
       sf::Texture* texture;
-      sf::RectangleShape box;
-      Model* model;
+      
 
+    const sf::IntRect getTexturePosition() const;
+    
     public:
 
-      ModelDrawer(const char* Path, sf::Vector2f Size, Model* model);
+      ModelDrawer(const char* Path, sf::Vector2f Size, const Model* model, sf::Vector2i numberFrames);
       virtual ~ModelDrawer() override;
 
       virtual std::list<const char*> getAssetPathList() const override;
@@ -31,6 +42,7 @@ namespace FISW {
       virtual void update(float) override;
       virtual void draw(sf::RenderWindow* window) override;
 
+    
   };
 
 }

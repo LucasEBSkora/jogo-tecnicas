@@ -1,6 +1,14 @@
-#include "Model.h"
+#include "Model.hpp"
 
 namespace FISW {
+
+  Model::Model(const char* Path, sf::Vector2f Position, sf::Vector2i TexturePosition, bool FacingRight) : 
+    path{Path},
+    position{Position},
+    texturePosition{TexturePosition},
+    facingRight{FacingRight} {
+      
+    }
 
   Model::~Model() {
 
@@ -20,5 +28,10 @@ namespace FISW {
 
   bool Model::isFacingRight() const {
     return facingRight;
+  }
+
+  void Model::init(EventListeners* l) {
+    listener = l;
+    subscribe();
   }
 }

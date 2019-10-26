@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ModelDrawer.hpp" 
+#include "ModelDrawer.hpp"
 #include "EventListeners.hpp"
 
 namespace FISW {
@@ -15,20 +15,30 @@ namespace FISW {
   class Model {
 
   protected:
+  
+    const char* path;
     sf::Vector2f position;
     sf::Vector2i texturePosition;
-    const char* path;
     bool facingRight;
     EventListeners* listener;
-  public:
+
+    virtual void subscribe() = 0;
+
+
+  public: 
+
+    Model(const char* Path = "", sf::Vector2f Position = sf::Vector2f(0.0f, 0.0f), sf::Vector2i TexturePosition = sf::Vector2i(0,0), bool FacingRight = true);
+
     
     virtual ~Model();
+
     const sf::Vector2f getPosition() const;
     const sf::Vector2i getTexturePosition() const;
     const char* getAssetPath() const;
     bool isFacingRight() const;
+
     virtual ModelDrawer* generateModelDrawer() const = 0;
-    void init(EventListeners* listener);
+    void init(EventListeners* l);
 
 
   };

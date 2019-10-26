@@ -61,7 +61,7 @@ bool EventHandler::processEvents(sf::RenderWindow* window) {
         if (evnt.text.unicode < 128)
           std::cout << static_cast<char>(evnt.text.unicode) << std::flush;
 
-      } else if (evnt.type == sf::Event::KeyPressed) {
+      } else if (evnt.type == sf::Event::KeyPressed || evnt.type == sf::Event::KeyReleased) {
         for (auto& f : listeners.keyboards) {
           f.second(&evnt);
         }

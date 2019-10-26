@@ -37,7 +37,7 @@ protected:
   void gameCloseEvent(sf::Event *e);
 
 public:
-  Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models);
+  Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models = std::vector<Model*>());
   ~Game();
   int run();
 };
