@@ -7,29 +7,30 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Element.hpp"
+#include "Drawable.hpp"
 #include "EventHandler.hpp"
 #include "EventListeners.hpp"
-#include "Model.hpp"
+#include "Entity.hpp"
 #include "Asset.hpp"
 
-namespace FISW {
+namespace HE {
 
 class Game {
 protected:
-  // List of elements which are direct "children" of the game
-  std::vector<Element*> elements;
+  
+  std::vector<Drawable*> drawables;
 
-  std::vector<Model*> models;
+  std::vector<Entity*> entities;
+  
   // List of every texture which the game will use (needs to be improved to allow any type of file)
   std::map<std::string, Asset> assets;
   // Which of the elements is currently being processed and show on screen (this class only allows one at a time)
-  unsigned long int currentElement;
+  unsigned long int currentDrawable;
   bool closeGame;
 
   sf::RenderWindow* window;
 
-  FISW::EventHandler eventHandler;
+  HE::EventHandler eventHandler;
 
   // loads assets, sets up event handler
   int init();
@@ -38,10 +39,10 @@ protected:
   void gameCloseEvent(sf::Event *e);
 
 public:
-  Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models = std::vector<Model*>());
+  Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Drawable*> Elements, std::vector<Entity*> Entities = std::vector<Entity*>());
   ~Game();
   int run();
 };
-} // namespace FISW
+} // namespace HE
 
 #endif

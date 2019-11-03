@@ -1,6 +1,6 @@
 #include "TheUndying.hpp"
 
-TheUndying::TheUndying() : Model("assets/walk2.png", {100.0f, 100.0f}, {0, 0}, true)  {
+TheUndying::TheUndying() : Entity("assets/walk2.png", {100.0f, 100.0f}, {0, 0}, true)  {
  
 }
 
@@ -8,9 +8,9 @@ TheUndying::~TheUndying() {
 
 }
 
-FISW::ModelDrawer* TheUndying::generateModelDrawer() const{
+HE::EntityDrawable* TheUndying::generateEntityDrawable() const{
 
-  return new FISW::ModelDrawer(path, {256.0f, 256.0f}, this, {9, 1});
+  return new HE::EntityDrawable(path, {256.0f, 256.0f}, this, {9, 1});
 
 }
 
@@ -24,13 +24,13 @@ void TheUndying::onKeyboardEvent(sf::Event* e) {
 
   if (e->type == sf::Event::KeyPressed) {
     
-    if (e->key.code == FISW::KeyboardKey::A) {
+    if (e->key.code == HE::KeyboardKey::A) {
   std::cout << "firing!" << std::endl;
       facingRight = false;
       listener->subscribe("update", [this](float time){ position.x -= 50*time;}, this);
       listener->subscribe("timer_150", [this](){animate();}, this);
 
-    } else if (e->key.code == FISW::KeyboardKey::D) {
+    } else if (e->key.code == HE::KeyboardKey::D) {
       
       facingRight = true;
       listener->subscribe("update", [this](float time){ position.x += 50*time;}, this);
@@ -38,7 +38,7 @@ void TheUndying::onKeyboardEvent(sf::Event* e) {
     }
 
 
-  } else if (e->key.code == FISW::KeyboardKey::A  || e->key.code == FISW::KeyboardKey::D) {
+  } else if (e->key.code == HE::KeyboardKey::A  || e->key.code == HE::KeyboardKey::D) {
   
     listener->unsubscribe("update", this);
     listener->unsubscribe("timer_150", this);

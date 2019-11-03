@@ -1,47 +1,38 @@
-#ifndef MODELDRAWER_HPP
-#define MODELDRAWER_HPP
+#ifndef DYNAMICDRAWABLE_HPP
+#define DYNAMICDRAWABLE_HPP
 
 #include <map>
+#include <set>
 
 #include <SFML/Graphics.hpp>
 
-#include "Animatable.hpp"
+#include "Drawable.hpp"
+#include "Asset.hpp"
 
+namespace HE {
 
-namespace FISW {
-
-  class Model;
-
-  class ModelDrawer : public Element {
-    private:
+  class DynamicDrawable : public Drawable {
+    protected:
       // path to the desired image
-
       const char* path;
+      sf::Vector2f position;
       sf::Vector2f size;
-      sf::Vector2i frames;
-      
-      const Model* model;
-      
-      sf::RectangleShape box;
-      
       sf::IntRect texturePosition;
-      
       // pointer to the desired image
       sf::Texture* texture;
-      
 
-    const sf::IntRect getTexturePosition() const;
-    
+      sf::RectangleShape box;
+
     public:
 
-      ModelDrawer(const char* Path, sf::Vector2f Size, const Model* model, sf::Vector2i numberFrames);
-      virtual ~ModelDrawer() override;
+      DynamicDrawable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size);
+      virtual ~DynamicDrawable() override;
+
       virtual std::set<const char*> getAssetPathList() const override;
       virtual int init(std::map<std::string, Asset> assets, EventListeners* l) override;
       virtual void update(float) override;
       virtual void draw(sf::RenderWindow* window) override;
 
-    
   };
 
 }

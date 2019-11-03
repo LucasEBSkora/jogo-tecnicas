@@ -1,11 +1,11 @@
-#include "Drawable.hpp"
+#include "StaticDrawable.hpp"
 
 #include <functional>
 #include <iostream>
 
-namespace FISW {
+namespace HE {
 
-Drawable::Drawable(const char* Path, float X, float Y, float Length, float Height)
+StaticDrawable::StaticDrawable(const char* Path, float X, float Y, float Length, float Height)
   : path { Path }
   , x { X }
   , y { Y }
@@ -17,26 +17,26 @@ Drawable::Drawable(const char* Path, float X, float Y, float Length, float Heigh
   box.setPosition(X, Y);
 }
 
-Drawable::~Drawable() {
+StaticDrawable::~StaticDrawable() {
 }
 
 // returns a list containing only the texture
-std::set<const char*> Drawable::getAssetPathList() const {
+std::set<const char*> StaticDrawable::getAssetPathList() const {
   std::set<const char*> list;
   list.insert(path);
   return list;
 }
 
 // this class depends on update and draw events
-// EventListeners Drawable::getSettings() {
+// EventListeners StaticDrawable::getSettings() {
 //   // it can be done either way:
 //   // with lambdas
 //   auto update_fun = [this](float time) { update(time); };
-//   // std::function<void(float)> update = std::bind(static_cast<void(Drawable::*)(float)>(&Drawable::update), this,
+//   // std::function<void(float)> update = std::bind(static_cast<void(StaticDrawable::*)(float)>(&StaticDrawable::update), this,
 //   // std::placeholders::_1);
 
 //   // with std::bind
-//   auto draw_fun = std::bind(&Drawable::draw, this, std::placeholders::_1);
+//   auto draw_fun = std::bind(&StaticDrawable::draw, this, std::placeholders::_1);
 
 //   EventListeners settings;
 //   settings.addUpdate(update_fun);
@@ -46,7 +46,7 @@ std::set<const char*> Drawable::getAssetPathList() const {
 // }
 
 // Finds the asset in the map using the path as a key, returns 1 if it isn't able to
-int Drawable::init(std::map<std::string, Asset> assets, EventListeners* l) {
+int StaticDrawable::init(std::map<std::string, Asset> assets, EventListeners* l) {
   
   listeners = l; // se ele é const como a gente vai mudar?
 
@@ -74,13 +74,13 @@ int Drawable::init(std::map<std::string, Asset> assets, EventListeners* l) {
 }
 
 // For now it just moves the image
-void Drawable::update(float time) {
+void StaticDrawable::update(float time) {
   box.move(sf::Vector2f(time * 40.0f, time * 20.0f));
 }
 
 // No need to comment
-void Drawable::draw(sf::RenderWindow* window) {
+void StaticDrawable::draw(sf::RenderWindow* window) {
   window->draw(box);
 }
 
-} // namespace FISW
+} // namespace HE

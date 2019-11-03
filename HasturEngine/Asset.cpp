@@ -1,7 +1,7 @@
 #include "Asset.hpp"
 
 #include <iostream>
-namespace FISW {
+namespace HE {
   
   Asset::Asset() : texture{nullptr} {
 

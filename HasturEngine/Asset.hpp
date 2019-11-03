@@ -3,7 +3,7 @@
 
 #include<SFML/Graphics.hpp>
 
-namespace FISW
+namespace HE
 {
   class Asset {
     private:
@@ -17,7 +17,7 @@ namespace FISW
       
   };
   
-} // namespace FISW
+} // namespace HE
 
 
 #endif

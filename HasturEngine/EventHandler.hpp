@@ -4,7 +4,7 @@
 #include "EventListeners.hpp"
 #include <SFML/Graphics.hpp>
 
-namespace FISW {
+namespace HE {
 
 class EventHandler {
 
@@ -35,6 +35,6 @@ public:
   void resetTime();
 };
 
-} // namespace FISW
+} // namespace HE
 
 #endif

@@ -1,6 +1,6 @@
 #include "EventListeners.hpp"
 
-namespace FISW {
+namespace HE {
 
 EventListeners::EventListeners() {
 }

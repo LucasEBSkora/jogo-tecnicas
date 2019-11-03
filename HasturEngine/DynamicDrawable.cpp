@@ -1,10 +1,10 @@
-#include "Animatable.hpp"
+#include "DynamicDrawable.hpp"
 
 #include <iostream>
 
-namespace FISW {
+namespace HE {
 
-Animatable::Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size)
+DynamicDrawable::DynamicDrawable(const char* Path, sf::Vector2f initialPosition, sf::IntRect initialTexturePosition, sf::Vector2f Size)
   : path { Path }
   , position{initialPosition}
   , size {Size}
@@ -15,18 +15,18 @@ Animatable::Animatable(const char* Path, sf::Vector2f initialPosition, sf::IntRe
   box.setPosition(initialPosition);
 }
 
-Animatable::~Animatable() {
+DynamicDrawable::~DynamicDrawable() {
 }
 
 // returns a list containing only the texture
-std::set<const char*> Animatable::getAssetPathList() const {
+std::set<const char*> DynamicDrawable::getAssetPathList() const {
   std::set<const char*> list;
   list.insert(path);
   return list;
 }
 
 // Finds the asset in the map using the path as a key, returns 1 if it isn't able to
-int Animatable::init(std::map<std::string, Asset> assets, EventListeners* l) {
+int DynamicDrawable::init(std::map<std::string, Asset> assets, EventListeners* l) {
   
   listeners = l;
 
@@ -53,14 +53,14 @@ int Animatable::init(std::map<std::string, Asset> assets, EventListeners* l) {
 }
 
 // For now it just moves the image
-void Animatable::update(float time) {
+void DynamicDrawable::update(float time) {
   box.setTextureRect(texturePosition);
   box.move(sf::Vector2f(time * 40.0f, time * 20.0f));
 }
 
 // No need to comment
-void Animatable::draw(sf::RenderWindow* window) {
+void DynamicDrawable::draw(sf::RenderWindow* window) {
   window->draw(box);
 }
 
-} // namespace FISW
+} // namespace HE

@@ -1,12 +1,12 @@
 #ifndef THEUNDYING_HPP
 #define THEUNDYING_HPP
 
-#include "FISW/Model.hpp"
-#include "FISW/ModelDrawer.hpp"
-#include "FISW/EventListeners.hpp"
+#include "HasturEngine/Entity.hpp"
+#include "HasturEngine/EntityDrawable.hpp"
+#include "HasturEngine/EventListeners.hpp"
 
 //Player 1
-class TheUndying : public FISW::Model {
+class TheUndying : public HE::Entity {
 
   private:
 
@@ -14,7 +14,7 @@ class TheUndying : public FISW::Model {
   TheUndying();
   ~TheUndying();
   
-  FISW::ModelDrawer* generateModelDrawer() const override;
+  HE::EntityDrawable* generateEntityDrawable() const override;
   void subscribe() override;
 
   

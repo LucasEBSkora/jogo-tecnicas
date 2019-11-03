@@ -2,21 +2,21 @@
 
 #include <set>
 
-namespace FISW {
+namespace HE {
 
 int Game::init() {
   int ret = 0;
 
-  for (Model* m : models) {
+  for (Entity* m : entities) {
     m->init(eventHandler.getListener());
-    elements.insert(elements.end(), static_cast<Element*>(m->generateModelDrawer()) );
+    drawables.insert(drawables.end(), static_cast<Drawable*>(m->generateEntityDrawable()) );
 
   }
 
   getAssets();
 
   // initializes each screen and its assets
-  for (Element* s : elements) {
+  for (Drawable* s : drawables) {
     if (s->init(assets, eventHandler.getListener()) == 1)
       ret = 1;
   }
@@ -24,7 +24,7 @@ int Game::init() {
   // maybe (probably) there is a better way, but it works
   // EventListeners settings;
   // yet another loop
-  // for (Element* s : elements) {
+  // for (Drawable* s : drawables) {
   //   settings.join(s->getSettings());
   // }
 
@@ -44,7 +44,7 @@ int Game::getAssets() {
 
   // gets the list of necessary assets for every element
 
-  for (Element* s : elements) {
+  for (Drawable* s : drawables) {
 
     std::set<const char*> screenPaths = s->getAssetPathList();
     paths.insert(screenPaths.begin(), screenPaths.end());
@@ -78,10 +78,10 @@ int Game::getAssets() {
 }
 
 
-Game::Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Element*> Elements, std::vector<Model*> Models)
-  : elements { Elements }
-  , models {Models}
-  , currentElement(0)
+Game::Game(float width, float height, std::string windowTitle, unsigned int style, std::vector<Drawable*> Drawables, std::vector<Entity*> Entitys)
+  : drawables { Drawables }
+  , entities {Entitys}
+  , currentDrawable(0)
   , closeGame(false)
   , window { new sf::RenderWindow(sf::VideoMode(width, height), windowTitle, style) } {
 
@@ -95,11 +95,11 @@ Game::~Game() {
     p.second.destroy();
   }
 
-  for (Element* s : elements) {
+  for (Drawable* s : drawables) {
     delete s;
   }
 
-  for (Model* m : models) {
+  for (Entity* m : entities) {
     delete m;
   }
 
@@ -136,4 +136,4 @@ void Game::gameCloseEvent(sf::Event *e) {
 }
 
 
-} // namespace FISW
+} // namespace HE

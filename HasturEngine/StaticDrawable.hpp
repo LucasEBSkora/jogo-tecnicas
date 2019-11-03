@@ -1,20 +1,20 @@
-#ifndef DRAWABLE_H
-#define DRAWABLE_H
+#ifndef STATICDRAWABLE_HPP
+#define STATICDRAWABLE_HPP
 
 #include <set>
 #include <map>
 
 #include <SFML/Graphics.hpp>
 
-#include "Element.hpp"
+#include "Drawable.hpp"
 #include "EventListeners.hpp"
 #include "Asset.hpp"
 
 //Simplest possible element, only prints an static image
 
-namespace FISW {
+namespace HE {
 
-class Drawable : public Element {
+class StaticDrawable : public Drawable {
 protected:
   // path to the desired image
   const char* path;
@@ -29,14 +29,14 @@ protected:
   sf::RectangleShape box;
 
 public:
-  Drawable(const char* Path, float X, float Y, float Length, float Height);
-  virtual ~Drawable() override;
+  StaticDrawable(const char* Path, float X, float Y, float Length, float Height);
+  virtual ~StaticDrawable() override;
 
   virtual std::set<const char*> getAssetPathList() const override;
   virtual int init(std::map<std::string, Asset> assets, EventListeners* l) override;
   virtual void update(float) override;
   virtual void draw(sf::RenderWindow* window) override;
 };
-} // namespace FISW
+} // namespace HE
 
 #endif

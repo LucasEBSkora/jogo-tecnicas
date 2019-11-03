@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-namespace FISW {
+namespace HE {
 const sf::Time EventHandler::timePerFrame{sf::seconds(1.0f / 60.0f)};
 
 EventHandler::EventHandler(EventListeners Listeners)
@@ -102,4 +102,4 @@ EventListeners* EventHandler::getListener() {
   return &(listeners);
 }
 
-} // namespace FISW
+} // namespace HE

@@ -11,7 +11,8 @@
 
 #include "constants.hpp"
 
-namespace FISW {
+namespace HE {
+
 
 
 class EventListeners {
@@ -86,6 +87,6 @@ void EventListeners::subscribe(const std::string& eventName, T callback, void* s
   // }
 }
 
-} // namespace FISW
+} // namespace HE
 
 #endif

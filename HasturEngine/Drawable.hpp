@@ -1,22 +1,22 @@
-#ifndef ELEMENT_H
-#define ELEMENT_H
+#ifndef DRAWABLE_H
+#define DRAWABLE_H
 
 #include <set>
 #include <map>
 
 #include "EventListeners.hpp"
 #include "Asset.hpp"
-namespace FISW {
+namespace HE {
 
-// Classe base da qual todos os elementos tem que ser derivadas (sejam desenhados ou não)
+// Classe base da qual todos os elementos gráficos tem de ser derivados
 
-class Element {
+class Drawable {
 
 protected:
   EventListeners* listeners;
 
 public:
-  virtual ~Element();
+  virtual ~Drawable();
 
   // Retorna a lista de caminhos para os assets que esse elemento precisa. Pode retornar uma lista vazia, ou
   // simplesmente retornar a lista dos elementos agregados
@@ -33,6 +33,6 @@ public:
   // Desenha o elemento na tela. Pode simplesmente chamar a mesma função nos elementos agregados.
   virtual void draw(sf::RenderWindow* window) = 0;
 };
-} // namespace FISW
+} // namespace HE
 
 #endif

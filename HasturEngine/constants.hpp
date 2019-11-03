@@ -1,6 +1,6 @@
 #include "SFML/Graphics.hpp"
 
-namespace FISW {
+namespace HE {
 
 typedef sf::Keyboard::Key KeyboardKey;
 typedef sf::Mouse::Button MouseButton;
@@ -20,4 +20,4 @@ namespace WindowStyle {
   };
 }
 
-} // namespace FISW
+} // namespace HE

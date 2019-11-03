@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS =  *.cpp FISW/*.cpp
+OBJS =  *.cpp HasturEngine/*.cpp
 
 
 #CC specifies which compiler we're using
