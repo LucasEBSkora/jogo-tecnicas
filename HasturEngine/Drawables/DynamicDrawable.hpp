@@ -7,7 +7,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Drawable.hpp"
-#include "Asset.hpp"
+#include "../Asset.hpp"
+
 
 namespace HE {
 

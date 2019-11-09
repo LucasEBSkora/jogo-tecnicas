@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS =  *.cpp HasturEngine/*.cpp
+OBJS =  *.cpp HasturEngine/*.cpp HasturEngine/Drawables/*.cpp HasturEngine/Events/*.cpp HasturEngine/Maps/*.cpp HasturEngine/TileSystem/*.cpp DescentIntoMadness/Entities/Enemies/*.cpp DescentIntoMadness/Entities/Projectiles/*.cpp DescentIntoMadness/Entities/Players/*.cpp DescentIntoMadness/States/Levels/*.cpp DescentIntoMadness/States/Menus/*.cpp DescentIntoMadness/States/*.cpp DescentIntoMadness/Tiles/*.cpp DescentIntoMadness/Tiles/TempleLevelTiles/*.cpp DescentIntoMadness/Tiles/CavernLevelTiles/*.cpp
 
 
 #CC specifies which compiler we're using

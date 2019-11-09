@@ -7,8 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Drawable.hpp"
-#include "EventListeners.hpp"
-#include "Asset.hpp"
+
 
 //Simplest possible element, only prints an static image
 

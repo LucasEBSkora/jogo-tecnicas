@@ -1,7 +1,7 @@
 #ifndef ASSET_HPP
 #define ASSET_HPP
 
-#include<SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace HE
 {

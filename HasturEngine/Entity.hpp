@@ -4,8 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "EntityDrawable.hpp"
-#include "EventListeners.hpp"
+#include "Drawables/EntityDrawable.hpp"
+#include "Events/EventListeners.hpp"
 
 namespace HE {
 

@@ -4,8 +4,8 @@
 #include <set>
 #include <map>
 
-#include "EventListeners.hpp"
-#include "Asset.hpp"
+#include "../Events/EventListeners.hpp"
+#include "../Asset.hpp"
 namespace HE {
 
 // Classe base da qual todos os elementos gráficos tem de ser derivados

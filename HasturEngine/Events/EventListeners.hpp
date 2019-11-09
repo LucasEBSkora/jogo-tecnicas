@@ -9,7 +9,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "constants.hpp"
+#include "../constants.hpp"
 
 namespace HE {
 
