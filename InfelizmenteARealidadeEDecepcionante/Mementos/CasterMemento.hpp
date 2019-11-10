@@ -1,10 +1,16 @@
-#ifndef THEUNDYINGMEMENTO_HPP
-#define THEUNDYINGMEMENTO_HPP
+#ifndef CASTERMEMENTO_HPP
+#define CASTERMEMENTO_HPP
+
+#include "Memento.hpp"
 
 namespace DIM
 {
-  class TheUndyingMemento {
+  class CasterMemento : public Memento {
+  private:
 
+  public:
+    CasterMemento();
+    ~CasterMemento();
   };
   
 } // namespace DIM

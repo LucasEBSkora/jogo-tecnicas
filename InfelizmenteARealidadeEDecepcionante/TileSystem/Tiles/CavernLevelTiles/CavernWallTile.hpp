@@ -5,7 +5,11 @@
 
 namespace DIM {
   class CavernWallTile : public WallTile {
+  private:
 
+  public:
+    CavernWallTile();
+    ~CavernWallTile();
   };
 
 }

@@ -1,11 +1,15 @@
 #ifndef PROJECTILE_HPP
 #define PROJECTILE_HPP
 
-#include "../../../HasturEngine/Entity.hpp"
+#include "../Entity.hpp"
 
 namespace DIM {
-  class Projectile : public HE::Entity {
+  class Projectile : public Entity {
+  private:
 
+  public:
+    Projectile();
+    ~Projectile();
   };
 
 }

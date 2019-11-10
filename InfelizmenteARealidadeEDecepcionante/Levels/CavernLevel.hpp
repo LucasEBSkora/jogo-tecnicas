@@ -5,7 +5,11 @@
 
 namespace DIM {
   class CavernLevel : public Level {
+  private:
 
+  public:
+    CavernLevel();
+    ~CavernLevel();
   };
 
 }

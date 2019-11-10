@@ -4,7 +4,11 @@
 namespace DIM
 {
   class LevelMemento {
+  private:
 
+  public:
+    LevelMemento();
+    ~LevelMemento();
   };
   
 } // namespace DIM

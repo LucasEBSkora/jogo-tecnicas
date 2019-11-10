@@ -1,7 +1,7 @@
-#include "HasturEngine/StaticDrawable.hpp"
+#include "HasturEngine/Drawables/StaticDrawable.hpp"
 #include "HasturEngine/Game.hpp"
-#include "HasturEngine/DynamicDrawable.hpp"
-#include "TheUndying.hpp"
+#include "HasturEngine/Drawables/DynamicDrawable.hpp"
+#include "DescentIntoMadness/Entities/Players/TheUndying.hpp"
 
 int main() {
 

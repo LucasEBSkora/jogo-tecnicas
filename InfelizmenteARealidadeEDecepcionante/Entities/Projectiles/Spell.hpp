@@ -5,7 +5,11 @@
 
 namespace DIM {
   class Spell : public Projectile {
+  private:
 
+  public:
+    Spell();
+    ~Spell();
   };
 
 }

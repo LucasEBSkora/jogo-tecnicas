@@ -1,11 +1,16 @@
 #ifndef LEVEL_HPP
 #define LEVEL_HPP
 
-#include "../../../HasturEngine/State.hpp"
+#include "../Entities/Entity.hpp"
+#include "../Lists/EntityList.hpp"
 
 namespace DIM {
-  class Level : public HE::State {
+  class Level {
+  private:
 
+  public:
+    Level();
+    ~Level();
   };
 
 }

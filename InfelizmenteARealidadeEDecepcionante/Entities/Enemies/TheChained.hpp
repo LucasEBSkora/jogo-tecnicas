@@ -1,11 +1,15 @@
 #ifndef THECHAINED_HPP
 #define THECHAINED_HPP
 
-#include "../../../HasturEngine/Entity.hpp"
+#include "Enemy.hpp"
 
 namespace DIM {
-  class TheChained : public HE::Entity {
+  class TheChained : public Enemy {
+  private:
 
+  public:
+    TheChained();
+    ~TheChained();
   };
 
 }

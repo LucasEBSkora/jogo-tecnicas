@@ -1,11 +1,15 @@
 #ifndef LEVELENDTILE_HPP
 #define LEVELENDTILE_HPP
 
-#include "../../HasturEngine/Drawables/Tile.hpp"
+#include "Tile.hpp"
 
 namespace DIM {
-  class LevelEndTile : public HE::Tile {
+  class LevelEndTile : public Tile {
+  private:
 
+  public:
+    LevelEndTile();
+    ~LevelEndTile();
   };
 
 }

@@ -5,7 +5,11 @@
 
 namespace DIM {
   class PauseMenu : public Menu {
+  private:
 
+  public:
+    PauseMenu();
+    ~PauseMenu();
   };
 
 }

@@ -5,7 +5,11 @@
 
 namespace DIM {
   class TempleLevel : public Level {
+  private:
 
+  public:
+    TempleLevel();
+    ~TempleLevel();
   };
 
 }

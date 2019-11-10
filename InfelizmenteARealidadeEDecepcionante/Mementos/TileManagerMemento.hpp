@@ -1,10 +1,16 @@
-#ifndef TILEMANaGERMEMENTO_HPP
-#define TILEMANaGERMEMENTO_HPP
+#ifndef TILEMANAGERMEMENTO_HPP
+#define TILEMANAGERMEMENTO_HPP
+
+#include "Memento.hpp"
 
 namespace DIM
 {
-  class TileManagerMemento {
+  class TileManagerMemento : public Memento {
+  private:
 
+  public:
+    TileManagerMemento();
+    ~TileManagerMemento();
   };
   
 } // namespace DIM

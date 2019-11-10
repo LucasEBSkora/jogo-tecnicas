@@ -1,11 +1,15 @@
 #ifndef CASTER_HPP
 #define CASTER_HPP
 
-#include "../../../HasturEngine/Entity.hpp"
+#include "Enemy.hpp"
 
 namespace DIM {
-  class Caster : public HE::Entity {
+  class Caster : public Enemy {
+  private:
 
+  public:
+    Caster();
+    ~Caster();
   };
 
 }

@@ -5,7 +5,11 @@
 
 namespace DIM {
   class TempleWallTile : public WallTile {
+  private:
 
+  public:
+    TempleWallTile();
+    ~TempleWallTile();
   };
 
 }

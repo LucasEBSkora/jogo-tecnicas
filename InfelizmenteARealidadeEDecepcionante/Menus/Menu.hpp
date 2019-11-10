@@ -1,11 +1,15 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
-#include "../../../HasturEngine/State.hpp"
+#include "Button.hpp"
 
 namespace DIM {
-  class Menu : public HE::State {
+  class Menu {
+  private:
 
+  public:
+    Menu();
+    ~Menu();
   };
 
 }

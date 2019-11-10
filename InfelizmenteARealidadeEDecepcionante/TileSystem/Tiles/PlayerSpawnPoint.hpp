@@ -1,11 +1,15 @@
 #ifndef PLAYERSPAWNPOINT_HPP
 #define PLAYERSPAWNPOINT_HPP
 
-#include "../../HasturEngine/Drawables/Tile.hpp"
+#include "Tile.hpp"
 
 namespace DIM {
-  class PlayerSpawnPoint : public HE::Tile {
+  class PlayerSpawnPoint : public Tile {
+  private:
 
+  public:
+    PlayerSpawnPoint();
+    ~PlayerSpawnPoint();
   };
 
 }

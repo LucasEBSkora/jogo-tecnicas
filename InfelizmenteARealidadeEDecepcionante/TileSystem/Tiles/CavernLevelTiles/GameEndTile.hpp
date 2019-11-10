@@ -5,7 +5,11 @@
 
 namespace DIM {
   class GameEndTile : public LevelEndTile {
+  private:
 
+  public:
+    GameEndTile();
+    ~GameEndTile();
   };
 
 }

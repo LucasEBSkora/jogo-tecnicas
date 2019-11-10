@@ -1,10 +1,16 @@
-#ifndef THEUNDYINGMEMENTO_HPP
-#define THEUNDYINGMEMENTO_HPP
+#ifndef CRAWLERMEMENTO_HPP
+#define CRAWLERMEMENTO_HPP
+
+#include "Memento.hpp"
 
 namespace DIM
 {
-  class TheUndyingMemento {
+  class CrawlerMemento : public Memento {
+  private:
 
+  public:
+    CrawlerMemento();
+    ~CrawlerMemento();
   };
   
 } // namespace DIM

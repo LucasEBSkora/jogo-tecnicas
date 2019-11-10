@@ -1,11 +1,15 @@
 #ifndef THEPENITENT_HPP
 #define THEPENITENT_HPP
 
-#include "../../../HasturEngine/Entity.hpp"
+#include "../Mob.hpp"
 
 namespace DIM {
-  class ThePenitent : public HE::Entity {
+  class ThePenitent : public Mob {
+  private:
 
+  public:
+    ThePenitent();
+    ~ThePenitent();
   };
 
 }

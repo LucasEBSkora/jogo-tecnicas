@@ -1,12 +1,19 @@
-#ifndef ENTITYMAP_HPP
-#define ENTITYMAP_HPP
+#ifndef ENTITYLIST_HPP
+#define ENTITYLIST_HPP
 
-#include "Map.hpp"
-#include "../Entity.hpp"
+#include "List.hpp"
+#include "../Entities/Entity.hpp"
 
-namespace HE {
+namespace DIM {
 
-  class EntityMap : public Map<Entity> {
+  class EntityList : public List<Entity*> { // a EntityList compõe uma List<Entity*>, não herda
+    public:
+      EntityList();
+      ~EntityList();
+      void DrawAll();
+      void UpdateAll();
+      void InicializeAll();
+      void DestroyAll();
 
   };
 }

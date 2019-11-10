@@ -5,7 +5,11 @@
 
 namespace DIM {
   class MainMenu : public Menu {
+  private:
 
+  public:
+    MainMenu();
+    ~MainMenu();
   };
 
 }

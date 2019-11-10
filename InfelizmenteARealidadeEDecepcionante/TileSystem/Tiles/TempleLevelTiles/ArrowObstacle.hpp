@@ -1,11 +1,15 @@
 #ifndef ARROWOBSTACLE_HPP
 #define ARROWOBSTACLE_HPP
 
-#include "../../../HasturEngine/Drawables/Tile.hpp"
+#include "../Tile.hpp"
 
 namespace DIM {
-  class ArrowObstacle : public HE::Tile {
+  class ArrowObstacle : public Tile {
+  private:
 
+  public:
+    ArrowObstacle();
+    ~ArrowObstacle();
   };
 
 }

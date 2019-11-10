@@ -4,8 +4,12 @@
 #include "Projectile.hpp"
 
 namespace DIM {
-  class ThePenitent : public Projectile {
+  class Arrow : public Projectile {
+  private:
 
+  public:
+    Arrow();
+    ~Arrow();
   };
 
 }

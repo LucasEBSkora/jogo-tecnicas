@@ -4,8 +4,12 @@
 #include "../LevelEndTile.hpp"
 
 namespace DIM {
-  class GateToCaverntile : public LevelEndTile {
+  class GateToCavernTile : public LevelEndTile {
+  private:
 
+  public:
+    GateToCavernTile();
+    ~GateToCavernTile();
   };
 
 }

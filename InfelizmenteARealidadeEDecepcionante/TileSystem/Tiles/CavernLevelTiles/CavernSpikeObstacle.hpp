@@ -5,7 +5,11 @@
 
 namespace DIM {
   class CavernSpikeObstacle : public SpikeObstacle {
+  private:
 
+  public:
+    CavernSpikeObstacle();
+    ~CavernSpikeObstacle();
   };
 
 }

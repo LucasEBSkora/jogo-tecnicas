@@ -5,7 +5,11 @@
 
 namespace DIM {
   class TempleSpikeObstacle : public SpikeObstacle {
+  private:
 
+  public:
+    TempleSpikeObstacle();
+    ~TempleSpikeObstacle();
   };
 
 }

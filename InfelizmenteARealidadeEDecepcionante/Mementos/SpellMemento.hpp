@@ -1,10 +1,16 @@
-#ifndef SPEllMEMENTO_HPP
-#define SPEllMEMENTO_HPP
+#ifndef SPELLMEMENTO_HPP
+#define SPELLMEMENTO_HPP
+
+#include "Memento.hpp"
 
 namespace DIM
 {
-  class SpellMemento {
+  class SpellMemento : public Memento {
+  private:
 
+  public:
+    SpellMemento();
+    ~SpellMemento();
   };
   
 } // namespace DIM

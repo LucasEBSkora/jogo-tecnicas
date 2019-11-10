@@ -1,11 +1,15 @@
 #ifndef SPIKEOBSTACLE_HPP
 #define SPIKEOBSTACLE_HPP
 
-#include "../../HasturEngine/Drawables/Tile.hpp"
+#include "Tile.hpp"
 
 namespace DIM {
-  class SpikeObstacle : public HE::Tile {
+  class SpikeObstacle : public Tile {
+  private:
 
+  public:
+    SpikeObstacle();
+    ~SpikeObstacle();
   };
 
 }

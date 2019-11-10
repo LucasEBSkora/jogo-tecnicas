@@ -1,11 +1,15 @@
 #ifndef WALLTILE_HPP
 #define WALLTILE_HPP
 
-#include "../../HasturEngine/Drawables/Tile.hpp"
+#include "Tile.hpp"
 
 namespace DIM {
-  class WallTile : public HE::Tile {
+  class WallTile : public Tile {
+  private:
 
+  public:
+    WallTile();
+    ~WallTile();
   };
 
 }
