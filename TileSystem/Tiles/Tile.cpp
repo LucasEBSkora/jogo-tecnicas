@@ -19,7 +19,7 @@ namespace DIM {
     }
 
     void Tile::draw(const VectorF at) const {
-      graphicsManager->draw(path, at)
+      graphicsManager->draw(path, at);
     }
 
     std::string Tile::getID() const {

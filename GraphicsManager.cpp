@@ -5,7 +5,6 @@
 #include <algorithm>
 
 namespace DIM {
-  int GraphicsManager::next_uid = 0;
 
   GraphicsManager::GraphicsManager() {
     std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
@@ -25,22 +24,22 @@ namespace DIM {
     assets.clear();
   }
 
-  int GraphicsManager::loadAsset(const char* path) {
+  bool GraphicsManager::loadAsset(const char* path) {
     auto it = assets.find(path);
     if(it != assets.end()) {
-      return it->second.second;
+      return true;
     } else {
       sf::Texture* texture = new sf::Texture();
       if (!texture->loadFromFile(path)) {
         std::cout << "e morreu\n";
         exit(1234);
       } 
-      assets.insert(std::make_pair(texture, next_uid));
-      ++next_uid;
+      assets.emplace(path, texture);
+      return true;
     }
   }
 
-  void GraphicsManager::draw(int id, VectorF at) const {
+  void GraphicsManager::draw(const char* id, VectorF at) const {
     sf::Texture* texture;
     auto it = std::find(assets.begin(), assets.end(), [id] (auto i) { return i->second == id });
     if (it == assets.end()) {

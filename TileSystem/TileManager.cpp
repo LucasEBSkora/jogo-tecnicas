@@ -31,7 +31,7 @@ namespace DIM
   void TileManager::initializeSpecific() {
     
     for (Tile* t : tiles) {
-      t->initializeGeneric(manager);
+      t->initialize(manager, this);
     }
   }
 
@@ -106,7 +106,7 @@ namespace DIM
           short tileId = tileMap[i][j];
           if (tileId >= 0) {
 
-            vec.push_back( IdPositionPair(tiles[tileId]->getID(), tiles[tileId]->getCenterPoint()) );
+            vec.push_back( IdPositionPair(tiles[tileId]->getID(), VectorF((i + 0.5)*tileSide, (j + 0.5)*tileSide)));
           }
         }
       }
@@ -126,7 +126,7 @@ namespace DIM
   void TileManager::draw() const {
     for (int i = 0; i < tileMapSize.y; ++i) {
       for (int j = 0; j < tileMapSize.x; ++j) {
-        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw();
+        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(VectorF((i)*tileSide, (j)*tileSide));
       }
     }
   }
