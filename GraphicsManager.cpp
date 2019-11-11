@@ -19,7 +19,7 @@ namespace DIM {
     for (auto i = assets.begin();
          i != assets.end();
          ++i) {
-      delete (i->second).first;
+      delete i->second;
     }
     assets.clear();
   }
@@ -41,12 +41,12 @@ namespace DIM {
 
   void GraphicsManager::draw(const char* id, VectorF at) const {
     sf::Texture* texture;
-    auto it = std::find(assets.begin(), assets.end(), [id] (auto i) { return i->second == id });
+    auto it = assets.find(id);
     if (it == assets.end()) {
       std::cout << "morreu porque tentou desenhar algo nao criado\n";
       exit(1235);
     }
-    texture = it->second.first;
+    texture = it->second;
     sf::Vector2u size = texture->getSize();
     
     if (!outOfSight(at, VectorF(size.x, size.y))) {

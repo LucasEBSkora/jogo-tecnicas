@@ -11,7 +11,7 @@ namespace DIM {
   class GraphicsManager {
   
   private:
-    std::map<const char*, std::pair<sf::Texture*, int>> assets;
+    std::map<const char*, sf::Texture*> assets;
     sf::RenderWindow* window;
     VectorF camera_pos;
     VectorF camera_size;
