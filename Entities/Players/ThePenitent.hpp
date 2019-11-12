@@ -10,6 +10,10 @@ namespace DIM {
   public:
     ThePenitent();
     ~ThePenitent();
+
+    void update(float elapsedTime) override;
+    void draw() const override;
+    void initializeSpecific() override;
   };
 
 }

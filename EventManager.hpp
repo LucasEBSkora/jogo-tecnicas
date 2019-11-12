@@ -75,6 +75,7 @@ namespace DIM {
 
     // const EventListeners* getListener() const; 
     // EventListeners* getListener();
+    float getLastElapsedTime() const;
 
     void resetTime();
   };

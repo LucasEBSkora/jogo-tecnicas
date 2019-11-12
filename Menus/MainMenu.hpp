@@ -7,7 +7,8 @@ namespace DIM {
   class MainMenu : public Menu {
   private:
     bool keep_going;
-    int event_id;
+    int key_event_id;
+    int mouse_event_id;
   public:
     MainMenu();
     ~MainMenu();

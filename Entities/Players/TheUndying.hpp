@@ -11,6 +11,10 @@ namespace DIM {
   public:
     TheUndying();
     ~TheUndying();
+
+    void update(float elapsedTime) override;
+    void draw() const override;
+    void initializeSpecific() override;
   };
 }
 

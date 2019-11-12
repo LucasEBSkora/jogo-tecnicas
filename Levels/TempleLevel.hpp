@@ -10,6 +10,10 @@ namespace DIM {
   public:
     TempleLevel();
     ~TempleLevel();
+
+    void init(GraphicsManager* g) override;
+
+    void exec() override;
   };
 
 }

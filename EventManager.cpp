@@ -94,6 +94,10 @@ namespace DIM {
     }
   }
 
+  float EventManager::getLastElapsedTime() const {
+    return timeSinceLastUpdate.asSeconds();
+  }
+
   void EventManager::resetTime() {
     clock.restart();
     timeSinceLastUpdate = sf::Time::Zero;

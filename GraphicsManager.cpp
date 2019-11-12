@@ -24,7 +24,7 @@ namespace DIM {
     assets.clear();
   }
 
-  bool GraphicsManager::loadAsset(const char* path) {
+  bool GraphicsManager::loadAsset(const std::string& path) {
     auto it = assets.find(path);
     if(it != assets.end()) {
       return true;
@@ -39,7 +39,7 @@ namespace DIM {
     }
   }
 
-  void GraphicsManager::draw(const char* id, VectorF at) const {
+  void GraphicsManager::draw(const std::string& id, VectorF at) const {
     sf::Texture* texture;
     auto it = assets.find(id);
     if (it == assets.end()) {
@@ -95,5 +95,10 @@ namespace DIM {
 
   VectorF GraphicsManager::getViewSize() const {
     return camera_size;
+  }
+
+  VectorF GraphicsManager::getMousePos() const {
+    sf::Vector2i pos = sf::Mouse::getPosition(*window);
+    return VectorF(pos.x, pos.y);
   }
 }

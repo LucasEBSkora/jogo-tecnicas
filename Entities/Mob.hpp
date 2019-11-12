@@ -6,7 +6,8 @@
 namespace DIM {
   class Mob : public PhysicalEntity {
   private:
-
+    int vx;
+    int vy;
   public:
     Mob();
     virtual ~Mob();

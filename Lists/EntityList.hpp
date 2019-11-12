@@ -8,9 +8,10 @@ namespace DIM {
 
   class EntityList {
   private:
-    using entity_iterator = List<Entity*>::iterator;
     List<Entity*> entities;
   public:
+    using iterator = List<Entity*>::iterator;
+
     EntityList();
     ~EntityList();
 
@@ -20,6 +21,9 @@ namespace DIM {
     void updateAll(float elapsedTime);
     void inicializeAll(GraphicsManager* g);
     void destroyAll();
+
+    iterator begin();
+    iterator end();
   };
 
 }

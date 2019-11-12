@@ -3,14 +3,18 @@
 
 namespace DIM {
 
-  MainMenu::MainMenu() : keep_going(true), event_id(0) {
+  MainMenu::MainMenu() : keep_going(true), key_event_id(0), mouse_event_id(0) {
     
   }
 
   MainMenu::~MainMenu() {
-    if (event_id != 0) {
-      events.removeKeyboardListener(event_id);
-      event_id = 0;
+    if (key_event_id != 0) {
+      events.removeKeyboardListener(key_event_id);
+      key_event_id = 0;
+    }
+    if (mouse_event_id != 0) {
+      events.removeKeyboardListener(mouse_event_id);
+      mouse_event_id = 0;
     }
   }
 
@@ -24,11 +28,25 @@ namespace DIM {
   }
 
   void MainMenu::exec() {
-    event_id = events.addKeyboardListener([this] (EventManager::Key k, EventManager::EventType t) {keep_going = false; });
+    key_event_id = events.addKeyboardListener(
+      [this] (EventManager::Key k, EventManager::EventType t) {
+        keep_going = false;
+      }
+    );
+    // mouse_event_id = events.addMouseListener(
+    //   [this] (EventManager::Button b, EventManager::EventType t) {
+    //     VectorF pos = graphics->getMousePos();
+    //     for (EntityList::iterator i = entities.begin();
+    //          i != entities.end();
+    //          ++i) {
+    //       // if ()
+    //     }
+    //   }
+    // );
     while (keep_going) {
       events.processEvents();
-      graphics->clear(80, 80, 80);
-
+      graphics->clear(20, 20, 20);
+      entities.updateAll(events.getLastElapsedTime());
       entities.drawAll();
       graphics->display();
     }

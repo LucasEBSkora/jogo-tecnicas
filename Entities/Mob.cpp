@@ -2,7 +2,7 @@
 
 namespace DIM {
 
-  Mob::Mob() {
+  Mob::Mob() : vx(0), vy(0) {
     
   }
 

@@ -5,8 +5,8 @@ namespace DIM {
 
   DescentIntoMadness::DescentIntoMadness() :
     graphics_man(), menu(), temple(), cavern() {
-    std::cout << "kk" << std::endl;
     menu.init(&graphics_man);
+    temple.init(&graphics_man);
     play();
   }
 
@@ -16,7 +16,8 @@ namespace DIM {
 
   void DescentIntoMadness::play() {
     bool playing;
-    menu.exec();
+    // menu.exec();
+    temple.exec();
     // while (playing) {
     //   // a partir daqui pseudocódigo por enquanto
     //   int decisao = menu.exec();
