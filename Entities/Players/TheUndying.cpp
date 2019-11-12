@@ -4,7 +4,7 @@
 namespace DIM {
   TheUndying::TheUndying() : Mob() {
     id = std::string("Player1");
-    max_speed = .02;
+    max_speed = 15;
   }
 
   TheUndying::~TheUndying() {
@@ -15,6 +15,12 @@ namespace DIM {
   }
 
   void TheUndying::update(float elapsedTime) {
+    if (std::abs(vx) > max_speed) {
+      vx = max_speed * (vx > 0 ? 1 : -1);
+    }
+    if (std::abs(vy) > max_speed) {
+      vy = max_speed * (vy > 0 ? 1 : -1);
+    }
     x += vx * elapsedTime;
     y += vy * elapsedTime;
   }

@@ -12,6 +12,10 @@ namespace DIM {
     unsigned height = modes[0].height * .7;
     window = new sf::RenderWindow(sf::VideoMode(width, height), "Game");
     window->setKeyRepeatEnabled(false);
+    width /= 5;
+    height /= 5;
+    view = sf::View(sf::FloatRect(0, 0, width, height));
+    window->setView(view);
 
     camera_size = VectorF(width, height);
   }
@@ -77,7 +81,7 @@ namespace DIM {
 
   bool GraphicsManager::outOfSight(VectorF at, VectorF size) const {
     return (at.x + size.x < camera_pos.x ||
-            at.y - size.y < camera_pos.y || // y cresce para baixo? //é pra ser //blz
+            at.y + camera_size.y < camera_pos.y || // y cresce para baixo? //é pra ser //blz
             at.x > camera_pos.x + camera_size.x ||
             at.y > camera_pos.y + camera_size.y);
   }

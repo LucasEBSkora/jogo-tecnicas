@@ -8,7 +8,7 @@ namespace DIM {
   int EventManager::next_uid = 0;
 
   EventManager::EventManager() : graphics_manager(nullptr),
-    timeSinceLastUpdate(sf::Time::Zero) {
+    lastElapsedTime(sf::Time::Zero) {
 
   }
 
@@ -53,11 +53,11 @@ namespace DIM {
 
   void EventManager::processEvents() {
 
-    sf::Time elapsedTime = clock.restart();
-    timeSinceLastUpdate += elapsedTime;
+    lastElapsedTime = clock.restart();
+    // timeSinceLastUpdate += elapsedTime;
 
     for (auto& t : timers_callbacks) {
-      std::get<1>(t.second) += elapsedTime;
+      std::get<1>(t.second) += lastElapsedTime;
     }
 
     // for (auto& t : listeners.timers) {
@@ -133,12 +133,12 @@ namespace DIM {
   }
 
   float EventManager::getLastElapsedTime() const {
-    return timeSinceLastUpdate.asSeconds();
+    return lastElapsedTime.asSeconds();
   }
 
   void EventManager::resetTime() {
     clock.restart();
-    timeSinceLastUpdate = sf::Time::Zero;
+    lastElapsedTime = sf::Time::Zero;
   }
 
 }

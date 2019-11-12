@@ -14,6 +14,7 @@ namespace DIM {
   private:
     std::map<std::string, sf::Texture*> assets;
     sf::RenderWindow* window;
+    sf::View view;
     VectorF camera_pos;
     VectorF camera_size;
 

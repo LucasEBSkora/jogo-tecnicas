@@ -42,7 +42,8 @@ namespace DIM {
     // static const sf::Time timePerFrame;
 
     //time since last processEvents() call
-    sf::Time timeSinceLastUpdate;
+    // sf::Time timeSinceLastUpdate;
+    sf::Time lastElapsedTime;
 
     //Vector of time values used to keep track of timers with different periods
     // std::vector<sf::Time> timers;
