@@ -26,5 +26,9 @@ namespace DIM {
       return id;
     }
 
+    void Tile::collided(std::string id, VectorF positionOther, VectorU positionMine) {
+      //Default behavior is to ignore collisions
+    }
+
   
 }

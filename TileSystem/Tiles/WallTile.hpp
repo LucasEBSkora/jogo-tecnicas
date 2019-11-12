@@ -8,7 +8,7 @@ namespace DIM {
   private:
 
   public:
-    WallTile();
+    WallTile(const char* Path = "");
     virtual ~WallTile();
   };
 

@@ -20,10 +20,10 @@ namespace DIM {
     TileManager* parent;
   
   public:
-    Tile(const char* Id = 0, const char* Path = 0, const VectorF Size = VectorF());
+    Tile(const char* Id = nullptr, const char* Path = nullptr, const VectorF Size = VectorF(32.0f, 32.0f));
     virtual ~Tile();
 
-    virtual void collided(std::string id, VectorF positionOther, VectorU positionMine) = 0;
+    virtual void collided(std::string id, VectorF positionOther, VectorU positionMine);
     virtual void initialize(GraphicsManager* graph, TileManager* Parent);
     virtual void draw(VectorF at) const;
     std::string getID() const;

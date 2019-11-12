@@ -8,7 +8,7 @@ namespace DIM {
   private:
 
   public:
-    SpikeObstacle();
+    SpikeObstacle(const char* Path = "");
     virtual ~SpikeObstacle();
   };
 

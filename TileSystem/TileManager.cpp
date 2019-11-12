@@ -73,7 +73,7 @@ namespace DIM
           tileMap[i][j] = (RandomValueGenerator::getInstance()->getRandomBool(50)) ? first : second; //50% chance of being the first, 50% of being the second
         
           ++j;
-        } else if ('0' <= file.peek() && file.peek() <= '9') { //if it is a normal number, just saves it in the matrix
+        } else if (('0' <= file.peek() && file.peek() <= '9') || file.peek() == '-') { //if it is a normal number, just saves it in the matrix
           
           file >> tileMap[i][j];
           ++j;

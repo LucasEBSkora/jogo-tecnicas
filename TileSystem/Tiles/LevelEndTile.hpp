@@ -10,6 +10,9 @@ namespace DIM {
   public:
     LevelEndTile();
     virtual ~LevelEndTile();
+    
+    //Quem notifica o jogo?
+    //void collided(std::string id, VectorF positionOther, VectorU positionMine) override;
   };
 
 }
