@@ -10,4 +10,12 @@ namespace DIM {
 
   }
 
+  void Mob::setPosition(VectorF pos) {
+    x = pos.x;
+    y = pos.y;
+  }
+
+  VectorF Mob::getPosition() const {
+    return VectorF(x, y);
+  }
 }

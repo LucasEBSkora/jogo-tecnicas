@@ -2,7 +2,7 @@
 
 namespace DIM {
 
-  PlayerSpawnPoint::PlayerSpawnPoint(const char* Path) : Tile("Spawn", Path){
+  PlayerSpawnPoint::PlayerSpawnPoint() : Tile("Spawn", "assets/PlayerSpawnPoint.png"){
 
   }
 

@@ -2,7 +2,7 @@
 
 namespace DIM {
 
-  CollisionManager::CollisionManager() {
+  CollisionManager::CollisionManager()  {
     
   }
 

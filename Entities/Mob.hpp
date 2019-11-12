@@ -11,6 +11,9 @@ namespace DIM {
   public:
     Mob();
     virtual ~Mob();
+    
+    void setPosition(VectorF pos);
+    VectorF getPosition() const;
   };
 
 }

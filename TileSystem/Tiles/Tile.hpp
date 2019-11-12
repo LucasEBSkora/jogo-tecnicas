@@ -12,7 +12,7 @@ namespace DIM {
   
   protected:
   
-    const char* id;
+    const char* ID;
     const char* path;
     VectorF size;
 

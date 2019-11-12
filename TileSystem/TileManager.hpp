@@ -17,7 +17,7 @@ namespace DIM {
 
   class TileManager : public Entity {
   private:
-    std::vector<Tile*> tiles;
+    std::vector<Tile> tiles;
     float tileSide;
     VectorU tileMapSize;
     short **tileMap;
@@ -28,7 +28,7 @@ namespace DIM {
 
     
 
-    TileManager( std::vector<Tile*> Tiles = std::vector<Tile*>(), float TileSide = 0.0f, const char *Path = nullptr);
+    TileManager( std::vector<Tile> Tiles = std::vector<Tile>(), float TileSide = 0.0f, const char *Path = nullptr);
     ~TileManager();
     void loadTileMap(const char* path);
     

@@ -8,7 +8,7 @@ namespace DIM {
   private:
 
   public:
-    PlayerSpawnPoint(const char *Path = "");
+    PlayerSpawnPoint();
     ~PlayerSpawnPoint();
   };
 

@@ -9,8 +9,8 @@
 namespace DIM
 {
 
-  TileManager::TileManager( std::vector<Tile*> Tiles, float TileSide, const char *Path) 
-  : tiles{Tiles}, tileSide{TileSide} {
+  TileManager::TileManager( std::vector<Tile> Tiles, float TileSide, const char *Path) 
+  : tiles{Tiles}, tileSide{TileSide}, tileMap{nullptr}, path{Path} {
 
     if (path != nullptr) loadTileMap(path);
 
@@ -18,20 +18,20 @@ namespace DIM
 
   TileManager::~TileManager() {
     
-    for (unsigned i = 0; i < tileMapSize.x; ++i) delete []tileMap[i];
-    delete []tileMap;
+    std::cout << "destrutor feio" << std::endl;
 
-    for(Tile* t : tiles) {
-      delete t;
+    if (tileMap != nullptr) {
+      for (unsigned i = 0; i < tileMapSize.x; ++i) delete []tileMap[i];
+      delete []tileMap;
     }
-
 
   }
 
   void TileManager::initializeSpecific() {
     
-    for (Tile* t : tiles) {
-      t->initialize(manager, this);
+    for (Tile& t : tiles) {
+      std::cout << manager << std::endl;
+      t.initialize(manager, this);
     }
   }
 
@@ -44,8 +44,12 @@ namespace DIM
     
     if (!file.is_open()) return;
 
+/*    char linha[20];
+    file.getline(linha, 20);
+    std::cout << linha << std::endl;
+    
+*/
     file >> tileMapSize.y >> tileMapSize.x; 
-
     tileMap = new short*[tileMapSize.y];
     
     for (unsigned i = 0; i < tileMapSize.y;++i)
@@ -84,7 +88,18 @@ namespace DIM
 
       }
     }
+    std::cout << "ue " << tileMapSize.x << ' ' << tileMapSize.y << std::endl;
 
+
+    for (unsigned i = 0; i < tileMapSize.y; ++i) {
+      for (unsigned j = 0; j < tileMapSize.x; ++j) {
+        std::cout << tileMap[i][j] << ' ';
+        std::cout.flush();
+      }
+      std::cout << std::endl;
+    }    
+
+    file.close();
 
   }
 
@@ -106,7 +121,7 @@ namespace DIM
           short tileId = tileMap[i][j];
           if (tileId >= 0) {
 
-            vec.push_back( IdPositionPair(tiles[tileId]->getID(), VectorF((i + 0.5)*tileSide, (j + 0.5)*tileSide)));
+            vec.push_back( IdPositionPair(tiles[tileId].getID(), VectorF((i + 0.5)*tileSide, (j + 0.5)*tileSide)));
           }
         }
       }
@@ -124,10 +139,16 @@ namespace DIM
   }
 
   void TileManager::draw() const {
+    
     for (unsigned i = 0; i < tileMapSize.y; ++i) {
       for (unsigned j = 0; j < tileMapSize.x; ++j) {
-        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(VectorF((i)*tileSide, (j)*tileSide));
+
+        std::cout << tileMap[i][j] << ' ';
+        std::cout.flush();
+        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]].draw(VectorF((i)*tileSide, (j)*tileSide));
+        
       }
+      std::cout << std::endl;
     }
   }
 

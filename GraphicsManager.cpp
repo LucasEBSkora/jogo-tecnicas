@@ -12,8 +12,8 @@ namespace DIM {
     unsigned height = modes[0].height * .7;
     window = new sf::RenderWindow(sf::VideoMode(width, height), "Game");
     window->setKeyRepeatEnabled(false);
-    width /= 5;
-    height /= 5;
+    width = 300;
+    height = 300 / 16 * 9;
     view = sf::View(sf::FloatRect(0, 0, width, height));
     window->setView(view);
 

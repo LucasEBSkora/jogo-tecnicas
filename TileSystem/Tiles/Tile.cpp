@@ -1,9 +1,10 @@
 #include "Tile.hpp"
 
+#include <iostream>
 #include "../TileManager.hpp"
 
 namespace DIM {
-    Tile::Tile(const char* Id, const char* Path, const VectorF Size) : id{Id}, path{Path}, size{Size} {
+    Tile::Tile(const char* Id, const char* Path, const VectorF Size) : ID{Id}, path{Path}, size{Size} {
 
     }
 
@@ -15,15 +16,19 @@ namespace DIM {
       graphicsManager = graph;
       parent = Parent;
 
-      graph->loadAsset(path);
+      graphicsManager->loadAsset(path);
     }
 
+
     void Tile::draw(const VectorF at) const {
+      if (graphicsManager == nullptr) {
+        std::cout << "nao encontrado" << std::endl;
+      }
       graphicsManager->draw(path, at);
     }
 
     std::string Tile::getID() const {
-      return id;
+      return ID;
     }
 
     void Tile::collided(std::string id, VectorF positionOther, VectorU positionMine) {
