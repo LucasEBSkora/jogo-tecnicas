@@ -21,7 +21,7 @@ namespace DIM {
   
   public:
     Tile(const char* Id = 0, const char* Path = 0, const VectorF Size = VectorF());
-    ~Tile();
+    virtual ~Tile();
 
     virtual void collided(std::string id, VectorF positionOther, VectorU positionMine) = 0;
     virtual void initialize(GraphicsManager* graph, TileManager* Parent);

@@ -10,6 +10,7 @@ class Vector {
   public:
     T x, y;
 
+    Vector(const Vector<T>& other);
     Vector(T X = 0.0f, T Y = 0.0f);
     ~Vector();
 

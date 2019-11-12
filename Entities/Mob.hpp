@@ -9,7 +9,7 @@ namespace DIM {
 
   public:
     Mob();
-    ~Mob();
+    virtual ~Mob();
   };
 
 }

@@ -9,7 +9,7 @@ namespace DIM {
 
   public:
     WallTile();
-    ~WallTile();
+    virtual ~WallTile();
   };
 
 }

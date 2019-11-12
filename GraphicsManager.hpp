@@ -23,8 +23,12 @@ namespace DIM {
     ~GraphicsManager();
     bool loadAsset(const char* path);
     void draw(const char* id, VectorF at) const;
+    void drawRect(VectorF at, VectorF size, int r, int g, int b) const;
     void centerCamera(VectorF at);
-    
+    sf::Window* getWindow() const;
+    void display() const;
+    void clear(int r, int g, int b) const;
+    VectorF getViewSize() const;
   
   };
 

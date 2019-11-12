@@ -9,7 +9,7 @@ namespace DIM {
 
   public:
     SpikeObstacle();
-    ~SpikeObstacle();
+    virtual ~SpikeObstacle();
   };
 
 }

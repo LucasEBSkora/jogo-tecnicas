@@ -11,14 +11,6 @@ namespace DIM {
   public:
     TheUndying();
     ~TheUndying();
-    
-    void subscribe() override;
-
-    
-    void onKeyboardEvent(sf::Event* e);
-    
-    void animate();
-  
   };
 }
 

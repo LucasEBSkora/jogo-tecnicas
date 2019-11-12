@@ -5,11 +5,16 @@
 
 namespace DIM {
   class Button : public Entity {
-    private:
+  private:
+    int width;
+    int height;
+  public:
+    Button(int cx = 0, int cy = 0, int w = 10, int h = 10);
+    ~Button();
 
-    public:
-      Button();
-      ~Button();
+    void update(float elapsedTime) override;
+    void draw() const override;
+    void initializeSpecific() override;
   };
 
 }

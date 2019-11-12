@@ -9,7 +9,7 @@
 namespace DIM
 {
 
-  TileManager::TileManager( std::vector<Tile*> Tiles = std::vector<Tile*>(), float TileSide = 0.0f, const char *Path = nullptr) 
+  TileManager::TileManager( std::vector<Tile*> Tiles, float TileSide, const char *Path) 
   : tiles{Tiles}, tileSide{TileSide} {
 
     if (path != nullptr) loadTileMap(path);
@@ -18,7 +18,7 @@ namespace DIM
 
   TileManager::~TileManager() {
     
-    for (int i = 0; i < tileMapSize.x; ++i) delete []tileMap[i];
+    for (unsigned i = 0; i < tileMapSize.x; ++i) delete []tileMap[i];
     delete []tileMap;
 
     for(Tile* t : tiles) {
@@ -48,16 +48,16 @@ namespace DIM
 
     tileMap = new short*[tileMapSize.y];
     
-    for (int i = 0; i < tileMapSize.y;++i)
+    for (unsigned i = 0; i < tileMapSize.y;++i)
       tileMap[i] = new short[tileMapSize.x];
 
 
-    for (int i = 0; i < tileMapSize.y; ++i) {
+    for (unsigned i = 0; i < tileMapSize.y; ++i) {
       if (file.eof()) {
         std::cout << "unexpected end of file while reading tileMap!" << std::endl;
         break;
       }
-      for (int j = 0; j < tileMapSize.x;) {
+      for (unsigned j = 0; j < tileMapSize.x;) {
         
         if (file.eof()) break;
         
@@ -101,8 +101,8 @@ namespace DIM
       std::cout << "Error! entity out of map bounds" << std::endl;
     } else {
 
-      for (int i = start.y; i <= end.y; ++i) {
-        for (int j = start.x; j <= end.x; ++j) {
+      for (unsigned i = start.y; i <= end.y; ++i) {
+        for (unsigned j = start.x; j <= end.x; ++j) {
           short tileId = tileMap[i][j];
           if (tileId >= 0) {
 
@@ -124,8 +124,8 @@ namespace DIM
   }
 
   void TileManager::draw() const {
-    for (int i = 0; i < tileMapSize.y; ++i) {
-      for (int j = 0; j < tileMapSize.x; ++j) {
+    for (unsigned i = 0; i < tileMapSize.y; ++i) {
+      for (unsigned j = 0; j < tileMapSize.x; ++j) {
         if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(VectorF((i)*tileSide, (j)*tileSide));
       }
     }

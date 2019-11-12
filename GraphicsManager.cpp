@@ -8,9 +8,9 @@ namespace DIM {
 
   GraphicsManager::GraphicsManager() {
     std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
-    int width = modes[0].width * .7;
-    int height = modes[0].height * .7;
-    window->create(sf::VideoMode(width, height), "Game");
+    unsigned width = modes[0].width * .7;
+    unsigned height = modes[0].height * .7;
+    window = new sf::RenderWindow(sf::VideoMode(width, height), "Game");
 
     camera_size = VectorF(width, height);
   }
@@ -59,6 +59,17 @@ namespace DIM {
 
   }
 
+  void GraphicsManager::drawRect(VectorF at, VectorF size, int r, int g, int b) const {
+    if (!outOfSight(at, size)) {
+      at -= camera_pos;
+      sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(size.x, size.y));
+      
+      rect.setFillColor(sf::Color(r, g, b));
+      rect.setPosition(at.x, at.y);
+      window->draw(rect);
+    }
+  }
+
   void GraphicsManager::centerCamera(VectorF at) {
     camera_pos = at - camera_size * .5;
   }
@@ -70,4 +81,19 @@ namespace DIM {
             at.y > camera_pos.y + camera_size.y);
   }
 
+  sf::Window* GraphicsManager::getWindow() const {
+    return window;
+  }
+
+  void GraphicsManager::display() const {
+    window->display();
+  }
+
+  void GraphicsManager::clear(int r, int g, int b) const {
+    window->clear(sf::Color(r, g, b));
+  }
+
+  VectorF GraphicsManager::getViewSize() const {
+    return camera_size;
+  }
 }

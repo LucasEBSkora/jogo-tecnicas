@@ -9,7 +9,7 @@ namespace DIM {
 
   public:
     LevelEndTile();
-    ~LevelEndTile();
+    virtual ~LevelEndTile();
   };
 
 }

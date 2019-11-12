@@ -1,7 +1,12 @@
 namespace DIM {
 
   template <typename T>
-  Vector<T>::Vector(T X, T Y) : x{X}, y{y} {
+  Vector<T>::Vector(const Vector<T>& other) : x{other.x}, y{other.y} {
+
+  }
+
+  template <typename T>
+  Vector<T>::Vector(T X, T Y) : x{X}, y{Y} {
 
   }
 

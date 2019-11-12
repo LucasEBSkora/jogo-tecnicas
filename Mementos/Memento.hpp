@@ -11,12 +11,9 @@ namespace DIM
 
   public:
     Memento();
-    ~Memento();
-
-    static Memento* loadFromFile(std::istream& file); // talvez esteja errado
-    virtual void saveToFile(std::ostream& file) = 0;
-
+    virtual ~Memento();
     
+    virtual void saveToFile(std::ostream& file) = 0;
   };
   
 } // namespace DIM

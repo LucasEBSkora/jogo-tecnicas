@@ -10,7 +10,7 @@ namespace DIM {
 
   public:
     Enemy();
-    ~Enemy();
+    virtual ~Enemy();
   };
 }
 

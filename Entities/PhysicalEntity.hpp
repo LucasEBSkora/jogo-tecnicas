@@ -14,7 +14,7 @@ namespace DIM {
                       // colidiram e como devem proceder
   public:
     PhysicalEntity();
-    ~PhysicalEntity();
+    virtual ~PhysicalEntity();
 
     virtual void collided(std::string Id, VectorF position ) = 0;
 

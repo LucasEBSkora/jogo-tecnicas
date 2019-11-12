@@ -6,15 +6,14 @@
 namespace DIM {
 
   class Entity {
-
   protected:
-
+    int x;
+    int y;
     GraphicsManager* manager;
 
     virtual void initializeSpecific() = 0;
 
-  public: 
-
+  public:
     Entity();
     virtual ~Entity();
 

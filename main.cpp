@@ -2,7 +2,8 @@
 
 int main() {
 
-  DIM::DescentIntoMadness game();
+  DIM::DescentIntoMadness game;
+  // game.play();
 
   return 0;
 }
