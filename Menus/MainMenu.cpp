@@ -24,7 +24,7 @@ namespace DIM {
     entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2, 50, 30));
     entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2 + 100, 80, 25));
 
-    entities.inicializeAll(graphics);
+    entities.initializeAll(graphics, &events);
   }
 
   void MainMenu::exec() {

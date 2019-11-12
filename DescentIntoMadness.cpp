@@ -4,7 +4,8 @@
 namespace DIM {
 
   DescentIntoMadness::DescentIntoMadness() :
-    graphics_man(), menu(), temple(), cavern() {
+    // graphics_man(), menu(), temple(), cavern() {
+    graphics_man(), menu(), temple() {
     menu.init(&graphics_man);
     temple.init(&graphics_man);
     play();

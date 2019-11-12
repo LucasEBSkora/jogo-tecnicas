@@ -85,6 +85,44 @@ namespace DIM {
           for (auto& f : keyboard_callbacks) {
             f.second(Key::Esc, EventType::Pressed);
           }
+        } else if (event.key.code == sf::Keyboard::W) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::W, EventType::Pressed);
+          }
+        } else if (event.key.code == sf::Keyboard::A) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::A, EventType::Pressed);
+          }
+        } else if (event.key.code == sf::Keyboard::S) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::S, EventType::Pressed);
+          }
+        } else if (event.key.code == sf::Keyboard::D) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::D, EventType::Pressed);
+          }
+        }
+      } else if (event.type == sf::Event::KeyReleased) { // fazer de um jeito melhor (mas não é urgente)
+        if (event.key.code == sf::Keyboard::Escape) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::Esc, EventType::Released);
+          }
+        } else if (event.key.code == sf::Keyboard::W) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::W, EventType::Released);
+          }
+        } else if (event.key.code == sf::Keyboard::A) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::A, EventType::Released);
+          }
+        } else if (event.key.code == sf::Keyboard::S) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::S, EventType::Released);
+          }
+        } else if (event.key.code == sf::Keyboard::D) {
+          for (auto& f : keyboard_callbacks) {
+            f.second(Key::D, EventType::Released);
+          }
         }
       } else if (event.type == sf::Event::MouseButtonPressed) {
         for (auto& f : mouse_callbacks) {

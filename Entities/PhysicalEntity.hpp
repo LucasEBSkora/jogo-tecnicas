@@ -6,10 +6,10 @@
 namespace DIM {
   
   class PhysicalEntity : public Entity {
-  private:
+  protected:
     int width;
     int height;
-    const std::string id; // mais correto talvez seria usar enum
+    std::string id; // mais correto talvez seria usar enum
                       // serve para que os objetos identifiquem com quem
                       // colidiram e como devem proceder
   public:

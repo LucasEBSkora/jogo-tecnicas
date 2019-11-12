@@ -15,7 +15,7 @@ namespace DIM {
     MainMenu menu;
 
     TempleLevel temple;
-    CavernLevel cavern;
+    // CavernLevel cavern;
 
     void play();
   public:

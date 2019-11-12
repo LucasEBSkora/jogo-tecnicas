@@ -11,6 +11,7 @@ namespace DIM {
     unsigned width = modes[0].width * .7;
     unsigned height = modes[0].height * .7;
     window = new sf::RenderWindow(sf::VideoMode(width, height), "Game");
+    window->setKeyRepeatEnabled(false);
 
     camera_size = VectorF(width, height);
   }
