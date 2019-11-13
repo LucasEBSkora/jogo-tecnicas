@@ -117,8 +117,13 @@ namespace DIM {
 
     while (graphics_manager->getWindow()->pollEvent(event)) {
       Event event_obj = Event(event);
-      if (event_obj.getType() != EventType::Other) {
+      if (event_obj.getType() == EventType::KeyPressed ||
+          event_obj.getType() == EventType::KeyReleased) {
         for (auto& f : keyboard_callbacks) {
+          f.second(event_obj);
+        }
+      } else if (event_obj.getType() != EventType::Other) {
+        for (auto& f : mouse_callbacks) {
           f.second(event_obj);
         }
       }

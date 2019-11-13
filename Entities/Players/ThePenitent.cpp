@@ -4,7 +4,7 @@
 
 namespace DIM {
 
-  ThePenitent::ThePenitent() : Mob(), movement_id(0), angle(0), radius(10) {
+  ThePenitent::ThePenitent() : Mob(), movement_id(0), angle(0), radius(35) {
     id = std::string("Player2");  
   }
 
@@ -16,8 +16,8 @@ namespace DIM {
   }
 
   void ThePenitent::update(float elapsedTime) {
-    float cx = 10;
-    float cy = 10; // pegar do jogador 1
+    float cx = 50;
+    float cy = 50; // pegar do jogador 1
     x = cx + radius * std::cos(angle);
     y = cy + radius * std::sin(angle);
   }
@@ -32,10 +32,11 @@ namespace DIM {
 
   void ThePenitent::initializeSpecific() {
     graphics_manager->loadAsset("assets/ThePenitent.png");
+    std::cout << "bom dia com [e]ventos" << std::endl;
     movement_id = event_man->addMouseListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::MouseWheelScrolled) {
-          angle += .05;
+          angle += 0.2;
         }
       }
     );

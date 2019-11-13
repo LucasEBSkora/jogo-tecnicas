@@ -17,9 +17,6 @@ namespace DIM
   }
 
   TileManager::~TileManager() {
-    
-    std::cout << "destrutor feio" << std::endl;
-
     if (tileMap != nullptr) {
       for (unsigned i = 0; i < tileMapSize.x; ++i) delete []tileMap[i];
       delete []tileMap;
@@ -30,7 +27,6 @@ namespace DIM
   void TileManager::initializeSpecific() {
     
     for (Tile& t : tiles) {
-      std::cout << graphics_manager << std::endl;
       t.initialize(graphics_manager, this);
     }
   }
@@ -44,11 +40,6 @@ namespace DIM
     
     if (!file.is_open()) return;
 
-/*    char linha[20];
-    file.getline(linha, 20);
-    std::cout << linha << std::endl;
-    
-*/
     file >> tileMapSize.y >> tileMapSize.x; 
     tileMap = new short*[tileMapSize.y];
     
@@ -142,13 +133,8 @@ namespace DIM
     
     for (unsigned i = 0; i < tileMapSize.y; ++i) {
       for (unsigned j = 0; j < tileMapSize.x; ++j) {
-
-        std::cout << tileMap[i][j] << ' ';
-        std::cout.flush();
         if (tileMap[i][j] >= 0) tiles[tileMap[i][j]].draw(VectorF((i)*tileSide, (j)*tileSide));
-        
       }
-      std::cout << std::endl;
     }
   }
 

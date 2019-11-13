@@ -23,7 +23,7 @@ namespace DIM {
     }
     x += vx * elapsedTime;
     y += vy * elapsedTime;
-    std::cout << x << ' ' << y << std::endl;
+    // std::cout << x << ' ' << y << std::endl;
   }
 
   void TheUndying::draw() const {
