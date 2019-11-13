@@ -36,6 +36,9 @@ namespace DIM {
 
   void TheUndying::initializeSpecific() {
     graphics_manager->loadAsset("assets/TheUndying.png");
+    VectorF size = graphics_manager->getSizeOfAsset("assets/TheUndying.png");
+    width = size.x;
+    height = size.y;
     movement_id = event_man->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed) {

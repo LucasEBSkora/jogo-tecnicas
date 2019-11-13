@@ -106,4 +106,16 @@ namespace DIM {
     sf::Vector2i pos = sf::Mouse::getPosition(*window);
     return VectorF(pos.x, pos.y);
   }
+
+  VectorF GraphicsManager::getSizeOfAsset(const std::string& id) const {
+    sf::Texture* texture;
+    auto it = assets.find(id);
+    if (it == assets.end()) {
+      std::cout << "morreu porque tentou desenhar algo nao criado\n";
+      exit(1235);
+    }
+    texture = it->second;
+    sf::Vector2u size = texture->getSize();
+    return VectorF(size.x, size.y);
+  }
 }

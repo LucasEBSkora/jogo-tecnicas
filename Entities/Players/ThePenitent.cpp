@@ -32,6 +32,9 @@ namespace DIM {
 
   void ThePenitent::initializeSpecific() {
     graphics_manager->loadAsset("assets/ThePenitent.png");
+    VectorF size = graphics_manager->getSizeOfAsset("assets/ThePenitent.png");
+    width = size.x;
+    height = size.y;
     std::cout << "bom dia com [e]ventos" << std::endl;
     movement_id = event_man->addMouseListener(
       [this] (EventManager::Event e) {

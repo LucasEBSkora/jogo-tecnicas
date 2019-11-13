@@ -32,6 +32,7 @@ namespace DIM {
     void clear(int r, int g, int b) const;
     VectorF getViewSize() const;
     VectorF getMousePos() const;
+    VectorF getSizeOfAsset(const std::string& id) const;
   };
 
 }

@@ -42,6 +42,9 @@ namespace DIM {
     entities.addEntity(player1);
     entities.addEntity(player2);
     entities.initializeAll(*graphics, *events);
+    collisions.addToCollisions(player1);
+    collisions.addToCollisions(player2);
+    collisions.setTileManager(tileManager);
   }
 
   void TempleLevel::exec() {
@@ -58,6 +61,7 @@ namespace DIM {
       graphics->clear(20, 20, 20);
       // graphics->centerCamera(main_player->getPosition());
       entities.updateAll(events->getLastElapsedTime());
+      collisions.checkCollisions();
       entities.drawAll();
       graphics->display();
     }

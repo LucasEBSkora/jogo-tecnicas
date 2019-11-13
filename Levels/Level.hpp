@@ -3,6 +3,7 @@
 
 #include "../GraphicsManager.hpp"
 #include "../EventManager.hpp"
+#include "../CollisionManager.hpp"
 #include "../Entities/Entity.hpp"
 #include "../Entities/Mob.hpp"
 #include "../Lists/EntityList.hpp"
@@ -14,6 +15,7 @@ namespace DIM {
   protected:
     GraphicsManager* graphics;
     EventManager* events;
+    CollisionManager collisions;
     EntityList entities;
     Mob* player1;
     Mob* player2;

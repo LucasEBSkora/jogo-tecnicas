@@ -18,6 +18,8 @@ namespace DIM {
 
     virtual void collided(std::string Id, VectorF position) = 0;
 
+    VectorF getPos() const;
+    VectorF getSize() const;
     virtual std::string getID() const = 0;
   };
 }
