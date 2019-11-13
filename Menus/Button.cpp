@@ -19,8 +19,8 @@ namespace DIM {
   }
 
   void Button::draw() const {
-    if (manager != nullptr) {
-      manager->drawRect(VectorF(x, y), VectorF(width, height), 80, 80, 80);
+    if (graphics_manager != nullptr) {
+      graphics_manager->drawRect(VectorF(x, y), VectorF(width, height), 80, 80, 80);
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }

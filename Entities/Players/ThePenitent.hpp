@@ -6,14 +6,20 @@
 namespace DIM {
   class ThePenitent : public Mob {
   private:
-
+    int movement_id;
+    float angle;
+    float radius;
   public:
     ThePenitent();
     ~ThePenitent();
 
-    // void update(float elapsedTime) override;
-    // void draw() const override;
-    // void initializeSpecific() override;
+    void update(float elapsedTime) override;
+    void draw() const override;
+    void initializeSpecific() override;
+
+    void collided(std::string Id, VectorF position) override;
+
+    std::string getID() const override;
   };
 
 }

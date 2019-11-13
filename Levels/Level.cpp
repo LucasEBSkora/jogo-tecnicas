@@ -2,7 +2,8 @@
 
 namespace DIM {
 
-  Level::Level() : graphics(nullptr), main_player(nullptr) {
+  Level::Level(Mob* p1, Mob* p2) : graphics(nullptr), events(nullptr),
+    player1(p1), player2(p2), tileManager(nullptr) {
     
   }
 
@@ -10,9 +11,9 @@ namespace DIM {
 
   }
 
-  void Level::init(GraphicsManager* g) { // talvez mudar pra parâmetro por referência
-    graphics = g;
-    events.setGraphicsManager(graphics);
+  void Level::init(GraphicsManager& g, EventManager& e) {
+    graphics = &g;
+    events = &e;
   }
 
 }

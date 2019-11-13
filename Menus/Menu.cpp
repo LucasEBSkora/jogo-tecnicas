@@ -9,9 +9,9 @@ namespace DIM {
 
   }
 
-  void Menu::init(GraphicsManager* g) { // talvez mudar pra parâmetro por referência
-    graphics = g;
-    events.setGraphicsManager(graphics);
+  void Menu::init(GraphicsManager& g, EventManager& e) {
+    graphics = &g;
+    events = &e;
   }
 
 }

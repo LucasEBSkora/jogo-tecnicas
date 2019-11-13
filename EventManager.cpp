@@ -57,8 +57,8 @@ namespace DIM {
 
   }
 
-  void EventManager::setGraphicsManager(GraphicsManager* manager) {
-    graphics_manager = manager;
+  void EventManager::setGraphicsManager(GraphicsManager& manager) {
+    graphics_manager = &manager;
   }
 
   GraphicsManager* EventManager::getGraphicsManager() const {

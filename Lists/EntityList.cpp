@@ -10,7 +10,11 @@ namespace DIM {
   }
 
   void EntityList::addEntity(Entity* ent){
-    entities.AddElementBack(ent);
+    entities.addElementBack(ent);
+  }
+
+  void EntityList::removeWithoutDestroying(Entity* ent){
+    entities.removeFirstMatchingElement(ent);
   }
 
   void EntityList::drawAll(){ 
@@ -25,7 +29,7 @@ namespace DIM {
     }
   }
 
-  void EntityList::initializeAll(GraphicsManager* g, EventManager* e){
+  void EntityList::initializeAll(GraphicsManager& g, EventManager& e){
     for (iterator i = entities.begin(); i != entities.end(); ++i) {
       (*i)->initializeGeneric(g, e);
     }

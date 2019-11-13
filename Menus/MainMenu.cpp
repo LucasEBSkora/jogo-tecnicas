@@ -9,26 +9,26 @@ namespace DIM {
 
   MainMenu::~MainMenu() {
     if (key_event_id != 0) {
-      events.removeKeyboardListener(key_event_id);
+      events->removeKeyboardListener(key_event_id);
       key_event_id = 0;
     }
     if (mouse_event_id != 0) {
-      events.removeKeyboardListener(mouse_event_id);
+      events->removeKeyboardListener(mouse_event_id);
       mouse_event_id = 0;
     }
   }
 
-  void MainMenu::init(GraphicsManager* g) {
-    Menu::init(g);
-    VectorF viewsize = graphics->getViewSize();
+  void MainMenu::init(GraphicsManager& g, EventManager& e) {
+    Menu::init(g, e);
+    VectorF viewsize = g.getViewSize();
     entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2, 50, 30));
     entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2 + 100, 80, 25));
 
-    entities.initializeAll(graphics, &events);
+    entities.initializeAll(g, e);
   }
 
   void MainMenu::exec() {
-    key_event_id = events.addKeyboardListener(
+    key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&
             e.getKey() == EventManager::Key::Escape) {
@@ -47,9 +47,9 @@ namespace DIM {
     //   }
     // );
     while (keep_going) {
-      events.processEvents();
+      events->processEvents();
       graphics->clear(20, 20, 20);
-      entities.updateAll(events.getLastElapsedTime());
+      entities.updateAll(events->getLastElapsedTime());
       entities.drawAll();
       graphics->display();
     }

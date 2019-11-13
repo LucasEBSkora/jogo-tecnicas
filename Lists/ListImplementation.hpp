@@ -58,7 +58,7 @@ namespace DIM {
   }
 
   template <typename TE>
-  void List<TE>::AddElementBack(const TE& newElement) {
+  void List<TE>::addElementBack(const TE& newElement) {
     if (first == nullptr) {
       ListElement* elem = new ListElement();
       elem->setData(newElement);
@@ -74,7 +74,7 @@ namespace DIM {
   }
   
   template <typename TE>
-  void List<TE>::AddElementFront(const TE& newElement) {
+  void List<TE>::addElementFront(const TE& newElement) {
     if (first == nullptr) {
       ListElement* elem = new ListElement();
       elem->setData(newElement);
@@ -86,6 +86,22 @@ namespace DIM {
       first->setPrev(elem);
       elem->setNext(first);
       first = elem;
+    }
+  }
+  
+  template <typename TE>
+  void List<TE>::removeFirstMatchingElement(const TE& element) {
+    if (first == nullptr) {
+      return;
+    } else {
+      ListElement* aux = first;
+      while (aux != nullptr && aux->getData() != element) {
+        aux = aux->getNext();
+      }
+      if (aux == nullptr) return;
+      if (aux->getNext() != nullptr) aux->getNext()->setPrev(aux->getPrev());
+      if (aux->getPrev() != nullptr) aux->getPrev()->setNext(aux->getNext());
+      delete aux;
     }
   }
 

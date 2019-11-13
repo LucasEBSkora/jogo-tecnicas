@@ -16,7 +16,7 @@ namespace DIM {
     PhysicalEntity();
     virtual ~PhysicalEntity();
 
-    virtual void collided(std::string Id, VectorF position ) = 0;
+    virtual void collided(std::string Id, VectorF position) = 0;
 
     virtual std::string getID() const = 0;
   };

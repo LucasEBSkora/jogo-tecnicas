@@ -10,7 +10,7 @@ namespace DIM {
   protected:
     float x;
     float y;
-    GraphicsManager* manager;
+    GraphicsManager* graphics_manager;
     EventManager* event_man;
 
     virtual void initializeSpecific() = 0;
@@ -21,7 +21,7 @@ namespace DIM {
 
     virtual void update(float elapsedTime) = 0;
     virtual void draw() const = 0;
-    void initializeGeneric(GraphicsManager* Manager, EventManager* event);
+    void initializeGeneric(GraphicsManager& g, EventManager& e);
 
   };
   

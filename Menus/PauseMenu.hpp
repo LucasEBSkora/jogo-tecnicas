@@ -6,10 +6,16 @@
 namespace DIM {
   class PauseMenu : public Menu {
   private:
-
+    bool keep_going;
+    int key_event_id;
+    int mouse_event_id;
   public:
     PauseMenu();
     ~PauseMenu();
+
+    void init(GraphicsManager& g, EventManager& e) override;
+
+    void exec() override;
   };
 
 }

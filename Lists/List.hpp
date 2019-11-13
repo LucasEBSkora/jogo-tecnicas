@@ -34,8 +34,9 @@ namespace DIM {
   public:
     List();
     ~List();
-    void AddElementBack(const TE& newElement);
-    void AddElementFront(const TE& newElement);
+    void addElementBack(const TE& newElement);
+    void addElementFront(const TE& newElement);
+    void removeFirstMatchingElement(const TE& element);
 
     class iterator {
     private:

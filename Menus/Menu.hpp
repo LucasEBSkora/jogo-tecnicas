@@ -10,13 +10,13 @@ namespace DIM {
   class Menu {
   protected:
     GraphicsManager* graphics;
-    EventManager events;
+    EventManager* events;
     EntityList entities;
   public:
     Menu();
     virtual ~Menu();
 
-    virtual void init(GraphicsManager* g);
+    virtual void init(GraphicsManager& g, EventManager& e);
 
     virtual void exec() = 0;
   };

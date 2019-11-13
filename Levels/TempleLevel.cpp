@@ -7,25 +7,31 @@
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleSpikeObstacle.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleWallTile.hpp"
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
-
+#include <iostream>
 
 namespace DIM {
 
-  TempleLevel::TempleLevel() : keep_going(true), key_event_id(0) {
+  TempleLevel::TempleLevel(Mob* p1, Mob* p2) : Level(p1, p2), keep_going(true), key_event_id(0) {
   
   }
 
   TempleLevel::~TempleLevel() {
     if (key_event_id != 0) {
-      events.removeKeyboardListener(key_event_id);
+      events->removeKeyboardListener(key_event_id);
       key_event_id = 0;
     }
-    delete main_player;
-    delete tileManager;
+    entities.removeWithoutDestroying(player1);
+    entities.removeWithoutDestroying(player2);
+    player1 = nullptr;
+    player2 = nullptr;
   }
 
-  void TempleLevel::init(GraphicsManager* g) {
-    Level::init(g);
+  void TempleLevel::init(GraphicsManager& g, EventManager& e) {
+    if (player1 == nullptr) {
+      std::cout << "tchauzinho" << std::endl;
+      exit(321);
+    }
+    Level::init(g, e);
     tileManager = new TileManager({
       TempleWallTile(),
       PlayerSpawnPoint(),
@@ -33,13 +39,13 @@ namespace DIM {
       
     }, 32.0f, "assets/temple.tilemap");
     entities.addEntity(tileManager);
-    main_player = new TheUndying();
-    entities.addEntity(main_player);
-    entities.initializeAll(graphics, &events);
+    entities.addEntity(player1);
+    entities.addEntity(player2);
+    entities.initializeAll(*graphics, *events);
   }
 
   void TempleLevel::exec() {
-    key_event_id = events.addKeyboardListener(
+    key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&
             e.getKey() == EventManager::Key::Escape) {
@@ -48,10 +54,10 @@ namespace DIM {
       }
     );
     while (keep_going) {
-      events.processEvents();
+      events->processEvents();
       graphics->clear(20, 20, 20);
       // graphics->centerCamera(main_player->getPosition());
-      entities.updateAll(events.getLastElapsedTime());
+      entities.updateAll(events->getLastElapsedTime());
       entities.drawAll();
       graphics->display();
     }

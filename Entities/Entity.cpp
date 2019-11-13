@@ -2,7 +2,7 @@
 
 namespace DIM {
 
-  Entity::Entity() : x(0), y(0), manager(nullptr), event_man(nullptr) {
+  Entity::Entity() : x(0), y(0), graphics_manager(nullptr), event_man(nullptr) {
     
   }
   
@@ -10,9 +10,9 @@ namespace DIM {
 
   }
 
-  void Entity::initializeGeneric(GraphicsManager* Manager, EventManager* events) {
-    manager = Manager;
-    event_man = events;
+  void Entity::initializeGeneric(GraphicsManager& g, EventManager& e) {
+    graphics_manager = &g;
+    event_man = &e;
     initializeSpecific();
   }
   

@@ -169,7 +169,7 @@ namespace DIM {
     EventManager();
     ~EventManager();
 
-    void setGraphicsManager(GraphicsManager* manager);
+    void setGraphicsManager(GraphicsManager& manager);
     GraphicsManager* getGraphicsManager() const;
     
     int addTimer(float seconds, std::function<void()> callback);

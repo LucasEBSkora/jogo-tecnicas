@@ -13,7 +13,7 @@ namespace DIM {
     MainMenu();
     ~MainMenu();
 
-    void init(GraphicsManager* g) override;
+    void init(GraphicsManager& g, EventManager& e) override;
 
     void exec() override;
   };

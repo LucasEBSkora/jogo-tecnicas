@@ -10,10 +10,10 @@ namespace DIM {
     bool keep_going;
     int key_event_id;
   public:
-    TempleLevel();
+    TempleLevel(Mob* p1 = nullptr, Mob* p2 = nullptr);
     ~TempleLevel();
 
-    void init(GraphicsManager* g) override;
+    void init(GraphicsManager& g, EventManager& e) override;
 
     void exec() override;
   };

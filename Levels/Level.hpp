@@ -1,6 +1,7 @@
 #ifndef LEVEL_HPP
 #define LEVEL_HPP
 
+#include "../GraphicsManager.hpp"
 #include "../EventManager.hpp"
 #include "../Entities/Entity.hpp"
 #include "../Entities/Mob.hpp"
@@ -12,16 +13,17 @@ namespace DIM {
 
   protected:
     GraphicsManager* graphics;
-    EventManager events;
+    EventManager* events;
     EntityList entities;
-    Mob* main_player;
+    Mob* player1;
+    Mob* player2;
     TileManager* tileManager;
 
   public:
-    Level();
+    Level(Mob* p1 = nullptr, Mob* p2 = nullptr);
     virtual ~Level();
 
-    virtual void init(GraphicsManager* g);
+    virtual void init(GraphicsManager& g, EventManager& e);
 
     virtual void exec() = 0;
   };

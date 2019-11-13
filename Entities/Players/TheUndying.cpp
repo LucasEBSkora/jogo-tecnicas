@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace DIM {
-  TheUndying::TheUndying() : Mob() {
+  TheUndying::TheUndying() : Mob(), movement_id(0) {
     id = std::string("Player1");
     max_speed = 15;
   }
@@ -23,21 +23,22 @@ namespace DIM {
     }
     x += vx * elapsedTime;
     y += vy * elapsedTime;
+    std::cout << x << ' ' << y << std::endl;
   }
 
   void TheUndying::draw() const {
-    if (manager != nullptr) {
-      manager->draw("assets/TheUndying.png", VectorF(x, y));
+    if (graphics_manager != nullptr) {
+      graphics_manager->draw("assets/TheUndying.png", VectorF(x, y));
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
   }
 
   void TheUndying::initializeSpecific() {
-    manager->loadAsset("assets/TheUndying.png");
+    graphics_manager->loadAsset("assets/TheUndying.png");
     movement_id = event_man->addKeyboardListener(
       [this] (EventManager::Event e) {
-        if (e.getType() == EventManager::EventType::MouseButtonPressed) {
+        if (e.getType() == EventManager::EventType::KeyPressed) {
           switch (e.getKey()) {
             case EventManager::Key::W:
               vy -= max_speed;
@@ -54,7 +55,7 @@ namespace DIM {
             default:
               break;
           }
-        } else if (e.getType() == EventManager::EventType::MouseButtonReleased) {
+        } else if (e.getType() == EventManager::EventType::KeyReleased) {
           switch (e.getKey()) {
             case EventManager::Key::W:
               vy += max_speed;

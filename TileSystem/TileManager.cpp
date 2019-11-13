@@ -30,8 +30,8 @@ namespace DIM
   void TileManager::initializeSpecific() {
     
     for (Tile& t : tiles) {
-      std::cout << manager << std::endl;
-      t.initialize(manager, this);
+      std::cout << graphics_manager << std::endl;
+      t.initialize(graphics_manager, this);
     }
   }
 

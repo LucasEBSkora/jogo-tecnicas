@@ -5,9 +5,10 @@ namespace DIM {
 
   DescentIntoMadness::DescentIntoMadness() :
     // graphics_man(), menu(), temple(), cavern() {
-    graphics_man(), menu(), temple() {
-    menu.init(&graphics_man);
-    temple.init(&graphics_man);
+    graphics_man(), menu(), temple(&player1, &player2) {
+    events_man.setGraphicsManager(graphics_man);
+    menu.init(graphics_man, events_man);
+    temple.init(graphics_man, events_man);
     play();
   }
 
@@ -32,9 +33,7 @@ namespace DIM {
     //       cavern.exec();
     //     }
     //   }
-    // }
-    // arrumar função
-    // além disso, não parece mais que Menus e Fases não entidades
+    // 
     
   }
 
