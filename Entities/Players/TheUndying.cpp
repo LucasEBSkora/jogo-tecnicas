@@ -36,9 +36,9 @@ namespace DIM {
   void TheUndying::initializeSpecific() {
     manager->loadAsset("assets/TheUndying.png");
     movement_id = event_man->addKeyboardListener(
-      [this] (EventManager::Key k, EventManager::EventType t) {
-        if (t == EventManager::EventType::Pressed) {
-          switch (k) {
+      [this] (EventManager::Event e) {
+        if (e.getType() == EventManager::EventType::MouseButtonPressed) {
+          switch (e.getKey()) {
             case EventManager::Key::W:
               vy -= max_speed;
               break;
@@ -54,8 +54,8 @@ namespace DIM {
             default:
               break;
           }
-        } else if (t == EventManager::EventType::Released) {
-          switch (k) {
+        } else if (e.getType() == EventManager::EventType::MouseButtonReleased) {
+          switch (e.getKey()) {
             case EventManager::Key::W:
               vy += max_speed;
               break;

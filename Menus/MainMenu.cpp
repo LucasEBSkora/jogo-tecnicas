@@ -29,8 +29,11 @@ namespace DIM {
 
   void MainMenu::exec() {
     key_event_id = events.addKeyboardListener(
-      [this] (EventManager::Key k, EventManager::EventType t) {
-        keep_going = false;
+      [this] (EventManager::Event e) {
+        if (e.getType() == EventManager::EventType::KeyPressed &&
+            e.getKey() == EventManager::Key::Escape) {
+          keep_going = false;
+        }
       }
     );
     // mouse_event_id = events.addMouseListener(

@@ -7,6 +7,47 @@ namespace DIM {
   
   int EventManager::next_uid = 0;
 
+  EventManager::Event::Event() {
+    
+  }
+
+  EventManager::Event::Event(sf::Event& ev) : event(ev) {
+    
+  }
+
+  EventManager::Event::~Event() {
+
+  }
+
+  void EventManager::Event::setEvent(sf::Event ev) {
+    event = ev;
+  }
+
+  EventManager::EventType EventManager::Event::getType() const {
+    switch (event.type) {
+      case sf::Event::EventType::KeyPressed:
+        return EventType::KeyPressed;
+      case sf::Event::EventType::KeyReleased:
+        return EventType::KeyReleased;
+      case sf::Event::EventType::MouseWheelScrolled:
+        return EventType::MouseWheelScrolled;
+      case sf::Event::EventType::MouseButtonPressed:
+        return EventType::MouseButtonPressed;
+      case sf::Event::EventType::MouseButtonReleased:
+        return EventType::MouseButtonReleased;
+      default:
+        return EventType::Other;
+    }
+  }
+
+  EventManager::MouseButton EventManager::Event::getMouseButton() const {
+    return static_cast<EventManager::MouseButton>(event.mouseButton.button);
+  }
+
+  EventManager::Key EventManager::Event::getKey() const {
+    return static_cast<EventManager::Key>(event.key.code);
+  }
+
   EventManager::EventManager() : graphics_manager(nullptr),
     lastElapsedTime(sf::Time::Zero) {
 
@@ -33,7 +74,7 @@ namespace DIM {
     timers_callbacks.erase(id);
   }
 
-  int EventManager::addKeyboardListener(std::function<void(Key, EventType)> callback) {
+  int EventManager::addKeyboardListener(std::function<void(Event)> callback) {
     keyboard_callbacks[next_uid] = callback;
     return next_uid++;
   }
@@ -42,7 +83,7 @@ namespace DIM {
     keyboard_callbacks.erase(id);
   }
 
-  int EventManager::addMouseListener(std::function<void(Button, EventType)> callback) {
+  int EventManager::addMouseListener(std::function<void(Event)> callback) {
     mouse_callbacks[next_uid] = callback;
     return next_uid++;
   }
@@ -75,60 +116,29 @@ namespace DIM {
     sf::Event event;
 
     while (graphics_manager->getWindow()->pollEvent(event)) {
-
-      if (event.type == sf::Event::TextEntered) {
-        if (event.text.unicode < 128)
-          std::cout << static_cast<char>(event.text.unicode) << std::flush;
-
-      } else if (event.type == sf::Event::KeyPressed) { // fazer de um jeito melhor (mas não é urgente)
-        if (event.key.code == sf::Keyboard::Escape) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::Esc, EventType::Pressed);
-          }
-        } else if (event.key.code == sf::Keyboard::W) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::W, EventType::Pressed);
-          }
-        } else if (event.key.code == sf::Keyboard::A) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::A, EventType::Pressed);
-          }
-        } else if (event.key.code == sf::Keyboard::S) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::S, EventType::Pressed);
-          }
-        } else if (event.key.code == sf::Keyboard::D) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::D, EventType::Pressed);
-          }
-        }
-      } else if (event.type == sf::Event::KeyReleased) { // fazer de um jeito melhor (mas não é urgente)
-        if (event.key.code == sf::Keyboard::Escape) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::Esc, EventType::Released);
-          }
-        } else if (event.key.code == sf::Keyboard::W) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::W, EventType::Released);
-          }
-        } else if (event.key.code == sf::Keyboard::A) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::A, EventType::Released);
-          }
-        } else if (event.key.code == sf::Keyboard::S) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::S, EventType::Released);
-          }
-        } else if (event.key.code == sf::Keyboard::D) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(Key::D, EventType::Released);
-          }
-        }
-      } else if (event.type == sf::Event::MouseButtonPressed) {
-        for (auto& f : mouse_callbacks) {
-          f.second(Button::Left, EventType::Clicked);
+      Event event_obj = Event(event);
+      if (event_obj.getType() != EventType::Other) {
+        for (auto& f : keyboard_callbacks) {
+          f.second(event_obj);
         }
       }
+      // if (event.type == sf::Event::TextEntered) {
+      //   if (event.text.unicode < 128)
+      //     std::cout << static_cast<char>(event.text.unicode) << std::flush;
+
+      // } else if (event_obj.getType() == EventType::KeyPressed ||
+      //            event_obj.getType() == EventType::KeyReleased) { 
+      //   for (auto& f : keyboard_callbacks) {
+      //     f.second(event_obj);
+      //   }
+        
+      // } else if (event_obj.getType() == EventType::MouseButtonPressed ||
+      //            event_obj.getType() == EventType::MouseButtonReleased ||
+      //            event_obj.getType() == EventType::MouseWheelScrolled) {
+      //   for (auto& f : mouse_callbacks) {
+      //     f.second(event_obj);
+      //   }
+      // }
     }
   }
 
