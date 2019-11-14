@@ -4,7 +4,7 @@
 namespace DIM {
   TheUndying::TheUndying() : Mob(), movement_id(0) {
     id = std::string("Player1");
-    max_speed = 15;
+    max_speed = 50;
   }
 
   TheUndying::~TheUndying() {

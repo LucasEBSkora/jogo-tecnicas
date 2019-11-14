@@ -5,10 +5,11 @@ namespace DIM {
 
   DescentIntoMadness::DescentIntoMadness() :
     // graphics_man(), menu(), temple(), cavern() {
-    graphics_man(), menu(), temple(&player1, &player2) {
+    graphics_man(), menu(), temple() {
     events_man.setGraphicsManager(graphics_man);
     menu.init(graphics_man, events_man);
     temple.init(graphics_man, events_man);
+    temple.bindPlayers(&player1, &player2);
     play();
   }
 

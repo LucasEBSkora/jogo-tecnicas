@@ -1,6 +1,7 @@
 #include "ThePenitent.hpp"
 #include <iostream>
 #include <cmath>
+#include "../Levels/Level.hpp"
 
 namespace DIM {
 
@@ -16,10 +17,9 @@ namespace DIM {
   }
 
   void ThePenitent::update(float elapsedTime) {
-    float cx = 50;
-    float cy = 50; // pegar do jogador 1
-    x = cx + radius * std::cos(angle);
-    y = cy + radius * std::sin(angle);
+    VectorF p1_pos = current_level->getPlayer1Center();
+    x = p1_pos.x + radius * std::cos(angle) - width / 2;
+    y = p1_pos.y + radius * std::sin(angle) - height / 2;
   }
 
   void ThePenitent::draw() const {
@@ -35,11 +35,11 @@ namespace DIM {
     VectorF size = graphics_manager->getSizeOfAsset("assets/ThePenitent.png");
     width = size.x;
     height = size.y;
-    std::cout << "bom dia com [e]ventos" << std::endl;
+    std::cout << "bom dia com [e]ventos e " << current_level << std::endl;
     movement_id = event_man->addMouseListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::MouseWheelScrolled) {
-          angle += 0.2;
+          angle += 0.1;
         }
       }
     );

@@ -20,6 +20,7 @@ namespace DIM {
     std::vector<Tile> tiles;
     float tileSide;
     VectorU tileMapSize;
+    VectorU firstSpawnPointFound;
     short **tileMap;
     const char *path;
     void initializeSpecific() override;
@@ -39,6 +40,7 @@ namespace DIM {
     void draw() const override;
     
     VectorF getWorldSize() const;
+    VectorF getPlayerSpawnPosition() const;
   };
 }
 

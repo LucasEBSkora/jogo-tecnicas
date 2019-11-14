@@ -18,7 +18,7 @@ namespace DIM
 
   TileManager::~TileManager() {
     if (tileMap != nullptr) {
-      for (unsigned i = 0; i < tileMapSize.x; ++i) delete []tileMap[i];
+      for (unsigned i = 0; i < tileMapSize.y; ++i) delete []tileMap[i];
       delete []tileMap;
     }
 
@@ -40,7 +40,7 @@ namespace DIM
     
     if (!file.is_open()) return;
 
-    file >> tileMapSize.y >> tileMapSize.x; 
+    file >> tileMapSize.x >> tileMapSize.y; 
     tileMap = new short*[tileMapSize.y];
     
     for (unsigned i = 0; i < tileMapSize.y;++i)
@@ -71,6 +71,10 @@ namespace DIM
         } else if (('0' <= file.peek() && file.peek() <= '9') || file.peek() == '-') { //if it is a normal number, just saves it in the matrix
           
           file >> tileMap[i][j];
+          if (tileMap[i][j] == 1 && tileMap[i-1][j] == -1) {
+            // found spawn point
+            firstSpawnPointFound = VectorU(j, i - 1);
+          }
           ++j;
         
         } else { //if it is a weird character, prints it out
@@ -105,7 +109,7 @@ namespace DIM
     std::vector<IdPositionPair> vec;
 
     // unsigned pode ter dado a volta
-    if (start.x > tileMapSize.x || start.y >= tileMapSize.y || end.x > tileMapSize.x || end.y >= tileMapSize.y) {
+    if (start.x >= tileMapSize.x || start.y >= tileMapSize.y || end.x >= tileMapSize.x || end.y >= tileMapSize.y) {
       std::cout << "Error! entity out of map bounds" << std::endl;
     } else {
 
@@ -135,13 +139,17 @@ namespace DIM
     
     for (unsigned i = 0; i < tileMapSize.y; ++i) {
       for (unsigned j = 0; j < tileMapSize.x; ++j) {
-        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]].draw(VectorF((i)*tileSide, (j)*tileSide));
+        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]].draw(VectorF((j)*tileSide, (i)*tileSide));
       }
     }
   }
 
   VectorF TileManager::getWorldSize() const {
     return VectorF(tileMapSize.x, tileMapSize.y) * tileSide;
+  }
+
+  VectorF TileManager::getPlayerSpawnPosition() const {
+    return VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide;
   }
 
 } // namespace DIM

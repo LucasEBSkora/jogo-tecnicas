@@ -11,8 +11,10 @@
 
 namespace DIM {
 
-  TempleLevel::TempleLevel(Mob* p1, Mob* p2) : Level(p1, p2), keep_going(true), key_event_id(0) {
-  
+  TempleLevel::TempleLevel() : Level(), keep_going(true), key_event_id(0) {
+    // player1->setLevel(this);
+    // player2->setLevel(this);
+    // std::cout << player2->getLevel() << std::endl;
   }
 
   TempleLevel::~TempleLevel() {
@@ -22,16 +24,20 @@ namespace DIM {
     }
     entities.removeWithoutDestroying(player1);
     entities.removeWithoutDestroying(player2);
+    player1->setLevel(nullptr);
+    player2->setLevel(nullptr);
     player1 = nullptr;
     player2 = nullptr;
   }
 
   void TempleLevel::init(GraphicsManager& g, EventManager& e) {
-    if (player1 == nullptr) {
-      std::cout << "tchauzinho" << std::endl;
-      exit(321);
-    }
+    // std::cout << player2->getLevel() << std::endl;
+    // if (player1 == nullptr) {
+    //   std::cout << "tchauzinho" << std::endl;
+    //   exit(321);
+    // }
     Level::init(g, e);
+    // std::cout << player2->getLevel() << std::endl;
     tileManager = new TileManager({
       TempleWallTile(),
       PlayerSpawnPoint(),
@@ -39,15 +45,27 @@ namespace DIM {
       
     }, 32.0f, "assets/temple.tilemap");
     entities.addEntity(tileManager);
+    collisions.setTileManager(tileManager);
+    // std::cout << player2->getLevel() << std::endl;
+    // std::cout << player2->getLevel() << std::endl;
+    // std::cout << player2->getLevel() << std::endl;
+  }
+  
+  void TempleLevel::bindPlayers(Mob* p1, Mob* p2) {
+    player1 = p1;
+    player2 = p2;
+    player1->setLevel(this);
+    player2->setLevel(this);
+    std::cout << player2->getLevel() << std::endl;
     entities.addEntity(player1);
     entities.addEntity(player2);
-    entities.initializeAll(*graphics, *events);
     collisions.addToCollisions(player1);
     collisions.addToCollisions(player2);
-    collisions.setTileManager(tileManager);
   }
 
   void TempleLevel::exec() {
+    entities.initializeAll(*graphics, *events);
+    player1->setPosition(tileManager->getPlayerSpawnPosition() + VectorF(32.0f, 32.0f) * .5 - player1->getSize() * .5);
     key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&
@@ -59,7 +77,7 @@ namespace DIM {
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
-      graphics->centerCamera(player1->getPos());
+      graphics->centerCamera(getPlayer1Center());
       entities.updateAll(events->getLastElapsedTime());
       collisions.checkCollisions();
       entities.drawAll();

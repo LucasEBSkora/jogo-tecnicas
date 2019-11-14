@@ -22,12 +22,16 @@ namespace DIM {
     TileManager* tileManager;
 
   public:
-    Level(Mob* p1 = nullptr, Mob* p2 = nullptr);
+    Level();
     virtual ~Level();
 
     virtual void init(GraphicsManager& g, EventManager& e);
 
+    virtual void bindPlayers(Mob* p1, Mob* p2) = 0;
+
     virtual void exec() = 0;
+
+    VectorF getPlayer1Center() const;
   };
 
 }

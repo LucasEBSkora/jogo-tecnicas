@@ -1,9 +1,10 @@
 #include "Level.hpp"
+#include <iostream>
 
 namespace DIM {
 
-  Level::Level(Mob* p1, Mob* p2) : graphics(nullptr), events(nullptr),
-    player1(p1), player2(p2), tileManager(nullptr) {
+  Level::Level() : graphics(nullptr), events(nullptr), player1(nullptr),
+    player2(nullptr), tileManager(nullptr) {
     
   }
 
@@ -16,4 +17,8 @@ namespace DIM {
     events = &e;
   }
 
+  VectorF Level::getPlayer1Center() const {
+    if (player1 == nullptr) std::cout << "segfaulting agora" << std::endl;
+    return player1->getPos() + player1->getSize() * .5;
+  }
 }
