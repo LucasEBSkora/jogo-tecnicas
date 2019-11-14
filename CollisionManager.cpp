@@ -55,7 +55,7 @@ namespace DIM {
       if (tile_man) {
         auto vec = tile_man->checkCollisions(current->getPos(), current->getSize(), current->getID());
         for (auto& el : vec) {
-          std::cout << "somebody collided WITH TILES" << std::endl;
+          std::cout << "somebody collided WITH TILES " << el.first << ' ' << el.second.x << ' ' << el.second.y << std::endl;
         }
       } else {
         std::cout << "no tileman" << std::endl;

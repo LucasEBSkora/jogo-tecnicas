@@ -59,7 +59,7 @@ namespace DIM {
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
-      // graphics->centerCamera(main_player->getPosition());
+      graphics->centerCamera(player1->getPos());
       entities.updateAll(events->getLastElapsedTime());
       collisions.checkCollisions();
       entities.drawAll();

@@ -99,11 +99,13 @@ namespace DIM
     VectorF op(at + size);
 
     VectorU start(static_cast<unsigned int>(floor(at.x/tileSide)), static_cast<unsigned int>(floor(at.y/tileSide)));
-    VectorU end(static_cast<unsigned int>(ceil(at.x/tileSide)), static_cast<unsigned int>(ceil(at.y/tileSide)));
-
+    // VectorU end(static_cast<unsigned int>(ceil(at.x/tileSide)), static_cast<unsigned int>(ceil(at.y/tileSide)));
+    VectorU end(static_cast<unsigned int>(floor(op.x/tileSide)), static_cast<unsigned int>(floor(op.y/tileSide)));
+    // std::cout << start.x << ' ' << start.y << ' ' << end.x << ' ' << end.y << std::endl;
     std::vector<IdPositionPair> vec;
 
-    if (start.x > tileMapSize.x || start.y > tileMapSize.y || end.x > tileMapSize.x || end.y > tileMapSize.y) {
+    // unsigned pode ter dado a volta
+    if (start.x > tileMapSize.x || start.y >= tileMapSize.y || end.x > tileMapSize.x || end.y >= tileMapSize.y) {
       std::cout << "Error! entity out of map bounds" << std::endl;
     } else {
 
@@ -138,5 +140,8 @@ namespace DIM
     }
   }
 
+  VectorF TileManager::getWorldSize() const {
+    return VectorF(tileMapSize.x, tileMapSize.y) * tileSide;
+  }
 
 } // namespace DIM

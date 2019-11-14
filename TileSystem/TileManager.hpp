@@ -37,7 +37,8 @@ namespace DIM {
     
     void update(float elapsedTime) override;
     void draw() const override;
-
+    
+    VectorF getWorldSize() const;
   };
 }
 
