@@ -39,10 +39,10 @@ namespace DIM {
     Level::init(g, e);
     // std::cout << player2->getLevel() << std::endl;
     tileManager = new TileManager({
-      TempleWallTile(),
-      PlayerSpawnPoint(),
-      TempleSpikeObstacle(),
-      
+      new TempleWallTile(),
+      new PlayerSpawnPoint(),
+      new TempleSpikeObstacle(),
+      new BulletObstacle()
     }, 32.0f, "assets/temple.tilemap");
     entities.addEntity(tileManager);
     collisions.setTileManager(tileManager);

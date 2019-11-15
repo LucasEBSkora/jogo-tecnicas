@@ -18,6 +18,7 @@ namespace DIM {
       ~TileMap();
       void loadTileMap(const char* path);
       const VectorU getSize() const;
+      void drawTileMap() const;
       
 
       class TileMapLine {

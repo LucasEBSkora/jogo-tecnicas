@@ -9,20 +9,23 @@
 namespace DIM
 {
 
-  TileManager::TileManager( std::vector<Tile> Tiles, float TileSide, const char *Path) 
+  TileManager::TileManager( std::vector<Tile*> Tiles, float TileSide, const char *Path) 
   : tiles{Tiles}, tileSide{TileSide}, path{Path}, tileMap{*(new TileMap(path))} {
 
   }
 
   TileManager::~TileManager() {
     delete &tileMap;
-
+    
+    for (Tile* t : tiles) {
+      delete t;
+    }
   }
 
   void TileManager::initializeSpecific() {
     
-    for (Tile& t : tiles) {
-      t.initialize(graphics_manager, this);
+    for (Tile* t : tiles) {
+      t->initialize(graphics_manager, this);
     }
 
     for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
@@ -57,8 +60,10 @@ namespace DIM
         for (unsigned j = start.x; j <= end.x; ++j) {
           short tileId = tileMap[i][j];
           if (tileId >= 0) {
-
-            vec.push_back( IdPositionSizeTuple(tiles[tileId].getID(), VectorF(j*tileSide, i*tileSide), VectorF(tileSide, tileSide)));
+            
+            std::cout << tileId << std::endl;
+            vec.push_back( IdPositionSizeTuple(tiles[tileId]->getID(), VectorF(j*tileSide, i*tileSide), VectorF(tileSide, tileSide)));
+            tiles[tileId]->collided(id, at, VectorU(i,j));
           }
         }
       }
@@ -74,9 +79,10 @@ namespace DIM
 
   void TileManager::draw() const {
     
+
     for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
       for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
-        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]].draw(VectorF((j)*tileSide, (i)*tileSide));
+        if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(VectorF((j)*tileSide, (i)*tileSide));
       }
     }
   }
@@ -89,8 +95,8 @@ namespace DIM
     return VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide;
   }
 
-  const TileMap& TileManager::getTileMap() const {
-    return tileMap;
+  const TileMap* TileManager::getTileMap() const {
+    return &tileMap;
   }
 
 } // namespace DIM
