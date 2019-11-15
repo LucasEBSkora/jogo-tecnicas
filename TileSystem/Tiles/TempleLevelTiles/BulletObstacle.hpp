@@ -7,6 +7,7 @@ namespace DIM {
   class BulletObstacle : public Tile {
   private:
 
+
   public:
     BulletObstacle();
     ~BulletObstacle();
