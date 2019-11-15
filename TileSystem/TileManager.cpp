@@ -30,14 +30,20 @@ namespace DIM
     }
 
     for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
-      for (unsigned j = 0; j < tileMap.getSize().x;++j) {
+      for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
         
-          if (tileMap[i][j] == 1 && tileMap[i-1][j] == -1) {
-            // found spawn point
-            
-            firstSpawnPointFound = VectorU(j, i - 1);
-            // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
-          }
+        if (tileMap[i][j] == 1 && tileMap[i-1][j] == -1) {
+          // found spawn point
+          
+          firstSpawnPointFound = VectorU(j, i - 1);
+          // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
+        }
+
+        if (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1) {
+          // enemy spawn point
+          // arrumar depois
+          enemySpawns.push_back(VectorF(j, i - 1) * tileSide);
+        }
       
       }
     }
@@ -106,6 +112,10 @@ namespace DIM
 
   Level* TileManager::getCurrentLevel() const {
     return current_level;
+  }
+
+  const std::vector<VectorF>& TileManager::getEnemySpawns() const {
+    return enemySpawns;
   }
 
 } // namespace DIM

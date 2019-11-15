@@ -27,6 +27,7 @@ namespace DIM {
     TileMap& tileMap;
     void initializeSpecific() override;
     Level* current_level;
+    std::vector<VectorF> enemySpawns;
 
   public:
 
@@ -48,6 +49,7 @@ namespace DIM {
     VectorF getPlayerSpawnPosition() const;
     void setCurrentLevel(Level& level);
     Level* getCurrentLevel() const;
+    const std::vector<VectorF>& getEnemySpawns() const;
   };
 }
 

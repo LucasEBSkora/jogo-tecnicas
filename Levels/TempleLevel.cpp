@@ -2,11 +2,15 @@
 #include "../Entities/Players/TheUndying.hpp"
 #include "../Entities/Players/ThePenitent.hpp"
 
+#include "../Entities/Enemies/Leaper.hpp"
+
 #include "../TileSystem/Tiles/TempleLevelTiles/BulletObstacle.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleSpikeObstacle.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleWallTile.hpp"
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
+
+#include "../RandomValueGenerator.hpp"
 #include <iostream>
 
 namespace DIM {
@@ -73,6 +77,19 @@ namespace DIM {
   void TempleLevel::exec() {
     entities.initializeAll(*graphics, *events);
     player1->setPosition(tileManager->getPlayerSpawnPosition() + VectorF(32.0f, 32.0f) * .5 - player1->getSize() * .5);
+    
+    for (int i = 0; i < 5; ++i) {
+      std::vector<VectorF> spawns = tileManager->getEnemySpawns();
+      int idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+      Enemy* enemy = new Leaper();
+      enemy->setLevel(this);
+      enemy->initializeGeneric(*graphics, *events);
+      VectorF pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+      enemy->setPosition(VectorF(pos.x, pos.y));
+      std::cout << idx << std::endl;
+      entities.addEntity(enemy);
+      collisions.addToCollisions(enemy);
+    }
     key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&

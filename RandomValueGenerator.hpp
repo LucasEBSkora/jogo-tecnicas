@@ -12,6 +12,7 @@ namespace DIM
       static RandomValueGenerator *instance;
       static const RandomValueGenerator* getInstance();
       bool getRandomBool(unsigned short probability) const;
+      int getRandomIntInRange(int lowest, int highest) const;
   };
 
 } // namespace DIM
