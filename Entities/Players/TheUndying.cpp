@@ -5,7 +5,7 @@ namespace DIM {
   TheUndying::TheUndying() : Mob(), movement_id(0), pressed(), jumping(false) {
     id = std::string("Player1");
     max_speed_x = 80;
-    max_speed_y = 250;
+    max_speed_y = 330;
   }
 
   TheUndying::~TheUndying() {
@@ -16,12 +16,12 @@ namespace DIM {
   }
 
   void TheUndying::update(float elapsedTime) {
-    if (jumping) {
+    // if (jumping) {
       vy += 500 * elapsedTime;
-      std::cout << vy << " kk ue " << std::endl;
-    } else {
+      // std::cout << vy << " kk ue " << std::endl;
+    // } else {
       // vy = 0;
-    }
+    // }
     if (std::abs(vx) > max_speed_x) {
       vx = max_speed_x * (vx > 0 ? 1 : -1);
     }
@@ -52,7 +52,7 @@ namespace DIM {
           switch (e.getKey()) {
             case EventManager::Key::W:
               pressed[0] = true;
-              vy -= max_speed_y;
+              // vy -= max_speed_y;
               break;
             case EventManager::Key::A:
               pressed[1] = true;
@@ -60,15 +60,17 @@ namespace DIM {
               break;
             case EventManager::Key::S:
               pressed[2] = true;
-              vy += max_speed_y;
+              // vy += max_speed_y;
               break;
             case EventManager::Key::D:
               pressed[3] = true;
               vx += max_speed_x;
               break;
             case EventManager::Key::Space:
-              jumping = true;
-              vy -= max_speed_y;
+              if (!jumping) {
+                jumping = true;
+                vy -= 2 * max_speed_y;
+              }
               break;
             default:
               break;
@@ -78,7 +80,7 @@ namespace DIM {
             case EventManager::Key::W:
               if (pressed[0]) {
                 pressed[0] = false;
-                vy += max_speed_y;
+                // vy += max_speed_y;
               }
               break;
             case EventManager::Key::A:
@@ -90,7 +92,7 @@ namespace DIM {
             case EventManager::Key::S:
               if (pressed[2]) {
                 pressed[2] = false;
-                vy -= max_speed_y;
+                // vy -= max_speed_y;
               }
               break;
             case EventManager::Key::D:
@@ -109,16 +111,22 @@ namespace DIM {
 
   void TheUndying::collided(std::string other_id, VectorF position, VectorF size) {
 
-    float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
-    float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);
-
-    if (other_id == "Wall" || other_id == "Spawn" || other_id == "Spike") { // rever ids dessas tiles (não servem pro propósito que foram criadas)
-      if (dist_x < dist_y) {
-        // colisão em X
-        adjusts.x += dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
-      } else {
-        // colisão em Y
-        adjusts.y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+    if (other_id == "Spike") {
+      // he's dead
+      x -= 20;
+      y -= 20;
+    } else if (other_id == "Wall" || other_id == "Spawn") {
+      float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
+      float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);
+      
+      if (dist_x * dist_y > .001 * width * height) { // passa a ignorar colisões ignoráveis (bem as problemáticas)
+        if (dist_x < dist_y) {
+          // colisão em X
+          adjusts.x += dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+        } else {
+          // colisão em Y
+          adjusts.y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+        }
       }
     }
   }
@@ -126,6 +134,8 @@ namespace DIM {
   void TheUndying::adjust() {
     if (adjusts.y < 0) { // quase funciona
       jumping = false;
+      vy = 0;
+    } else if (adjusts.y > 0) {
       vy = 0;
     }
     PhysicalEntity::adjust();

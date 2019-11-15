@@ -46,7 +46,7 @@ namespace DIM {
 
       for (unsigned int k = 2; (searchLeft || searchRight) && (!foundLeft && !foundRight); ++k) {
         if (j-k < 0) searchLeft = false;
-        if (j+k > map.getSize.x - 1) searchRight = false;
+        if (j+k > map.getSize().x - 1) searchRight = false;
 
         if (searchLeft) foundLeft = map[i][j-k] == 0; 
         if (searchRight) foundRight = map[i][j+k] == 0;
