@@ -45,7 +45,7 @@ namespace DIM {
     );
   }
 
-  void ThePenitent::collided(std::string Id, VectorF position) {
+  void ThePenitent::collided(std::string Id, VectorF position, VectorF size) {
     
   }
 

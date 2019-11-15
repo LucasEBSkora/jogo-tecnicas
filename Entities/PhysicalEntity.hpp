@@ -12,11 +12,13 @@ namespace DIM {
     std::string id; // mais correto talvez seria usar enum
                       // serve para que os objetos identifiquem com quem
                       // colidiram e como devem proceder
+    VectorF adjusts;
   public:
     PhysicalEntity();
     virtual ~PhysicalEntity();
 
-    virtual void collided(std::string Id, VectorF position) = 0;
+    virtual void collided(std::string Id, VectorF position, VectorF size) = 0;
+    virtual void adjust();
 
     VectorF getPos() const;
     VectorF getSize() const;

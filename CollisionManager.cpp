@@ -54,9 +54,11 @@ namespace DIM {
 
       if (tile_man) {
         auto vec = tile_man->checkCollisions(current->getPos(), current->getSize(), current->getID());
-        for (IdPositionPair& el : vec) {
-          current->collided(el.first, el.second);
-          std::cout << current->getID() <<  " collided with a tile of type \"" << el.first << "\" at "  << ' ' << el.second.x << ' ' << el.second.y << std::endl;
+        
+        for (IdPositionSizeTuple& el : vec) {
+          current->collided(std::get<0>(el), std::get<1>(el), std::get<2>(el));
+          // std::apply(current->collided, el);
+          std::cout << current->getID() <<  " collided with a tile of type \"" << std::get<0>(el) << "\" at "  << ' ' << std::get<1>(el).x << ' ' << std::get<1>(el).y << std::endl;
         }
       } else {
         // std::cout << "no tileman" << std::endl;
@@ -64,11 +66,12 @@ namespace DIM {
 
       for (auto& c : deque) {
         if (colliding(current, c)) {
-          current->collided(c->getID(), c->getPos());
-          c->collided(current->getID(), current->getPos());
+          current->collided(c->getID(), c->getPos(), c->getSize());
+          c->collided(current->getID(), current->getPos(), current->getSize());
           std::cout << current->getID() << " collided with " << c->getID() << std::endl;
         }
       }
+      current->adjust();
     }
   }
 

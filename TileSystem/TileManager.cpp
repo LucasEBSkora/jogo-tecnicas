@@ -32,13 +32,14 @@ namespace DIM
             // found spawn point
             
             firstSpawnPointFound = VectorU(j, i - 1);
+            // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
           }
       
       }
     }
   }
 
-  std::vector<IdPositionPair> TileManager::checkCollisions(VectorF at, VectorF size, std::string id) {
+  std::vector<IdPositionSizeTuple> TileManager::checkCollisions(VectorF at, VectorF size, std::string id) {
 
     VectorF op(at + size);
 
@@ -46,11 +47,10 @@ namespace DIM
     // VectorU end(static_cast<unsigned int>(ceil(at.x/tileSide)), static_cast<unsigned int>(ceil(at.y/tileSide)));
     VectorU end(static_cast<unsigned int>(floor(op.x/tileSide)), static_cast<unsigned int>(floor(op.y/tileSide)));
     // std::cout << start.x << ' ' << start.y << ' ' << end.x << ' ' << end.y << std::endl;
-    std::vector<IdPositionPair> vec;
+    std::vector<IdPositionSizeTuple> vec;
 
-    // unsigned pode ter dado a volta
-    if (start.x >= tileMap.getSize().x || start.y >= tileMap.getSize().y || end.x >= tileMap.getSize().x || end.y >= tileMap.getSize().y) {
-      std::cout << "Error! entity out of map bounds" << std::endl;
+    if (at.x < 0 || at.y < 0 || end.x >= tileMap.getSize().x || end.y >= tileMap.getSize().y) {
+      // std::cout << "Error! entity out of map bounds" << std::endl;
     } else {
 
       for (unsigned i = start.y; i <= end.y; ++i) {
@@ -58,7 +58,7 @@ namespace DIM
           short tileId = tileMap[i][j];
           if (tileId >= 0) {
 
-            vec.push_back( IdPositionPair(tiles[tileId].getID(), VectorF((i + 0.5)*tileSide, (j + 0.5)*tileSide)));
+            vec.push_back( IdPositionSizeTuple(tiles[tileId].getID(), VectorF(j*tileSide, i*tileSide), VectorF(tileSide, tileSide)));
           }
         }
       }

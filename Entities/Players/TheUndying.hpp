@@ -9,6 +9,7 @@ namespace DIM {
   private:
     float max_speed;
     int movement_id;
+    bool pressed[4];
   public:
     TheUndying();
     ~TheUndying();
@@ -17,7 +18,7 @@ namespace DIM {
     void draw() const override;
     void initializeSpecific() override;
 
-    void collided(std::string Id, VectorF position) override;
+    void collided(std::string Id, VectorF position, VectorF size) override;
 
     std::string getID() const override;
   };
