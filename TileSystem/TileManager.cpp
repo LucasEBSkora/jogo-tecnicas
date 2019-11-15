@@ -62,7 +62,7 @@ namespace DIM
           short tileId = tileMap[i][j];
           if (tileId >= 0) {
             
-            std::cout << tileId << std::endl;
+            // std::cout << tileId << std::endl;
             vec.push_back( IdPositionSizeTuple(tiles[tileId]->getID(), VectorF(j*tileSide, i*tileSide), VectorF(tileSide, tileSide)));
             tiles[tileId]->collided(id, at, VectorU(i,j));
           }

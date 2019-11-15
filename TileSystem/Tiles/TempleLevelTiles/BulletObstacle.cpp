@@ -27,7 +27,7 @@ namespace DIM {
       const TileMap *map = parent->getTileMap();
       
       unsigned int i = positionMine.x - 1, j = positionMine.y;
-      std::cout << i << ',' << j << std::endl;
+      // std::cout << i << ',' << j << std::endl;
       bool searchLeft, searchRight;
 
       try {
@@ -49,7 +49,6 @@ namespace DIM {
         searchRight = false;
       
       }
-      
       bool foundLeft = false, foundRight = false;
       unsigned int k;
       for (k = 2; (searchLeft || searchRight) && (!foundLeft && !foundRight); ++k) {
@@ -61,16 +60,16 @@ namespace DIM {
       }
 
       if (foundLeft) {
-        std::cout << "criando flecha indo para a direita em " << (j + 0.5)*size.x << ',' << (i + 0.5)*size.y  << std::endl;
+        std::cout << "criando flecha indo para a direita em " << (j - k) << ',' << (i)  << std::endl;
         //create arrow at (i, j-k) going right
         Bullet* bullet = new Bullet();
         bullet->setSpeed(VectorF(100, 0));
-        bullet->setPos(VectorF((j - k - 1.5) * size.x, (i + .5) * size.y));
+        bullet->setPos(VectorF((j - k + 2.5) * size.x, (i + .5) * size.y));
         map->getTileManager()->getCurrentLevel()->addPhysicalEntity(bullet);
 
       } else if (foundRight) {
         //create arrow at (i, j+k) going left
-        std::cout << "criando flecha indo para a esquerda em " << (j + 0.5)*size.x << ',' << (i + 0.5)*size.y  << std::endl;
+        std::cout << "criando flecha indo para a esquerda em " << (j + k) << ',' << (i)  << std::endl;
         Bullet* bullet = new Bullet();
         bullet->setSpeed(VectorF(-100, 0));
         bullet->setPos(VectorF((j + k - 1.5) * size.x, (i + .5) * size.y));
