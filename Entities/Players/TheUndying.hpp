@@ -7,9 +7,11 @@ namespace DIM {
   //Player 1
   class TheUndying : public Mob {
   private:
-    float max_speed;
+    float max_speed_x;
+    float max_speed_y;
     int movement_id;
     bool pressed[4];
+    bool jumping;
   public:
     TheUndying();
     ~TheUndying();
@@ -19,6 +21,7 @@ namespace DIM {
     void initializeSpecific() override;
 
     void collided(std::string Id, VectorF position, VectorF size) override;
+    void adjust() override;
 
     std::string getID() const override;
   };

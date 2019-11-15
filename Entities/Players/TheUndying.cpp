@@ -2,9 +2,10 @@
 #include <iostream>
 
 namespace DIM {
-  TheUndying::TheUndying() : Mob(), movement_id(0), pressed() {
+  TheUndying::TheUndying() : Mob(), movement_id(0), pressed(), jumping(false) {
     id = std::string("Player1");
-    max_speed = 50;
+    max_speed_x = 80;
+    max_speed_y = 250;
   }
 
   TheUndying::~TheUndying() {
@@ -15,11 +16,17 @@ namespace DIM {
   }
 
   void TheUndying::update(float elapsedTime) {
-    if (std::abs(vx) > max_speed) {
-      vx = max_speed * (vx > 0 ? 1 : -1);
+    if (jumping) {
+      vy += 500 * elapsedTime;
+      std::cout << vy << " kk ue " << std::endl;
+    } else {
+      // vy = 0;
     }
-    if (std::abs(vy) > max_speed) {
-      vy = max_speed * (vy > 0 ? 1 : -1);
+    if (std::abs(vx) > max_speed_x) {
+      vx = max_speed_x * (vx > 0 ? 1 : -1);
+    }
+    if (std::abs(vy) > max_speed_y) {
+      vy = max_speed_y * (vy > 0 ? 1 : -1);
     }
     x += vx * elapsedTime;
     y += vy * elapsedTime;
@@ -45,19 +52,23 @@ namespace DIM {
           switch (e.getKey()) {
             case EventManager::Key::W:
               pressed[0] = true;
-              vy -= max_speed;
+              vy -= max_speed_y;
               break;
             case EventManager::Key::A:
               pressed[1] = true;
-              vx -= max_speed;
+              vx -= max_speed_x;
               break;
             case EventManager::Key::S:
               pressed[2] = true;
-              vy += max_speed;
+              vy += max_speed_y;
               break;
             case EventManager::Key::D:
               pressed[3] = true;
-              vx += max_speed;
+              vx += max_speed_x;
+              break;
+            case EventManager::Key::Space:
+              jumping = true;
+              vy -= max_speed_y;
               break;
             default:
               break;
@@ -67,25 +78,25 @@ namespace DIM {
             case EventManager::Key::W:
               if (pressed[0]) {
                 pressed[0] = false;
-                vy += max_speed;
+                vy += max_speed_y;
               }
               break;
             case EventManager::Key::A:
               if (pressed[1]) {
                 pressed[1] = false;
-                vx += max_speed;
+                vx += max_speed_x;
               }
               break;
             case EventManager::Key::S:
               if (pressed[2]) {
                 pressed[2] = false;
-                vy -= max_speed;
+                vy -= max_speed_y;
               }
               break;
             case EventManager::Key::D:
               if (pressed[3]) {
                 pressed[3] = false;
-                vx -= max_speed;
+                vx -= max_speed_x;
               }
               break;
             default:
@@ -110,6 +121,14 @@ namespace DIM {
         adjusts.y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
       }
     }
+  }
+
+  void TheUndying::adjust() {
+    if (adjusts.y < 0) { // quase funciona
+      jumping = false;
+      vy = 0;
+    }
+    PhysicalEntity::adjust();
   }
 
   std::string TheUndying::getID() const {
