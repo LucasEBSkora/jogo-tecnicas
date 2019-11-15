@@ -1,7 +1,7 @@
 #include "Tile.hpp"
 
 #include <iostream>
-#include "../TileManager.hpp"
+#include "../../GraphicsManager.hpp"
 
 namespace DIM {
     Tile::Tile(const char* Id, const char* Path, const VectorF Size) : ID{Id}, path{Path}, size{Size} {

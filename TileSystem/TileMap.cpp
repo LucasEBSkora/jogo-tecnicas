@@ -92,7 +92,7 @@ namespace DIM {
     if (j < lineLenght) return tileLine[j];
     else {
       std::cout << "Warning! trying to access tile out of tileMap bounds" << std::endl;
-      exit(9090);
+      throw std::string("out of bounds");
     }
 
   }
@@ -101,7 +101,7 @@ namespace DIM {
     if (i < tileMapSize.y) return TileMapLine(tileMap[i], tileMapSize.x);
     else {
       std::cout << "Warning! trying to access tile out of bounds" << std::endl;
-      exit(9091);
+      throw std::string("out of bounds");
     }
   }
 

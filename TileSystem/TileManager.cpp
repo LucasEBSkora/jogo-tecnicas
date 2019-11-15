@@ -89,4 +89,8 @@ namespace DIM
     return VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide;
   }
 
+  const TileMap& TileManager::getTileMap() const {
+    return tileMap;
+  }
+
 } // namespace DIM
