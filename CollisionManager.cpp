@@ -55,6 +55,8 @@ namespace DIM {
       if (tile_man) {
         auto vec = tile_man->checkCollisions(current->getPos(), current->getSize(), current->getID());
         for (auto& el : vec) {
+          current->collided(std::get<0>(el), std::get<1>(el), std::get<2>(el));
+          // std::apply(current->collided, el);
           // std::cout << "somebody collided WITH TILES " << el.first << ' ' << el.second.x << ' ' << el.second.y << std::endl;
         }
       } else {
@@ -63,9 +65,11 @@ namespace DIM {
 
       for (auto& c : deque) {
         if (colliding(current, c)) {
+          current->collided(c->getID(), c->getPos(), c->getSize());
           // std::cout << "somebody collided" << std::endl;
         }
       }
+      current->adjust();
     }
   }
 

@@ -3,6 +3,7 @@
 
 #include "Tiles/Tile.hpp"
 #include <vector>
+#include <tuple>
 #include "../Entities/Entity.hpp"
 #include "../Vector.hpp"
 
@@ -13,7 +14,7 @@ namespace DIM {
     forbbidenSpawn = -2,
   };
     
-  typedef std::pair<std::string, VectorF> IdPositionPair;
+  typedef std::tuple<std::string, VectorF, VectorF> IdPositionSizeTuple;
 
   class TileManager : public Entity {
   private:
@@ -34,7 +35,7 @@ namespace DIM {
     void loadTileMap(const char* path);
     
 
-    std::vector<IdPositionPair> checkCollisions(VectorF at, VectorF size, std::string id);
+    std::vector<IdPositionSizeTuple> checkCollisions(VectorF at, VectorF size, std::string id);
     
     void update(float elapsedTime) override;
     void draw() const override;
