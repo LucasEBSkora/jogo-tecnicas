@@ -38,6 +38,8 @@ namespace DIM {
     
     void update(float elapsedTime) override;
     void draw() const override;
+
+    const TileMap& getTileMap() const;
     
     VectorF getWorldSize() const;
     VectorF getPlayerSpawnPosition() const;
