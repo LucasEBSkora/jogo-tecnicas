@@ -10,17 +10,12 @@ namespace DIM
 {
 
   TileManager::TileManager( std::vector<Tile> Tiles, float TileSide, const char *Path) 
-  : tiles{Tiles}, tileSide{TileSide}, tileMap{nullptr}, path{Path} {
-
-    if (path != nullptr) loadTileMap(path);
+  : tiles{Tiles}, tileSide{TileSide}, path{Path}, tileMap{*(new TileMap(path))} {
 
   }
 
   TileManager::~TileManager() {
-    if (tileMap != nullptr) {
-      for (unsigned i = 0; i < tileMapSize.y; ++i) delete []tileMap[i];
-      delete []tileMap;
-    }
+    delete &tileMap;
 
   }
 
@@ -29,74 +24,19 @@ namespace DIM
     for (Tile& t : tiles) {
       t.initialize(graphics_manager, this);
     }
-  }
 
-
-  void TileManager::loadTileMap(const char* Path) {
-    path = Path;
-    std::ifstream file;
-
-    file.open(path);
-    
-    if (!file.is_open()) return;
-
-    file >> tileMapSize.x >> tileMapSize.y; 
-    tileMap = new short*[tileMapSize.y];
-    
-    for (unsigned i = 0; i < tileMapSize.y;++i)
-      tileMap[i] = new short[tileMapSize.x];
-
-
-    for (unsigned i = 0; i < tileMapSize.y; ++i) {
-      if (file.eof()) {
-        std::cout << "unexpected end of file while reading tileMap!" << std::endl;
-        break;
-      }
-      for (unsigned j = 0; j < tileMapSize.x;) {
+    for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
+      for (unsigned j = 0; j < tileMap.getSize().x;++j) {
         
-        if (file.eof()) break;
-        
-        if (file.peek() == ' ' || file.peek() == '\n') file.get(); //ignores spaces and line ends
-        else if (file.peek() == '?') { //Random tile 
-          
-          file.get();
-
-          short first, second; //gets the possible tile values
-
-          file >> first >> second;
-
-          tileMap[i][j] = (RandomValueGenerator::getInstance()->getRandomBool(50)) ? first : second; //50% chance of being the first, 50% of being the second
-        
-          ++j;
-        } else if (('0' <= file.peek() && file.peek() <= '9') || file.peek() == '-') { //if it is a normal number, just saves it in the matrix
-          
-          file >> tileMap[i][j];
-          if (tileMap[i][j] == 1 && tileMap[i-1][j] == -1) { // chuncho detectado
+          if (tileMap[i][j] == 1 && tileMap[i-1][j] == -1) {
             // found spawn point
+            
             firstSpawnPointFound = VectorU(j, i - 1);
             // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
           }
-          ++j;
-        
-        } else { //if it is a weird character, prints it out
-         std::cout << "\tunexpected character while loading tilemap: " << static_cast<char>(file.peek()) << std::endl;
-        }
-
+      
       }
     }
-    std::cout << "ue " << tileMapSize.x << ' ' << tileMapSize.y << std::endl;
-
-
-    for (unsigned i = 0; i < tileMapSize.y; ++i) {
-      for (unsigned j = 0; j < tileMapSize.x; ++j) {
-        std::cout << tileMap[i][j] << ' ';
-        std::cout.flush();
-      }
-      std::cout << std::endl;
-    }    
-
-    file.close();
-
   }
 
   std::vector<IdPositionSizeTuple> TileManager::checkCollisions(VectorF at, VectorF size, std::string id) {
@@ -109,8 +49,7 @@ namespace DIM
     // std::cout << start.x << ' ' << start.y << ' ' << end.x << ' ' << end.y << std::endl;
     std::vector<IdPositionSizeTuple> vec;
 
-    // unsigned pode ter dado a volta
-    if (at.x < 0 || at.y < 0 || end.x >= tileMapSize.x || end.y >= tileMapSize.y) {
+    if (at.x < 0 || at.y < 0 || end.x >= tileMap.getSize().x || end.y >= tileMap.getSize().y) {
       // std::cout << "Error! entity out of map bounds" << std::endl;
     } else {
 
@@ -123,10 +62,7 @@ namespace DIM
           }
         }
       }
-
     }
-
-
 
     return vec;
   }
@@ -138,15 +74,15 @@ namespace DIM
 
   void TileManager::draw() const {
     
-    for (unsigned i = 0; i < tileMapSize.y; ++i) {
-      for (unsigned j = 0; j < tileMapSize.x; ++j) {
+    for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
+      for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
         if (tileMap[i][j] >= 0) tiles[tileMap[i][j]].draw(VectorF((j)*tileSide, (i)*tileSide));
       }
     }
   }
 
   VectorF TileManager::getWorldSize() const {
-    return VectorF(tileMapSize.x, tileMapSize.y) * tileSide;
+    return VectorF(tileMap.getSize().x, tileMap.getSize().y) * tileSide;
   }
 
   VectorF TileManager::getPlayerSpawnPosition() const {

@@ -6,6 +6,7 @@
 #include <tuple>
 #include "../Entities/Entity.hpp"
 #include "../Vector.hpp"
+#include "TileMap.hpp"
 
 namespace DIM {
 
@@ -20,10 +21,9 @@ namespace DIM {
   private:
     std::vector<Tile> tiles;
     float tileSide;
-    VectorU tileMapSize;
     VectorU firstSpawnPointFound;
-    short **tileMap;
-    const char *path;
+    const char* path;
+    TileMap& tileMap;
     void initializeSpecific() override;
 
   public:
@@ -32,7 +32,7 @@ namespace DIM {
 
     TileManager( std::vector<Tile> Tiles = std::vector<Tile>(), float TileSide = 0.0f, const char *Path = nullptr);
     ~TileManager();
-    void loadTileMap(const char* path);
+
     
 
     std::vector<IdPositionSizeTuple> checkCollisions(VectorF at, VectorF size, std::string id);

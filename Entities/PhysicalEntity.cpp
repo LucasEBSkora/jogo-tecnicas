@@ -2,7 +2,7 @@
 
 namespace DIM {
 
-  PhysicalEntity::PhysicalEntity() : width(0), height(0) {
+  PhysicalEntity::PhysicalEntity() : width(0), height(0), adjusts(0, 0) {
     
   }
 
@@ -10,6 +10,11 @@ namespace DIM {
 
   }
 
+  void PhysicalEntity::adjust() {
+    x += adjusts.x;
+    y += adjusts.y;
+    adjusts = VectorF(0, 0);
+  }
 
   VectorF PhysicalEntity::getPos() const {
     return VectorF(x, y);

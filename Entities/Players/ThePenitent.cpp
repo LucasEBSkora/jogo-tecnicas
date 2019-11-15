@@ -49,10 +49,6 @@ namespace DIM {
     
   }
 
-  void ThePenitent::adjust() {
-
-  }
-
   std::string ThePenitent::getID() const {
     return id;
   }

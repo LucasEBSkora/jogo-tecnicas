@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace DIM {
-  TheUndying::TheUndying() : Mob(), movement_id(0), pressed(), adjusts(0, 0) {
+  TheUndying::TheUndying() : Mob(), movement_id(0), pressed() {
     id = std::string("Player1");
     max_speed = 50;
   }
@@ -96,81 +96,20 @@ namespace DIM {
     );
   }
 
-  void TheUndying::collided(std::string Id, VectorF position, VectorF size) {
-    // vx = 0;
-    // vy = 0;
-
-    // VectorF center = getPos() + getSize() * .5;
-    // float cte =.5;
-    // vx += (center.x - position.x) * cte;
-    // vy += (center.y - position.y) * cte;
-
-    // if (x < position.x && position.x < x + width) {
-    //   // colisão em y
-    //   std::cout << "coliso Y" << std::endl;
-    //   for (int i = 0; i < 4; i += 2) {
-    //     pressed[i] = false;
-    //   }
-    //   vy = -vy;
-    // } else {
-    //   // colisão em x
-    //   std::cout << "coliso X" << std::endl;
-    //   for (int i = 1; i < 4; i += 2) {
-    //     pressed[i] = false;
-    //   }
-    //   vx = -vx;
-    // }
-
-    // if (y > position.y && y + height < position.y + size.y) {
-    //   // com certeza colisão em X
-    //   std::cout << "coliso X ctz" << std::endl;
-    //   vx = -vx;
-    // } else if (x > position.x && x + width < position.x + size.x) {
-    //   // com certeza colisão em Y
-    //   std::cout << "coliso Y ctz" << std::endl;
-    //   vy = -vy;
-    // } else {
-    //   std::cout << "eu nao fiz nada" << std::endl;
-    //   std :: cout << x << ' ' << y << ' ' << position.x << ' ' << position.y << ' ' << width << ' ' << height << ' ' << size.x << ' ' << size.y << std::endl;
-    // } melhor até agora
-
-    // dx = (w1 + w2) / 2 - abs(x1 + w1 / 2 - x2 + w2 / 2)
-
-    // VectorF c1 = VectorF(x, y) + VectorF(width, height) * .5;
-    // VectorF c2 = pos2 + size2 * .5;
-
-    // return (abs(c1.x - c2.x) < (size1.x + size2.x) / 2 &&
-    //         abs(c1.y - c2.y) < (size1.y + size2.y) / 2);
+  void TheUndying::collided(std::string other_id, VectorF position, VectorF size) {
 
     float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
     float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);
-    // std::cout << dist_x << ' ' << dist_y << std::endl;
-    if (dist_x < dist_y) {
-      // acho que colisão em X
-      // std::cout << "coliso X ?" << ' ' << x + width / 2  << ' ' << position.x + size.x / 2 << std::endl;
-      // std::cout << "coliso X ?" << ' ' << dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1) << std::endl;
-      // x += dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
-      adjusts.x += dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
-      // vx = -vx;
-    } else {
-      // acho que colisão em Y
-      // std::cout << "coliso Y ?" << std::endl;
-      // std::cout << "coliso Y ?" << ' ' << dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1) << std::endl;
-      // y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
-      adjusts.y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
-      // vy = -vy;
-    } // funfo
-    std::cout << "collided eith " << Id << std::endl;
 
-    // for (int i = 0; i < 4; ++i) {
-    //   pressed[i] = false;
-    // }
-  }
-
-  void TheUndying::adjust() {
-    x += adjusts.x;
-    y += adjusts.y;
-    adjusts = VectorF(0, 0);
+    if (other_id == "Wall" || other_id == "Spawn" || other_id == "Spike") { // rever ids dessas tiles (não servem pro propósito que foram criadas)
+      if (dist_x < dist_y) {
+        // colisão em X
+        adjusts.x += dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+      } else {
+        // colisão em Y
+        adjusts.y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+      }
+    }
   }
 
   std::string TheUndying::getID() const {
