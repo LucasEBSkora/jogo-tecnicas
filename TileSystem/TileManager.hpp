@@ -9,6 +9,7 @@
 #include "TileMap.hpp"
 
 namespace DIM {
+  class Level;
 
   enum PresetTiles {
     emptyTile = -1,
@@ -19,18 +20,19 @@ namespace DIM {
 
   class TileManager : public Entity {
   private:
-    std::vector<Tile> tiles;
+    std::vector<Tile*> tiles;
     float tileSide;
     VectorU firstSpawnPointFound;
     const char* path;
     TileMap& tileMap;
     void initializeSpecific() override;
+    Level* current_level;
 
   public:
 
     
 
-    TileManager( std::vector<Tile> Tiles = std::vector<Tile>(), float TileSide = 0.0f, const char *Path = nullptr);
+    TileManager( std::vector<Tile*> Tiles = std::vector<Tile*>(), float TileSide = 0.0f, const char *Path = nullptr);
     ~TileManager();
 
     
@@ -40,10 +42,12 @@ namespace DIM {
     void update(float elapsedTime) override;
     void draw() const override;
 
-    const TileMap& getTileMap() const;
+    const TileMap* getTileMap() const;
     
     VectorF getWorldSize() const;
     VectorF getPlayerSpawnPosition() const;
+    void setCurrentLevel(Level& level);
+    Level* getCurrentLevel() const;
   };
 }
 

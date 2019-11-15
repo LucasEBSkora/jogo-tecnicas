@@ -39,11 +39,12 @@ namespace DIM {
     Level::init(g, e);
     // std::cout << player2->getLevel() << std::endl;
     tileManager = new TileManager({
-      TempleWallTile(),
-      PlayerSpawnPoint(),
-      TempleSpikeObstacle(),
-      
+      new TempleWallTile(),
+      new PlayerSpawnPoint(),
+      new TempleSpikeObstacle(),
+      new BulletObstacle()
     }, 32.0f, "assets/temple.tilemap");
+    tileManager->setCurrentLevel(*this);
     entities.addEntity(tileManager);
     collisions.setTileManager(tileManager);
     // std::cout << player2->getLevel() << std::endl;
@@ -63,6 +64,12 @@ namespace DIM {
     collisions.addToCollisions(player2);
   }
 
+  void TempleLevel::addPhysicalEntity(PhysicalEntity* ent) {
+    ent->initializeGeneric(*graphics, *events);
+    entities.addEntity(ent);
+    collisions.addToCollisions(ent);
+  }
+
   void TempleLevel::exec() {
     entities.initializeAll(*graphics, *events);
     player1->setPosition(tileManager->getPlayerSpawnPosition() + VectorF(32.0f, 32.0f) * .5 - player1->getSize() * .5);
@@ -76,7 +83,8 @@ namespace DIM {
     );
     while (keep_going) {
       events->processEvents();
-      graphics->clear(20, 20, 20);
+      // graphics->clear(20, 20, 20);
+      graphics->clear(200, 200, 200);
       graphics->centerCamera(getPlayer1Center());
       entities.updateAll(events->getLastElapsedTime());
       collisions.checkCollisions();

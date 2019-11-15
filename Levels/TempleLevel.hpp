@@ -16,6 +16,7 @@ namespace DIM {
     void init(GraphicsManager& g, EventManager& e) override;
 
     void bindPlayers(Mob* p1, Mob* p2) override;
+    void addPhysicalEntity(PhysicalEntity* ent) override;
 
     void exec() override;
   };

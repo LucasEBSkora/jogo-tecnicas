@@ -28,6 +28,7 @@ namespace DIM {
     virtual void init(GraphicsManager& g, EventManager& e);
 
     virtual void bindPlayers(Mob* p1, Mob* p2) = 0;
+    virtual void addPhysicalEntity(PhysicalEntity* ent) = 0;
 
     virtual void exec() = 0;
 

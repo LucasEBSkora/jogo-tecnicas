@@ -122,10 +122,14 @@ namespace DIM {
       if (dist_x * dist_y > .001 * width * height) { // passa a ignorar colisões ignoráveis (bem as problemáticas)
         if (dist_x < dist_y) {
           // colisão em X
-          adjusts.x += dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+          if (dist_x > std::abs(adjusts.x)) {
+            adjusts.x = dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+          }
         } else {
           // colisão em Y
-          adjusts.y += dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+          if (dist_y > std::abs(adjusts.y)) {
+            adjusts.y = dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+          }
         }
       }
     }

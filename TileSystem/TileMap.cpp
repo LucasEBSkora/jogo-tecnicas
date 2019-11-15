@@ -3,10 +3,11 @@
 #include <iostream>
 #include <fstream>
 #include "../RandomValueGenerator.hpp"
+#include "TileManager.hpp"
 
 namespace DIM {
 
-  TileMap::TileMap(const char* path) {
+  TileMap::TileMap(const char* path, TileManager* man) : manager(man) {
     if (path != nullptr) loadTileMap(path);
   }
 
@@ -68,19 +69,13 @@ namespace DIM {
 
       std::cout << "ue " << tileMapSize.x << ' ' << tileMapSize.y << std::endl;
 
-      for (unsigned i = 0; i < tileMapSize.y; ++i) {
-        for (unsigned j = 0; j < tileMapSize.x; ++j) {
-          std::cout << tileMap[i][j] << ' ';
-          std::cout.flush();
-        }
-        std::cout << std::endl;
-      }    
+      drawTileMap();
 
       file.close();
 
   }
 
-  TileMap::TileMapLine::TileMapLine(short* line, unsigned int lenght) : tileLine{line}, lineLenght{lenght} {
+  TileMap::TileMapLine::TileMapLine(short* line, unsigned int length) : tileLine{line}, lineLength{length} {
 
   }
 
@@ -89,7 +84,7 @@ namespace DIM {
   }
 
   const short TileMap::TileMapLine::operator[](unsigned int j) const {
-    if (j < lineLenght) return tileLine[j];
+    if (j < lineLength) return tileLine[j];
     else {
       std::cout << "Warning! trying to access tile out of tileMap bounds" << std::endl;
       throw std::string("out of bounds");
@@ -107,6 +102,21 @@ namespace DIM {
 
   const VectorU TileMap::getSize() const {
     return tileMapSize;
+  }
+
+  void TileMap::drawTileMap() const {
+
+    for (unsigned i = 0; i < tileMapSize.y; ++i) {
+      for (unsigned j = 0; j < tileMapSize.x; ++j) {
+        std::cout << tileMap[i][j] << ' ';
+        std::cout.flush();
+      }
+      std::cout << std::endl;
+    }    
+  }
+
+  TileManager* TileMap::getTileManager() const {
+    return manager;
   }
 
 }

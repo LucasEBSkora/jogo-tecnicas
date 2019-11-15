@@ -6,12 +6,12 @@
 namespace DIM {
   class BulletObstacle : public Tile {
   private:
-
+    int delay;
 
   public:
     BulletObstacle();
     ~BulletObstacle();
-    void collided(std::string id, VectorF positionOther, VectorU positionMine) override;
+    void collided(const std::string id, const VectorF positionOther, const VectorU positionMine) override;
   };
 
 }

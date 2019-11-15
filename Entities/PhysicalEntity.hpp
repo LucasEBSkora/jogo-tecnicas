@@ -21,6 +21,7 @@ namespace DIM {
     virtual void adjust();
 
     VectorF getPos() const;
+    void setPos(VectorF pos);
     VectorF getSize() const;
     virtual std::string getID() const = 0;
   };

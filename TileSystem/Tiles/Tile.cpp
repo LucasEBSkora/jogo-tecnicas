@@ -27,11 +27,11 @@ namespace DIM {
       graphicsManager->draw(path, at);
     }
 
-    std::string Tile::getID() const {
+    const std::string Tile::getID() const {
       return ID;
     }
 
-    void Tile::collided(std::string id, VectorF positionOther, VectorU positionMine) {
+    void Tile::collided(const std::string id, const VectorF positionOther, const VectorU positionMine) {
       //Default behavior is to ignore collisions
     }
 

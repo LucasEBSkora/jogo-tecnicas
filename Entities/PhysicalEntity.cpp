@@ -20,6 +20,11 @@ namespace DIM {
     return VectorF(x, y);
   }
 
+  void PhysicalEntity::setPos(VectorF pos) {
+    x = pos.x;
+    y = pos.y;
+  }
+
   VectorF PhysicalEntity::getSize() const {
     return VectorF(width, height);
   }
