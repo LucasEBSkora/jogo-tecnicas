@@ -18,6 +18,7 @@ namespace DIM {
     void bindPlayers(Mob* p1, Mob* p2) override;
     void addPhysicalEntity(PhysicalEntity* ent) override;
 
+    void setup() override;
     void exec() override;
   };
 

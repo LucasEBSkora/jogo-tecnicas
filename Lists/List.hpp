@@ -56,6 +56,8 @@ namespace DIM {
     iterator begin();
     iterator end();
 
+    void clear();
+
   };
 }
 

@@ -51,6 +51,17 @@ namespace DIM {
     tileManager->setCurrentLevel(*this);
     entities.addEntity(tileManager);
     collisions.setTileManager(tileManager);
+    tileManager->initializeGeneric(g, e);
+    graphics->loadAsset("assets/TempleBackground.png");
+
+    key_event_id = events->addKeyboardListener(
+      [this] (EventManager::Event e) {
+        if (e.getType() == EventManager::EventType::KeyPressed &&
+            e.getKey() == EventManager::Key::Escape) {
+          keep_going = false;
+        }
+      }
+    );
     // std::cout << player2->getLevel() << std::endl;
     // std::cout << player2->getLevel() << std::endl;
     // std::cout << player2->getLevel() << std::endl;
@@ -61,11 +72,7 @@ namespace DIM {
     player2 = p2;
     player1->setLevel(this);
     player2->setLevel(this);
-    std::cout << player2->getLevel() << std::endl;
-    entities.addEntity(player1);
-    entities.addEntity(player2);
-    collisions.addToCollisions(player1);
-    collisions.addToCollisions(player2);
+    // std::cout << player2->getLevel() << std::endl;
   }
 
   void TempleLevel::addPhysicalEntity(PhysicalEntity* ent) {
@@ -74,10 +81,24 @@ namespace DIM {
     collisions.addToCollisions(ent);
   }
 
-  void TempleLevel::exec() {
-    entities.initializeAll(*graphics, *events);
+  void TempleLevel::setup() {
+    if (player1 == nullptr) {
+      throw 'k';
+    }
+    entities.removeWithoutDestroying(tileManager);
+    entities.removeWithoutDestroying(player1);
+    entities.removeWithoutDestroying(player2);
+    entities.destroyAll();
+    collisions.removeAll();
+    entities.addEntity(tileManager);
+
+    entities.addEntity(player1);
+    entities.addEntity(player2);
+    collisions.addToCollisions(player1);
+    collisions.addToCollisions(player2);
+
     player1->setPosition(tileManager->getPlayerSpawnPosition() + VectorF(32.0f, 32.0f) * .5 - player1->getSize() * .5);
-    
+
     for (int i = 0; i < 5; ++i) {
       std::vector<VectorF> spawns = tileManager->getEnemySpawns();
       int idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
@@ -90,17 +111,14 @@ namespace DIM {
       entities.addEntity(enemy);
       collisions.addToCollisions(enemy);
     }
-    key_event_id = events->addKeyboardListener(
-      [this] (EventManager::Event e) {
-        if (e.getType() == EventManager::EventType::KeyPressed &&
-            e.getKey() == EventManager::Key::Escape) {
-          keep_going = false;
-        }
-      }
-    );
+
+    keep_going = true;
+  }
+
+  void TempleLevel::exec() {
     while (keep_going) {
       events->processEvents();
-      // graphics->clear(20, 20, 20);
+      graphics->draw("assets/TempleBackground.png", VectorF(0, 0));
       graphics->clear(200, 200, 200);
       graphics->centerCamera(getPlayer1Center());
       entities.updateAll(events->getLastElapsedTime());

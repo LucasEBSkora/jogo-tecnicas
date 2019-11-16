@@ -50,11 +50,7 @@ namespace DIM {
 
   template <typename TE>
   List<TE>::~List() {
-    while (first != nullptr) {
-      ListElement* aux = first->getNext();
-      delete first;
-      first = aux;
-    }
+    clear();
   }
 
   template <typename TE>
@@ -100,7 +96,10 @@ namespace DIM {
       }
       if (aux == nullptr) return;
       if (aux->getNext() != nullptr) aux->getNext()->setPrev(aux->getPrev());
+      else last = aux->getPrev();
       if (aux->getPrev() != nullptr) aux->getPrev()->setNext(aux->getNext());
+      else first = aux->getNext();
+      
       delete aux;
     }
   }
@@ -160,6 +159,17 @@ namespace DIM {
   template <typename TE>
   typename List<TE>::iterator List<TE>::end() {
     return iterator(nullptr);
+  }
+
+  template <typename TE>
+  void List<TE>::clear() {
+    while (first != nullptr) {
+      ListElement* aux = first->getNext();
+      delete first;
+      first = aux;
+    }
+    first = nullptr;
+    last = nullptr;
   }
 
 }

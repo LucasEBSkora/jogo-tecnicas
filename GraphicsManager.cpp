@@ -16,6 +16,7 @@ namespace DIM {
     height = width / 16 * 9;
     view = sf::View(sf::FloatRect(0, 0, width, height));
     window->setView(view);
+    font.loadFromFile("assets/CantoraOne-Regular.ttf");
 
     camera_size = VectorF(width, height);
   }
@@ -75,6 +76,19 @@ namespace DIM {
     }
   }
 
+  void GraphicsManager::drawTextCentered(const std::string& text, VectorF at, unsigned size) const {
+    sf::Text txt = sf::Text(text, font);
+    txt.setCharacterSize(size);
+    txt.setFillColor(sf::Color::White);
+    sf::FloatRect bounding = txt.getGlobalBounds();
+    txt.setOrigin(bounding.width / 2, bounding.height / 2);
+    txt.setPosition(at.x, at.y);
+    // if (text == "Exit Game") {
+    //   std::cout << at.x << ' ' << at.y << ' ' << bounding.width << ' ' << bounding.height << ' ' << getMousePosInView().x << ' ' << getMousePosInView().y << std::endl;
+    // }
+    window->draw(txt);
+  }
+
   void GraphicsManager::centerCamera(VectorF at) {
     camera_pos = at - camera_size * .5;
   }
@@ -105,6 +119,12 @@ namespace DIM {
   VectorF GraphicsManager::getMousePos() const {
     sf::Vector2i pos = sf::Mouse::getPosition(*window);
     return VectorF(pos.x, pos.y);
+  }
+
+  VectorF GraphicsManager::getMousePosInView() const {
+    sf::Vector2i pos = sf::Mouse::getPosition(*window);
+    sf::Vector2u window_size = window->getSize();
+    return VectorF(pos.x / static_cast<float>(window_size.x) * camera_size.x, pos.y / static_cast<float>(window_size.y) * camera_size.y) + camera_pos;
   }
 
   VectorF GraphicsManager::getSizeOfAsset(const std::string& id) const {

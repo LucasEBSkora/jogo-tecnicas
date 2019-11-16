@@ -39,6 +39,7 @@ namespace DIM {
     for (iterator i = entities.begin(); i != entities.end(); ++i) {
       delete (*i);
     }
+    entities.clear();
   }
 
   EntityList::iterator EntityList::begin() {

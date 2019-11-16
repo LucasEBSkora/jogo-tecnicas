@@ -30,6 +30,7 @@ namespace DIM {
     virtual void bindPlayers(Mob* p1, Mob* p2) = 0;
     virtual void addPhysicalEntity(PhysicalEntity* ent) = 0;
 
+    virtual void setup() = 0;
     virtual void exec() = 0;
 
     VectorF getPlayer1Center() const;

@@ -9,13 +9,14 @@ namespace DIM {
     bool keep_going;
     int key_event_id;
     int mouse_event_id;
+    int return_val;
   public:
     MainMenu();
     ~MainMenu();
 
     void init(GraphicsManager& g, EventManager& e) override;
 
-    void exec() override;
+    int exec() override;
   };
 
 }

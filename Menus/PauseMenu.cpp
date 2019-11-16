@@ -26,7 +26,7 @@ namespace DIM {
     entities.initializeAll(g, e);
   }
 
-  void PauseMenu::exec() {
+  int PauseMenu::exec() {
     key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&

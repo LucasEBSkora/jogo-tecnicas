@@ -39,6 +39,10 @@ namespace DIM {
     }
   }
 
+  void CollisionManager::removeAll() {
+    collidables.clear();
+  }
+
   void CollisionManager::setTileManager(TileManager* manager) {
     tile_man = manager;
   }

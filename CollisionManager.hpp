@@ -18,6 +18,7 @@ namespace DIM {
 
     void addToCollisions(PhysicalEntity* ent);
     void removeFromCollisions(PhysicalEntity* ent);
+    void removeAll();
     void setTileManager(TileManager* manager);
 
     void checkCollisions();
