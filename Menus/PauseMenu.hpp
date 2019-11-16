@@ -9,6 +9,7 @@ namespace DIM {
     bool keep_going;
     int key_event_id;
     int mouse_event_id;
+    int return_val;
   public:
     PauseMenu();
     ~PauseMenu();

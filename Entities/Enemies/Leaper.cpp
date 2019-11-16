@@ -2,12 +2,13 @@
 #include <iostream>
 
 #include "../../Levels/Level.hpp"
+#include "../../RandomValueGenerator.hpp"
 
 namespace DIM {
   Leaper::Leaper() : Enemy(), jumping(false), delay(0) {
     id = std::string("Leaper");
-    max_speed_x = 60;
-    max_speed_y = 230;
+    max_speed_x = 60 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-25, 10);
+    max_speed_y = 230 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-40, 40);
   }
 
   Leaper::~Leaper() {
@@ -17,15 +18,15 @@ namespace DIM {
   void Leaper::update(float elapsedTime) {
     VectorF player = currentLevel->getPlayer1Center();
 
-    if (jumping) {
-      vx = max_speed_x * (player.x > x + width / 2 ? 1 : -1);
-    }
+    // if (jumping) {
+    // }
     if (!jumping && player.y < y + height / 2) {
       if (delay != 0) {
         --delay;
       } else {
-        delay = 1000;
+        delay = RandomValueGenerator::getInstance()->getRandomIntInRange(800, 1200);
         jumping = true;
+        vx = max_speed_x * (player.x > x + width / 2 ? 1 : -1);
         vy -= 2 * max_speed_y;
       }
     }

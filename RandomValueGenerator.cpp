@@ -36,11 +36,13 @@ namespace DIM
     return std::rand() % (highest - lowest) + lowest;
   }
 
-  float RandomValueGenerator::getRandomFloatInRange(float inf, int max) const {
-    if (inf == max) return inf;
-    else if (inf >= max) return 0;
+  // parece que tanto o primeiro quanto o segundo argumentos estão incluídos
+  // então mudei pra min, max
+  float RandomValueGenerator::getRandomFloatInRange(float min, int max) const {
+    if (min == max) return min;
+    else if (min >= max) return 0;
     else {
-      return inf + (getRandomIntInRange(0, 1000001) / 1000000.0f) * (max - inf);
+      return min + (getRandomIntInRange(0, 1000001) / 1000000.0f) * (max - min);
     }
   }
 

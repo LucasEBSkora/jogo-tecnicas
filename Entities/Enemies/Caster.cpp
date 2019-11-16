@@ -9,7 +9,7 @@ namespace DIM {
 
   const float Caster::spellSpeed{50};  
 
-  Caster::Caster() : Enemy(), delay(5000) {
+  Caster::Caster() : Enemy(), delay(4000 + RandomValueGenerator::getInstance()->getRandomIntInRange(200, 1400)) {
     id = std::string("Caster");
     max_speed_x = 20;
     max_speed_y = 40;
@@ -35,7 +35,7 @@ namespace DIM {
       --delay;
     } else {
   
-      delay = 2000;
+      delay = RandomValueGenerator::getInstance()->getRandomIntInRange(1200, 2800);
 
       VectorF direction = (player - VectorF(x, y) -  getSize() * (0.5));
   

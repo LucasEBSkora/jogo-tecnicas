@@ -126,14 +126,12 @@ namespace DIM {
       // std::cout << idx << std::endl;
       entities.addEntity(enemy);
       collisions.addToCollisions(enemy);
-      
 
     }
-
-    keep_going = true;
   }
 
   void TempleLevel::exec() {
+    keep_going = true;
     while (keep_going) {
 
       if (markedToDelete.size() != 0) std::cout << markedToDelete.size() << std::endl;

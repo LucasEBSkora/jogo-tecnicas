@@ -20,10 +20,17 @@ namespace DIM {
   void PauseMenu::init(GraphicsManager& g, EventManager& e) {
     Menu::init(g, e);
     VectorF viewsize = g.getViewSize();
-    // entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2, 50, 30));
-    // entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2 + 100, 80, 25));
+    keep_going = true;
+    return_val = 0;
+    // o tamanho não deveria ser manual
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 4 * 1, 140, 30, 0, "Resume"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 4 * 2, 160, 30, 1, "Save Game"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 4 * 3, 160, 30, 2, "Main Menu"));
+    g.centerCamera(viewsize * .5);
 
-    //entities.initializeAll(g, e);
+    for (auto& b : buttons) {
+      b->initialize(g, e);
+    }
   }
 
   int PauseMenu::exec() {
@@ -35,23 +42,26 @@ namespace DIM {
         }
       }
     );
-    // mouse_event_id = events.addMouseListener(
-    //   [this] (EventManager::Button b, EventManager::EventType t) {
-    //     VectorF pos = graphics->getMousePos();
-    //     for (EntityList::iterator i = entities.begin();
-    //          i != entities.end();
-    //          ++i) {
-    //       // if ()
-    //     }
-    //   }
-    // );
+    mouse_event_id = events->addMouseListener(
+      [this] (EventManager::Event e) {
+        if (e.getType() == EventManager::EventType::MouseButtonPressed) {
+          VectorF pos = graphics->getMousePosInView();
+          for (auto& b : buttons) {
+            if (b->isInside(pos)) {
+              return_val = b->getId();
+              keep_going = false;
+            }
+          }
+        }
+      }
+    );
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
-      // entities.updateAll(events->getLastElapsedTime());
-      // entities.drawAll();
+      for (auto& b : buttons) b->draw();
       graphics->display();
     }
+    return return_val;
   }
 
 }
