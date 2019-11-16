@@ -20,7 +20,7 @@ namespace DIM {
 
     void drawAll();
     void updateAll(float elapsedTime);
-    void initializeAll(GraphicsManager& g, EventManager& e);
+    void initializeAll(Level* level);
     void destroyAll();
 
     iterator begin();

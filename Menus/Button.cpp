@@ -1,5 +1,7 @@
 #include "Button.hpp"
 #include <iostream>
+#include "../Levels/Level.hpp"
+#include "../Vector.hpp"
 
 namespace DIM {
 
@@ -10,14 +12,12 @@ namespace DIM {
     height = h;
     my_id = id;
     text = txt;
+    graphics_manager = nullptr;
+    event_man = nullptr;
   }
   
   Button::~Button() {
 
-  }
-
-  void Button::update(float elapsedTime) {
-    
   }
 
   void Button::draw() const {
@@ -29,12 +29,13 @@ namespace DIM {
     }
   }
 
-  void Button::initializeSpecific() {
-    
+  void Button::initialize(GraphicsManager& g, EventManager& e) {
+    graphics_manager = &g;
+    event_man = &e;
   }
   
   bool Button::isInside(VectorF pos) const {
-    std::cout << x << ' ' << y << ' ' << pos.x << ' ' << pos.y << ' ' << width << ' ' << height << std::endl;
+    // std::cout << x << ' ' << y << ' ' << pos.x << ' ' << pos.y << ' ' << width << ' ' << height << std::endl;
     return (x <= pos.x && pos.x <= x + width &&
             y <= pos.y && pos.y <= y + height);
   }

@@ -20,10 +20,10 @@ namespace DIM {
   void PauseMenu::init(GraphicsManager& g, EventManager& e) {
     Menu::init(g, e);
     VectorF viewsize = g.getViewSize();
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2, 50, 30));
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2 + 100, 80, 25));
+    // entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2, 50, 30));
+    // entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 2 + 100, 80, 25));
 
-    entities.initializeAll(g, e);
+    //entities.initializeAll(g, e);
   }
 
   int PauseMenu::exec() {
@@ -48,8 +48,8 @@ namespace DIM {
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
-      entities.updateAll(events->getLastElapsedTime());
-      entities.drawAll();
+      // entities.updateAll(events->getLastElapsedTime());
+      // entities.drawAll();
       graphics->display();
     }
   }

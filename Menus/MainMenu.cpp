@@ -26,14 +26,17 @@ namespace DIM {
     keep_going = true;
     return_val = 0;
     // o tamanho não deveria ser manual
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 6 * 1, 180, 30, 1, "New Temple Game"));
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 6 * 2, 220, 30, 2, "Load Last Temple Game"));
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 6 * 3, 180, 30, 3, "New Cavern Game"));
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 6 * 4, 220, 30, 4, "Load Last Cavern Game"));
-    entities.addEntity(new Button(viewsize.x / 2, viewsize.y / 6 * 5, 100, 30, 0, "Exit Game"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 6 * 1, 180, 30, 1, "New Temple Game"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 6 * 2, 220, 30, 2, "Load Last Temple Game"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 6 * 3, 180, 30, 3, "New Cavern Game"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 6 * 4, 220, 30, 4, "Load Last Cavern Game"));
+    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 6 * 5, 100, 30, 0, "Exit Game"));
     g.centerCamera(viewsize * .5);
 
-    entities.initializeAll(g, e);
+    for (auto& b : buttons) {
+      b->initialize(g, e);
+    }
+    //entities.initializeAll(g, e);
   }
 
   int MainMenu::exec() {
@@ -49,13 +52,10 @@ namespace DIM {
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::MouseButtonPressed) {
           VectorF pos = graphics->getMousePosInView();
-          std::cout << "mouse at " << pos.x << ' ' << pos.y << std::endl;
-          for (EntityList::iterator i = entities.begin();
-              i != entities.end();
-              ++i) {
-            std::cout << "bom dia" << static_cast<Button*>(*i)->isInside(pos) << std::endl;
-            if (static_cast<Button*>(*i)->isInside(pos)) {
-              return_val = static_cast<Button*>(*i)->getId();
+          // std::cout << "mouse at " << pos.x << ' ' << pos.y << std::endl;
+          for (auto& b : buttons) {
+            if (b->isInside(pos)) {
+              return_val = b->getId();
               keep_going = false;
             }
           }
@@ -65,8 +65,7 @@ namespace DIM {
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
-      entities.updateAll(events->getLastElapsedTime());
-      entities.drawAll();
+      for (auto& b : buttons) b->draw();
       graphics->display();
     }
     return return_val;

@@ -3,6 +3,7 @@
 #include "../Entities/Players/ThePenitent.hpp"
 
 #include "../Entities/Enemies/Leaper.hpp"
+#include "../Entities/Enemies/Caster.hpp"
 
 #include "../TileSystem/Tiles/TempleLevelTiles/BulletObstacle.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
@@ -48,10 +49,10 @@ namespace DIM {
       new TempleSpikeObstacle(),
       new BulletObstacle()
     }, 32.0f, "assets/temple.tilemap");
-    tileManager->setCurrentLevel(*this);
+    tileManager->setLevel(this);
     entities.addEntity(tileManager);
     collisions.setTileManager(tileManager);
-    tileManager->initializeGeneric(g, e);
+    tileManager->initializeGeneric(this);
     graphics->loadAsset("assets/TempleBackground.png");
 
     key_event_id = events->addKeyboardListener(
@@ -76,7 +77,7 @@ namespace DIM {
   }
 
   void TempleLevel::addPhysicalEntity(PhysicalEntity* ent) {
-    ent->initializeGeneric(*graphics, *events);
+    ent->initializeGeneric(this);
     entities.addEntity(ent);
     collisions.addToCollisions(ent);
   }
@@ -97,19 +98,35 @@ namespace DIM {
     collisions.addToCollisions(player1);
     collisions.addToCollisions(player2);
 
-    player1->setPosition(tileManager->getPlayerSpawnPosition() + VectorF(32.0f, 32.0f) * .5 - player1->getSize() * .5);
+    player1->setPosition(getPlayer1Spawn());
 
+    std::vector<VectorF> spawns = tileManager->getEnemySpawns();
+    
     for (int i = 0; i < 5; ++i) {
-      std::vector<VectorF> spawns = tileManager->getEnemySpawns();
+      
       int idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
       Enemy* enemy = new Leaper();
       enemy->setLevel(this);
-      enemy->initializeGeneric(*graphics, *events);
+      enemy->initializeGeneric(this);
       VectorF pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+      
       enemy->setPosition(VectorF(pos.x, pos.y));
-      std::cout << idx << std::endl;
+      // std::cout << idx << std::endl;
       entities.addEntity(enemy);
       collisions.addToCollisions(enemy);
+
+      idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+      enemy = new Caster();
+      enemy->setLevel(this);
+      enemy->initializeGeneric(this);
+      pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+      
+      enemy->setPosition(VectorF(pos.x, pos.y));
+      // std::cout << idx << std::endl;
+      entities.addEntity(enemy);
+      collisions.addToCollisions(enemy);
+      
+
     }
 
     keep_going = true;

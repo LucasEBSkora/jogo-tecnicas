@@ -3,7 +3,7 @@
 
 namespace DIM {
 
-  Mob::Mob() : vx(0), vy(0), current_level(nullptr) {
+  Mob::Mob() : PhysicalEntity(), vx(0), vy(0) {
     
   }
 
@@ -20,12 +20,9 @@ namespace DIM {
   //   return VectorF(x, y);
   // }
 
-  void Mob::setLevel(Level* level) { // referência?
-    current_level = level;
-  }
 
   Level* Mob::getLevel() const {
-    return current_level;
+    return currentLevel;
   }
 
 }

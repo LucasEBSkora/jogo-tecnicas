@@ -33,7 +33,12 @@ namespace DIM {
     virtual void setup() = 0;
     virtual void exec() = 0;
 
-    VectorF getPlayer1Center() const;
+    const VectorF getPlayer1Center() const;
+    const VectorF getPlayer1Spawn() const;
+    CollisionManager* getCollisionManager();
+    EventManager* getEventManager() const;
+    GraphicsManager* getGraphicsManager() const;
+
   };
 
 }

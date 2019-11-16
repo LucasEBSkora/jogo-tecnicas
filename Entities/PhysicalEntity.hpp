@@ -2,6 +2,8 @@
 #define PHYSICALENTITY_HPP
 
 #include "Entity.hpp"
+#include <string>
+#include "../Vector.hpp"
 
 namespace DIM {
   

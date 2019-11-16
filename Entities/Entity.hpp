@@ -1,17 +1,17 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include "../GraphicsManager.hpp"
-#include "../EventManager.hpp"
+
 
 namespace DIM {
+
+  class Level;
 
   class Entity {
   protected:
     float x;
     float y;
-    GraphicsManager* graphics_manager;
-    EventManager* event_man;
+    Level* currentLevel;
 
     virtual void initializeSpecific() = 0;
 
@@ -21,7 +21,8 @@ namespace DIM {
 
     virtual void update(float elapsedTime) = 0;
     virtual void draw() const = 0;
-    void initializeGeneric(GraphicsManager& g, EventManager& e);
+    void setLevel(Level* level);
+    void initializeGeneric(Level* currentLevel);
 
   };
   

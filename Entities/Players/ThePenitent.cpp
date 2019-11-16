@@ -11,32 +11,32 @@ namespace DIM {
 
   ThePenitent::~ThePenitent() {
     if (movement_id != 0) {
-      event_man->removeKeyboardListener(movement_id);
+      currentLevel->getEventManager()->removeKeyboardListener(movement_id);
       movement_id = 0;
     }
   }
 
   void ThePenitent::update(float elapsedTime) {
-    VectorF p1_pos = current_level->getPlayer1Center();
+    VectorF p1_pos = currentLevel->getPlayer1Center();
     x = p1_pos.x + radius * std::cos(angle) - width / 2;
     y = p1_pos.y + radius * std::sin(angle) - height / 2;
   }
 
   void ThePenitent::draw() const {
-    if (graphics_manager != nullptr) {
-      graphics_manager->draw("assets/ThePenitent.png", VectorF(x, y));
+    if (currentLevel != nullptr) {
+      currentLevel->getGraphicsManager()->draw("assets/ThePenitent.png", VectorF(x, y));
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
   }
 
   void ThePenitent::initializeSpecific() {
-    graphics_manager->loadAsset("assets/ThePenitent.png");
-    VectorF size = graphics_manager->getSizeOfAsset("assets/ThePenitent.png");
+    currentLevel->getGraphicsManager()->loadAsset("assets/ThePenitent.png");
+    VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/ThePenitent.png");
     width = size.x;
     height = size.y;
-    std::cout << "bom dia com [e]ventos e " << current_level << std::endl;
-    movement_id = event_man->addMouseListener(
+    //std::cout << "bom dia com [e]ventos e " << current_level << std::endl;
+    movement_id = currentLevel->getEventManager()->addMouseListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::MouseWheelScrolled) {
           angle += 0.1;

@@ -17,8 +17,24 @@ namespace DIM {
     events = &e;
   }
 
-  VectorF Level::getPlayer1Center() const {
+  const VectorF Level::getPlayer1Center() const {
     if (player1 == nullptr) std::cout << "segfaulting agora" << std::endl;
     return player1->getPos() + player1->getSize() * .5;
+  }
+
+  const VectorF Level::getPlayer1Spawn() const {
+    return tileManager->getPlayerSpawnPosition() - player1->getSize() * .5;
+  }
+
+  CollisionManager* Level::getCollisionManager() { 
+    return &collisions;
+  }
+
+  EventManager* Level::getEventManager() const{ 
+    return events;
+  }
+  
+  GraphicsManager* Level::getGraphicsManager() const {
+    return graphics;
   }
 }

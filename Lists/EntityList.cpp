@@ -29,9 +29,9 @@ namespace DIM {
     }
   }
 
-  void EntityList::initializeAll(GraphicsManager& g, EventManager& e){
+  void EntityList::initializeAll(Level* level){
     for (iterator i = entities.begin(); i != entities.end(); ++i) {
-      (*i)->initializeGeneric(g, e);
+      (*i)->initializeGeneric(level);
     }
   }
 

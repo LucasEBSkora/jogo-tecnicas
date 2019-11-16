@@ -1,1 +1,84 @@
 #include "Caster.hpp"
+
+#include <iostream>
+
+#include "../../Levels/Level.hpp"
+
+namespace DIM {
+  Caster::Caster() : Enemy(), delay(0) {
+    id = std::string("Caster");
+    max_speed_x = 20;
+    max_speed_y = 40;
+  }
+
+  Caster::~Caster() {
+      
+  }
+
+  void Caster::update(float elapsedTime) {
+    VectorF player = currentLevel->getPlayer1Center();
+
+    vx = ((player.x < x + width / 2) ? -1 : 1) * max_speed_x;
+
+    
+    if (y - player.y > - 80) vy = -max_speed_y;
+    else if (y - player.y < -100) vy = max_speed_y;
+    
+  
+
+    x += vx * elapsedTime;
+    y += vy * elapsedTime;
+  }
+
+  void Caster::draw() const {
+    if (currentLevel != nullptr) {
+      currentLevel->getGraphicsManager()->draw("assets/Caster.png", VectorF(x, y));
+    } else {
+      std::cout << "desenhando objeto nao inicializado\n";
+    }
+  }
+
+  void Caster::initializeSpecific() {
+    currentLevel->getGraphicsManager()->loadAsset("assets/Caster.png");
+    VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/Caster.png");
+    width = size.x;
+    height = size.y;
+  }
+
+  void Caster::collided(std::string other_id, VectorF position, VectorF size) {
+
+    if (other_id == "Wall" || other_id == "Spawn" || other_id == "Spike") {
+      float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
+      float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);
+      
+      if (dist_x * dist_y > .001 * width * height) { // passa a ignorar colisões ignoráveis (bem as problemáticas)
+        if (dist_x < dist_y) {
+          // colisão em X
+          if (dist_x > std::abs(adjusts.x)) {
+            adjusts.x = dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+          }
+        } else {
+          // colisão em Y
+          if (dist_y > std::abs(adjusts.y)) {
+            adjusts.y = dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+          }
+        }
+      }
+    }
+  }
+
+  void Caster::adjust() {
+    if (adjusts.y < 0) {
+      vy = 0;
+      vx = 0;
+    } else if (adjusts.y > 0) {
+      vy = 0;
+    }
+    PhysicalEntity::adjust();
+  }
+
+  std::string Caster::getID() const {
+    return id;
+  }
+}
+

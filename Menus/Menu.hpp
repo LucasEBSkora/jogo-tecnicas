@@ -4,14 +4,14 @@
 #include "Button.hpp"
 #include "../GraphicsManager.hpp"
 #include "../EventManager.hpp"
-#include "../Lists/EntityList.hpp"
+#include <vector>
 
 namespace DIM {
   class Menu {
   protected:
     GraphicsManager* graphics;
     EventManager* events;
-    EntityList entities;
+    std::vector<Button*> buttons;
   public:
     Menu();
     virtual ~Menu();
