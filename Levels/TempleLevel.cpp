@@ -79,16 +79,18 @@ namespace DIM {
     entities.initializeAll(this);
     player1->setPosition(tileManager->getPlayerSpawnPosition()  - player1->getSize() * .5);
     
-    std::vector<VectorF> spawns = tileManager->getEnemySpawns();
+    std::vector<VectorF> spawns(tileManager->getEnemySpawns());
+
+    int nEnemies = RandomValueGenerator::getInstance()->getRandomIntInRange(5, 10);
     
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < nEnemies; ++i) {
       
       int idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
       Enemy* enemy = new Leaper();
       enemy->setLevel(this);
       enemy->initializeGeneric(this);
       VectorF pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
-      
+
       enemy->setPosition(VectorF(pos.x, pos.y));
       std::cout << idx << std::endl;
       entities.addEntity(enemy);
