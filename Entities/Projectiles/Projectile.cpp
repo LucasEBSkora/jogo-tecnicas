@@ -6,7 +6,8 @@
 namespace DIM {
 
   Projectile::Projectile(VectorF position, VectorF Speed, const char* Path) 
-  : speed{Speed}, path{Path} {
+  : speed{Speed}, path{Path}  {
+      id = "Projectile";
       setPos(position);
     
   }
@@ -22,6 +23,7 @@ namespace DIM {
 
   void Projectile::draw() const {
     if (currentLevel != nullptr) {
+      std::cout << "mas que porra" << std::endl;
       currentLevel->getGraphicsManager()->draw(path, VectorF(x, y));
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
@@ -37,8 +39,9 @@ namespace DIM {
 
   void Projectile::collided(std::string other_id, VectorF position, VectorF size) {
     // he's dead
+    //std::cout << "ué" << VectorF(x, y) << std::endl;
     
-    y -= 2000;
+    destroySelf();
   }
 
   void Projectile::adjust() {
@@ -51,6 +54,11 @@ namespace DIM {
   
   void Projectile::setSpeed(VectorF Speed) {
     speed = Speed;
+  }
+
+  void Projectile::destroySelf() {
+    currentLevel->markForDelete(this);
+    
   }
 
 }

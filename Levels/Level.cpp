@@ -1,6 +1,7 @@
 #include "Level.hpp"
 #include <iostream>
 
+
 namespace DIM {
 
   Level::Level() : graphics(nullptr), events(nullptr), player1(nullptr),
@@ -36,5 +37,9 @@ namespace DIM {
   
   GraphicsManager* Level::getGraphicsManager() const {
     return graphics;
+  }
+
+  void Level::markForDelete(PhysicalEntity* ent) {
+    markedToDelete.insert(ent);
   }
 }

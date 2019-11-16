@@ -9,7 +9,11 @@
 #include "../Lists/EntityList.hpp"
 #include "../TileSystem/TileManager.hpp"
 
+#include <set>
+
 namespace DIM {
+  class PhysicalEntity;
+
   class Level {
 
   protected:
@@ -20,7 +24,7 @@ namespace DIM {
     Mob* player1;
     Mob* player2;
     TileManager* tileManager;
-
+    std::set<PhysicalEntity*> markedToDelete;
   public:
     Level();
     virtual ~Level();
@@ -37,6 +41,7 @@ namespace DIM {
     CollisionManager* getCollisionManager();
     EventManager* getEventManager() const;
     GraphicsManager* getGraphicsManager() const;
+    void markForDelete(PhysicalEntity* ent);
 
   };
 

@@ -45,10 +45,11 @@ namespace DIM {
   }
 
   void GraphicsManager::draw(const std::string& id, VectorF at) const {
+    
     sf::Texture* texture;
     auto it = assets.find(id);
     if (it == assets.end()) {
-      std::cout << "morreu porque tentou desenhar algo nao criado\n";
+      std::cout << "morreu porque tentou desenhar algo nao criado: \n" << id;
       exit(1235);
     }
     texture = it->second;

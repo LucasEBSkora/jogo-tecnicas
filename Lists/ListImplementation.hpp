@@ -46,6 +46,7 @@ namespace DIM {
   List<TE>::List() {
     first = nullptr;
     last = nullptr;
+    size = 0;
   }
 
   template <typename TE>
@@ -59,6 +60,7 @@ namespace DIM {
 
   template <typename TE>
   void List<TE>::addElementBack(const TE& newElement) {
+    ++size;
     if (first == nullptr) {
       ListElement* elem = new ListElement();
       elem->setData(newElement);
@@ -75,6 +77,7 @@ namespace DIM {
   
   template <typename TE>
   void List<TE>::addElementFront(const TE& newElement) {
+    ++size;
     if (first == nullptr) {
       ListElement* elem = new ListElement();
       elem->setData(newElement);
@@ -102,6 +105,7 @@ namespace DIM {
       if (aux->getNext() != nullptr) aux->getNext()->setPrev(aux->getPrev());
       if (aux->getPrev() != nullptr) aux->getPrev()->setNext(aux->getNext());
       delete aux;
+      --size;
     }
   }
 
@@ -160,6 +164,11 @@ namespace DIM {
   template <typename TE>
   typename List<TE>::iterator List<TE>::end() {
     return iterator(nullptr);
+  }
+
+  template <typename TE>
+  const unsigned int List<TE>::getSize() const {
+    return size;
   }
 
 }

@@ -1,3 +1,5 @@
+
+
 namespace DIM {
 
   template <typename T>
@@ -75,7 +77,13 @@ namespace DIM {
 
   template <typename T>
   Vector<T> Vector<T>::projection(Vector vector) const {
-  return vector*((this->operator*(vector))/pow(vector.module(), 2));
+    return vector*((this->operator*(vector))/pow(vector.module(), 2));
+  }
+
+  template <typename T>
+  std::ostream& operator<< (std::ostream& out, const Vector<T> vector) {
+    out << '(' << vector.x << " , " << vector.y << ')';
+    return out;
   }
 
 } // namespace DIM

@@ -14,6 +14,7 @@
 #include "../RandomValueGenerator.hpp"
 #include <iostream>
 
+
 namespace DIM {
 
   TempleLevel::TempleLevel() : Level(), keep_going(true), key_event_id(0) {
@@ -92,7 +93,7 @@ namespace DIM {
       VectorF pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
 
       enemy->setPosition(VectorF(pos.x, pos.y));
-      std::cout << idx << std::endl;
+      //std::cout << idx << std::endl;
       entities.addEntity(enemy);
       collisions.addToCollisions(enemy);
 
@@ -120,6 +121,20 @@ namespace DIM {
       }
     );
     while (keep_going) {
+
+      if (markedToDelete.size() != 0) std::cout << markedToDelete.size() << std::endl;
+      
+      for ( PhysicalEntity* ent : markedToDelete) {
+
+        entities.removeWithoutDestroying(ent);
+        collisions.removeFromCollisions(ent);
+        delete ent;
+
+        std::cout << ent << std::endl;
+
+      }
+      markedToDelete.clear();
+    
       events->processEvents();
       // graphics->clear(20, 20, 20);
       graphics->clear(200, 200, 200);

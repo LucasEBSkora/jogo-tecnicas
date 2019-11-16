@@ -2,6 +2,7 @@
 #define VECTOR_HPP
 
 #include <cmath>
+#include <ostream>
 
 namespace DIM {
 
@@ -40,6 +41,8 @@ class Vector {
   typedef Vector<int> VectorI;
   typedef Vector<unsigned int> VectorU;
 
+  template <typename T>
+  std::ostream& operator<< (std::ostream& out, const Vector<T> vector);
 }
 
 #include "VectorImplementation.hpp"
