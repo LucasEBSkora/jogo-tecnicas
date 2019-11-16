@@ -126,7 +126,8 @@ namespace DIM {
       Other = -1,
       KeyPressed = 0,
       KeyReleased,
-      MouseWheelScrolled,
+      MouseWheelScrolledUp,
+      MouseWheelScrolledDown,
       MouseButtonPressed,
       MouseButtonReleased,
     };

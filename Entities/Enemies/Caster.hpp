@@ -5,7 +5,11 @@
 
 namespace DIM {
   class Caster : public Enemy {
+  
   private:
+  
+    static const float spellSpeed;
+
     float max_speed_x;
     float max_speed_y;
     int delay;

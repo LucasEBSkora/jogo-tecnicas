@@ -30,7 +30,10 @@ namespace DIM {
       case sf::Event::EventType::KeyReleased:
         return EventType::KeyReleased;
       case sf::Event::EventType::MouseWheelScrolled:
-        return EventType::MouseWheelScrolled;
+       
+        if (event.mouseWheelScroll.delta > 0) return EventType::MouseWheelScrolledUp;
+        else return EventType::MouseWheelScrolledDown;
+        
       case sf::Event::EventType::MouseButtonPressed:
         return EventType::MouseButtonPressed;
       case sf::Event::EventType::MouseButtonReleased:
@@ -116,7 +119,10 @@ namespace DIM {
     sf::Event event;
 
     while (graphics_manager->getWindow()->pollEvent(event)) {
+
+
       Event event_obj = Event(event);
+      
       if (event_obj.getType() == EventType::KeyPressed ||
           event_obj.getType() == EventType::KeyReleased) {
         for (auto& f : keyboard_callbacks) {

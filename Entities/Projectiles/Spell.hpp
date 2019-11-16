@@ -8,8 +8,10 @@ namespace DIM {
   private:
 
   public:
-    Spell();
+    Spell(VectorF position = VectorF(0.0f, 0.0f), VectorF Speed = VectorF(0.0f, 0.0f));
     ~Spell();
+    void collided(std::string other_id, VectorF position, VectorF size) override;
+
   };
 
 }

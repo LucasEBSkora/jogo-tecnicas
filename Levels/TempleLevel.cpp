@@ -14,6 +14,7 @@
 #include "../RandomValueGenerator.hpp"
 #include <iostream>
 
+
 namespace DIM {
 
   TempleLevel::TempleLevel() : Level(), keep_going(true), key_event_id(0) {
@@ -101,17 +102,17 @@ namespace DIM {
     player1->setPosition(getPlayer1Spawn());
 
     std::vector<VectorF> spawns = tileManager->getEnemySpawns();
+    int nEnemies = RandomValueGenerator::getInstance()->getRandomIntInRange(5, 10);
     
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < nEnemies; ++i) {
       
       int idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
       Enemy* enemy = new Leaper();
       enemy->setLevel(this);
       enemy->initializeGeneric(this);
       VectorF pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
-      
+
       enemy->setPosition(VectorF(pos.x, pos.y));
-      // std::cout << idx << std::endl;
       entities.addEntity(enemy);
       collisions.addToCollisions(enemy);
 
@@ -134,6 +135,20 @@ namespace DIM {
 
   void TempleLevel::exec() {
     while (keep_going) {
+
+      if (markedToDelete.size() != 0) std::cout << markedToDelete.size() << std::endl;
+      
+      for ( PhysicalEntity* ent : markedToDelete) {
+
+        entities.removeWithoutDestroying(ent);
+        collisions.removeFromCollisions(ent);
+        delete ent;
+
+        std::cout << ent << std::endl;
+
+      }
+      markedToDelete.clear();
+    
       events->processEvents();
       graphics->draw("assets/TempleBackground.png", VectorF(0, 0));
       graphics->clear(200, 200, 200);

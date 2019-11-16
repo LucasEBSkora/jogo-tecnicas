@@ -2,8 +2,8 @@
 #define PROJECTILE_HPP
 
 #include "../PhysicalEntity.hpp"
-
 #include "../../Vector.hpp"
+#include <string>
 
 
 namespace DIM {
@@ -14,6 +14,8 @@ namespace DIM {
   protected:
     VectorF speed;
     const char* path;
+
+    void destroySelf();
   public:
     Projectile(VectorF position = VectorF(0.0f, 0.0f), VectorF Speed = VectorF(0.0f, 0.0f), const char* Path = nullptr);
     ~Projectile();
@@ -24,8 +26,9 @@ namespace DIM {
     void draw() const override;
     void initializeSpecific() override;
 
-    void collided(std::string Id, VectorF position, VectorF size) override;
+    virtual void collided(std::string Id, VectorF position, VectorF size) override;
     void adjust() override;
+
 
     std::string getID() const override;
   };

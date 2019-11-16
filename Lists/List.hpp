@@ -5,6 +5,7 @@ namespace DIM {
   template <typename TE>
   class List {
   private:
+    unsigned int size;
 
     class ListElement {
     private: // tudo privado pra agradar o Simão
@@ -37,6 +38,7 @@ namespace DIM {
     void addElementBack(const TE& newElement);
     void addElementFront(const TE& newElement);
     void removeFirstMatchingElement(const TE& element);
+    const unsigned int getSize() const;
 
     class iterator {
     private:

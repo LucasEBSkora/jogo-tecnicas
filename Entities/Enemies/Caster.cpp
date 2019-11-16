@@ -3,9 +3,13 @@
 #include <iostream>
 
 #include "../../Levels/Level.hpp"
-
+#include "../Projectiles/Spell.hpp"
+#include "../../RandomValueGenerator.hpp"
 namespace DIM {
-  Caster::Caster() : Enemy(), delay(0) {
+
+  const float Caster::spellSpeed{50};  
+
+  Caster::Caster() : Enemy(), delay(5000) {
     id = std::string("Caster");
     max_speed_x = 20;
     max_speed_y = 40;
@@ -16,6 +20,7 @@ namespace DIM {
   }
 
   void Caster::update(float elapsedTime) {
+
     VectorF player = currentLevel->getPlayer1Center();
 
     vx = ((player.x < x + width / 2) ? -1 : 1) * max_speed_x;
@@ -23,11 +28,27 @@ namespace DIM {
     
     if (y - player.y > - 80) vy = -max_speed_y;
     else if (y - player.y < -100) vy = max_speed_y;
-    
-  
 
-    x += vx * elapsedTime;
-    y += vy * elapsedTime;
+
+    if (delay != 0) {
+      
+      --delay;
+    } else {
+  
+      delay = 2000;
+
+      VectorF direction = (player - VectorF(x, y) -  getSize() * (0.5));
+  
+      if (direction.module() < 300) {
+        
+        std::cout << "Criando feitico em " << VectorF(x, y) + getSize() * 0.5 << std::endl;
+        currentLevel->addPhysicalEntity(new Spell(VectorF(x, y) + getSize() * 0.5, direction.unitVector() * spellSpeed));
+      }
+
+    }
+
+    x += (vx * elapsedTime) * RandomValueGenerator::getInstance()->getRandomFloatInRange(0.5, 1.5);
+    y += (vy * elapsedTime) * RandomValueGenerator::getInstance()->getRandomFloatInRange(0.5, 1.5);
   }
 
   void Caster::draw() const {

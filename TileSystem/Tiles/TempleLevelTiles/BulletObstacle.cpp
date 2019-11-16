@@ -62,17 +62,13 @@ namespace DIM {
       if (foundLeft) {
         std::cout << "criando flecha indo para a direita em " << (j - k) << ',' << (i)  << std::endl;
         //create arrow at (i, j-k) going right
-        Bullet* bullet = new Bullet();
-        bullet->setSpeed(VectorF(100, 0));
-        bullet->setPos(VectorF((j - k + 2.5) * size.x, (i + .5) * size.y));
+        Bullet* bullet = new Bullet(VectorF((j - k + 2.5) * size.x, (i + .5) * size.y), VectorF(100, 0));
         map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
       } else if (foundRight) {
         //create arrow at (i, j+k) going left
         std::cout << "criando flecha indo para a esquerda em " << (j + k) << ',' << (i)  << std::endl;
-        Bullet* bullet = new Bullet();
-        bullet->setSpeed(VectorF(-100, 0));
-        bullet->setPos(VectorF((j + k - 1.5) * size.x, (i + .5) * size.y));
+        Bullet* bullet = new Bullet(VectorF((j + k - 1.5) * size.x, (i + .5) * size.y), VectorF(-100, 0));
         map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
       }

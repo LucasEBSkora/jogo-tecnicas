@@ -38,8 +38,10 @@ namespace DIM {
     //std::cout << "bom dia com [e]ventos e " << current_level << std::endl;
     movement_id = currentLevel->getEventManager()->addMouseListener(
       [this] (EventManager::Event e) {
-        if (e.getType() == EventManager::EventType::MouseWheelScrolled) {
-          angle += 0.1;
+        if (e.getType() == EventManager::EventType::MouseWheelScrolledUp) {
+          angle -= 0.2;
+        } else if (e.getType() == EventManager::EventType::MouseWheelScrolledDown) {
+          angle += 0.2;
         }
       }
     );
