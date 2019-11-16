@@ -1,8 +1,10 @@
 #include "Entity.hpp"
 
+#include "../Levels/Level.hpp"
+
 namespace DIM {
 
-  Entity::Entity() : x(0), y(0), graphics_manager(nullptr), event_man(nullptr) {
+  Entity::Entity() : x(0), y(0), currentLevel{nullptr} {
     
   }
   
@@ -10,10 +12,13 @@ namespace DIM {
 
   }
 
-  void Entity::initializeGeneric(GraphicsManager& g, EventManager& e) {
-    graphics_manager = &g;
-    event_man = &e;
+  void Entity::initializeGeneric(Level* level) {
+    
+    currentLevel = level;
     initializeSpecific();
   }
   
+  void Entity::setLevel(Level* level) {
+    currentLevel = level;
+  }
 }

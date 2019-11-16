@@ -10,7 +10,6 @@ namespace DIM {
   protected:
     float vx;
     float vy;
-    Level* current_level;
   public:
     Mob();
     virtual ~Mob();
@@ -18,7 +17,6 @@ namespace DIM {
     void setPosition(VectorF pos);
     // VectorF getPosition() const;
 
-    void setLevel(Level* level);
     Level* getLevel() const;
   };
 

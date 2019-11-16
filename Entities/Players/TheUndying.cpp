@@ -1,8 +1,10 @@
 #include "TheUndying.hpp"
 #include <iostream>
 
+#include "../../Levels/TempleLevel.hpp"
+
 namespace DIM {
-  TheUndying::TheUndying() : Mob(), movement_id(0), pressed(), jumping(false) {
+  TheUndying::TheUndying() : Mob(), movement_id(0), pressed(), jumping(false), deathCounter{0} {
     id = std::string("Player1");
     max_speed_x = 80;
     max_speed_y = 330;
@@ -10,7 +12,7 @@ namespace DIM {
 
   TheUndying::~TheUndying() {
     if (movement_id != 0) {
-      event_man->removeKeyboardListener(movement_id);
+      currentLevel->getEventManager()->removeKeyboardListener(movement_id);
       movement_id = 0;
     }
   }
@@ -34,19 +36,19 @@ namespace DIM {
   }
 
   void TheUndying::draw() const {
-    if (graphics_manager != nullptr) {
-      graphics_manager->draw("assets/TheUndying.png", VectorF(x, y));
+    if (currentLevel != nullptr) {
+      currentLevel->getGraphicsManager()->draw("assets/TheUndying.png", VectorF(x, y));
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
   }
 
   void TheUndying::initializeSpecific() {
-    graphics_manager->loadAsset("assets/TheUndying.png");
-    VectorF size = graphics_manager->getSizeOfAsset("assets/TheUndying.png");
+    currentLevel->getGraphicsManager()->loadAsset("assets/TheUndying.png");
+    VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/TheUndying.png");
     width = size.x;
     height = size.y;
-    movement_id = event_man->addKeyboardListener(
+    movement_id = currentLevel->getEventManager()->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed) {
           switch (e.getKey()) {
@@ -111,10 +113,18 @@ namespace DIM {
 
   void TheUndying::collided(std::string other_id, VectorF position, VectorF size) {
 
-    if (other_id == "Spike") {
-      // he's dead
-      x -= 20;
-      y -= 20;
+    if (other_id == "Spike" || other_id == "Bullet") {
+      
+      std::cout << "you are dead!";
+      if (deathCounter > 0) std::cout << " (again)";
+      std::cout << std::endl;
+      VectorF spawn = currentLevel->getPlayer1Spawn();
+
+      x = spawn.x;
+      y = spawn.y;
+
+      ++deathCounter;
+      
     } else if (other_id == "Wall" || other_id == "Spawn") {
       float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
       float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);

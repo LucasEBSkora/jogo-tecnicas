@@ -1,8 +1,10 @@
 #include "PhysicalEntity.hpp"
 
+#include "../Vector.hpp"
+
 namespace DIM {
 
-  PhysicalEntity::PhysicalEntity() : width(0), height(0), adjusts(0, 0) {
+  PhysicalEntity::PhysicalEntity() : Entity(), width(0), height(0), adjusts(0, 0) {
     
   }
 

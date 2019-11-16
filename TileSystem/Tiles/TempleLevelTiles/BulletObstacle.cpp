@@ -65,7 +65,7 @@ namespace DIM {
         Bullet* bullet = new Bullet();
         bullet->setSpeed(VectorF(100, 0));
         bullet->setPos(VectorF((j - k + 2.5) * size.x, (i + .5) * size.y));
-        map->getTileManager()->getCurrentLevel()->addPhysicalEntity(bullet);
+        map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
       } else if (foundRight) {
         //create arrow at (i, j+k) going left
@@ -73,7 +73,7 @@ namespace DIM {
         Bullet* bullet = new Bullet();
         bullet->setSpeed(VectorF(-100, 0));
         bullet->setPos(VectorF((j + k - 1.5) * size.x, (i + .5) * size.y));
-        map->getTileManager()->getCurrentLevel()->addPhysicalEntity(bullet);
+        map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
       }
 

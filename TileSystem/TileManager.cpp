@@ -5,13 +5,14 @@
 #include <stdlib.h>
 
 #include "../RandomValueGenerator.hpp"
+#include "../Levels/Level.hpp"
 
 namespace DIM
 {
 
   TileManager::TileManager( std::vector<Tile*> Tiles, float TileSide, const char *Path) 
-  : tiles{Tiles}, tileSide{TileSide}, path{Path}, tileMap{*(new TileMap(path, this))},
-    current_level{nullptr} {
+  : Entity(), tiles{Tiles}, tileSide{TileSide}, path{Path}, tileMap{*(new TileMap(path, this))}
+     {
 
   }
 
@@ -26,7 +27,7 @@ namespace DIM
   void TileManager::initializeSpecific() {
     
     for (Tile* t : tiles) {
-      t->initialize(graphics_manager, this);
+      t->initialize(currentLevel->getGraphicsManager(), this);
     }
 
     for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
@@ -85,8 +86,6 @@ namespace DIM
   }
 
   void TileManager::draw() const {
-    
-
     for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
       for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
         if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(VectorF((j)*tileSide, (i)*tileSide));
@@ -99,19 +98,16 @@ namespace DIM
   }
 
   VectorF TileManager::getPlayerSpawnPosition() const {
-    return VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide;
+    
+    return VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide + VectorF(32.0f, 32.0f) * .5;
+  }
+
+  Level* TileManager::getLevel() const {
+    return currentLevel;
   }
 
   const TileMap* TileManager::getTileMap() const {
     return &tileMap;
-  }
-
-  void TileManager::setCurrentLevel(Level& level) {
-    current_level = &level;
-  }
-
-  Level* TileManager::getCurrentLevel() const {
-    return current_level;
   }
 
   const std::vector<VectorF>& TileManager::getEnemySpawns() const {

@@ -12,6 +12,7 @@ namespace DIM {
     int movement_id;
     bool pressed[4];
     bool jumping;
+    unsigned int deathCounter;
   public:
     TheUndying();
     ~TheUndying();

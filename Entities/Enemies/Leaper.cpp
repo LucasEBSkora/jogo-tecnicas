@@ -15,7 +15,7 @@ namespace DIM {
   }
 
   void Leaper::update(float elapsedTime) {
-    VectorF player = current_level->getPlayer1Center();
+    VectorF player = currentLevel->getPlayer1Center();
 
     if (jumping) {
       vx = max_speed_x * (player.x > x + width / 2 ? 1 : -1);
@@ -47,16 +47,16 @@ namespace DIM {
   }
 
   void Leaper::draw() const {
-    if (graphics_manager != nullptr) {
-      graphics_manager->draw("assets/Leaper.png", VectorF(x, y));
+    if (currentLevel != nullptr) {
+      currentLevel->getGraphicsManager()->draw("assets/Leaper.png", VectorF(x, y));
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
   }
 
   void Leaper::initializeSpecific() {
-    graphics_manager->loadAsset("assets/Leaper.png");
-    VectorF size = graphics_manager->getSizeOfAsset("assets/Leaper.png");
+    currentLevel->getGraphicsManager()->loadAsset("assets/Leaper.png");
+    VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/Leaper.png");
     width = size.x;
     height = size.y;
   }

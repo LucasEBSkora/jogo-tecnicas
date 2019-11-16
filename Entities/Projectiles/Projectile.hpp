@@ -3,16 +3,31 @@
 
 #include "../PhysicalEntity.hpp"
 
+#include "../../Vector.hpp"
+
+
 namespace DIM {
+  
+  class Level;
+
   class Projectile : public PhysicalEntity {
   protected:
-    float speed_x;
-    float speed_y;
+    VectorF speed;
+    const char* path;
   public:
-    Projectile();
+    Projectile(VectorF position = VectorF(0.0f, 0.0f), VectorF Speed = VectorF(0.0f, 0.0f), const char* Path = nullptr);
     ~Projectile();
+    
+    void setSpeed(VectorF Speed);
 
-    void setSpeed(VectorF speed);
+    void update(float elapsedTime) override;
+    void draw() const override;
+    void initializeSpecific() override;
+
+    void collided(std::string Id, VectorF position, VectorF size) override;
+    void adjust() override;
+
+    std::string getID() const override;
   };
 
 }
