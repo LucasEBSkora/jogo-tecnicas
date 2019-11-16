@@ -18,7 +18,7 @@ namespace DIM {
     void destroySelf();
   public:
     Projectile(VectorF position = VectorF(0.0f, 0.0f), VectorF Speed = VectorF(0.0f, 0.0f), const char* Path = nullptr);
-    ~Projectile();
+    virtual ~Projectile();
     
     void setSpeed(VectorF Speed);
 
