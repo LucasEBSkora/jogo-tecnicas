@@ -81,6 +81,9 @@ namespace DIM {
           }
         }
       }
+    } else if (other_id == "Hole") {
+      currentLevel->markForDelete(this);
+
     }
   }
 

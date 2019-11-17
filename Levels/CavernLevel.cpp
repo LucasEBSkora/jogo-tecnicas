@@ -36,7 +36,7 @@ namespace DIM {
       new CavernSpikeObstacle(),
       new HoleObstacle(),
       new GameEndTile()
-    }, 32.0f, "assets/temple.tilemap");
+    }, 32.0f, "assets/cavern.tilemap");
     
     tileManager->setLevel(this);
     entities.addEntity(tileManager);

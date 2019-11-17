@@ -62,7 +62,6 @@ namespace DIM {
             if (b->isInside(pos)) {
               if (b->getId() == 5) {
                 twoPlayers = !twoPlayers;
-                std::cout << "aaaa" << std::endl;
               } 
             }
           }
@@ -83,7 +82,7 @@ namespace DIM {
       VectorF viewsize = graphics->getViewSize();
       //std::cout << twoPlayers  << std::endl;
     
-      graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), VectorF(viewsize.x / 2 + 85, viewsize.y / 7 * 6) , 21 );
+      graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), VectorF(viewsize.x * (1 + 0.3) / 2 , viewsize.y / 7 * 5.9) , 21 );
       graphics->display();
     }
     return return_val;

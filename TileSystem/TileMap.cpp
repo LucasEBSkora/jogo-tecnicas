@@ -67,7 +67,7 @@ namespace DIM {
         }
       }
 
-      std::cout << "ue " << tileMapSize.x << ' ' << tileMapSize.y << std::endl;
+      //std::cout << "ue " << tileMapSize.x << ' ' << tileMapSize.y << std::endl;
 
       //drawTileMap();
 

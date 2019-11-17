@@ -117,7 +117,7 @@ namespace DIM {
 
   void TheUndying::collided(std::string other_id, VectorF positionOther, VectorF size) {
     
-    if (other_id == "Spike" || other_id == "Bullet" || other_id == "Spell" || other_id == "Caster" || other_id == "Leaper") {
+    if (other_id == "Spike" || other_id == "Bullet" || other_id == "Spell" || other_id == "Caster" || other_id == "Leaper" || other_id == "Hole") {
       
       std::cout << "you are dead!";
       ++deathCounter;
