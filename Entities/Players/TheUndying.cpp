@@ -11,6 +11,10 @@ namespace DIM {
   }
 
   TheUndying::~TheUndying() {
+
+  }
+
+  void TheUndying::unsubscribe() {
     if (movement_id != 0) {
       currentLevel->getEventManager()->removeKeyboardListener(movement_id);
       movement_id = 0;

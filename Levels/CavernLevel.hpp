@@ -6,10 +6,11 @@
 namespace DIM {
   class CavernLevel : public Level {
   private:
-
+    int key_event_id;
   public:
     CavernLevel();
     ~CavernLevel();
+    void init(GraphicsManager& g, EventManager& e) override;
   };
 
 }

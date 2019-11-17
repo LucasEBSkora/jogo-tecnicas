@@ -10,13 +10,14 @@ namespace DIM {
   }
 
   void EntityList::addEntity(Entity* ent){
-    
-    entities.addElementBack(ent);
+    if (ent != nullptr)
+      entities.addElementBack(ent);
     
   }
 
   void EntityList::removeWithoutDestroying(Entity* ent){
-    entities.removeFirstMatchingElement(ent);
+    if (ent != nullptr)
+      entities.removeFirstMatchingElement(ent);
   }
 
   void EntityList::drawAll(){ 

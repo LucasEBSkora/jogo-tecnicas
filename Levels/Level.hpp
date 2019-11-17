@@ -6,7 +6,8 @@
 #include "../EventManager.hpp"
 #include "../CollisionManager.hpp"
 #include "../Entities/Entity.hpp"
-#include "../Entities/Mob.hpp"
+#include "../Entities/Players/ThePenitent.hpp"
+#include "../Entities/Players/TheUndying.hpp"
 #include "../Lists/EntityList.hpp"
 #include "../TileSystem/TileManager.hpp"
 
@@ -22,8 +23,8 @@ namespace DIM {
     EventManager* events;
     CollisionManager collisions;
     EntityList entities;
-    Mob* player1;
-    Mob* player2;
+    TheUndying* player1;
+    ThePenitent* player2;
     TileManager* tileManager;
     std::set<PhysicalEntity*> markedToDelete;
     int decision;
@@ -36,7 +37,8 @@ namespace DIM {
 
     virtual void init(GraphicsManager& g, EventManager& e);
 
-    virtual void bindPlayers(Mob* p1, Mob* p2 = nullptr);
+    virtual void bindPlayers(TheUndying* p1, ThePenitent* p2 = nullptr);
+    virtual void unbindPlayers();
     virtual void addPhysicalEntity(PhysicalEntity* ent);
     virtual void generateEnemies();
 

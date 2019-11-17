@@ -7,7 +7,6 @@
 #include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleSpikeObstacle.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleWallTile.hpp"
-#include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
 
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
 
@@ -31,12 +30,10 @@ namespace DIM {
     }
     entities.removeWithoutDestroying(player1);
     entities.removeWithoutDestroying(player2);
-    player1->setLevel(nullptr);
+
     player1 = nullptr;
-    if (player2 != nullptr) {
-      player2->setLevel(nullptr);
       player2 = nullptr;
-    }
+
   }
 
   void TempleLevel::init(GraphicsManager& g, EventManager& e) {

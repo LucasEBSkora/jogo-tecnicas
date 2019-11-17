@@ -18,7 +18,7 @@ namespace DIM {
     void initializeSpecific() override;
 
     void collided(std::string Id, VectorF position, VectorF size) override;
-
+    void unsubscribe();
     std::string getID() const override;
   };
 

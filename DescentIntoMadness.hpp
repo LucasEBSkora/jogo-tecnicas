@@ -29,16 +29,19 @@ namespace DIM {
     MainMenu menu;
     PauseMenu pause;
 
-    TempleLevel temple;
-    CavernLevel cavern;
-    
     TheUndying player1;
     ThePenitent player2;
 
+    TempleLevel temple;
+    CavernLevel cavern;
+    
     GameState current;
     GameState unpause;
 
+
     void play();
+
+    void goToLevel(Level* level);
 
     void mainMenu();
     void pauseMenu();

@@ -4,11 +4,13 @@
 namespace DIM {
 
   DescentIntoMadness::DescentIntoMadness() :
-    graphics_man(), menu(), pause(), temple(), current(GameState::MAIN_MENU), unpause{GameState::END_GAME} {
+    graphics_man(), events_man(), menu(), pause(), player1(), player2(), temple(), cavern(),
+    current(GameState::MAIN_MENU), unpause{GameState::END_GAME} {
+    
     events_man.setGraphicsManager(graphics_man);
     menu.init(graphics_man, events_man);
     temple.init(graphics_man, events_man);
-    //cavern.init(graphics_man, events_man);
+    cavern.init(graphics_man, events_man);
 
     play();
   }
@@ -51,11 +53,7 @@ namespace DIM {
 
       unpause = current = GameState::TEMPLE_LEVEL;
       
-      player1.initializeGeneric(&temple);
-      if (menu.useTwoPlayers()) player2.initializeGeneric(&temple);
-      
-      temple.bindPlayers(&player1, menu.useTwoPlayers() ? &player2 : nullptr);
-      temple.setup();
+      goToLevel(&temple);
 
     } else if (decisao == 2) {
       // memento
@@ -64,11 +62,9 @@ namespace DIM {
       
       unpause = current = GameState::CAVERN_LEVEL;
       
-      player1.initializeGeneric(&cavern);
-      if (menu.useTwoPlayers()) player2.initializeGeneric(&cavern);
       
-      cavern.bindPlayers(&player1, menu.useTwoPlayers() ? &player2 : nullptr);
-      cavern.setup();
+      goToLevel(&cavern);
+
     
     } else if (decisao == 4) {
       // memento
@@ -91,11 +87,29 @@ namespace DIM {
   void DescentIntoMadness::templeLevel() {
     int dec = temple.exec();
     if (dec == 0) current = GameState::PAUSE_MENU;
-    else if (dec == 1) unpause = current = GameState::CAVERN_LEVEL;
+    else if (dec == 1) {
+      unpause = current = GameState::CAVERN_LEVEL;
+      temple.unbindPlayers();
+      goToLevel(&cavern);
+    } 
   }
 
   void DescentIntoMadness::cavernLevel() {
-    current = GameState::END_GAME;
+    int dec = cavern.exec();
+    if (dec == 0) current = GameState::PAUSE_MENU;
+    else if (dec == 1) {
+      unpause = current = GameState::END_GAME;
+      cavern.unbindPlayers();
+    } 
   }
+  
+  void DescentIntoMadness::goToLevel(Level* level) {
+    player1.initializeGeneric(level);
+    if (menu.useTwoPlayers()) player2.initializeGeneric(level);
+    
 
+    level->bindPlayers(&player1, menu.useTwoPlayers() ? &player2 : nullptr);
+    level->setup();
+
+  }
 }
