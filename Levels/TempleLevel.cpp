@@ -9,7 +9,10 @@
 #include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleSpikeObstacle.hpp"
 #include "../TileSystem/Tiles/TempleLevelTiles/TempleWallTile.hpp"
+#include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
+
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
+
 
 #include "../RandomValueGenerator.hpp"
 #include <iostream>
@@ -48,8 +51,10 @@ namespace DIM {
       new TempleWallTile(),
       new PlayerSpawnPoint(),
       new TempleSpikeObstacle(),
-      new BulletObstacle()
+      new BulletObstacle(),
+      new GateToCavernTile()
     }, 32.0f, "assets/temple.tilemap");
+    
     tileManager->setLevel(this);
     entities.addEntity(tileManager);
     collisions.setTileManager(tileManager);
@@ -133,8 +138,6 @@ namespace DIM {
   void TempleLevel::exec() {
     keep_going = true;
     while (keep_going) {
-
-      if (markedToDelete.size() != 0) std::cout << markedToDelete.size() << std::endl;
       
       for ( PhysicalEntity* ent : markedToDelete) {
 
@@ -142,15 +145,13 @@ namespace DIM {
         collisions.removeFromCollisions(ent);
         delete ent;
 
-        std::cout << ent << std::endl;
-
       }
       markedToDelete.clear();
     
       events->processEvents();
       graphics->clear(200, 200, 200);
-      graphics->draw("assets/TempleBackground.png", VectorF(0, 0));
       graphics->centerCamera(getPlayer1Center());
+      graphics->draw("assets/TempleBackground.png", getPlayer1Center() - graphics->getSizeOfAsset("assets/TempleBackground.png") * 0.5);
       entities.updateAll(events->getLastElapsedTime());
       collisions.checkCollisions();
       entities.drawAll();

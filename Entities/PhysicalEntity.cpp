@@ -13,18 +13,16 @@ namespace DIM {
   }
 
   void PhysicalEntity::adjust() {
-    x += adjusts.x;
-    y += adjusts.y;
+    position += adjusts;
     adjusts = VectorF(0, 0);
   }
 
   VectorF PhysicalEntity::getPos() const {
-    return VectorF(x, y);
+    return position;
   }
 
   void PhysicalEntity::setPos(VectorF pos) {
-    x = pos.x;
-    y = pos.y;
+    position = pos;
   }
 
   VectorF PhysicalEntity::getSize() const {

@@ -19,27 +19,25 @@ namespace DIM {
 
   void TheUndying::update(float elapsedTime) {
     // if (jumping) {
-    if (std::abs(vy) <= 5) jumping = false;
+    if (std::abs(velocity.y) <= 5) jumping = false;
     else jumping = true;
-      vy += 500 * elapsedTime;
-      // std::cout << vy << " kk ue " << std::endl;
+      velocity.y += 500 * elapsedTime;
+      // std::cout << velocity.y << " kk ue " << std::endl;
     // } else {
-      // vy = 0;
+      // velocity.y = 0;
     // }
-    if (std::abs(vx) > max_speed_x) {
-      vx = max_speed_x * (vx > 0 ? 1 : -1);
+    if (std::abs(velocity.x) > max_speed_x) {
+      velocity.x = max_speed_x * (velocity.x > 0 ? 1 : -1);
     }
-    if (std::abs(vy) > max_speed_y) {
-      vy = max_speed_y * (vy > 0 ? 1 : -1);
+    if (std::abs(velocity.y) > max_speed_y) {
+      velocity.y = max_speed_y * (velocity.y > 0 ? 1 : -1);
     }
-    x += vx * elapsedTime;
-    y += vy * elapsedTime;
-    // std::cout << x << ' ' << y << std::endl;
+    position += velocity * elapsedTime;
   }
 
   void TheUndying::draw() const {
     if (currentLevel != nullptr) {
-      currentLevel->getGraphicsManager()->draw("assets/TheUndying.png", VectorF(x, y));
+      currentLevel->getGraphicsManager()->draw("assets/TheUndying.png", position);
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
@@ -56,24 +54,24 @@ namespace DIM {
           switch (e.getKey()) {
             case EventManager::Key::W:
               pressed[0] = true;
-              // vy -= max_speed_y;
+              // velocity.y -= max_speed_y;
               break;
             case EventManager::Key::A:
               pressed[1] = true;
-              vx -= max_speed_x;
+              velocity.x -= max_speed_x;
               break;
             case EventManager::Key::S:
               pressed[2] = true;
-              // vy += max_speed_y;
+              // velocity.y += max_speed_y;
               break;
             case EventManager::Key::D:
               pressed[3] = true;
-              vx += max_speed_x;
+              velocity.x += max_speed_x;
               break;
             case EventManager::Key::Space:
               if (!jumping) {
                 jumping = true;
-                vy -= 2 * max_speed_y;
+                velocity.y -= 2 * max_speed_y;
               }
               break;
             default:
@@ -84,25 +82,25 @@ namespace DIM {
             case EventManager::Key::W:
               if (pressed[0]) {
                 pressed[0] = false;
-                // vy += max_speed_y;
+                // velocity.y += max_speed_y;
               }
               break;
             case EventManager::Key::A:
               if (pressed[1]) {
                 pressed[1] = false;
-                vx += max_speed_x;
+                velocity.x += max_speed_x;
               }
               break;
             case EventManager::Key::S:
               if (pressed[2]) {
                 pressed[2] = false;
-                // vy -= max_speed_y;
+                // velocity.y -= max_speed_y;
               }
               break;
             case EventManager::Key::D:
               if (pressed[3]) {
                 pressed[3] = false;
-                vx -= max_speed_x;
+                velocity.x -= max_speed_x;
               }
               break;
             default:
@@ -113,38 +111,37 @@ namespace DIM {
     );
   }
 
-  void TheUndying::collided(std::string other_id, VectorF position, VectorF size) {
+  void TheUndying::collided(std::string other_id, VectorF positionOther, VectorF size) {
     
-    if (other_id == "Spike" || other_id == "Bullet") {
+    if (other_id == "Spike" || other_id == "Bullet" || other_id == "Spell" || other_id == "Caster" || other_id == "Leaper") {
       
       std::cout << "you are dead!";
-      if (deathCounter > 0) std::cout << " (again)";
+      ++deathCounter;
+      if (deathCounter > 0) std::cout << " (" << deathCounter << " times)";
       std::cout << std::endl;
       VectorF spawn = currentLevel->getPlayer1Spawn();
 
-      x = spawn.x;
-      y = spawn.y;
-      vx = vy = 0;
+      position = spawn;
+      velocity = VectorF();
       for (int i = 0; i < 5; ++i) {
         pressed[i] = false;
       }
 
-      ++deathCounter;
       
     } else if (other_id == "Wall" || other_id == "Spawn") {
-      float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
-      float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);
+      float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(position.x + static_cast<float>(width) / 2 - positionOther.x - size.x / 2);
+      float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(position.y + static_cast<float>(height) / 2 - positionOther.y - size.y / 2);
       
       if (dist_x * dist_y > .001 * width * height) { // passa a ignorar colisões ignoráveis (bem as problemáticas)
         if (dist_x < dist_y) {
           // colisão em X
           if (dist_x > std::abs(adjusts.x)) {
-            adjusts.x = dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+            adjusts.x = dist_x * (position.x + static_cast<float>(width) / 2 > positionOther.x + size.x / 2 ? 1 : -1);
           }
         } else {
           // colisão em Y
           if (dist_y > std::abs(adjusts.y)) {
-            adjusts.y = dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+            adjusts.y = dist_y * (position.y + static_cast<float>(height) / 2 > positionOther.y + size.y / 2 ? 1 : -1);
           }
         }
       }
@@ -154,9 +151,10 @@ namespace DIM {
   void TheUndying::adjust() {
     if (adjusts.y < 0) { // quase funciona
       jumping = false;
-      vy = 0;
+
+      velocity.y = 0;
     } else if (adjusts.y > 0) {
-      vy = 0;
+      velocity.y = 0;
     }
     PhysicalEntity::adjust();
   }

@@ -20,36 +20,36 @@ namespace DIM {
 
     // if (jumping) {
     // }
-    if (!jumping && player.y < y + height / 2) {
+    if (!jumping) {
       if (delay != 0) {
         --delay;
       } else {
         delay = RandomValueGenerator::getInstance()->getRandomIntInRange(800, 1200);
         jumping = true;
-        vx = max_speed_x * (player.x > x + width / 2 ? 1 : -1);
-        vy -= 2 * max_speed_y;
+        velocity.x = max_speed_x * (player.x > position.x + width / 2 ? 1 : -1);
+        velocity.y -= 2 * max_speed_y;
       }
     }
     // if (jumping) {
-    vy += 500 * elapsedTime;
-      // std::cout << vy << " kk ue " << std::endl;
+    velocity.y += 500 * elapsedTime;
+      // std::cout << velocity.y << " kk ue " << std::endl;
     // } else {
-      // vy = 0;
+      // velocity.y = 0;
     // }
-    if (std::abs(vx) > max_speed_x) {
-      vx = max_speed_x * (vx > 0 ? 1 : -1);
+    if (std::abs(velocity.x) > max_speed_x) {
+      velocity.x = max_speed_x * (velocity.x > 0 ? 1 : -1);
     }
-    if (std::abs(vy) > max_speed_y) {
-      vy = max_speed_y * (vy > 0 ? 1 : -1);
+    if (std::abs(velocity.y) > max_speed_y) {
+      velocity.y = max_speed_y * (velocity.y > 0 ? 1 : -1);
     }
-    x += vx * elapsedTime;
-    y += vy * elapsedTime;
+
+    position += velocity * elapsedTime;
     // std::cout << x << ' ' << y << std::endl;
   }
 
   void Leaper::draw() const {
     if (currentLevel != nullptr) {
-      currentLevel->getGraphicsManager()->draw("assets/Leaper.png", VectorF(x, y));
+      currentLevel->getGraphicsManager()->draw("assets/Leaper.png", position);
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
@@ -62,22 +62,22 @@ namespace DIM {
     height = size.y;
   }
 
-  void Leaper::collided(std::string other_id, VectorF position, VectorF size) {
+  void Leaper::collided(std::string other_id, VectorF positionOther, VectorF size) {
 
     if (other_id == "Wall" || other_id == "Spawn" || other_id == "Spike") {
-      float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(x + static_cast<float>(width) / 2 - position.x - size.x / 2);
-      float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(y + static_cast<float>(height) / 2 - position.y - size.y / 2);
+      float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(position.x + static_cast<float>(width) / 2 - positionOther.x - size.x / 2);
+      float dist_y = (static_cast<float>(height) + size.y) / 2 - std::abs(position.y + static_cast<float>(height) / 2 - positionOther.y - size.y / 2);
       
       if (dist_x * dist_y > .001 * width * height) { // passa a ignorar colisões ignoráveis (bem as problemáticas)
         if (dist_x < dist_y) {
           // colisão em X
           if (dist_x > std::abs(adjusts.x)) {
-            adjusts.x = dist_x * (x + static_cast<float>(width) / 2 > position.x + size.x / 2 ? 1 : -1);
+            adjusts.x = dist_x * (position.x + static_cast<float>(width) / 2 > positionOther.x + size.x / 2 ? 1 : -1);
           }
         } else {
           // colisão em Y
           if (dist_y > std::abs(adjusts.y)) {
-            adjusts.y = dist_y * (y + static_cast<float>(height) / 2 > position.y + size.y / 2 ? 1 : -1);
+            adjusts.y = dist_y * (position.y + static_cast<float>(height) / 2 > positionOther.y + size.y / 2 ? 1 : -1);
           }
         }
       }
@@ -87,10 +87,9 @@ namespace DIM {
   void Leaper::adjust() {
     if (adjusts.y < 0) {
       jumping = false;
-      vy = 0;
-      vx = 0;
+      velocity = VectorF();
     } else if (adjusts.y > 0) {
-      vy = 0;
+      velocity.y = 0;
     }
     PhysicalEntity::adjust();
   }

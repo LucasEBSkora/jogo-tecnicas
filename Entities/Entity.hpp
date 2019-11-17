@@ -1,7 +1,7 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-
+#include "../Vector.hpp"
 
 namespace DIM {
 
@@ -9,8 +9,8 @@ namespace DIM {
 
   class Entity {
   protected:
-    float x;
-    float y;
+    
+    VectorF position;
     Level* currentLevel;
 
     virtual void initializeSpecific() = 0;

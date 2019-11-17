@@ -1,7 +1,5 @@
 #include "EntityList.hpp"
 
-#include <iostream>
-
 namespace DIM {
   EntityList::EntityList() { 
 
@@ -14,13 +12,11 @@ namespace DIM {
   void EntityList::addEntity(Entity* ent){
     
     entities.addElementBack(ent);
-    std::cout << "tamanho" << entities.getSize() << std::endl; 
     
   }
 
   void EntityList::removeWithoutDestroying(Entity* ent){
     entities.removeFirstMatchingElement(ent);
-    std::cout << "tamanho" << entities.getSize() << std::endl; 
   }
 
   void EntityList::drawAll(){ 

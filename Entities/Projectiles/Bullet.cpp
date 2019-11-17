@@ -10,7 +10,7 @@ namespace DIM {
 
   }
 
-  void Bullet::collided(std::string Id, VectorF position, VectorF size) {
+  void Bullet::collided(std::string Id, VectorF positionOther, VectorF size) {
     if (Id == "Player1" || Id == "Player2")
       Projectile::collided(Id, position, size);
     else if (delay <= 0) 

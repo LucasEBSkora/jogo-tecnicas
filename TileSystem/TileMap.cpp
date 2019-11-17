@@ -69,7 +69,7 @@ namespace DIM {
 
       std::cout << "ue " << tileMapSize.x << ' ' << tileMapSize.y << std::endl;
 
-      drawTileMap();
+      //drawTileMap();
 
       file.close();
 

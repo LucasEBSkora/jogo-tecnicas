@@ -26,7 +26,7 @@ namespace DIM {
     void draw() const override;
     void initializeSpecific() override;
 
-    virtual void collided(std::string Id, VectorF position, VectorF size) override;
+    virtual void collided(std::string Id, VectorF positionOther, VectorF size) override;
     void adjust() override;
 
 

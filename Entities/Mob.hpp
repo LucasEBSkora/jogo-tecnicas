@@ -8,8 +8,7 @@ namespace DIM {
   
   class Mob : public PhysicalEntity {
   protected:
-    float vx;
-    float vy;
+    VectorF velocity;
   public:
     Mob();
     virtual ~Mob();

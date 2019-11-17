@@ -18,13 +18,14 @@ namespace DIM {
 
   void ThePenitent::update(float elapsedTime) {
     VectorF p1_pos = currentLevel->getPlayer1Center();
-    x = p1_pos.x + radius * std::cos(angle) - width / 2;
-    y = p1_pos.y + radius * std::sin(angle) - height / 2;
+    
+    position = p1_pos + VectorF(std::cos(angle), std::sin(angle)) * radius - VectorF(width, height) * (0.5);
+    
   }
 
   void ThePenitent::draw() const {
     if (currentLevel != nullptr) {
-      currentLevel->getGraphicsManager()->draw("assets/ThePenitent.png", VectorF(x, y));
+      currentLevel->getGraphicsManager()->draw("assets/ThePenitent.png", position);
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
@@ -47,7 +48,7 @@ namespace DIM {
     );
   }
 
-  void ThePenitent::collided(std::string Id, VectorF position, VectorF size) {
+  void ThePenitent::collided(std::string Id, VectorF positionOther, VectorF size) {
     
   }
 

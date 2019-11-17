@@ -17,13 +17,12 @@ namespace DIM {
   }
 
   void Projectile::update(float elapsedTime) {
-    x += speed.x*elapsedTime;
-    y += speed.y*elapsedTime;
+    position += speed * elapsedTime;
   }
 
   void Projectile::draw() const {
     if (currentLevel != nullptr) {
-      currentLevel->getGraphicsManager()->draw(path, VectorF(x, y));
+      currentLevel->getGraphicsManager()->draw(path, position);
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
@@ -36,7 +35,7 @@ namespace DIM {
     height = size.y;
   }
 
-  void Projectile::collided(std::string other_id, VectorF position, VectorF size) {
+  void Projectile::collided(std::string other_id, VectorF positionOther, VectorF size) {
     // he's dead
     //std::cout << "ué" << VectorF(x, y) << std::endl;
     

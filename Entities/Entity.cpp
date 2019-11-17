@@ -4,7 +4,7 @@
 
 namespace DIM {
 
-  Entity::Entity() : x(0), y(0), currentLevel{nullptr} {
+  Entity::Entity() : position{0.0f, 0.0f}, currentLevel{nullptr} {
     
   }
   

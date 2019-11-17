@@ -4,6 +4,7 @@ namespace DIM {
 
   Spell::Spell(VectorF position, VectorF speed) : Projectile(position, speed, "assets/Spell.png")  { 
 
+    id = "Spell";
   }
   
   Spell::~Spell(){ 

@@ -3,7 +3,7 @@
 
 namespace DIM {
 
-  Mob::Mob() : PhysicalEntity(), vx(0), vy(0) {
+  Mob::Mob() : PhysicalEntity(), velocity{0,0} {
     
   }
 
@@ -12,8 +12,7 @@ namespace DIM {
   }
 
   void Mob::setPosition(VectorF pos) {
-    x = pos.x;
-    y = pos.y;
+    position = pos;
   }
 
   // VectorF Mob::getPosition() const {
