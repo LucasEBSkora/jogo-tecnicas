@@ -19,6 +19,8 @@ namespace DIM {
 
   void TheUndying::update(float elapsedTime) {
     // if (jumping) {
+    if (std::abs(vy) <= 5) jumping = false;
+    else jumping = true;
       vy += 500 * elapsedTime;
       // std::cout << vy << " kk ue " << std::endl;
     // } else {
@@ -122,6 +124,10 @@ namespace DIM {
 
       x = spawn.x;
       y = spawn.y;
+      vx = vy = 0;
+      for (int i = 0; i < 5; ++i) {
+        pressed[i] = false;
+      }
 
       ++deathCounter;
       

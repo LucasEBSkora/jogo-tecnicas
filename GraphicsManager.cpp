@@ -96,7 +96,7 @@ namespace DIM {
 
   bool GraphicsManager::outOfSight(VectorF at, VectorF size) const {
     return (at.x + size.x < camera_pos.x ||
-            at.y + camera_size.y < camera_pos.y || // y cresce para baixo? //é pra ser //blz
+            at.y + size.y < camera_pos.y || // y cresce para baixo? //é pra ser //blz
             at.x > camera_pos.x + camera_size.x ||
             at.y > camera_pos.y + camera_size.y);
   }

@@ -148,8 +148,8 @@ namespace DIM {
       markedToDelete.clear();
     
       events->processEvents();
-      graphics->draw("assets/TempleBackground.png", VectorF(0, 0));
       graphics->clear(200, 200, 200);
+      graphics->draw("assets/TempleBackground.png", VectorF(0, 0));
       graphics->centerCamera(getPlayer1Center());
       entities.updateAll(events->getLastElapsedTime());
       collisions.checkCollisions();

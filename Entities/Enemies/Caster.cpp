@@ -11,8 +11,8 @@ namespace DIM {
 
   Caster::Caster() : Enemy(), delay(4000 + RandomValueGenerator::getInstance()->getRandomIntInRange(200, 1400)) {
     id = std::string("Caster");
-    max_speed_x = 20;
-    max_speed_y = 40;
+    max_speed_x = 20 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-8, 8);
+    max_speed_y = 40 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-15, 15);
   }
 
   Caster::~Caster() {
