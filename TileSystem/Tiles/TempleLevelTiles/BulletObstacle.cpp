@@ -52,23 +52,25 @@ namespace DIM {
       bool foundLeft = false, foundRight = false;
       unsigned int k;
       for (k = 2; (searchLeft || searchRight) && (!foundLeft && !foundRight); ++k) {
-        if (j-k < 0) searchLeft = false;
+        if (j < k) searchLeft = false;
         if (j+k > (*map).getSize().x - 1) searchRight = false;
 
         if (searchLeft) foundLeft = (*map)[i][j-k] == 0; 
         if (searchRight) foundRight = (*map)[i][j+k] == 0;
       }
+      --k; // nunca tinha percebido que o k ainda era incrementado depois de achar a parede
 
       if (foundLeft) {
+        // std::cout << "boa tarde " << (j) << ' ' << (k) << ',' << (i)  << std::endl;
         std::cout << "criando flecha indo para a direita em " << (j - k) << ',' << (i)  << std::endl;
         //create arrow at (i, j-k) going right
-        Bullet* bullet = new Bullet(VectorF((j - k + 2.5) * size.x, (i + .5) * size.y), VectorF(100, 0));
+        Bullet* bullet = new Bullet(VectorF((j - k + 1.5) * size.x, (i + .5) * size.y), VectorF(100, 0));
         map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
       } else if (foundRight) {
         //create arrow at (i, j+k) going left
         std::cout << "criando flecha indo para a esquerda em " << (j + k) << ',' << (i)  << std::endl;
-        Bullet* bullet = new Bullet(VectorF((j + k - 1.5) * size.x, (i + .5) * size.y), VectorF(-100, 0));
+        Bullet* bullet = new Bullet(VectorF((j + k - .5) * size.x, (i + .5) * size.y), VectorF(-100, 0));
         map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
       }
