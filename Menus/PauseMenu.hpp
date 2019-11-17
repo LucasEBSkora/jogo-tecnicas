@@ -16,7 +16,7 @@ namespace DIM {
 
     void init(GraphicsManager& g, EventManager& e) override;
 
-    int exec() override;
+    const int exec() override;
   };
 
 }

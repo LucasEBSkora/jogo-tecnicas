@@ -2,7 +2,7 @@
 
 namespace DIM {
 
-  CavernLevel::CavernLevel() {
+  CavernLevel::CavernLevel() : Level{"assets/CavernBackground.png"}{
     
   }
 

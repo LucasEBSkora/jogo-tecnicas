@@ -1,11 +1,18 @@
 #include "Level.hpp"
+
 #include <iostream>
+
+#include "../RandomValueGenerator.hpp"
+
+#include "../Entities/Enemies/Leaper.hpp"
+#include "../Entities/Enemies/Caster.hpp"
+
 
 
 namespace DIM {
 
-  Level::Level() : graphics(nullptr), events(nullptr), player1(nullptr),
-    player2(nullptr), tileManager(nullptr) {
+  Level::Level(const std::string background) : graphics(nullptr), events(nullptr), player1(nullptr),
+    player2(nullptr), tileManager(nullptr), decision{0}, keep_going{true}, backgroundPath{background} {
     
   }
 
@@ -16,6 +23,7 @@ namespace DIM {
   void Level::init(GraphicsManager& g, EventManager& e) {
     graphics = &g;
     events = &e;
+    graphics->loadAsset(backgroundPath);
   }
 
   const VectorF Level::getPlayer1Center() const {
@@ -41,5 +49,108 @@ namespace DIM {
 
   void Level::markForDelete(PhysicalEntity* ent) {
     markedToDelete.insert(ent);
+  }
+
+  void Level::endLevel() {
+    decision = 1;
+    keep_going = false;
+  }
+
+  void Level::generateEnemies() {
+    std::vector<VectorF> spawns = tileManager->getEnemySpawns();
+    int nEnemies = RandomValueGenerator::getInstance()->getRandomIntInRange(5, 10);
+    
+    for (int i = 0; i < nEnemies; ++i) {
+      
+      int idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+      Enemy* enemy = new Leaper();
+      enemy->setLevel(this);
+      enemy->initializeGeneric(this);
+      VectorF pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+
+      enemy->setPosition(VectorF(pos.x, pos.y));
+      entities.addEntity(enemy);
+      collisions.addToCollisions(enemy);
+
+      idx = RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+      enemy = new Caster();
+      enemy->setLevel(this);
+      enemy->initializeGeneric(this);
+      pos = spawns[idx] + VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+      
+      enemy->setPosition(VectorF(pos.x, pos.y));
+      // std::cout << idx << std::endl;
+      entities.addEntity(enemy);
+      collisions.addToCollisions(enemy);
+
+    }
+  }
+
+  void Level::addPhysicalEntity(PhysicalEntity* ent) {
+    ent->initializeGeneric(this);
+    entities.addEntity(ent);
+    collisions.addToCollisions(ent);
+  }
+
+  void Level::bindPlayers(Mob* p1, Mob* p2) {
+    
+    player1 = p1;
+    player1->setLevel(this);
+    
+    if (p2 != nullptr) {
+      player2 = p2;
+      player2->setLevel(this);
+    }
+    
+  }
+
+  void Level::setup() {
+    if (player1 == nullptr) {
+      throw 'k';
+    }
+    entities.removeWithoutDestroying(tileManager);
+    entities.removeWithoutDestroying(player1);
+    entities.removeWithoutDestroying(player2);
+    entities.destroyAll();
+    collisions.removeAll();
+    entities.addEntity(tileManager);
+
+    entities.addEntity(player1);
+    collisions.addToCollisions(player1);
+    
+    if (player2 != nullptr) {
+      entities.addEntity(player2);
+      collisions.addToCollisions(player2);
+    }
+
+    player1->setPosition(getPlayer1Spawn());
+
+    generateEnemies();
+
+  }
+
+  int Level::exec() {
+    keep_going = true;
+    while (keep_going) {
+      
+      for ( PhysicalEntity* ent : markedToDelete) {
+
+        entities.removeWithoutDestroying(ent);
+        collisions.removeFromCollisions(ent);
+        delete ent;
+
+      }
+      markedToDelete.clear();
+    
+      events->processEvents();
+      graphics->clear(200, 200, 200);
+      graphics->centerCamera(getPlayer1Center());
+      graphics->draw(backgroundPath, getPlayer1Center() - graphics->getSizeOfAsset(backgroundPath) * 0.5);
+      entities.updateAll(events->getLastElapsedTime());
+      collisions.checkCollisions();
+      entities.drawAll();
+      graphics->display();
+    }
+    return decision;
   }
 }

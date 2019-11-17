@@ -125,6 +125,7 @@ namespace DIM {
       
       if (event_obj.getType() == EventType::KeyPressed ||
           event_obj.getType() == EventType::KeyReleased) {
+        if (event_obj.getType() == EventType::KeyReleased) std::cout << "help" << std::endl;
         for (auto& f : keyboard_callbacks) {
           f.second(event_obj);
         }

@@ -30,12 +30,13 @@ namespace DIM {
     PauseMenu pause;
 
     TempleLevel temple;
-    // CavernLevel cavern;
+    CavernLevel cavern;
     
     TheUndying player1;
     ThePenitent player2;
 
     GameState current;
+    GameState unpause;
 
     void play();
 

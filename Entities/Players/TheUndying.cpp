@@ -145,6 +145,8 @@ namespace DIM {
           }
         }
       }
+    } else if (other_id == "End") {
+      currentLevel->endLevel();
     }
   }
 

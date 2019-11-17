@@ -18,7 +18,7 @@ namespace DIM {
 
     virtual void init(GraphicsManager& g, EventManager& e);
 
-    virtual int exec() = 0;
+    virtual const int exec() = 0;
   };
 
 }

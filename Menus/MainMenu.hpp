@@ -10,13 +10,16 @@ namespace DIM {
     int key_event_id;
     int mouse_event_id;
     int return_val;
+    bool twoPlayers;
   public:
     MainMenu();
     ~MainMenu();
 
     void init(GraphicsManager& g, EventManager& e) override;
 
-    int exec() override;
+    const int exec() override;
+
+    const bool useTwoPlayers() const;
   };
 
 }

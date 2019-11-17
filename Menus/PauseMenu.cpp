@@ -23,9 +23,9 @@ namespace DIM {
     keep_going = true;
     return_val = 0;
     // o tamanho não deveria ser manual
-    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 4 * 1, 140, 30, 0, "Resume"));
-    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 4 * 2, 160, 30, 1, "Save Game"));
-    buttons.push_back(new Button(viewsize.x / 2, viewsize.y / 4 * 3, 160, 30, 2, "Main Menu"));
+    buttons.push_back(new Button(VectorF(viewsize.x / 2, viewsize.y / 4 * 1), 140, 30, 0, "Resume"));
+    buttons.push_back(new Button(VectorF(viewsize.x / 2, viewsize.y / 4 * 2), 160, 30, 1, "Save Game"));
+    buttons.push_back(new Button(VectorF(viewsize.x / 2, viewsize.y / 4 * 3), 160, 30, 2, "Main Menu"));
     g.centerCamera(viewsize * .5);
 
     for (auto& b : buttons) {
@@ -33,7 +33,7 @@ namespace DIM {
     }
   }
 
-  int PauseMenu::exec() {
+  const int PauseMenu::exec() {
     key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&

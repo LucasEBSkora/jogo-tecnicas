@@ -8,8 +8,7 @@
 namespace DIM {
   class Button {
   private:
-    float x;
-    float y;
+    VectorF position;
     float width;
     float height;
     int my_id;
@@ -18,7 +17,7 @@ namespace DIM {
     EventManager* event_man;
 
   public:
-    Button(int cx = 0, int cy = 0, int w = 10, int h = 10, int id = 0, const std::string& txt = "");
+    Button(VectorF Center = VectorF(), int w = 10, int h = 10, int id = 0, const std::string& txt = "");
     ~Button();
 
     void draw() const;

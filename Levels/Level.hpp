@@ -26,24 +26,32 @@ namespace DIM {
     Mob* player2;
     TileManager* tileManager;
     std::set<PhysicalEntity*> markedToDelete;
+    int decision;
+    bool keep_going;
+    const std::string backgroundPath;
+
   public:
-    Level();
+    Level(const std::string background = "");
     virtual ~Level();
 
     virtual void init(GraphicsManager& g, EventManager& e);
 
-    virtual void bindPlayers(Mob* p1, Mob* p2) = 0;
-    virtual void addPhysicalEntity(PhysicalEntity* ent) = 0;
+    virtual void bindPlayers(Mob* p1, Mob* p2 = nullptr);
+    virtual void addPhysicalEntity(PhysicalEntity* ent);
+    virtual void generateEnemies();
 
-    virtual void setup() = 0;
-    virtual void exec() = 0;
+    
+    virtual void setup();
+    virtual int exec();
 
     const VectorF getPlayer1Center() const;
     const VectorF getPlayer1Spawn() const;
     CollisionManager* getCollisionManager();
     EventManager* getEventManager() const;
     GraphicsManager* getGraphicsManager() const;
+
     void markForDelete(PhysicalEntity* ent);
+    void endLevel();
 
   };
 
