@@ -9,6 +9,7 @@ namespace DIM {
     
     events_man.setGraphicsManager(graphics_man);
     menu.init(graphics_man, events_man);
+    pause.init(graphics_man, events_man);
     temple.init(graphics_man, events_man);
     cavern.init(graphics_man, events_man);
 
@@ -45,7 +46,6 @@ namespace DIM {
   }
 
   void DescentIntoMadness::mainMenu() {
-    menu.init(graphics_man, events_man);
     int decisao = menu.exec();
     if (decisao == 0) {
       current = GameState::END_GAME;
@@ -73,7 +73,6 @@ namespace DIM {
   }
 
   void DescentIntoMadness::pauseMenu() {
-    pause.init(graphics_man, events_man);
     int decisao = pause.exec();
     if (decisao == 0) {
       current = unpause;
