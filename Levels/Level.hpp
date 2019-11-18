@@ -37,13 +37,12 @@ namespace DIM {
 
     virtual void init(GraphicsManager& g, EventManager& e);
 
-    virtual void bindPlayers(TheUndying* p1, ThePenitent* p2 = nullptr);
-    virtual void unbindPlayers();
+    virtual void setPlayers(TheUndying* p1, ThePenitent* p2 = nullptr);
     virtual void addPhysicalEntity(PhysicalEntity* ent);
     virtual void generateEnemies();
 
     
-    virtual void setup();
+    virtual void playFromStart();
     virtual int exec();
 
     const VectorF getPlayer1Center() const;

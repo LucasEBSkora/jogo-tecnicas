@@ -15,7 +15,7 @@ namespace DIM {
 
   void ThePenitent::unsubscribe() {
     if (movement_id != 0) {
-      currentLevel->getEventManager()->removeKeyboardListener(movement_id);
+      currentLevel->getEventManager()->removeMouseListener(movement_id);
       movement_id = 0;
     }
   }

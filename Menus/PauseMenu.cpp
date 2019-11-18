@@ -12,7 +12,7 @@ namespace DIM {
       key_event_id = 0;
     }
     if (mouse_event_id != 0) {
-      events->removeKeyboardListener(mouse_event_id);
+      events->removeMouseListener(mouse_event_id);
       mouse_event_id = 0;
     }
   }
@@ -28,6 +28,13 @@ namespace DIM {
     for (auto& b : buttons) {
       b->initialize(g, e);
     }
+  }
+
+  const int PauseMenu::exec() {
+    VectorF viewsize = graphics->getViewSize();
+    graphics->centerCamera(viewsize * .5);
+    keep_going = true;
+    return_val = 0;
 
     key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
@@ -50,19 +57,23 @@ namespace DIM {
         }
       }
     );
-  }
 
-  const int PauseMenu::exec() {
-    VectorF viewsize = graphics->getViewSize();
-    graphics->centerCamera(viewsize * .5);
-    keep_going = true;
-    return_val = 0;
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
       for (auto& b : buttons) b->draw();
       graphics->display();
     }
+
+    if (key_event_id != 0) {
+      events->removeKeyboardListener(key_event_id);
+      key_event_id = 0;
+    }
+    if (mouse_event_id != 0) {
+      events->removeMouseListener(mouse_event_id);
+      mouse_event_id = 0;
+    }
+
     return return_val;
   }
 

@@ -15,7 +15,7 @@ namespace DIM {
       key_event_id = 0;
     }
     if (mouse_event_id != 0) {
-      events->removeKeyboardListener(mouse_event_id);
+      events->removeMouseListener(mouse_event_id);
       mouse_event_id = 0;
     }
   }
@@ -34,6 +34,13 @@ namespace DIM {
     for (auto& b : buttons) {
       b->initialize(g, e);
     }
+  }
+
+  const int MainMenu::exec() {
+    VectorF viewsize = graphics->getViewSize();
+    graphics->centerCamera(viewsize * .5);
+    keep_going = true;
+    return_val = 0;
 
     key_event_id = events->addKeyboardListener(
       [this] (EventManager::Event e) {
@@ -68,13 +75,7 @@ namespace DIM {
         }
       }
     );
-  }
 
-  const int MainMenu::exec() {
-    VectorF viewsize = graphics->getViewSize();
-    graphics->centerCamera(viewsize * .5);
-    keep_going = true;
-    return_val = 0;
     while (keep_going) {
       events->processEvents();
       graphics->clear(20, 20, 20);
@@ -85,6 +86,18 @@ namespace DIM {
       graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), VectorF(viewsize.x * (1 + 0.3) / 2 , viewsize.y / 7 * 5.9) , 21 );
       graphics->display();
     }
+
+    if (key_event_id != 0) {
+      events->removeKeyboardListener(key_event_id);
+      key_event_id = 0;
+    }
+    std::cout << mouse_event_id << std::endl;
+    if (mouse_event_id != 0) {
+      events->removeMouseListener(mouse_event_id);
+      mouse_event_id = 0;
+    }
+    std::cout << mouse_event_id << std::endl;
+    
     return return_val;
   }
 

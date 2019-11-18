@@ -47,6 +47,7 @@ namespace DIM {
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed &&
             e.getKey() == EventManager::Key::Escape) {
+          decision = 0;
           keep_going = false;
         }
       }

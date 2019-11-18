@@ -92,39 +92,18 @@ namespace DIM {
     collisions.addToCollisions(ent);
   }
 
-  void Level::bindPlayers(TheUndying* p1, ThePenitent* p2) {
+  void Level::setPlayers(TheUndying* p1, ThePenitent* p2) {
     
     player1 = p1;
-    player1->setLevel(this);
-    
-    std::cout << "estou triste" << std::endl;
-    
-    if (p2 != nullptr) {
-      player2 = p2;
-      player2->setLevel(this);
-    }
-    
-  }
-
-  void Level::unbindPlayers() {
-    if (player1 != nullptr) {
-      player1->unsubscribe();
-      player1->setLevel(nullptr);
-      entities.removeWithoutDestroying(player1);
-    } 
-    player1 = nullptr;
-
-    if (player2 != nullptr) {
-      player2->unsubscribe();
-      player2->setLevel(nullptr);
+    if (p2 == nullptr) {
       entities.removeWithoutDestroying(player2);
+      collisions.removeFromCollisions(player2);
     }
-    player2 = nullptr;
-
+    player2 = p2;
     
   }
 
-  void Level::setup() {
+  void Level::playFromStart() {
     if (player1 == nullptr) {
       throw 'k';
     }

@@ -13,6 +13,11 @@ namespace DIM {
     temple.init(graphics_man, events_man);
     cavern.init(graphics_man, events_man);
 
+    player1.initializeGeneric(&temple); // só para usar o graphics manager e eventos
+    player2.initializeGeneric(&temple);
+    player1.setLevel(nullptr);
+    player2.setLevel(nullptr);
+
     play();
   }
 
@@ -52,8 +57,8 @@ namespace DIM {
     } else if (decisao == 1) {
 
       unpause = current = GameState::TEMPLE_LEVEL;
-      
       goToLevel(&temple);
+      temple.playFromStart();
 
     } else if (decisao == 2) {
       // memento
@@ -61,10 +66,8 @@ namespace DIM {
     } else if (decisao == 3) {
       
       unpause = current = GameState::CAVERN_LEVEL;
-      
-      
       goToLevel(&cavern);
-
+      cavern.playFromStart();
     
     } else if (decisao == 4) {
       // memento
@@ -88,9 +91,8 @@ namespace DIM {
     if (dec == 0) current = GameState::PAUSE_MENU;
     else if (dec == 1) {
       unpause = current = GameState::CAVERN_LEVEL;
-      temple.unbindPlayers();
       goToLevel(&cavern);
-    } 
+    }
   }
 
   void DescentIntoMadness::cavernLevel() {
@@ -98,17 +100,14 @@ namespace DIM {
     if (dec == 0) current = GameState::PAUSE_MENU;
     else if (dec == 1) {
       unpause = current = GameState::END_GAME;
-      cavern.unbindPlayers();
     } 
   }
   
   void DescentIntoMadness::goToLevel(Level* level) {
-    player1.initializeGeneric(level);
-    if (menu.useTwoPlayers()) player2.initializeGeneric(level);
-    
+    player1.setLevel(level);
+    player2.setLevel(menu.useTwoPlayers() ? level : nullptr);
 
-    level->bindPlayers(&player1, menu.useTwoPlayers() ? &player2 : nullptr);
-    level->setup();
+    level->setPlayers(&player1, menu.useTwoPlayers() ? &player2 : nullptr);
 
   }
 }

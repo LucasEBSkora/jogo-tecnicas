@@ -55,6 +55,7 @@ namespace DIM {
     movement_id = currentLevel->getEventManager()->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed) {
+          std::cout << "pressed key player1" << std::endl;
           switch (e.getKey()) {
             case EventManager::Key::W:
               pressed[0] = true;
