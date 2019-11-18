@@ -19,13 +19,13 @@ namespace DIM {
     PhysicalEntity();
     virtual ~PhysicalEntity();
 
-    virtual void collided(std::string Id, VectorF position, VectorF size) = 0;
+    virtual void collided(std::string Id, VectorF positionOther, VectorF size) = 0;
     virtual void adjust();
 
     VectorF getPos() const;
     void setPos(VectorF pos);
     VectorF getSize() const;
-    virtual std::string getID() const = 0;
+    virtual std::string getID() const;
   };
 }
 

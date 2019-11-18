@@ -29,8 +29,6 @@ namespace DIM {
     virtual void collided(std::string Id, VectorF positionOther, VectorF size) override;
     void adjust() override;
 
-
-    std::string getID() const override;
   };
 
 }

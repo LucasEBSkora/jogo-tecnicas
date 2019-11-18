@@ -97,8 +97,5 @@ namespace DIM {
     PhysicalEntity::adjust();
   }
 
-  std::string Leaper::getID() const {
-    return id;
-  }
 }
 

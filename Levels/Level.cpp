@@ -35,6 +35,14 @@ namespace DIM {
     return tileManager->getPlayerSpawnPosition() - player1->getSize() * .5;
   }
 
+  const VectorF Level::getItemSpawn() const {
+    return tileManager->getItemSpawnPosition();
+  }
+
+  const VectorF Level::getBossSpawn() const {
+    return tileManager->getBossSpawnPosition();
+  }
+
   CollisionManager* Level::getCollisionManager() { 
     return &collisions;
   }

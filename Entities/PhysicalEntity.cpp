@@ -29,4 +29,8 @@ namespace DIM {
     return VectorF(width, height);
   }
 
+  std::string PhysicalEntity::getID() const {
+    return id;
+  }
+
 }

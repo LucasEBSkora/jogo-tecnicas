@@ -45,6 +45,7 @@ namespace DIM {
     } else {
       std::cout << "desenhando objeto nao inicializado\n";
     }
+    std::cout << position << std::endl;
   }
 
   void TheUndying::initializeSpecific() {
@@ -55,7 +56,6 @@ namespace DIM {
     movement_id = currentLevel->getEventManager()->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed) {
-          std::cout << "pressed key player1" << std::endl;
           switch (e.getKey()) {
             case EventManager::Key::W:
               pressed[0] = true;
@@ -166,8 +166,5 @@ namespace DIM {
     PhysicalEntity::adjust();
   }
 
-  std::string TheUndying::getID() const {
-    return id;
-  }
 }
 

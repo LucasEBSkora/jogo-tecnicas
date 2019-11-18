@@ -11,6 +11,7 @@ namespace DIM {
     CavernLevel();
     ~CavernLevel();
     void init(GraphicsManager& g, EventManager& e) override;
+    void playFromStart() override;
   };
 
 }

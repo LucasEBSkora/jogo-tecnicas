@@ -56,7 +56,4 @@ namespace DIM {
     
   }
 
-  std::string ThePenitent::getID() const {
-    return id;
-  }
 }

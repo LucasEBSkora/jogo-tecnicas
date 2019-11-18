@@ -11,7 +11,8 @@ namespace DIM
 {
 
   TileManager::TileManager( std::vector<Tile*> Tiles, float TileSide, const char *Path) 
-  : Entity(), tiles{Tiles}, tileSide{TileSide}, path{Path}, tileMap{*(new TileMap(path, this))}
+  : Entity(), tiles{Tiles}, tileSide{TileSide}, firstSpawnPointFound{0, 0}, firstItemSpawnPointFound{0,0},
+  firstBossSpawnPointFound{0, 0}, path{Path}, tileMap{*(new TileMap(path, this))}
      {
 
   }
@@ -33,12 +34,16 @@ namespace DIM
     for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
       for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
         
-        if (tileMap[i][j] == 1 && tileMap[i-1][j] == -1) {
+        if (tileMap[i][j] == 1 && tileMap[i-1][j] < 0) {
           // found spawn point
           
           firstSpawnPointFound = VectorU(j, i - 1);
           // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
-        }
+        } 
+
+        if (tileMap[i][j] == -3) firstItemSpawnPointFound = VectorU(j, i);
+
+        if (tileMap[i][j] == -4) firstBossSpawnPointFound = VectorU(j, i);
 
         if (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1) {
           // enemy spawn point
@@ -100,6 +105,16 @@ namespace DIM
   VectorF TileManager::getPlayerSpawnPosition() const {
     
     return VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide + VectorF(32.0f, 32.0f) * .5;
+  }
+
+  VectorF TileManager::getItemSpawnPosition() const {
+    
+    return VectorF(firstItemSpawnPointFound.x, firstItemSpawnPointFound.y) * tileSide + VectorF(32.0f, 32.0f) * .5;
+  }
+
+  VectorF TileManager::getBossSpawnPosition() const {
+    
+    return VectorF(firstItemSpawnPointFound.x, firstItemSpawnPointFound.y) * tileSide + VectorF(32.0f, 32.0f) * .5;
   }
 
   Level* TileManager::getLevel() const {

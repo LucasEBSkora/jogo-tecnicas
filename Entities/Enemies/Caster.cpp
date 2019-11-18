@@ -98,8 +98,5 @@ namespace DIM {
     PhysicalEntity::adjust();
   }
 
-  std::string Caster::getID() const {
-    return id;
-  }
 }
 

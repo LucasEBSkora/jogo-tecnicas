@@ -46,9 +46,6 @@ namespace DIM {
 
   }
 
-  std::string Projectile::getID() const {
-    return id;
-  }
   
   void Projectile::setSpeed(VectorF Speed) {
     speed = Speed;
