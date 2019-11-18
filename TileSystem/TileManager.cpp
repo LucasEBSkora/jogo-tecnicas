@@ -114,7 +114,7 @@ namespace DIM
 
   VectorF TileManager::getBossSpawnPosition() const {
     
-    return VectorF(firstItemSpawnPointFound.x, firstItemSpawnPointFound.y) * tileSide + VectorF(32.0f, 32.0f) * .5;
+    return VectorF(firstBossSpawnPointFound.x, firstBossSpawnPointFound.y) * tileSide + VectorF(32.0f, 32.0f) * .5;
   }
 
   Level* TileManager::getLevel() const {

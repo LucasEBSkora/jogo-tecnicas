@@ -6,6 +6,7 @@
 #include "../TileSystem/Tiles/CavernLevelTiles/CavernWallTile.hpp"
 
 #include "../Entities/TheMirrorOfHastur.hpp"
+#include "../Entities/Enemies/TheChained.hpp"
 
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
 
@@ -62,6 +63,9 @@ namespace DIM {
 
     TheMirrorOfHastur* ent = new TheMirrorOfHastur();
 
+    TheChained* boss = new TheChained(ent);
+
+    addPhysicalEntity(boss);
     addPhysicalEntity(ent);
   }
 

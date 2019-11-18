@@ -7,10 +7,14 @@ namespace DIM {
 
   class Enemy : public Mob {
   private:
+    const std::string path;
 
   public:
-    Enemy();
+    Enemy(const std::string path = "");
     virtual ~Enemy();
+    
+    virtual void draw() const override;
+    virtual void initializeSpecific() override;
   };
 }
 

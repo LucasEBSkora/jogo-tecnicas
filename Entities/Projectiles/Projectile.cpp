@@ -37,7 +37,7 @@ namespace DIM {
 
   void Projectile::collided(std::string other_id, VectorF positionOther, VectorF size) {
     // he's dead
-    //std::cout << "ué" << VectorF(x, y) << std::endl;
+    //std::cout << "morri: " << other_id <<  std::endl;
     
     destroySelf();
   }

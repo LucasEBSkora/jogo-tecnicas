@@ -26,12 +26,13 @@ namespace DIM {
   void TheMirrorOfHastur::update(float elapsedTime)  {
     if (!boundToPlayer) position = initialPosition;
     else position = currentLevel->getPlayer1Center();
-    std::cout << "mirror: " << position << std::endl;
   }
 
   void TheMirrorOfHastur::collided(std::string id, VectorF positionOther, VectorF size) {
       
-      boundToPlayer = (id == "Player1" || id == "Player2");
+      if (id == "Player1" || id == "Player2") {
+        boundToPlayer = true;
+      }
 
   }
 
@@ -43,5 +44,8 @@ namespace DIM {
     }
   }
 
+  const bool TheMirrorOfHastur::isBound() const {
+    return boundToPlayer;
+  }
     
 }

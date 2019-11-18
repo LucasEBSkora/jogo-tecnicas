@@ -9,7 +9,7 @@ namespace DIM {
 
   const float Caster::spellSpeed{50};  
 
-  Caster::Caster() : Enemy(), delay(4000 + RandomValueGenerator::getInstance()->getRandomIntInRange(200, 1400)) {
+  Caster::Caster() : Enemy("assets/Caster.png"), delay(4000 + RandomValueGenerator::getInstance()->getRandomIntInRange(200, 1400)) {
     id = std::string("Caster");
     max_speed_x = 20 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-8, 8);
     max_speed_y = 40 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-15, 15);
@@ -48,21 +48,6 @@ namespace DIM {
 
     position += velocity * elapsedTime * RandomValueGenerator::getInstance()->getRandomFloatInRange(0.5, 1.5); 
     
-  }
-
-  void Caster::draw() const {
-    if (currentLevel != nullptr) {
-      currentLevel->getGraphicsManager()->draw("assets/Caster.png", position);
-    } else {
-      std::cout << "desenhando objeto nao inicializado\n";
-    }
-  }
-
-  void Caster::initializeSpecific() {
-    currentLevel->getGraphicsManager()->loadAsset("assets/Caster.png");
-    VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/Caster.png");
-    width = size.x;
-    height = size.y;
   }
 
   void Caster::collided(std::string other_id, VectorF positionOther, VectorF size) {

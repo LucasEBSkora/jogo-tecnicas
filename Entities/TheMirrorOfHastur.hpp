@@ -20,6 +20,7 @@ namespace DIM {
       void update(float elapsedTime) override;
       void collided(std::string id, VectorF positionOther, VectorF size) override;
       void draw() const override;
+      const bool isBound() const;
 
   };
   

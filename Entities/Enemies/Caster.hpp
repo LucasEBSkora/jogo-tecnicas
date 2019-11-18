@@ -18,8 +18,6 @@ namespace DIM {
     ~Caster();
 
     void update(float elapsedTime) override;
-    void draw() const override;
-    void initializeSpecific() override;
 
     void collided(std::string Id, VectorF position, VectorF size) override;
     void adjust() override;
