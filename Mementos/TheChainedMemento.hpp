@@ -7,10 +7,11 @@ namespace DIM {
   
   class TheChainedMemento : public Memento {
   private:
+    TheChainedMemento();
 
   public:
-    TheChainedMemento();
     ~TheChainedMemento();
+    friend class TheChained;
   };
 
 }

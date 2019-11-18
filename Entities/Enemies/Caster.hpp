@@ -2,6 +2,7 @@
 #define CASTER_HPP
 
 #include "Enemy.hpp"
+#include "../Mementos/CasterMemento.hpp"
 
 namespace DIM {
   class Caster : public Enemy {
@@ -25,6 +26,9 @@ namespace DIM {
     void adjust() override;
 
     std::string getID() const override;
+
+    CasterMemento createMemento() const;
+    void loadMemento(CasterMemento memento);
   };
 
 }

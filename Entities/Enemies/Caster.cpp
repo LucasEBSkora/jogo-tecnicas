@@ -101,5 +101,18 @@ namespace DIM {
   std::string Caster::getID() const {
     return id;
   }
+
+  CasterMemento Caster::createMemento() const {
+    CasterMemento memento(position, velocity, delay, max_speed_x, max_speed_y);
+    return memento;
+  }
+
+  void Caster::loadMemento(CasterMemento memento) {
+    position = memento.getPosition();
+    velocity = memento.getVelocity();
+    delay = memento.getDelay(); // ver se o adjusts faz falta ou não (agora não consigo pensar)
+    max_speed_x = memento.getMaxSpeedX();
+    max_speed_y = memento.getMaxSpeedY(); // mudar depois para usar VectorF
+  }
 }
 

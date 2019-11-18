@@ -7,10 +7,13 @@ namespace DIM
 {
   class ThePenitentMemento : public Memento {
   private:
+    ThePenitentMemento();
 
   public:
-    ThePenitentMemento();
     ~ThePenitentMemento();
+
+    void saveToFile(std::ostream& file) override;
+    friend class ThePenitent;
   };
   
 } // namespace DIM

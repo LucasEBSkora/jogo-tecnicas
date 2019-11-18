@@ -10,8 +10,7 @@
 #include "../Entities/Players/TheUndying.hpp"
 #include "../Lists/EntityList.hpp"
 #include "../TileSystem/TileManager.hpp"
-
-#include <set>
+#include "../Mementos/LevelMemento.hpp"
 
 namespace DIM {
   class PhysicalEntity;
@@ -43,6 +42,7 @@ namespace DIM {
 
     
     virtual void playFromStart();
+    virtual void loadMemento(LevelMemento memento) = 0;
     virtual int exec();
 
     const VectorF getPlayer1Center() const;

@@ -22,4 +22,15 @@ namespace DIM {
     if (delay > 0) delay -= elapsedTime;
   }
 
+  BulletMemento Bullet::createMemento() const {
+    BulletMemento memento(position, speed, delay);
+    return memento;
+  }
+
+  void Bullet::loadMemento(BulletMemento memento) {
+    position = memento.getPosition();
+    speed = memento.getSpeed();
+    delay = memento.getDelay();
+  }
+
 }

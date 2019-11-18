@@ -7,10 +7,13 @@ namespace DIM
 {
   class TileManagerMemento : public Memento {
   private:
+    TileManagerMemento();
 
   public:
-    TileManagerMemento();
     ~TileManagerMemento();
+
+    void saveToFile(std::ostream& file) override;
+    friend class TileManager;
   };
   
 } // namespace DIM

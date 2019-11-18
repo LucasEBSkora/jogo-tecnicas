@@ -2,6 +2,7 @@
 #define BULLET_HPP
 
 #include "Projectile.hpp"
+#include "../Mementos/BulletMemento.hpp"
 
 namespace DIM {
   class Bullet : public Projectile {
@@ -13,6 +14,9 @@ namespace DIM {
     ~Bullet();
     void collided(std::string Id, VectorF position, VectorF size) override;
     void update(float elapsedTime) override;
+    
+    BulletMemento createMemento() const;
+    void loadMemento(BulletMemento memento);
   };
 
 }

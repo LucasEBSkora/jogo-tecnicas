@@ -15,5 +15,15 @@ namespace DIM {
     
     if (other_id != "Caster" && other_id != "Projectile") Projectile::collided(other_id, position, size);
   }
+
+  SpellMemento Spell::createMemento() const {
+    SpellMemento memento(position, speed);
+    return memento;
+  }
+
+  void Spell::loadMemento(SpellMemento memento) {
+    position = memento.getPosition();
+    speed = memento.getSpeed();
+  }
   
 }

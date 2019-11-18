@@ -2,6 +2,7 @@
 #define LEAPER_HPP
 
 #include "Enemy.hpp"
+#include "../Mementos/LeaperMemento.hpp"
 
 namespace DIM {
   class Leaper : public Enemy {
@@ -22,6 +23,9 @@ namespace DIM {
     void adjust() override;
 
     std::string getID() const override;
+
+    LeaperMemento createMemento() const;
+    void loadMemento(LeaperMemento memento);
   };
 
 }

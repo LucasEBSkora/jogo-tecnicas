@@ -7,8 +7,6 @@
 #include "../Entities/Enemies/Leaper.hpp"
 #include "../Entities/Enemies/Caster.hpp"
 
-
-
 namespace DIM {
 
   Level::Level(const std::string background) : graphics(nullptr), events(nullptr), player1(nullptr),

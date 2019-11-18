@@ -10,7 +10,8 @@
 
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
 
-
+#include "../Entities/Enemies/Leaper.hpp"
+#include "../Entities/Enemies/Caster.hpp"
 
 #include <iostream>
 
@@ -60,6 +61,38 @@ namespace DIM {
         }
       }
     );
+  }
+
+  void TempleLevel::loadMemento(LevelMemento memento) {
+
+    if (player1 == nullptr) {
+      throw 'k';
+    }
+    entities.removeWithoutDestroying(tileManager);
+    entities.removeWithoutDestroying(player1);
+    entities.removeWithoutDestroying(player2);
+    entities.destroyAll();
+    collisions.removeAll();
+
+    tileManager.loadMemento(memento.getTilesMemento());
+
+    entities.addEntity(tileManager);
+
+    entities.addEntity(player1);
+    collisions.addToCollisions(player1);
+    player1->loadMemento(memento.getPlayer1Memento());
+    
+    if (player2 != nullptr) {
+      entities.addEntity(player2);
+      collisions.addToCollisions(player2);
+      player2->loadMemento(memento.getPlayer2Memento());
+    }
+
+    for (std::pair<std::string, Memento*>& p : memento.getMementoList()) {
+
+    }
+    generateEnemies();
+
   }
 
 }
