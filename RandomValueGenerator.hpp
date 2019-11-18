@@ -6,10 +6,10 @@ namespace DIM
   class RandomValueGenerator {
     private:
       RandomValueGenerator();
+      static RandomValueGenerator *instance;
 
     public:
       ~RandomValueGenerator();
-      static RandomValueGenerator *instance;
       static const RandomValueGenerator* getInstance();
       bool getRandomBool(unsigned short probability) const;
       int getRandomIntInRange(int lowest, int highest) const;
