@@ -20,39 +20,14 @@ namespace DIM
   TileManager::~TileManager() {
     delete &tileMap;
     
-    for (Tile* t : tiles) {
-      delete t;
-    }
+
   }
 
   void TileManager::initializeSpecific() {
     
-    for (Tile* t : tiles) {
-      t->initialize(currentLevel->getGraphicsManager(), this);
-    }
+    tiles.initializeAll(currentLevel->getGraphicsManager(), this);
 
-    for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
-      for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
-        
-        if (tileMap[i][j] == 1 && tileMap[i-1][j] < 0) {
-          // found spawn point
-          
-          firstSpawnPointFound = VectorU(j, i - 1);
-          // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
-        } 
 
-        if (tileMap[i][j] == -3) firstItemSpawnPointFound = VectorU(j, i);
-
-        if (tileMap[i][j] == -4) firstBossSpawnPointFound = VectorU(j, i);
-
-        if (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1) {
-          // enemy spawn point
-          // arrumar depois
-          enemySpawns.push_back(VectorF(j, i - 1) * tileSide);
-        }
-      
-      }
-    }
   }
 
   std::vector<IdPositionSizeTuple> TileManager::checkCollisions(VectorF at, VectorF size, std::string id) {
@@ -131,6 +106,28 @@ namespace DIM
 
   void TileManager::regenRandomTiles() {
     tileMap.loadTileMap(path);
+
+    for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
+      for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
+        
+        if (tileMap[i][j] == 1 && tileMap[i-1][j] < 0) {
+          // found spawn point
+          
+          firstSpawnPointFound = VectorU(j, i - 1);
+          // jeito talvez mais certo (menos errado): tiles[tileMap[i][j]].isPlayerSpawnPoint()
+        } 
+
+        if (tileMap[i][j] == -3) firstItemSpawnPointFound = VectorU(j, i);
+
+        if (tileMap[i][j] == -4) firstBossSpawnPointFound = VectorU(j, i);
+
+        if (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1) {
+          // enemy spawn point
+          // arrumar depois
+          enemySpawns.push_back(VectorF(j, i - 1) * tileSide);
+        }  
+      }
+    }
   }
 
   TileManagerMemento TileManager::createMemento() const {
