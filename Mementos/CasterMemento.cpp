@@ -37,7 +37,7 @@ namespace DIM {
   void CasterMemento::saveToFile(std::ostream& file) {
     file << position.x << ' ' << position.y << ' ' <<
             velocity.x << ' ' << velocity.y << ' ' <<
-            delay <<
+            delay << ' ' <<
             max_speed_x << ' ' << max_speed_y << '\n';
   }
 
@@ -47,6 +47,7 @@ namespace DIM {
             memento.velocity.x >> memento.velocity.y >>
             memento.delay >>
             memento.max_speed_x >> memento.max_speed_y;
+    return memento;
   }
 
 }

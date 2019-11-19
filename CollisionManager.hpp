@@ -20,6 +20,7 @@ namespace DIM {
     void removeFromCollisions(PhysicalEntity* ent);
     void removeAll();
     void setTileManager(TileManager* manager);
+    const std::vector<PhysicalEntity*>& getCollidables() const;
 
     void checkCollisions();
   };

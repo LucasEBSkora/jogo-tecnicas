@@ -91,12 +91,12 @@ namespace DIM {
       events->removeKeyboardListener(key_event_id);
       key_event_id = 0;
     }
-    std::cout << mouse_event_id << std::endl;
+    // std::cout << mouse_event_id << std::endl;
     if (mouse_event_id != 0) {
       events->removeMouseListener(mouse_event_id);
       mouse_event_id = 0;
     }
-    std::cout << mouse_event_id << std::endl;
+    // std::cout << mouse_event_id << std::endl;
     
     return return_val;
   }

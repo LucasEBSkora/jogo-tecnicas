@@ -10,8 +10,8 @@ namespace DIM {
 
   }
 
-  void TheChainedMemento::saveToFile(std::ostream& file) {
+  // void TheChainedMemento::saveToFile(std::ostream& file) {
     
-  }
+  // }
 
 }

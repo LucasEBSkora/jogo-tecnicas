@@ -1,9 +1,23 @@
 #include "ThePenitentMemento.hpp"
 
 namespace DIM {
+
+  ThePenitentMemento::ThePenitentMemento(VectorF pos, float ang, float rad) {
+    position = pos;
+    angle = ang;
+    radius = rad;
+  }
+
+  VectorF ThePenitentMemento::getPosition() const {
+    return position;
+  }
+
+  float ThePenitentMemento::getAngle() const {
+    return angle;
+  }
   
-  ThePenitentMemento::ThePenitentMemento() {
-    
+  float ThePenitentMemento::getRadius() const {
+    return radius;
   }
   
   ThePenitentMemento::~ThePenitentMemento() {
@@ -11,7 +25,17 @@ namespace DIM {
   }
 
   void ThePenitentMemento::saveToFile(std::ostream& file) {
-    
+    file << position.x << ' ' << position.y << ' ' <<
+            angle << ' ' << 
+            radius << '\n';
+  }
+
+  ThePenitentMemento ThePenitentMemento::loadFromFile(std::istream& file) {
+    ThePenitentMemento memento;
+    file >> memento.position.x >> memento.position.y >>
+            memento.angle >>
+            memento.radius;
+    return memento;
   }
 
 }

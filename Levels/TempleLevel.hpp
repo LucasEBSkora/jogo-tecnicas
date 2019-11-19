@@ -14,7 +14,6 @@ namespace DIM {
     ~TempleLevel();
 
     void init(GraphicsManager& g, EventManager& e) override;
-    void loadMemento(LevelMemento memento) override;
   };
 
 }

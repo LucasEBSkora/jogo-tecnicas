@@ -21,6 +21,7 @@ namespace DIM {
       const VectorU getSize() const;
       void drawTileMap() const;
       TileManager* getTileManager() const;
+      void setTileAt(unsigned i, unsigned j, short tile);
 
       class TileMapLine {
         private:

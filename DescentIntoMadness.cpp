@@ -1,5 +1,6 @@
 #include "DescentIntoMadness.hpp"
 #include <iostream>
+#include <fstream>
 
 namespace DIM {
 
@@ -61,8 +62,12 @@ namespace DIM {
       temple.playFromStart();
 
     } else if (decisao == 2) {
-      // memento
-      // current = GameState::TEMPLE_LEVEL;
+      std::ifstream templeIn("templeSave.txt");
+      if (templeIn) {
+        unpause = current = GameState::TEMPLE_LEVEL;
+        goToLevel(&temple);
+        temple.loadMemento(LevelMemento::loadFromFile(templeIn));
+      }
     } else if (decisao == 3) {
       
       unpause = current = GameState::CAVERN_LEVEL;
@@ -70,8 +75,12 @@ namespace DIM {
       cavern.playFromStart();
     
     } else if (decisao == 4) {
-      // memento
-      // current = GameState::CAVERN_LEVEL;
+      std::ifstream cavernIn("cavernSave.txt");
+      if (cavernIn) {
+        unpause = current = GameState::CAVERN_LEVEL;
+        goToLevel(&cavern);
+        cavern.loadMemento(LevelMemento::loadFromFile(cavernIn));
+      }
     }
   }
 
@@ -80,6 +89,13 @@ namespace DIM {
     if (decisao == 0) {
       current = unpause;
     } else if (decisao == 1) {
+      if (unpause == GameState::TEMPLE_LEVEL) {
+        std::ofstream templeOut("templeSave.txt");
+        temple.createMemento().saveToFile(templeOut);
+      } else {
+        std::ofstream cavernOut("cavernSave.txt");
+        cavern.createMemento().saveToFile(cavernOut);
+      }
       current = unpause;
     } else if (decisao == 2) {
       current = GameState::MAIN_MENU;

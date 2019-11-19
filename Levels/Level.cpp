@@ -7,6 +7,11 @@
 #include "../Entities/Enemies/Leaper.hpp"
 #include "../Entities/Enemies/Caster.hpp"
 
+#include "../Entities/Enemies/TheChained.hpp"
+// #include "../Entities/TheMirrorOfHastur.hpp"
+#include "../Entities/Projectiles/Bullet.hpp"
+#include "../Entities/Projectiles/Spell.hpp"
+
 namespace DIM {
 
   Level::Level(const std::string background) : graphics(nullptr), events(nullptr), player1(nullptr),
@@ -149,5 +154,65 @@ namespace DIM {
       graphics->display();
     }
     return decision;
+  }
+
+  LevelMemento Level::createMemento() const {
+    LevelMemento memento(tileManager, player1, player2, &collisions);
+    return memento;
+  }
+  
+  void Level::loadMemento(LevelMemento memento) {
+    if (player1 == nullptr) {
+      throw 'k';
+    }
+    entities.removeWithoutDestroying(tileManager);
+    entities.removeWithoutDestroying(player1);
+    entities.removeWithoutDestroying(player2);
+    entities.destroyAll();
+    collisions.removeAll();
+
+    tileManager->loadMemento(memento.getTileManagerMemento());
+    entities.addEntity(tileManager);
+
+    player1->loadMemento(memento.getPlayer1Memento());
+    entities.addEntity(player1);
+    collisions.addToCollisions(player1);
+    
+    if (player2 != nullptr) {
+      if (memento.savedPlayer2()) {
+        player2->loadMemento(memento.getPlayer2Memento());
+      }
+      entities.addEntity(player2);
+      collisions.addToCollisions(player2);
+    }
+
+    for (std::pair<std::string, Memento*>& p : memento.getOtherEntitiesMemento()) {
+      if (p.first == "Bullet") {
+        Bullet* bullet = new Bullet;
+        bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
+        addPhysicalEntity(bullet);
+      } else if (p.first == "Spell") {
+        Spell* spell = new Spell;
+        spell->loadMemento(*static_cast<SpellMemento*>(p.second));
+        addPhysicalEntity(spell);
+      } else if (p.first == "Caster") {
+        Caster* caster = new Caster;
+        caster->loadMemento(*static_cast<CasterMemento*>(p.second));
+        addPhysicalEntity(caster);
+      } else if (p.first == "Leaper") {
+        Leaper* leaper = new Leaper;
+        leaper->loadMemento(*static_cast<LeaperMemento*>(p.second));
+        addPhysicalEntity(leaper);
+      }
+      // } else if (p.first == "TheMirrofOfHastur") {
+
+      //   bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
+      //   bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
+      // } else if (p.first == "TheChained") {
+
+      //   bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
+      // }
+    }
+
   }
 }

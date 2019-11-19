@@ -59,4 +59,15 @@ namespace DIM {
   std::string ThePenitent::getID() const {
     return id;
   }
+
+  ThePenitentMemento ThePenitent::createMemento() const {
+    ThePenitentMemento memento(position, angle, radius);
+    return memento;
+  }
+
+  void ThePenitent::loadMemento(ThePenitentMemento memento) {
+    position = memento.getPosition();
+    angle = memento.getAngle();
+    radius = memento.getRadius();
+  }
 }

@@ -118,5 +118,9 @@ namespace DIM {
   TileManager* TileMap::getTileManager() const {
     return manager;
   }
+  
+  void TileMap::setTileAt(unsigned i, unsigned j, short tile) {
+    tileMap[i][j] = tile;
+  }
 
 }

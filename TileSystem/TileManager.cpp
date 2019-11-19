@@ -114,4 +114,19 @@ namespace DIM
     return enemySpawns;
   }
 
+  TileManagerMemento TileManager::createMemento() const {
+    TileManagerMemento memento(tileMap, firstSpawnPointFound, enemySpawns);
+    return memento;
+  }
+
+  void TileManager::loadMemento(TileManagerMemento memento) {
+    for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
+      for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
+        tileMap.setTileAt(i, j, memento.getTileAt(i, j));
+      }
+    }
+    firstSpawnPointFound = memento.getFirstSpawnPointFound();
+    enemySpawns = memento.getEnemySpawns();
+  }
+
 } // namespace DIM

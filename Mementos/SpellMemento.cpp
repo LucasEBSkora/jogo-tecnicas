@@ -28,6 +28,7 @@ namespace DIM {
     SpellMemento memento;
     file >> memento.position.x >> memento.position.y >>
             memento.speed.x >> memento.speed.y;
+    return memento;
   }
 
 }

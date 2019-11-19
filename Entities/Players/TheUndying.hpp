@@ -2,6 +2,7 @@
 #define THEUNDYING_HPP
 
 #include "../Mob.hpp"
+#include "../Mementos/TheUndyingMemento.hpp"
 
 namespace DIM {
   //Player 1
@@ -10,7 +11,7 @@ namespace DIM {
     float max_speed_x;
     float max_speed_y;
     int movement_id;
-    bool pressed[4];
+    bool pressed[2];
     bool jumping;
     unsigned int deathCounter;
   public:
@@ -27,6 +28,9 @@ namespace DIM {
     void adjust() override;
 
     std::string getID() const override;
+
+    TheUndyingMemento createMemento() const;
+    void loadMemento(TheUndyingMemento memento);
   };
 }
 

@@ -42,7 +42,6 @@ namespace DIM {
 
     
     virtual void playFromStart();
-    virtual void loadMemento(LevelMemento memento) = 0;
     virtual int exec();
 
     const VectorF getPlayer1Center() const;
@@ -54,6 +53,8 @@ namespace DIM {
     void markForDelete(PhysicalEntity* ent);
     void endLevel();
 
+    LevelMemento createMemento() const;
+    void loadMemento(LevelMemento memento);
   };
 
 }

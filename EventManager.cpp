@@ -96,7 +96,7 @@ namespace DIM {
   }
 
   void EventManager::processEvents() {
-
+    // std::cout << "bom dia " << timers_callbacks.size() << ' ' << keyboard_callbacks.size() << ' ' << mouse_callbacks.size() << std::endl;
     lastElapsedTime = clock.restart();
     // timeSinceLastUpdate += elapsedTime;
 

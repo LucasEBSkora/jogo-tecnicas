@@ -1,8 +1,8 @@
-#include "LeaperMemento.hpp"
+#include "TheMirrorOfHasturMemento.hpp"
 
 namespace DIM {
 
-  LeaperMemento::LeaperMemento(VectorF pos, VectorF vel, float dly, float max_vx, float max_vy, bool jmp) {
+  TheMirrorOfHasturMemento::TheMirrorOfHasturMemento(VectorF pos, VectorF vel, float dly, float max_vx, float max_vy, bool jmp) {
     position = pos;
     velocity = vel;
     delay = dly;
@@ -11,35 +11,35 @@ namespace DIM {
     jumping = jmp;
   }
 
-  VectorF LeaperMemento::getPosition() const {
+  VectorF TheMirrorOfHasturMemento::getPosition() const {
     return position;
   }
 
-  VectorF LeaperMemento::getVelocity() const {
+  VectorF TheMirrorOfHasturMemento::getVelocity() const {
     return velocity;
   }
 
-  float LeaperMemento::getDelay() const {
+  float TheMirrorOfHasturMemento::getDelay() const {
     return delay;
   }
   
-  float LeaperMemento::getMaxSpeedX() const {
+  float TheMirrorOfHasturMemento::getMaxSpeedX() const {
     return max_speed_x;
   }
   
-  float LeaperMemento::getMaxSpeedY() const {
+  float TheMirrorOfHasturMemento::getMaxSpeedY() const {
     return max_speed_y;
   }
   
-  bool LeaperMemento::getJumping() const {
+  bool TheMirrorOfHasturMemento::getJumping() const {
     return jumping;
   }
   
-  LeaperMemento::~LeaperMemento() {
+  TheMirrorOfHasturMemento::~TheMirrorOfHasturMemento() {
 
   }
 
-  void LeaperMemento::saveToFile(std::ostream& file) {
+  void TheMirrorOfHasturMemento::saveToFile(std::ostream& file) {
     file << position.x << ' ' << position.y << ' ' <<
             velocity.x << ' ' << velocity.y << ' ' <<
             delay << ' ' <<
@@ -47,8 +47,8 @@ namespace DIM {
             jumping << '\n';
   }
 
-  LeaperMemento LeaperMemento::loadFromFile(std::istream& file) {
-    LeaperMemento memento;
+  TheMirrorOfHasturMemento TheMirrorOfHasturMemento::loadFromFile(std::istream& file) {
+    TheMirrorOfHasturMemento memento;
     file >> memento.position.x >> memento.position.y >>
             memento.velocity.x >> memento.velocity.y >>
             memento.delay >>

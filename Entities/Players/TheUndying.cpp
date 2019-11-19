@@ -57,20 +57,12 @@ namespace DIM {
         if (e.getType() == EventManager::EventType::KeyPressed) {
           std::cout << "pressed key player1" << std::endl;
           switch (e.getKey()) {
-            case EventManager::Key::W:
-              pressed[0] = true;
-              // velocity.y -= max_speed_y;
-              break;
             case EventManager::Key::A:
-              pressed[1] = true;
+              pressed[0] = true;
               velocity.x -= max_speed_x;
               break;
-            case EventManager::Key::S:
-              pressed[2] = true;
-              // velocity.y += max_speed_y;
-              break;
             case EventManager::Key::D:
-              pressed[3] = true;
+              pressed[1] = true;
               velocity.x += max_speed_x;
               break;
             case EventManager::Key::Space:
@@ -84,27 +76,15 @@ namespace DIM {
           }
         } else if (e.getType() == EventManager::EventType::KeyReleased) {
           switch (e.getKey()) {
-            case EventManager::Key::W:
+            case EventManager::Key::A:
               if (pressed[0]) {
                 pressed[0] = false;
-                // velocity.y += max_speed_y;
-              }
-              break;
-            case EventManager::Key::A:
-              if (pressed[1]) {
-                pressed[1] = false;
                 velocity.x += max_speed_x;
               }
               break;
-            case EventManager::Key::S:
-              if (pressed[2]) {
-                pressed[2] = false;
-                // velocity.y -= max_speed_y;
-              }
-              break;
             case EventManager::Key::D:
-              if (pressed[3]) {
-                pressed[3] = false;
+              if (pressed[1]) {
+                pressed[1] = false;
                 velocity.x -= max_speed_x;
               }
               break;
@@ -128,7 +108,7 @@ namespace DIM {
 
       position = spawn;
       velocity = VectorF();
-      for (int i = 0; i < 5; ++i) {
+      for (int i = 0; i < 2; ++i) {
         pressed[i] = false;
       }
 
@@ -168,6 +148,20 @@ namespace DIM {
 
   std::string TheUndying::getID() const {
     return id;
+  }
+
+  TheUndyingMemento TheUndying::createMemento() const {
+    TheUndyingMemento memento(position, velocity, max_speed_x, max_speed_y, jumping, deathCounter);
+    return memento;
+  }
+
+  void TheUndying::loadMemento(TheUndyingMemento memento) {
+    position = memento.getPosition();
+    velocity = memento.getVelocity();
+    max_speed_x = memento.getMaxSpeedX();
+    max_speed_y = memento.getMaxSpeedY(); // mudar depois para usar VectorF
+    jumping = memento.getJumping();
+    deathCounter = memento.getDeathCounter();
   }
 }
 

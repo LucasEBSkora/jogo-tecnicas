@@ -35,6 +35,7 @@ namespace DIM {
     file >> memento.position.x >> memento.position.y >>
             memento.speed.x >> memento.speed.y >>
             memento.delay;
+    return memento;
   }
 
 }

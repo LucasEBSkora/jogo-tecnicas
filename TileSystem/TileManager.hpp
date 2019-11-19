@@ -7,6 +7,7 @@
 #include "../Entities/Entity.hpp"
 #include "../Vector.hpp"
 #include "TileMap.hpp"
+#include "../Mementos/TileManagerMemento.hpp"
 
 namespace DIM {
   class Level;
@@ -48,6 +49,9 @@ namespace DIM {
     VectorF getPlayerSpawnPosition() const;
     Level* getLevel() const;
     const std::vector<VectorF>& getEnemySpawns() const;
+
+    TileManagerMemento createMemento() const;
+    void loadMemento(TileManagerMemento memento);
   };
 }
 

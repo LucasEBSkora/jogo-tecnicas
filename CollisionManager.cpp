@@ -47,6 +47,10 @@ namespace DIM {
     tile_man = manager;
   }
 
+  const std::vector<PhysicalEntity*>& CollisionManager::getCollidables() const {
+    return collidables;
+  }
+
   void CollisionManager::checkCollisions() {
     std::deque<PhysicalEntity*> deque;
     for (auto& c : collidables) {
