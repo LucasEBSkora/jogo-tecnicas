@@ -29,6 +29,7 @@ namespace DIM {
     int decision;
     bool keep_going;
     const std::string backgroundPath;
+    std::string saveFilePath;
 
   public:
     Level(const std::string background = "");
@@ -55,8 +56,8 @@ namespace DIM {
     void markForDelete(PhysicalEntity* ent);
     void endLevel();
 
-    LevelMemento createMemento() const;
-    void loadMemento(LevelMemento memento);
+    void saveState() const;
+    void loadLastSaved();
   };
 
 }

@@ -22,6 +22,7 @@ namespace DIM {
     // player1->setLevel(this);
     // player2->setLevel(this);
     // std::cout << player2->getLevel() << std::endl;
+    saveFilePath = "templeSave.txt";
   }
 
   TempleLevel::~TempleLevel() {
