@@ -24,6 +24,8 @@ namespace DIM {
     std::vector<Tile*> tiles;
     float tileSide;
     VectorU firstSpawnPointFound;
+    VectorU firstItemSpawnPointFound;
+    VectorU firstBossSpawnPointFound;
     const char* path;
     TileMap& tileMap;
     void initializeSpecific() override;
@@ -47,8 +49,12 @@ namespace DIM {
     
     VectorF getWorldSize() const;
     VectorF getPlayerSpawnPosition() const;
+    VectorF getItemSpawnPosition() const;
+    VectorF getBossSpawnPosition() const;
     Level* getLevel() const;
     const std::vector<VectorF>& getEnemySpawns() const;
+
+    void regenRandomTiles();
 
     TileManagerMemento createMemento() const;
     void loadMemento(TileManagerMemento memento);

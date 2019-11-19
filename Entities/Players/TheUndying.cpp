@@ -55,7 +55,6 @@ namespace DIM {
     movement_id = currentLevel->getEventManager()->addKeyboardListener(
       [this] (EventManager::Event e) {
         if (e.getType() == EventManager::EventType::KeyPressed) {
-          std::cout << "pressed key player1" << std::endl;
           switch (e.getKey()) {
             case EventManager::Key::A:
               pressed[0] = true;
@@ -98,6 +97,7 @@ namespace DIM {
 
   void TheUndying::collided(std::string other_id, VectorF positionOther, VectorF size) {
     
+
     if (other_id == "Spike" || other_id == "Bullet" || other_id == "Spell" || other_id == "Caster" || other_id == "Leaper" || other_id == "Hole") {
       
       std::cout << "you are dead!";
@@ -144,10 +144,6 @@ namespace DIM {
       velocity.y = 0;
     }
     PhysicalEntity::adjust();
-  }
-
-  std::string TheUndying::getID() const {
-    return id;
   }
 
   TheUndyingMemento TheUndying::createMemento() const {

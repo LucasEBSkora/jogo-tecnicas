@@ -20,8 +20,6 @@ namespace DIM {
 
     void collided(std::string Id, VectorF position, VectorF size) override;
     void unsubscribe();
-    std::string getID() const override;
-
     ThePenitentMemento createMemento() const;
     void loadMemento(ThePenitentMemento memento);
   };

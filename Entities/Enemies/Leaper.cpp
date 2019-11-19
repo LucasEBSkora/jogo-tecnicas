@@ -5,7 +5,7 @@
 #include "../../RandomValueGenerator.hpp"
 
 namespace DIM {
-  Leaper::Leaper() : Enemy(), jumping(false), delay(0) {
+  Leaper::Leaper() : Enemy("assets/Leaper.png"), jumping(false), delay(0) {
     id = std::string("Leaper");
     max_speed_x = 60 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-25, 10);
     max_speed_y = 230 + RandomValueGenerator::getInstance()->getRandomFloatInRange(-40, 40);
@@ -47,20 +47,7 @@ namespace DIM {
     // std::cout << x << ' ' << y << std::endl;
   }
 
-  void Leaper::draw() const {
-    if (currentLevel != nullptr) {
-      currentLevel->getGraphicsManager()->draw("assets/Leaper.png", position);
-    } else {
-      std::cout << "desenhando objeto nao inicializado\n";
-    }
-  }
 
-  void Leaper::initializeSpecific() {
-    currentLevel->getGraphicsManager()->loadAsset("assets/Leaper.png");
-    VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/Leaper.png");
-    width = size.x;
-    height = size.y;
-  }
 
   void Leaper::collided(std::string other_id, VectorF positionOther, VectorF size) {
 
@@ -95,10 +82,6 @@ namespace DIM {
       velocity.y = 0;
     }
     PhysicalEntity::adjust();
-  }
-
-  std::string Leaper::getID() const {
-    return id;
   }
 
   LeaperMemento Leaper::createMemento() const {

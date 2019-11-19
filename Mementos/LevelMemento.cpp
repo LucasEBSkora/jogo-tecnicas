@@ -10,7 +10,7 @@
 #include "../Entities/Enemies/Caster.hpp"
 
 #include "../Entities/Enemies/TheChained.hpp"
-// #include "../Entities/TheMirrorOfHastur.hpp"
+#include "../Entities/TheMirrorOfHastur.hpp"
 #include "../Entities/Projectiles/Bullet.hpp"
 #include "../Entities/Projectiles/Spell.hpp"
 
@@ -36,6 +36,10 @@ namespace DIM {
         otherMementos.emplace_back("Caster", new CasterMemento(static_cast<Caster*>(e)->createMemento()));
       } else if (e->getID() == "Leaper") {
         otherMementos.emplace_back("Leaper", new LeaperMemento(static_cast<Leaper*>(e)->createMemento()));
+      } else if (e->getID() == "Mirror") {
+        otherMementos.emplace_back("Mirror", new TheMirrorOfHasturMemento(static_cast<TheMirrorOfHastur*>(e)->createMemento()));
+      } else if (e->getID() == "Boss") {
+        otherMementos.emplace_back("Boss", new TheChainedMemento(static_cast<TheChained*>(e)->createMemento()));
       }
 
       // } else if (e->getID() == "TheMirrorOfHastur") {
@@ -132,6 +136,10 @@ namespace DIM {
         memento.otherMementos.emplace_back("Caster", new CasterMemento(CasterMemento::loadFromFile(file)));
       } else if (id == "Leaper") {
         memento.otherMementos.emplace_back("Leaper", new LeaperMemento(LeaperMemento::loadFromFile(file)));
+      } else if (id == "Mirror") {
+        memento.otherMementos.emplace_back("Mirror", new TheMirrorOfHasturMemento(TheMirrorOfHasturMemento::loadFromFile(file)));
+      } else if (id == "Boss") {
+        memento.otherMementos.emplace_back("Boss", new TheChainedMemento(TheChainedMemento::loadFromFile(file)));
       }
       // std::cout << "created " << memento.otherMementos[memento.otherMementos.size() - 1].second << std::endl;
       // } else if (id == "TheMirrorOfHastur") {

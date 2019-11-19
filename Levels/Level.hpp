@@ -46,6 +46,8 @@ namespace DIM {
 
     const VectorF getPlayer1Center() const;
     const VectorF getPlayer1Spawn() const;
+    const VectorF getItemSpawn() const;
+    const VectorF getBossSpawn() const;
     CollisionManager* getCollisionManager();
     EventManager* getEventManager() const;
     GraphicsManager* getGraphicsManager() const;

@@ -8,7 +8,7 @@ namespace DIM {
 
   }
   
-  TileManagerMemento::TileManagerMemento(TileMap& tilemap, VectorU playerSpawn, std::vector<VectorF> enSpawns) {
+  TileManagerMemento::TileManagerMemento(TileMap& tilemap, VectorU playerSpawn, VectorU itemSpawn, VectorU bossSpawn, std::vector<VectorF> enSpawns) {
     tilesSize = tilemap.getSize();
     tiles = new short*[tilesSize.y];
     for (unsigned i = 0; i < tilesSize.y; ++i) {
@@ -20,6 +20,8 @@ namespace DIM {
       }
     }
     firstSpawnPointFound = playerSpawn;
+    firstItemSpawnPointFound = itemSpawn;
+    firstBossSpawnPointFound = bossSpawn;
     enemySpawns = enSpawns;
   }
 
@@ -33,6 +35,8 @@ namespace DIM {
       }
     }
     firstSpawnPointFound = other.firstSpawnPointFound;
+    firstItemSpawnPointFound = other.firstItemSpawnPointFound;
+    firstBossSpawnPointFound = other.firstBossSpawnPointFound;
     enemySpawns = other.enemySpawns;
   }
 
@@ -42,6 +46,14 @@ namespace DIM {
 
   VectorU TileManagerMemento::getFirstSpawnPointFound() const {
     return firstSpawnPointFound;
+  }
+
+  VectorU TileManagerMemento::getFirstItemSpawnPointFound() const {
+    return firstItemSpawnPointFound;
+  }
+
+  VectorU TileManagerMemento::getFirstBossSpawnPointFound() const {
+    return firstBossSpawnPointFound;
   }
 
   std::vector<VectorF> TileManagerMemento::getEnemySpawns() const {
@@ -63,6 +75,8 @@ namespace DIM {
       }
     }
     file << ' ' << firstSpawnPointFound.x << ' ' << firstSpawnPointFound.y;
+    file << ' ' << firstItemSpawnPointFound.x << ' ' << firstItemSpawnPointFound.y;
+    file << ' ' << firstBossSpawnPointFound.x << ' ' << firstBossSpawnPointFound.y;
     file << ' ' << enemySpawns.size();
     for (unsigned i = 0; i < enemySpawns.size(); ++i) {
       file << ' ' << enemySpawns[i].x << ' ' << enemySpawns[i].y;
@@ -81,6 +95,8 @@ namespace DIM {
       }
     }
     file >> memento.firstSpawnPointFound.x >> memento.firstSpawnPointFound.y;
+    file >> memento.firstItemSpawnPointFound.x >> memento.firstItemSpawnPointFound.y;
+    file >> memento.firstBossSpawnPointFound.x >> memento.firstBossSpawnPointFound.y;
     int spawnsNumber = 0;
     file >> spawnsNumber;
     memento.enemySpawns.resize(spawnsNumber);

@@ -108,6 +108,7 @@ namespace DIM {
     else if (dec == 1) {
       unpause = current = GameState::CAVERN_LEVEL;
       goToLevel(&cavern);
+      cavern.playFromStart();
     }
   }
 

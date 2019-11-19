@@ -8,8 +8,7 @@ namespace DIM {
     unsigned int size;
 
     class ListElement {
-    private: // tudo privado pra agradar o Simão
-              //Até pq friend nem existe
+    private: 
       ListElement* next;
       ListElement* prev;
       TE data;
@@ -18,10 +17,6 @@ namespace DIM {
       void setNext(ListElement* elem);
       ListElement* getPrev();
       void setPrev(ListElement* elem);
-      // ninguém além da lista sabe que existe essa classe
-      // já que é protected
-      // não pode ser nomeada fora da classe mãe
-      // o certo (como fazem na STL) é usar struct e tudo público
       TE& getData();
       void setData(const TE& elem);
 

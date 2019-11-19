@@ -13,16 +13,20 @@ namespace DIM
   class TileManagerMemento : public Memento {
   private:
     TileManagerMemento();
-    TileManagerMemento(TileMap& tilemap, VectorU playerSpawn, std::vector<VectorF> enSpawns);
+    TileManagerMemento(TileMap& tilemap, VectorU playerSpawn, VectorU itemSpawn, VectorU bossSpawn, std::vector<VectorF> enSpawns);
 
     VectorU tilesSize;
     short** tiles;
 
     VectorU firstSpawnPointFound;
+    VectorU firstItemSpawnPointFound;
+    VectorU firstBossSpawnPointFound;
     std::vector<VectorF> enemySpawns;
 
     short getTileAt(unsigned i, unsigned j) const;
     VectorU getFirstSpawnPointFound() const;
+    VectorU getFirstItemSpawnPointFound() const;
+    VectorU getFirstBossSpawnPointFound() const;
     std::vector<VectorF> getEnemySpawns() const;
 
   public:

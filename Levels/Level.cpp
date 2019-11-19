@@ -38,6 +38,14 @@ namespace DIM {
     return tileManager->getPlayerSpawnPosition() - player1->getSize() * .5;
   }
 
+  const VectorF Level::getItemSpawn() const {
+    return tileManager->getItemSpawnPosition();
+  }
+
+  const VectorF Level::getBossSpawn() const {
+    return tileManager->getBossSpawnPosition();
+  }
+
   CollisionManager* Level::getCollisionManager() { 
     return &collisions;
   }
@@ -110,6 +118,7 @@ namespace DIM {
     if (player1 == nullptr) {
       throw 'k';
     }
+    tileManager->regenRandomTiles();
     entities.removeWithoutDestroying(tileManager);
     entities.removeWithoutDestroying(player1);
     entities.removeWithoutDestroying(player2);
@@ -186,6 +195,8 @@ namespace DIM {
       collisions.addToCollisions(player2);
     }
 
+    TheMirrorOfHastur* mirror = nullptr;
+    TheChained* boss = nullptr;
     for (std::pair<std::string, Memento*>& p : memento.getOtherEntitiesMemento()) {
       if (p.first == "Bullet") {
         Bullet* bullet = new Bullet;
@@ -203,16 +214,20 @@ namespace DIM {
         Leaper* leaper = new Leaper;
         leaper->loadMemento(*static_cast<LeaperMemento*>(p.second));
         addPhysicalEntity(leaper);
+      } else if (p.first == "Mirror") {
+        mirror = new TheMirrorOfHastur;
+        mirror->loadMemento(*static_cast<TheMirrorOfHasturMemento*>(p.second));
+        addPhysicalEntity(mirror);
+        std::cout << "loadeded mirror memento" << std::endl;
+      } else if (p.first == "Boss") {
+        boss = new TheChained(nullptr);
+        boss->loadMemento(*static_cast<TheChainedMemento*>(p.second));
+        addPhysicalEntity(boss);
+        std::cout << "loadeded boss memento" << std::endl;
       }
-      // } else if (p.first == "TheMirrofOfHastur") {
-
-      //   bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
-      //   bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
-      // } else if (p.first == "TheChained") {
-
-      //   bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
-      // }
     }
-
+    if (mirror != nullptr && boss != nullptr) {
+      boss->setMirror(mirror);
+    }
   }
 }

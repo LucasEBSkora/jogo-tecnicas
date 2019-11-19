@@ -15,7 +15,7 @@ namespace DIM {
       TileManager* manager;
 
     public:
-      TileMap(const char* path = nullptr, TileManager* man = nullptr);
+      TileMap(const char* Path = nullptr, TileManager* man = nullptr);
       ~TileMap();
       void loadTileMap(const char* path);
       const VectorU getSize() const;
@@ -37,5 +37,6 @@ namespace DIM {
       const TileMapLine operator[](unsigned int i) const;
   };
 }
+
 
 #endif

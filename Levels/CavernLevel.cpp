@@ -5,6 +5,9 @@
 #include "../TileSystem/Tiles/CavernLevelTiles/CavernSpikeObstacle.hpp"
 #include "../TileSystem/Tiles/CavernLevelTiles/CavernWallTile.hpp"
 
+#include "../Entities/TheMirrorOfHastur.hpp"
+#include "../Entities/Enemies/TheChained.hpp"
+
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
 
 namespace DIM {
@@ -52,6 +55,18 @@ namespace DIM {
         }
       }
     );
+  }
+
+  void CavernLevel::playFromStart() {
+    
+    Level::playFromStart();
+
+    TheMirrorOfHastur* ent = new TheMirrorOfHastur();
+
+    TheChained* boss = new TheChained(ent);
+
+    addPhysicalEntity(boss);
+    addPhysicalEntity(ent);
   }
 
 }
