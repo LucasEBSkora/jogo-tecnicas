@@ -3,12 +3,13 @@
 
 #include "Entities/PhysicalEntity.hpp"
 #include "TileSystem/TileManager.hpp"
+#include "PhysicalEntityList.hpp"
 
 namespace DIM {
   
   class CollisionManager {
   private:
-    std::vector<PhysicalEntity*> collidables;
+    PhysicalEntityList collidables;
     TileManager* tile_man;
 
     bool colliding(PhysicalEntity* e1, PhysicalEntity* e2);
@@ -20,7 +21,7 @@ namespace DIM {
     void removeFromCollisions(PhysicalEntity* ent);
     void removeAll();
     void setTileManager(TileManager* manager);
-    const std::vector<PhysicalEntity*>& getCollidables() const;
+    const std::list<PhysicalEntity*>& getCollidables() const;
 
     void checkCollisions();
   };
