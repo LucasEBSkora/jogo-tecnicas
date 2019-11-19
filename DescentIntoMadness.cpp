@@ -56,31 +56,25 @@ namespace DIM {
     if (decisao == 0) {
       current = GameState::END_GAME;
     } else if (decisao == 1) {
-
       unpause = current = GameState::TEMPLE_LEVEL;
       goToLevel(&temple);
       temple.playFromStart();
 
     } else if (decisao == 2) {
-      std::ifstream templeIn("templeSave.txt");
-      if (templeIn) {
-        unpause = current = GameState::TEMPLE_LEVEL;
-        goToLevel(&temple);
-        temple.loadMemento(LevelMemento::loadFromFile(templeIn));
-      }
+      unpause = current = GameState::TEMPLE_LEVEL;
+      goToLevel(&temple);
+      temple.loadLastSaved();
+
     } else if (decisao == 3) {
-      
       unpause = current = GameState::CAVERN_LEVEL;
       goToLevel(&cavern);
       cavern.playFromStart();
     
     } else if (decisao == 4) {
-      std::ifstream cavernIn("cavernSave.txt");
-      if (cavernIn) {
-        unpause = current = GameState::CAVERN_LEVEL;
-        goToLevel(&cavern);
-        cavern.loadMemento(LevelMemento::loadFromFile(cavernIn));
-      }
+      unpause = current = GameState::CAVERN_LEVEL;
+      goToLevel(&cavern);
+      cavern.loadLastSaved();
+      
     }
   }
 
@@ -90,11 +84,9 @@ namespace DIM {
       current = unpause;
     } else if (decisao == 1) {
       if (unpause == GameState::TEMPLE_LEVEL) {
-        std::ofstream templeOut("templeSave.txt");
-        temple.createMemento().saveToFile(templeOut);
+        temple.saveState();
       } else {
-        std::ofstream cavernOut("cavernSave.txt");
-        cavern.createMemento().saveToFile(cavernOut);
+        cavern.saveState();
       }
       current = unpause;
     } else if (decisao == 2) {

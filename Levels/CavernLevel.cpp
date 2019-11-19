@@ -13,7 +13,7 @@
 namespace DIM {
 
   CavernLevel::CavernLevel() : Level{"assets/CavernBackground.png"}, key_event_id{0} {
-    
+    saveFilePath = "cavernSave.txt";
   }
 
   CavernLevel::~CavernLevel() {

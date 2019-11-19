@@ -1,6 +1,7 @@
 #include "Level.hpp"
 
 #include <iostream>
+#include <fstream>
 
 #include "../RandomValueGenerator.hpp"
 
@@ -15,7 +16,8 @@
 namespace DIM {
 
   Level::Level(const std::string background) : graphics(nullptr), events(nullptr), player1(nullptr),
-    player2(nullptr), tileManager(nullptr), decision{0}, keep_going{true}, backgroundPath{background} {
+    player2(nullptr), tileManager(nullptr), decision{0}, keep_going{true}, backgroundPath{background},
+    saveFilePath{} {
     
   }
 
@@ -165,69 +167,78 @@ namespace DIM {
     return decision;
   }
 
-  LevelMemento Level::createMemento() const {
+  void Level::saveState() const {
+    std::ofstream levelOut(saveFilePath);
     LevelMemento memento(tileManager, player1, player2, &collisions);
-    return memento;
+    
+    memento.saveToFile(levelOut);
   }
   
-  void Level::loadMemento(LevelMemento memento) {
-    if (player1 == nullptr) {
-      throw 'k';
-    }
-    entities.removeWithoutDestroying(tileManager);
-    entities.removeWithoutDestroying(player1);
-    entities.removeWithoutDestroying(player2);
-    entities.destroyAll();
-    collisions.removeAll();
-
-    tileManager->loadMemento(memento.getTileManagerMemento());
-    entities.addEntity(tileManager);
-
-    player1->loadMemento(memento.getPlayer1Memento());
-    entities.addEntity(player1);
-    collisions.addToCollisions(player1);
-    
-    if (player2 != nullptr) {
-      if (memento.savedPlayer2()) {
-        player2->loadMemento(memento.getPlayer2Memento());
+  void Level::loadLastSaved() {
+    std::ifstream levelIn(saveFilePath);
+    if (levelIn) {
+      LevelMemento memento = LevelMemento::loadFromFile(levelIn);
+      if (player1 == nullptr) {
+        throw 'k';
       }
-      entities.addEntity(player2);
-      collisions.addToCollisions(player2);
-    }
+      entities.removeWithoutDestroying(tileManager);
+      entities.removeWithoutDestroying(player1);
+      entities.removeWithoutDestroying(player2);
+      entities.destroyAll();
+      collisions.removeAll();
 
-    TheMirrorOfHastur* mirror = nullptr;
-    TheChained* boss = nullptr;
-    for (std::pair<std::string, Memento*>& p : memento.getOtherEntitiesMemento()) {
-      if (p.first == "Bullet") {
-        Bullet* bullet = new Bullet;
-        bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
-        addPhysicalEntity(bullet);
-      } else if (p.first == "Spell") {
-        Spell* spell = new Spell;
-        spell->loadMemento(*static_cast<SpellMemento*>(p.second));
-        addPhysicalEntity(spell);
-      } else if (p.first == "Caster") {
-        Caster* caster = new Caster;
-        caster->loadMemento(*static_cast<CasterMemento*>(p.second));
-        addPhysicalEntity(caster);
-      } else if (p.first == "Leaper") {
-        Leaper* leaper = new Leaper;
-        leaper->loadMemento(*static_cast<LeaperMemento*>(p.second));
-        addPhysicalEntity(leaper);
-      } else if (p.first == "Mirror") {
-        mirror = new TheMirrorOfHastur;
-        mirror->loadMemento(*static_cast<TheMirrorOfHasturMemento*>(p.second));
-        addPhysicalEntity(mirror);
-        std::cout << "loadeded mirror memento" << std::endl;
-      } else if (p.first == "Boss") {
-        boss = new TheChained(nullptr);
-        boss->loadMemento(*static_cast<TheChainedMemento*>(p.second));
-        addPhysicalEntity(boss);
-        std::cout << "loadeded boss memento" << std::endl;
+      tileManager->loadMemento(memento.getTileManagerMemento());
+      entities.addEntity(tileManager);
+
+      player1->loadMemento(memento.getPlayer1Memento());
+      entities.addEntity(player1);
+      collisions.addToCollisions(player1);
+      
+      if (player2 != nullptr) {
+        if (memento.savedPlayer2()) {
+          player2->loadMemento(memento.getPlayer2Memento());
+        }
+        entities.addEntity(player2);
+        collisions.addToCollisions(player2);
       }
-    }
-    if (mirror != nullptr && boss != nullptr) {
-      boss->setMirror(mirror);
+
+      TheMirrorOfHastur* mirror = nullptr;
+      TheChained* boss = nullptr;
+      for (std::pair<std::string, Memento*>& p : memento.getOtherEntitiesMemento()) {
+        if (p.first == "Bullet") {
+          Bullet* bullet = new Bullet;
+          bullet->loadMemento(*static_cast<BulletMemento*>(p.second));
+          addPhysicalEntity(bullet);
+        } else if (p.first == "Spell") {
+          Spell* spell = new Spell;
+          spell->loadMemento(*static_cast<SpellMemento*>(p.second));
+          addPhysicalEntity(spell);
+        } else if (p.first == "Caster") {
+          Caster* caster = new Caster;
+          caster->loadMemento(*static_cast<CasterMemento*>(p.second));
+          addPhysicalEntity(caster);
+        } else if (p.first == "Leaper") {
+          Leaper* leaper = new Leaper;
+          leaper->loadMemento(*static_cast<LeaperMemento*>(p.second));
+          addPhysicalEntity(leaper);
+        } else if (p.first == "Mirror") {
+          mirror = new TheMirrorOfHastur;
+          mirror->loadMemento(*static_cast<TheMirrorOfHasturMemento*>(p.second));
+          addPhysicalEntity(mirror);
+          std::cout << "loadeded mirror memento" << std::endl;
+        } else if (p.first == "Boss") {
+          boss = new TheChained(nullptr);
+          boss->loadMemento(*static_cast<TheChainedMemento*>(p.second));
+          addPhysicalEntity(boss);
+          std::cout << "loadeded boss memento" << std::endl;
+        }
+      }
+      if (mirror != nullptr && boss != nullptr) {
+        boss->setMirror(mirror);
+      }
+    } else {
+      playFromStart();
     }
   }
+  
 }
