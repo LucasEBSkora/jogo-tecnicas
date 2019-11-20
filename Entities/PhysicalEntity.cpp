@@ -33,4 +33,8 @@ namespace DIM {
     return id;
   }
 
+  Level* PhysicalEntity::getLevel() const {
+    return currentLevel;
+  }
+
 }

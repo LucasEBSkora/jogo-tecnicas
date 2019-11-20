@@ -26,6 +26,7 @@ namespace DIM {
     void setPos(VectorF pos);
     VectorF getSize() const;
     virtual std::string getID() const;
+    Level* getLevel() const;
   };
 }
 

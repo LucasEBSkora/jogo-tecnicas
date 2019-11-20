@@ -15,8 +15,6 @@ namespace DIM {
     
     void setPosition(VectorF pos);
     // VectorF getPosition() const;
-
-    Level* getLevel() const;
   };
 
 }

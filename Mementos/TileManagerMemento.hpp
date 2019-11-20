@@ -30,6 +30,7 @@ namespace DIM
     std::vector<VectorF> getEnemySpawns() const;
 
   public:
+    TileManagerMemento(const TileManagerMemento& other);
     ~TileManagerMemento();
 
     void saveToFile(std::ostream& file) override;
