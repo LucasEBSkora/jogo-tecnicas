@@ -2,7 +2,7 @@
 #define TILEMANAGER_HPP
 
 #include "Tiles/Tile.hpp"
-#include <vector>
+#include "TileVector.hpp"
 #include <tuple>
 #include "../Entities/Entity.hpp"
 #include "../Vector.hpp"
@@ -21,7 +21,7 @@ namespace DIM {
 
   class TileManager : public Entity {
   private:
-    std::vector<Tile*> tiles;
+    TileVector tiles;
     float tileSide;
     VectorU firstSpawnPointFound;
     VectorU firstItemSpawnPointFound;

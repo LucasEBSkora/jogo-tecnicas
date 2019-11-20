@@ -9,7 +9,6 @@ namespace DIM {
 
   TileMap::TileMap(const char* Path, TileManager* man) : tileMapSize{0, 0}, tileMap{nullptr},
     path{Path}, manager{man} {
-    if (path != nullptr) loadTileMap(path);
   }
 
   TileMap::~TileMap() {

@@ -28,15 +28,12 @@ namespace DIM {
 
 
   void CollisionManager::addToCollisions(PhysicalEntity* ent) {
-    collidables.push_back(ent);
+    collidables.push(ent);
   }
 
   void CollisionManager::removeFromCollisions(PhysicalEntity* ent) {
-    std::vector<PhysicalEntity*>::iterator it = std::find(collidables.begin(),
-      collidables.end(), ent);
-    if (it != collidables.end()) {
-      collidables.erase(it);
-    }
+    collidables.erase(ent);
+    
   }
 
   void CollisionManager::removeAll() {
@@ -47,15 +44,13 @@ namespace DIM {
     tile_man = manager;
   }
 
-  const std::vector<PhysicalEntity*>& CollisionManager::getCollidables() const {
-    return collidables;
+  const std::list<PhysicalEntity*>& CollisionManager::getCollidables() const {
+    return collidables.asStdList();
   }
 
   void CollisionManager::checkCollisions() {
-    std::deque<PhysicalEntity*> deque;
-    for (auto& c : collidables) {
-      deque.push_front(c);
-    }
+    std::deque<PhysicalEntity*> deque = collidables.asDeque();
+    
     while (deque.size() > 0) {
       PhysicalEntity* current = deque.back();
       deque.pop_back();
