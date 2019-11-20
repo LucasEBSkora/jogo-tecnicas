@@ -5,7 +5,7 @@
 
 namespace DIM {
 
-  static const char* TheMirrorOfHastur::path{"assets/TheMirrorOfHastur.png"};
+  const char* TheMirrorOfHastur::path{"assets/TheMirrorOfHastur.png"};
 
   TheMirrorOfHastur::TheMirrorOfHastur() : PhysicalEntity(), boundToPlayer{false} {
     id = std::string("Mirror");
