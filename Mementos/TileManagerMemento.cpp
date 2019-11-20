@@ -24,6 +24,21 @@ namespace DIM {
     firstBossSpawnPointFound = bossSpawn;
     enemySpawns = enSpawns;
   }
+  
+  TileManagerMemento::TileManagerMemento(const TileManagerMemento& other) {
+    tilesSize = other.tilesSize;
+    tiles = new short*[tilesSize.y];
+    for (unsigned i = 0; i < tilesSize.y; ++i) {
+      tiles[i] = new short[tilesSize.x];
+      for (unsigned j = 0; j < tilesSize.x; ++j) {
+        tiles[i][j] = other.tiles[i][j];
+      }
+    }
+    firstSpawnPointFound = other.firstSpawnPointFound;
+    firstItemSpawnPointFound = other.firstItemSpawnPointFound;
+    firstBossSpawnPointFound = other.firstBossSpawnPointFound;
+    enemySpawns = other.enemySpawns;
+  }
 
   short TileManagerMemento::getTileAt(unsigned i, unsigned j) const {
     return tiles[i][j];
