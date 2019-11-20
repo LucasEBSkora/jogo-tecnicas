@@ -10,7 +10,7 @@ namespace DIM {
     std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
     unsigned width = modes[0].width * .7;
     unsigned height = modes[0].height * .7;
-    window = new sf::RenderWindow(sf::VideoMode(width, height), "Game");
+    window = new sf::RenderWindow(sf::VideoMode(width, height), "Descent Into Madness", sf::Style::Resize);
     window->setKeyRepeatEnabled(false);
     width = 600;
     height = width / 16 * 9;
