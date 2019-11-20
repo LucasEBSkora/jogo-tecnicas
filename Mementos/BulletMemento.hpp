@@ -19,7 +19,6 @@ namespace DIM
     float getDelay() const;
 
   public:
-    BulletMemento(const BulletMemento&) = default;
     ~BulletMemento();
 
     void saveToFile(std::ostream& file) override;

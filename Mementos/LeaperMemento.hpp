@@ -25,7 +25,6 @@ namespace DIM
     bool getJumping() const;
 
   public:
-    LeaperMemento(const LeaperMemento&) = default;
     ~LeaperMemento();
 
     void saveToFile(std::ostream& file) override;

@@ -14,7 +14,6 @@ namespace DIM {
     float getTime() const;
 
   public:
-    TheChainedMemento(const TheChainedMemento&) = default;
     ~TheChainedMemento();
     
     void saveToFile(std::ostream& file) override;

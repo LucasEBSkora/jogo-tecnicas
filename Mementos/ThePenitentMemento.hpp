@@ -19,7 +19,6 @@ namespace DIM
     float getRadius() const;
     
   public:
-    ThePenitentMemento(const ThePenitentMemento&) = default;
     ~ThePenitentMemento();
 
     void saveToFile(std::ostream& file) override;
