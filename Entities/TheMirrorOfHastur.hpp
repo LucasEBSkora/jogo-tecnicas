@@ -11,7 +11,7 @@ namespace DIM {
   private:
     bool boundToPlayer;
     VectorF initialPosition;
-    static const char* path;
+    const char* path;
 
   public:
     TheMirrorOfHastur();
