@@ -23,7 +23,6 @@ namespace DIM
     float getMaxSpeedY() const;
 
   public:
-    CasterMemento(const CasterMemento&) = default;
     ~CasterMemento();
 
     void saveToFile(std::ostream& file) override;

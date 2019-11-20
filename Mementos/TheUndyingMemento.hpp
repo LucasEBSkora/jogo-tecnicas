@@ -25,7 +25,6 @@ namespace DIM
     unsigned int getDeathCounter() const;
 
   public:
-    TheUndyingMemento(const TheUndyingMemento&) = default;
     ~TheUndyingMemento();
 
     void saveToFile(std::ostream& file) override;

@@ -17,7 +17,6 @@ namespace DIM
     VectorF getSpeed() const;
 
   public:
-    SpellMemento(const SpellMemento&) = default;
     ~SpellMemento();
 
     void saveToFile(std::ostream& file) override;

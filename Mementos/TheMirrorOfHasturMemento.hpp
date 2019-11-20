@@ -17,7 +17,6 @@ namespace DIM
     bool getBoundToPlayer() const;
 
   public:
-    TheMirrorOfHasturMemento(const TheMirrorOfHasturMemento&) = default;
     ~TheMirrorOfHasturMemento();
 
     void saveToFile(std::ostream& file) override;

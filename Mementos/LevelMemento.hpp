@@ -31,7 +31,6 @@ namespace DIM
     std::vector<std::pair<std::string, Memento*>> getOtherEntitiesMemento() const;
     bool savedPlayer2() const;
   public:
-    // LevelMemento(const LevelMemento& other);
     ~LevelMemento();
 
     void saveToFile(std::ostream& file) override;

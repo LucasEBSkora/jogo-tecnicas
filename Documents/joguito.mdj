@@ -3750,7 +3750,7 @@
 							"tail": {
 								"$ref": "AAAAAAFuUlAo/bxIF/4="
 							},
-							"points": "3669:2004;3669:2200;1504:2200;1504:2008",
+							"points": "3669:2017;3669:2200;1504:2200;1504:2008",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFuUlBsdsCpqiw="
@@ -7733,9 +7733,9 @@
 											},
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;0",
-											"left": 3613,
+											"left": 3605,
 											"top": 1909,
-											"width": 113.59765625,
+											"width": 359.1123046875,
 											"height": 13,
 											"text": "«Memento»"
 										},
@@ -7747,9 +7747,9 @@
 											},
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;1",
-											"left": 3613,
+											"left": 3605,
 											"top": 1924,
-											"width": 113.59765625,
+											"width": 359.1123046875,
 											"height": 13,
 											"text": "BulletMemento"
 										},
@@ -7762,7 +7762,7 @@
 											"visible": false,
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;0",
-											"left": 4834.1474609375,
+											"left": 4818.1474609375,
 											"top": 2272,
 											"width": 125.6962890625,
 											"height": 13,
@@ -7777,7 +7777,7 @@
 											"visible": false,
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;0",
-											"left": 4834.1474609375,
+											"left": 4818.1474609375,
 											"top": 2272,
 											"height": 13,
 											"horizontalAlignment": 1
@@ -7785,9 +7785,9 @@
 									],
 									"fillColor": "#f3fff9",
 									"font": "Arial;13;0",
-									"left": 3608,
+									"left": 3600,
 									"top": 1904,
-									"width": 123.59765625,
+									"width": 369.1123046875,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFuUlAo/rxKAhY="
@@ -7823,9 +7823,9 @@
 											},
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;0",
-											"left": 3613,
+											"left": 3605,
 											"top": 1947,
-											"width": 113.59765625,
+											"width": 359.1123046875,
 											"height": 13,
 											"text": "-position: VectorF",
 											"horizontalAlignment": 0
@@ -7841,9 +7841,9 @@
 											},
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;0",
-											"left": 3613,
+											"left": 3605,
 											"top": 1962,
-											"width": 113.59765625,
+											"width": 359.1123046875,
 											"height": 13,
 											"text": "-speed: VectorF",
 											"horizontalAlignment": 0
@@ -7859,9 +7859,9 @@
 											},
 											"fillColor": "#f3fff9",
 											"font": "Arial;13;0",
-											"left": 3613,
+											"left": 3605,
 											"top": 1977,
-											"width": 113.59765625,
+											"width": 359.1123046875,
 											"height": 13,
 											"text": "-delay: float",
 											"horizontalAlignment": 0
@@ -7869,9 +7869,9 @@
 									],
 									"fillColor": "#f3fff9",
 									"font": "Arial;13;0",
-									"left": 3608,
+									"left": 3600,
 									"top": 1942,
-									"width": 123.59765625,
+									"width": 369.1123046875,
 									"height": 53
 								},
 								{
@@ -7883,12 +7883,32 @@
 									"model": {
 										"$ref": "AAAAAAFuUlAo/bxG3M8="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFuikwH12TTgaE=",
+											"_parent": {
+												"$ref": "AAAAAAFuUlAo/rxPRwk="
+											},
+											"model": {
+												"$ref": "AAAAAAFuikwHcGTEtDs="
+											},
+											"fillColor": "#f3fff9",
+											"font": "Arial;13;0",
+											"left": 3605,
+											"top": 2000,
+											"width": 359.1123046875,
+											"height": 13,
+											"text": "«Create»-BulletMemento(pos: VectorF, spd: VectorF, dly: float)",
+											"horizontalAlignment": 0
+										}
+									],
 									"fillColor": "#f3fff9",
 									"font": "Arial;13;0",
-									"left": 3608,
+									"left": 3600,
 									"top": 1995,
-									"width": 123.59765625,
-									"height": 10
+									"width": 369.1123046875,
+									"height": 23
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -7902,7 +7922,7 @@
 									"visible": false,
 									"fillColor": "#f3fff9",
 									"font": "Arial;13;0",
-									"left": 2405.07373046875,
+									"left": 2397.07373046875,
 									"top": 920,
 									"width": 10,
 									"height": 10
@@ -7919,7 +7939,7 @@
 									"visible": false,
 									"fillColor": "#f3fff9",
 									"font": "Arial;13;0",
-									"left": 2405.07373046875,
+									"left": 2397.07373046875,
 									"top": 920,
 									"width": 10,
 									"height": 10
@@ -7931,10 +7951,10 @@
 							"fillColor": "#f3fff9",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 3608,
+							"left": 3600,
 							"top": 1904,
-							"width": 123.59765625,
-							"height": 101,
+							"width": 369.1123046875,
+							"height": 114,
 							"nameCompartment": {
 								"$ref": "AAAAAAFuUlAo/bxJytM="
 							},
@@ -35061,6 +35081,49 @@
 											"name": "delay",
 											"visibility": "private",
 											"type": "float"
+										}
+									],
+									"operations": [
+										{
+											"_type": "UMLOperation",
+											"_id": "AAAAAAFuikwHcGTEtDs=",
+											"_parent": {
+												"$ref": "AAAAAAFuUlAo/bxG3M8="
+											},
+											"name": "BulletMemento",
+											"stereotype": {
+												"$ref": "AAAAAAFuQanv5VJ6h/o="
+											},
+											"visibility": "private",
+											"parameters": [
+												{
+													"_type": "UMLParameter",
+													"_id": "AAAAAAFuikypzGh9gag=",
+													"_parent": {
+														"$ref": "AAAAAAFuikwHcGTEtDs="
+													},
+													"name": "pos",
+													"type": "VectorF"
+												},
+												{
+													"_type": "UMLParameter",
+													"_id": "AAAAAAFuikyp0Wh+7EQ=",
+													"_parent": {
+														"$ref": "AAAAAAFuikwHcGTEtDs="
+													},
+													"name": "spd",
+													"type": "VectorF"
+												},
+												{
+													"_type": "UMLParameter",
+													"_id": "AAAAAAFuikyp1Wh/Iyo=",
+													"_parent": {
+														"$ref": "AAAAAAFuikwHcGTEtDs="
+													},
+													"name": "dly",
+													"type": "float"
+												}
+											]
 										}
 									]
 								},
