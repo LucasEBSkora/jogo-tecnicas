@@ -21,7 +21,7 @@ namespace DIM {
     void initializeSpecific() override;
 
     void update(float elapsedTime) override;
-    void collided(std::string Id, VectorF position, VectorF size) override;
+    void collided(std::string other_id, VectorF positionOther, VectorF size) override;
 
     void setMirror(TheMirrorOfHastur* m);
 

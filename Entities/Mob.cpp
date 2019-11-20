@@ -19,9 +19,4 @@ namespace DIM {
   //   return VectorF(x, y);
   // }
 
-
-  Level* Mob::getLevel() const {
-    return currentLevel;
-  }
-
 }
