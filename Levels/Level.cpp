@@ -181,6 +181,7 @@ namespace DIM {
       if (player1 == nullptr) {
         throw 'k';
       }
+      tileManager->regenRandomTiles();
       entities.removeWithoutDestroying(tileManager);
       entities.removeWithoutDestroying(player1);
       entities.removeWithoutDestroying(player2);
