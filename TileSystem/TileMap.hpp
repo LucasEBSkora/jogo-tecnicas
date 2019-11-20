@@ -10,8 +10,8 @@ namespace DIM {
     
     private:
       VectorU tileMapSize;
-      short **tileMap;
-      const char *path;
+      short** tileMap;
+      const char* path;
       TileManager* manager;
 
     public:
