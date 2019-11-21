@@ -8,35 +8,36 @@
 #include "GeometricVector.hpp"
 
 namespace DIM {
+  namespace Managers {
 
-  class GraphicsManager {
-  
-  private:
-    std::map<std::string, sf::Texture*> assets;
-    sf::RenderWindow* window;
-    sf::View view;
-    VectorF camera_pos;
-    VectorF camera_size;
-    sf::Font font;
-    bool outOfSight(VectorF at, VectorF size) const;
+    class GraphicsManager {
+    private:
+      std::map<std::string, sf::Texture*> assets;
+      sf::RenderWindow* window;
+      sf::View view;
+      Utility::VectorF camera_pos;
+      Utility::VectorF camera_size;
+      sf::Font font;
+      bool outOfSight(Utility::VectorF at, Utility::VectorF size) const;
 
-  public:
-    GraphicsManager();
-    ~GraphicsManager();
-    bool loadAsset(const std::string& path);
-    void draw(const std::string& id, VectorF at) const;
-    void drawRect(VectorF at, VectorF size, int r, int g, int b) const;
-    void drawTextCentered(const std::string& text, VectorF at, unsigned size) const;
-    void centerCamera(VectorF at);
-    sf::Window* getWindow() const;
-    void display() const;
-    void clear(int r, int g, int b) const;
-    VectorF getViewSize() const;
-    VectorF getMousePos() const;
-    VectorF getMousePosInView() const;
-    VectorF getSizeOfAsset(const std::string& id) const;
-  };
-
+    public:
+      GraphicsManager();
+      ~GraphicsManager();
+      bool loadAsset(const std::string& path);
+      void draw(const std::string& id, Utility::VectorF at) const;
+      void drawRect(Utility::VectorF at, Utility::VectorF size, int r, int g, int b) const;
+      void drawTextCentered(const std::string& text, Utility::VectorF at, unsigned size) const;
+      void centerCamera(Utility::VectorF at);
+      sf::Window* getWindow() const;
+      void display() const;
+      void clear(int r, int g, int b) const;
+      Utility::VectorF getViewSize() const;
+      Utility::VectorF getMousePos() const;
+      Utility::VectorF getMousePosInView() const;
+      Utility::VectorF getSizeOfAsset(const std::string& id) const;
+    };
+    
+  }
 }
 
-#endif // GRAPHICSMANAGER_HPP
+#endif

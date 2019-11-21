@@ -1,12 +1,15 @@
 #include "TempleSpikeObstacle.hpp"
 
 namespace DIM {
-  
-  TempleSpikeObstacle::TempleSpikeObstacle() : SpikeObstacle("assets/TempleSpikeObstacle.png") {
+  namespace Tile {
+    
+    TempleSpikeObstacle::TempleSpikeObstacle() : SpikeObstacle("assets/TempleSpikeObstacle.png") {
 
-  }
+    }
 
-  TempleSpikeObstacle::~TempleSpikeObstacle() {
+    TempleSpikeObstacle::~TempleSpikeObstacle() {
+
+    }
 
   }
 }

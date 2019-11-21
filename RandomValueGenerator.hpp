@@ -1,22 +1,24 @@
 #ifndef RANDOMVALUEGENERATOR_HPP
 #define RANDOMVALUEGENERATOR_HPP
 
-namespace DIM
-{
-  class RandomValueGenerator {
-    private:
-      RandomValueGenerator();
-      static RandomValueGenerator *instance;
+namespace DIM {
+  namespace Utility {
 
-    public:
-      ~RandomValueGenerator();
-      static const RandomValueGenerator* getInstance();
-      bool getRandomBool(unsigned short probability) const;
-      int getRandomIntInRange(int lowest, int highest) const;
-      float getRandomFloatInRange(float min, int max) const;
-  };
+    class RandomValueGenerator {
+      private:
+        RandomValueGenerator();
+        static RandomValueGenerator *instance;
 
-} // namespace DIM
+      public:
+        ~RandomValueGenerator();
+        static const RandomValueGenerator* getInstance();
+        bool getRandomBool(unsigned short probability) const;
+        int getRandomIntInRange(int lowest, int highest) const;
+        float getRandomFloatInRange(float min, int max) const;
+    };
+    
+  }
+}
 
 
 #endif

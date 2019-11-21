@@ -2,21 +2,19 @@
 #include "../Levels/Level.hpp"
 
 namespace DIM {
+  namespace Entities {
 
-  Mob::Mob() : PhysicalEntity(), velocity{0,0} {
-    
+    Mob::Mob() : PhysicalEntity(), velocity{0,0} {
+      
+    }
+
+    Mob::~Mob() {
+
+    }
+
+    void Mob::setPosition(Utility::VectorF pos) {
+      position = pos;
+    }
+
   }
-
-  Mob::~Mob() {
-
-  }
-
-  void Mob::setPosition(VectorF pos) {
-    position = pos;
-  }
-
-  // VectorF Mob::getPosition() const {
-  //   return VectorF(x, y);
-  // }
-
 }

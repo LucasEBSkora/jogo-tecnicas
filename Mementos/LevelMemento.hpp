@@ -9,38 +9,51 @@
 #include <utility>
 #include <string>
 
-namespace DIM
-{
-  class TileManager;
-  class TheUndying;
-  class ThePenitent;
-  class CollisionManager;
+namespace DIM {
 
-  class LevelMemento : Memento {
-  private:
-    TileManagerMemento* tileManagerMemento;
-    TheUndyingMemento* player1Memento;
-    ThePenitentMemento* player2Memento;
-    std::vector<std::pair<std::string, Memento*>> otherMementos;
-    LevelMemento();
-    LevelMemento(TileManager* const tileManager, TheUndying* const p1, ThePenitent* const p2, const CollisionManager* collisionManager);
+  namespace Tile {
+    class TileManager;
+  }
 
-    TileManagerMemento getTileManagerMemento() const;
-    TheUndyingMemento getPlayer1Memento() const;
-    ThePenitentMemento getPlayer2Memento() const;
-    std::vector<std::pair<std::string, Memento*>> getOtherEntitiesMemento() const;
-    bool savedPlayer2() const;
-  public:
-    ~LevelMemento();
+  namespace Entities {
+    class TheUndying;
+    class ThePenitent;
+  }
 
-    void saveToFile(std::ostream& file) override;
-    static LevelMemento loadFromFile(std::istream& file);
+  namespace Managers {
+    class CollisionManager;
+  }
 
-    friend class Level;
-    // friend class TempleLevel;
-    // friend class CavernLevel;
-  };
+  namespace Levels {
+    class Level;
+  }
+  
+  namespace Mementos {
 
-} // namespace DIM
+    class LevelMemento : Memento {
+    private:
+      TileManagerMemento* tileManagerMemento;
+      TheUndyingMemento* player1Memento;
+      ThePenitentMemento* player2Memento;
+      std::vector<std::pair<std::string, Memento*>> otherMementos;
+      LevelMemento();
+      LevelMemento(Tile::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager);
+
+      TileManagerMemento getTileManagerMemento() const;
+      TheUndyingMemento getPlayer1Memento() const;
+      ThePenitentMemento getPlayer2Memento() const;
+      std::vector<std::pair<std::string, Memento*>> getOtherEntitiesMemento() const;
+      bool savedPlayer2() const;
+    public:
+      ~LevelMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static LevelMemento loadFromFile(std::istream& file);
+
+      friend class Levels::Level;
+    };
+
+  }
+}
 
 #endif

@@ -5,25 +5,28 @@
 #include "../Mementos/LeaperMemento.hpp"
 
 namespace DIM {
-  class Leaper : public Enemy {
-  private:
-    float max_speed_x;
-    float max_speed_y;
-    bool jumping;
-    int delay;
-  public:
-    Leaper();
-    ~Leaper();
+  namespace Entities {
+      
+    class Leaper : public Enemy {
+    private:
+      float max_speed_x;
+      float max_speed_y;
+      bool jumping;
+      int delay;
+    public:
+      Leaper();
+      ~Leaper();
 
-    void update(float elapsedTime) override;
+      void update(float elapsedTime) override;
 
-    void collided(std::string other_id, VectorF positionOther, VectorF size) override;
-    void adjust() override;
+      void collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) override;
+      void adjust() override;
 
-    LeaperMemento createMemento() const;
-    void loadMemento(LeaperMemento memento);
-  };
+      Mementos::LeaperMemento createMemento() const;
+      void loadMemento(Mementos::LeaperMemento memento);
+    };
 
+  }
 }
 
 #endif

@@ -4,16 +4,19 @@
 #include "../Tile.hpp"
 
 namespace DIM {
-  class BulletObstacle : public Tile {
-  private:
-    int delay;
+  namespace Tile {
+      
+    class BulletObstacle : public Tile {
+    private:
+      int delay;
 
-  public:
-    BulletObstacle();
-    ~BulletObstacle();
-    void collided(const std::string id, const VectorF positionOther, const VectorU positionMine) override;
-  };
+    public:
+      BulletObstacle();
+      ~BulletObstacle();
+      void collided(const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine) override;
+    };
 
+  }
 }
 
 #endif

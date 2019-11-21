@@ -4,24 +4,27 @@
 #include "Menu.hpp"
 
 namespace DIM {
-  class MainMenu : public Menu {
-  private:
-    bool keep_going;
-    int key_event_id;
-    int mouse_event_id;
-    int return_val;
-    bool twoPlayers;
-  public:
-    MainMenu();
-    ~MainMenu();
+  namespace Menus {
+      
+    class MainMenu : public Menu {
+    private:
+      bool keep_going;
+      int key_event_id;
+      int mouse_event_id;
+      int return_val;
+      bool twoPlayers;
+    public:
+      MainMenu();
+      ~MainMenu();
 
-    void init(GraphicsManager& g, EventManager& e) override;
+      void init(Managers::GraphicsManager& g, Managers::EventManager& e) override;
 
-    const int exec() override;
+      const int exec() override;
 
-    const bool useTwoPlayers() const;
-  };
+      const bool useTwoPlayers() const;
+    };
 
+  }
 }
 
 #endif

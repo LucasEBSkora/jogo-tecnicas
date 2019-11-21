@@ -5,18 +5,21 @@
 #include "../Mementos/SpellMemento.hpp"
 
 namespace DIM {
-  class Spell : public Projectile {
-  private:
+  namespace Entities {
+      
+    class Spell : public Projectile {
+    private:
 
-  public:
-    Spell(VectorF position = VectorF(0.0f, 0.0f), VectorF speed = VectorF(0.0f, 0.0f));
-    ~Spell();
-    void collided(std::string other_id, VectorF position, VectorF size) override;
-    
-    SpellMemento createMemento() const;
-    void loadMemento(SpellMemento memento);
-  };
+    public:
+      Spell(Utility::VectorF position = Utility::VectorF(0.0f, 0.0f), Utility::VectorF speed = Utility::VectorF(0.0f, 0.0f));
+      ~Spell();
+      void collided(std::string other_id, Utility::VectorF position, Utility::VectorF size) override;
+      
+      Mementos::SpellMemento createMemento() const;
+      void loadMemento(Mementos::SpellMemento memento);
+    };
 
+  }
 }
 
 #endif

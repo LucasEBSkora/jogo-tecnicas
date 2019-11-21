@@ -6,25 +6,28 @@
 #include "PhysicalEntityList.hpp"
 
 namespace DIM {
-  
-  class CollisionManager {
-  private:
-    PhysicalEntityList collidables;
-    TileManager* tile_man;
+  namespace Managers {
 
-    bool colliding(PhysicalEntity* e1, PhysicalEntity* e2);
-  public:
-    CollisionManager();
-    virtual ~CollisionManager();
+    class CollisionManager {
+    private:
+      PhysicalEntityList collidables;
+      Tile::TileManager* tile_man;
 
-    void addToCollisions(PhysicalEntity* ent);
-    void removeFromCollisions(PhysicalEntity* ent);
-    void removeAll();
-    void setTileManager(TileManager* manager);
-    const std::list<PhysicalEntity*>& getCollidables() const;
+      bool colliding(Entities::PhysicalEntity* e1, Entities::PhysicalEntity* e2);
+    public:
+      CollisionManager();
+      virtual ~CollisionManager();
 
-    void checkCollisions();
-  };
+      void addToCollisions(Entities::PhysicalEntity* ent);
+      void removeFromCollisions(Entities::PhysicalEntity* ent);
+      void removeAll();
+      void setTileManager(Tile::TileManager* manager);
+      const std::list<Entities::PhysicalEntity*>& getCollidables() const;
+
+      void checkCollisions();
+    };
+
+  }
 }
 
 #endif

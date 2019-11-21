@@ -4,29 +4,36 @@
 #include "Memento.hpp"
 #include "../GeometricVector.hpp"
 
-namespace DIM
-{
-  class BulletMemento : public Memento {
-  private:
-    BulletMemento(VectorF pos = VectorF(0, 0), VectorF spd = VectorF(0, 0), float dly = 0);
+namespace DIM {
 
-    VectorF position;
-    VectorF speed;
-    float delay;
+  namespace Entities {
+    class Bullet;
+  }
 
-    VectorF getPosition() const;
-    VectorF getSpeed() const;
-    float getDelay() const;
+  namespace Mementos {
+      
+    class BulletMemento : public Memento {
+    private:
+      BulletMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF spd = Utility::VectorF(0, 0), float dly = 0);
 
-  public:
-    ~BulletMemento();
+      Utility::VectorF position;
+      Utility::VectorF speed;
+      float delay;
 
-    void saveToFile(std::ostream& file) override;
-    static BulletMemento loadFromFile(std::istream& file);
+      Utility::VectorF getPosition() const;
+      Utility::VectorF getSpeed() const;
+      float getDelay() const;
 
-    friend class Bullet;
-  };
+    public:
+      ~BulletMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static BulletMemento loadFromFile(std::istream& file);
+
+      friend class Entities::Bullet;
+    };
   
-} // namespace DIM
+  }
+}
 
 #endif

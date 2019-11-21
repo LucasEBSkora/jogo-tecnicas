@@ -1,12 +1,15 @@
 #include "GameEndTile.hpp"
 
 namespace DIM {
-  
-  GameEndTile::GameEndTile() : LevelEndTile() {
+  namespace Tile {
+    
+    GameEndTile::GameEndTile() : LevelEndTile() {
 
-  }
+    }
 
-  GameEndTile::~GameEndTile() {
+    GameEndTile::~GameEndTile() {
+
+    }
 
   }
 }

@@ -4,14 +4,17 @@
 #include "../Tile.hpp"
 
 namespace DIM {
-  class HoleObstacle : public Tile {
-  private:
+  namespace Tile {
+      
+    class HoleObstacle : public Tile {
+    private:
 
-  public:
-    HoleObstacle();
-    ~HoleObstacle();
-  };
+    public:
+      HoleObstacle();
+      ~HoleObstacle();
+    };
 
+  }
 }
 
 #endif

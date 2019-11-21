@@ -4,27 +4,34 @@
 #include "Memento.hpp"
 #include "../GeometricVector.hpp"
 
-namespace DIM
-{
-  class TheMirrorOfHasturMemento : public Memento {
-  private:
-    TheMirrorOfHasturMemento(VectorF pos = VectorF(0, 0), bool bound = false);
+namespace DIM {
 
-    VectorF position;
-    bool boundToPlayer;
+  namespace Entities {
+    class TheMirrorOfHastur;
+  }
 
-    VectorF getPosition() const;
-    bool getBoundToPlayer() const;
+  namespace Mementos {
+      
+    class TheMirrorOfHasturMemento : public Memento {
+    private:
+      TheMirrorOfHasturMemento(Utility::VectorF pos = Utility::VectorF(0, 0), bool bound = false);
 
-  public:
-    ~TheMirrorOfHasturMemento();
+      Utility::VectorF position;
+      bool boundToPlayer;
 
-    void saveToFile(std::ostream& file) override;
-    static TheMirrorOfHasturMemento loadFromFile(std::istream& file);
+      Utility::VectorF getPosition() const;
+      bool getBoundToPlayer() const;
 
-    friend class TheMirrorOfHastur;
-  };
+    public:
+      ~TheMirrorOfHasturMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static TheMirrorOfHasturMemento loadFromFile(std::istream& file);
+
+      friend class Entities::TheMirrorOfHastur;
+    };
   
-} // namespace DIM
+  }
+}
 
 #endif

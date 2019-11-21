@@ -2,42 +2,47 @@
 #define TILEMANAGERMEMENTO_HPP
 
 #include "Memento.hpp"
-// #include "../TileSystem/TileMap.hpp"
 #include "../GeometricVector.hpp"
 #include <vector>
 
-namespace DIM
-{
-  class TileMap;
+namespace DIM {
   
-  class TileManagerMemento : public Memento {
-  private:
-    TileManagerMemento();
-    TileManagerMemento(TileMap& tilemap, VectorU playerSpawn, VectorU itemSpawn, VectorU bossSpawn, std::vector<VectorF> enSpawns);
+  namespace Tile {
+    class TileMap;
+    class TileManager;
+  }
 
-    VectorU tilesSize;
-    short** tiles;
+  namespace Mementos {
 
-    VectorU firstSpawnPointFound;
-    VectorU firstItemSpawnPointFound;
-    VectorU firstBossSpawnPointFound;
-    std::vector<VectorF> enemySpawns;
+    class TileManagerMemento : public Memento {
+    private:
+      TileManagerMemento();
+      TileManagerMemento(Tile::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns);
 
-    short getTileAt(unsigned i, unsigned j) const;
-    VectorU getFirstSpawnPointFound() const;
-    VectorU getFirstItemSpawnPointFound() const;
-    VectorU getFirstBossSpawnPointFound() const;
-    std::vector<VectorF> getEnemySpawns() const;
+      Utility::VectorU tilesSize;
+      short** tiles;
 
-  public:
-    TileManagerMemento(const TileManagerMemento& other);
-    ~TileManagerMemento();
+      Utility::VectorU firstSpawnPointFound;
+      Utility::VectorU firstItemSpawnPointFound;
+      Utility::VectorU firstBossSpawnPointFound;
+      std::vector<Utility::VectorF> enemySpawns;
 
-    void saveToFile(std::ostream& file) override;
-    static TileManagerMemento loadFromFile(std::istream& file);
-    friend class TileManager;
-  };
-  
-} // namespace DIM
+      short getTileAt(unsigned i, unsigned j) const;
+      Utility::VectorU getFirstSpawnPointFound() const;
+      Utility::VectorU getFirstItemSpawnPointFound() const;
+      Utility::VectorU getFirstBossSpawnPointFound() const;
+      std::vector<Utility::VectorF> getEnemySpawns() const;
+
+    public:
+      TileManagerMemento(const TileManagerMemento& other);
+      ~TileManagerMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static TileManagerMemento loadFromFile(std::istream& file);
+      friend class Tile::TileManager;
+    };
+
+  } 
+}
 
 #endif

@@ -5,28 +5,30 @@
 #include "../Mementos/CasterMemento.hpp"
 
 namespace DIM {
-  class Caster : public Enemy {
-  
-  private:
-  
-    static const float spellSpeed;
+  namespace Entities {
 
-    float max_speed_x;
-    float max_speed_y;
-    int delay;
-  public:
-    Caster();
-    ~Caster();
+    class Caster : public Enemy {
+    private:
+    
+      static const float spellSpeed;
 
-    void update(float elapsedTime) override;
+      float max_speed_x;
+      float max_speed_y;
+      int delay;
+    public:
+      Caster();
+      ~Caster();
 
-    void collided(std::string other_id, VectorF positionOther, VectorF size) override;
-    void adjust() override;
+      void update(float elapsedTime) override;
 
-    CasterMemento createMemento() const;
-    void loadMemento(CasterMemento memento);
-  };
+      void collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) override;
+      void adjust() override;
 
+      Mementos::CasterMemento createMemento() const;
+      void loadMemento(Mementos::CasterMemento memento);
+    };
+
+  }
 }
 
 #endif

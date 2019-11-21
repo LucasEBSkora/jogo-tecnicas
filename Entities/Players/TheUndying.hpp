@@ -5,29 +5,33 @@
 #include "../Mementos/TheUndyingMemento.hpp"
 
 namespace DIM {
-  //Player 1
-  class TheUndying : public Mob {
-  private:
-    float max_speed_x;
-    float max_speed_y;
-    int movement_id;
-    bool pressed[2];
-    bool jumping;
-    unsigned int deathCounter;
-  public:
-    TheUndying();
-    ~TheUndying();
-
-    void update(float elapsedTime) override;
-    void draw() const override;
-    void initializeSpecific() override;
-
-    void collided(std::string Id, VectorF position, VectorF size) override;
-    void adjust() override;
+  namespace Entities {
     
-    TheUndyingMemento createMemento() const;
-    void loadMemento(TheUndyingMemento memento);
-  };
+    //Player 1
+    class TheUndying : public Mob {
+    private:
+      float max_speed_x;
+      float max_speed_y;
+      int movement_id;
+      bool pressed[2];
+      bool jumping;
+      unsigned int deathCounter;
+    public:
+      TheUndying();
+      ~TheUndying();
+
+      void update(float elapsedTime) override;
+      void draw() const override;
+      void initializeSpecific() override;
+
+      void collided(std::string Id, Utility::VectorF position, Utility::VectorF size) override;
+      void adjust() override;
+      
+      Mementos::TheUndyingMemento createMemento() const;
+      void loadMemento(Mementos::TheUndyingMemento memento);
+    };
+
+  }
 }
 
 #endif

@@ -5,29 +5,31 @@
 #include "../../GraphicsManager.hpp"
 
 namespace DIM {
+  namespace Tile {
 
-  class TileManager;
+    class TileManager;
 
-  class Tile {
-  
-  protected:
-  
-    const char* ID;
-    const char* path;
-    VectorF size;
+    class Tile {
+    protected:
+    
+      const char* ID;
+      const char* path;
+      Utility::VectorF size;
 
-    GraphicsManager* graphicsManager;
-    TileManager* parent;
-  
-  public:
-    Tile(const char* Id = nullptr, const char* Path = nullptr, const VectorF Size = VectorF(32.0f, 32.0f));
-    virtual ~Tile();
+      Managers::GraphicsManager* graphicsManager;
+      TileManager* parent;
+    
+    public:
+      Tile(const char* Id = nullptr, const char* Path = nullptr, const Utility::VectorF Size = Utility::VectorF(32.0f, 32.0f));
+      virtual ~Tile();
 
-    virtual void collided(const std::string id, const VectorF positionOther, const VectorU positionMine);
-    virtual void initialize(GraphicsManager* graph, TileManager* Parent);
-    virtual void draw(VectorF at) const;
-    const std::string getID() const;
-  };
+      virtual void collided(const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine);
+      virtual void initialize(Managers::GraphicsManager* graph, TileManager* Parent);
+      virtual void draw(Utility::VectorF at) const;
+      const std::string getID() const;
+    };
+
+  }
 }
 
 #endif

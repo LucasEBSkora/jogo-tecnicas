@@ -5,28 +5,30 @@
 #include "../Entities/Entity.hpp"
 
 namespace DIM {
+  namespace Lists {
 
-  class EntityList {
-  private:
-    List<Entity*> entities;
-  public:
-    using iterator = List<Entity*>::iterator;
+    class EntityList {
+    private:
+      List<Entities::Entity*> entities;
+    public:
+      using iterator = List<Entities::Entity*>::iterator;
 
-    EntityList();
-    ~EntityList();
+      EntityList();
+      ~EntityList();
 
-    void addEntity(Entity* ent);
-    void removeWithoutDestroying(Entity* ent);
+      void addEntity(Entities::Entity* ent);
+      void removeWithoutDestroying(Entities::Entity* ent);
 
-    void drawAll();
-    void updateAll(float elapsedTime);
-    void initializeAll(Level* level);
-    void destroyAll();
+      void drawAll();
+      void updateAll(float elapsedTime);
+      void initializeAll(Levels::Level* level);
+      void destroyAll();
 
-    iterator begin();
-    iterator end();
-  };
+      iterator begin();
+      iterator end();
+    };
 
+  }
 }
 
 #endif

@@ -4,27 +4,34 @@
 #include "Memento.hpp"
 #include "../GeometricVector.hpp"
 
-namespace DIM
-{
-  class SpellMemento : public Memento {
-  private:
-    SpellMemento(VectorF pos = VectorF(0, 0), VectorF spd = VectorF(0, 0));
+namespace DIM {
 
-    VectorF position;
-    VectorF speed;
+  namespace Entities {
+    class Spell;
+  }
 
-    VectorF getPosition() const;
-    VectorF getSpeed() const;
+  namespace Mementos {
+      
+    class SpellMemento : public Memento {
+    private:
+      SpellMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF spd = Utility::VectorF(0, 0));
 
-  public:
-    ~SpellMemento();
+      Utility::VectorF position;
+      Utility::VectorF speed;
 
-    void saveToFile(std::ostream& file) override;
-    static SpellMemento loadFromFile(std::istream& file);
+      Utility::VectorF getPosition() const;
+      Utility::VectorF getSpeed() const;
 
-    friend class Spell;
-  };
+    public:
+      ~SpellMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static SpellMemento loadFromFile(std::istream& file);
+
+      friend class Entities::Spell;
+    };
   
-} // namespace DIM
+  }
+}
 
 #endif

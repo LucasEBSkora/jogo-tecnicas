@@ -4,14 +4,17 @@
 #include "Tile.hpp"
 
 namespace DIM {
-  class SpikeObstacle : public Tile {
-  private:
+  namespace Tile {
+      
+    class SpikeObstacle : public Tile {
+    private:
 
-  public:
-    SpikeObstacle(const char* Path = "");
-    virtual ~SpikeObstacle();
-  };
+    public:
+      SpikeObstacle(const char* Path = "");
+      virtual ~SpikeObstacle();
+    };
 
+  }
 }
 
 #endif

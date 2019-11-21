@@ -11,62 +11,64 @@
 #include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
 
 namespace DIM {
+  namespace Levels {
 
-  CavernLevel::CavernLevel() : Level{"assets/CavernBackground.png"}, key_event_id{0} {
-    saveFilePath = "cavernSave.txt";
-  }
-
-  CavernLevel::~CavernLevel() {
-    
-    if (key_event_id != 0) {
-      events->removeKeyboardListener(key_event_id);
-      key_event_id = 0;
+    CavernLevel::CavernLevel() : Level{"assets/CavernBackground.png"}, key_event_id{0} {
+      saveFilePath = "cavernSave.txt";
     }
-    entities.removeWithoutDestroying(player1);
-    entities.removeWithoutDestroying(player2);
 
-    player1 = nullptr;
-    player2 = nullptr;
-
-  }
-
-
-  void CavernLevel::init(GraphicsManager& g, EventManager& e) {
-    Level::init(g, e);
-    tileManager = new TileManager({
-      new CavernWallTile(),
-      new PlayerSpawnPoint(),
-      new CavernSpikeObstacle(),
-      new HoleObstacle(),
-      new GameEndTile()
-    }, 32.0f, "assets/cavern.tilemap");
-    
-    tileManager->setLevel(this);
-    entities.addEntity(tileManager);
-    collisions.setTileManager(tileManager);
-    tileManager->initializeGeneric(this);
-
-    key_event_id = events->addKeyboardListener(
-      [this] (EventManager::Event e) {
-        if (e.getType() == EventManager::EventType::KeyPressed &&
-            e.getKey() == EventManager::Key::Escape) {
-          decision = 0;
-          keep_going = false;
-        }
+    CavernLevel::~CavernLevel() {
+      
+      if (key_event_id != 0) {
+        events->removeKeyboardListener(key_event_id);
+        key_event_id = 0;
       }
-    );
+      entities.removeWithoutDestroying(player1);
+      entities.removeWithoutDestroying(player2);
+
+      player1 = nullptr;
+      player2 = nullptr;
+
+    }
+
+
+    void CavernLevel::init(Managers::GraphicsManager& g, Managers::EventManager& e) {
+      Level::init(g, e);
+      tileManager = new Tile::TileManager({
+        new Tile::CavernWallTile(),
+        new Tile::PlayerSpawnPoint(),
+        new Tile::CavernSpikeObstacle(),
+        new Tile::HoleObstacle(),
+        new Tile::GameEndTile()
+      }, 32.0f, "assets/cavern.tilemap");
+      
+      tileManager->setLevel(this);
+      entities.addEntity(tileManager);
+      collisions.setTileManager(tileManager);
+      tileManager->initializeGeneric(this);
+
+      key_event_id = events->addKeyboardListener(
+        [this] (Managers::EventManager::Event e) {
+          if (e.getType() == Managers::EventManager::EventType::KeyPressed &&
+              e.getKey() == Managers::EventManager::Key::Escape) {
+            decision = 0;
+            keep_going = false;
+          }
+        }
+      );
+    }
+
+    void CavernLevel::playFromStart() {
+      
+      Level::playFromStart();
+
+      Entities::TheMirrorOfHastur* ent = new Entities::TheMirrorOfHastur();
+
+      Entities::TheChained* boss = new Entities::TheChained(ent);
+
+      addPhysicalEntity(boss);
+      addPhysicalEntity(ent);
+    }
+
   }
-
-  void CavernLevel::playFromStart() {
-    
-    Level::playFromStart();
-
-    TheMirrorOfHastur* ent = new TheMirrorOfHastur();
-
-    TheChained* boss = new TheChained(ent);
-
-    addPhysicalEntity(boss);
-    addPhysicalEntity(ent);
-  }
-
 }

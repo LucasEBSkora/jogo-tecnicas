@@ -4,14 +4,17 @@
 #include "Tile.hpp"
 
 namespace DIM {
-  class PlayerSpawnPoint : public Tile {
-  private:
+  namespace Tile {
 
-  public:
-    PlayerSpawnPoint();
-    ~PlayerSpawnPoint();
-  };
+    class PlayerSpawnPoint : public Tile {
+    private:
 
+    public:
+      PlayerSpawnPoint();
+      ~PlayerSpawnPoint();
+    };
+
+  }
 }
 
 #endif

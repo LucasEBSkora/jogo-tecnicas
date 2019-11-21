@@ -4,35 +4,42 @@
 #include "Memento.hpp"
 #include "../GeometricVector.hpp"
 
-namespace DIM
-{
-  class TheUndyingMemento : public Memento {
-  private:
-    TheUndyingMemento(VectorF pos = VectorF(0, 0), VectorF vel = VectorF(0, 0), float max_vx = 0, float max_vy = 0, bool jmp = false, unsigned int deaths = 0);
+namespace DIM {
 
-    VectorF position;
-    VectorF velocity;
-    float max_speed_x;
-    float max_speed_y;
-    bool jumping;
-    unsigned int deathCounter;
+  namespace Entities {
+    class TheUndying;
+  }
 
-    VectorF getPosition() const;
-    VectorF getVelocity() const;
-    float getMaxSpeedX() const;
-    float getMaxSpeedY() const;
-    bool getJumping() const;
-    unsigned int getDeathCounter() const;
+  namespace Mementos {
+      
+    class TheUndyingMemento : public Memento {
+    private:
+      TheUndyingMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF vel = Utility::VectorF(0, 0), float max_vx = 0, float max_vy = 0, bool jmp = false, unsigned int deaths = 0);
 
-  public:
-    ~TheUndyingMemento();
+      Utility::VectorF position;
+      Utility::VectorF velocity;
+      float max_speed_x;
+      float max_speed_y;
+      bool jumping;
+      unsigned int deathCounter;
 
-    void saveToFile(std::ostream& file) override;
-    static TheUndyingMemento loadFromFile(std::istream& file);
+      Utility::VectorF getPosition() const;
+      Utility::VectorF getVelocity() const;
+      float getMaxSpeedX() const;
+      float getMaxSpeedY() const;
+      bool getJumping() const;
+      unsigned int getDeathCounter() const;
 
-    friend class TheUndying;
-  };
-  
-} // namespace DIM
+    public:
+      ~TheUndyingMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static TheUndyingMemento loadFromFile(std::istream& file);
+
+      friend class Entities::TheUndying;
+    };
+
+  } 
+}
 
 #endif

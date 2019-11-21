@@ -112,11 +112,11 @@ namespace DIM {
     } 
   }
   
-  void DescentIntoMadness::goToLevel(Level* level) {
+  void DescentIntoMadness::goToLevel(Levels::Level* level) {
     player1.setLevel(level);
     player2.setLevel(menu.useTwoPlayers() ? level : nullptr);
 
     level->setPlayers(&player1, menu.useTwoPlayers() ? &player2 : nullptr);
-
   }
+
 }

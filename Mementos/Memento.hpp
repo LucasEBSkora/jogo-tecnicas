@@ -4,18 +4,20 @@
 #include <istream>
 #include <ostream>
 
-namespace DIM
-{
-  class Memento {
-  private:
+namespace DIM {
+  namespace Mementos {
+      
+    class Memento {
+    private:
 
-  public:
-    Memento();
-    virtual ~Memento();
-    
-    virtual void saveToFile(std::ostream& file) = 0;
-  };
+    public:
+      Memento();
+      virtual ~Memento();
+      
+      virtual void saveToFile(std::ostream& file) = 0;
+    };
   
-} // namespace DIM
+  }
+}
 
 #endif

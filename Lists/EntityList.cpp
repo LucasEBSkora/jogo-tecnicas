@@ -1,58 +1,61 @@
 #include "EntityList.hpp"
 
 namespace DIM {
-  EntityList::EntityList() { 
-
-  }
-
-  EntityList::~EntityList(){ 
-    destroyAll();
-  }
-
-  void EntityList::addEntity(Entity* ent){
-    if (ent != nullptr)
-      entities.addElementBack(ent);
-    
-  }
-
-  void EntityList::removeWithoutDestroying(Entity* ent){
-    if (ent != nullptr)
-      entities.removeFirstMatchingElement(ent);
-  }
-
-  void EntityList::drawAll(){ 
-    
-    for (iterator i = entities.begin(); i != entities.end(); ++i) {
+  namespace Lists {
       
-      (*i)->draw();
+    EntityList::EntityList() { 
+
     }
-  }
 
-  void EntityList::updateAll(float elapsedTime){ 
-    for (iterator i = entities.begin(); i != entities.end(); ++i) {
-      (*i)->update(elapsedTime);
+    EntityList::~EntityList(){ 
+      destroyAll();
     }
-  }
 
-  void EntityList::initializeAll(Level* level){
-    for (iterator i = entities.begin(); i != entities.end(); ++i) {
-      (*i)->initializeGeneric(level);
+    void EntityList::addEntity(Entities::Entity* ent){
+      if (ent != nullptr)
+        entities.addElementBack(ent);
+      
     }
-  }
 
-  void EntityList::destroyAll(){
-    for (iterator i = entities.begin(); i != entities.end(); ++i) {
-      delete (*i);
+    void EntityList::removeWithoutDestroying(Entities::Entity* ent){
+      if (ent != nullptr)
+        entities.removeFirstMatchingElement(ent);
     }
-    entities.clear();
-  }
 
-  EntityList::iterator EntityList::begin() {
-    return entities.begin();
-  }
+    void EntityList::drawAll(){ 
+      
+      for (iterator i = entities.begin(); i != entities.end(); ++i) {
+        
+        (*i)->draw();
+      }
+    }
 
-  EntityList::iterator EntityList::end() {
-    return entities.end();
-  }
+    void EntityList::updateAll(float elapsedTime){ 
+      for (iterator i = entities.begin(); i != entities.end(); ++i) {
+        (*i)->update(elapsedTime);
+      }
+    }
 
+    void EntityList::initializeAll(Levels::Level* level){
+      for (iterator i = entities.begin(); i != entities.end(); ++i) {
+        (*i)->initializeGeneric(level);
+      }
+    }
+
+    void EntityList::destroyAll(){
+      for (iterator i = entities.begin(); i != entities.end(); ++i) {
+        delete (*i);
+      }
+      entities.clear();
+    }
+
+    EntityList::iterator EntityList::begin() {
+      return entities.begin();
+    }
+
+    EntityList::iterator EntityList::end() {
+      return entities.end();
+    }
+
+  }
 }

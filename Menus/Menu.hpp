@@ -7,20 +7,23 @@
 #include <vector>
 
 namespace DIM {
-  class Menu {
-  protected:
-    GraphicsManager* graphics;
-    EventManager* events;
-    std::vector<Button*> buttons;
-  public:
-    Menu();
-    virtual ~Menu();
+  namespace Menus {
+      
+    class Menu {
+    protected:
+      Managers::GraphicsManager* graphics;
+      Managers::EventManager* events;
+      std::vector<Button*> buttons;
+    public:
+      Menu();
+      virtual ~Menu();
 
-    virtual void init(GraphicsManager& g, EventManager& e);
+      virtual void init(Managers::GraphicsManager& g, Managers::EventManager& e);
 
-    virtual const int exec() = 0;
-  };
+      virtual const int exec() = 0;
+    };
 
+  }
 }
 
 #endif

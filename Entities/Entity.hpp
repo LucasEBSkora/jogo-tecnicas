@@ -5,27 +5,32 @@
 
 namespace DIM {
 
-  class Level;
+  namespace Levels {
+    class Level;
+  }
 
-  class Entity {
-  protected:
-    
-    VectorF position;
-    Level* currentLevel;
+  namespace Entities {
 
-    virtual void initializeSpecific() = 0;
+    class Entity {
+    protected:
+      
+      Utility::VectorF position;
+      Levels::Level* currentLevel;
 
-  public:
-    Entity();
-    virtual ~Entity();
+      virtual void initializeSpecific() = 0;
 
-    virtual void update(float elapsedTime) = 0;
-    virtual void draw() const = 0;
-    void setLevel(Level* level);
-    void initializeGeneric(Level* currentLevel);
+    public:
+      Entity();
+      virtual ~Entity();
 
-  };
+      virtual void update(float elapsedTime) = 0;
+      virtual void draw() const = 0;
+      void setLevel(Levels::Level* level);
+      void initializeGeneric(Levels::Level* currentLevel);
+
+    };
   
+  }
 }
 
 #endif

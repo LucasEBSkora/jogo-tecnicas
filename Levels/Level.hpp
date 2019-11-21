@@ -13,53 +13,59 @@
 #include "../Mementos/LevelMemento.hpp"
 
 namespace DIM {
-  class PhysicalEntity;
 
-  class Level {
 
-  protected:
-    GraphicsManager* graphics;
-    EventManager* events;
-    CollisionManager collisions;
-    EntityList entities;
-    TheUndying* player1;
-    ThePenitent* player2;
-    TileManager* tileManager;
-    std::set<PhysicalEntity*> markedToDelete;
-    int decision;
-    bool keep_going;
-    const std::string backgroundPath;
-    std::string saveFilePath;
+  namespace Entities {
+    class PhysicalEntity;
+  }
 
-  public:
-    Level(const std::string background = "");
-    virtual ~Level();
+  namespace Levels {
 
-    virtual void init(GraphicsManager& g, EventManager& e);
+    class Level {
+    protected:
+      Managers::GraphicsManager* graphics;
+      Managers::EventManager* events;
+      Managers::CollisionManager collisions;
+      Lists::EntityList entities;
+      Entities::TheUndying* player1;
+      Entities::ThePenitent* player2;
+      Tile::TileManager* tileManager;
+      std::set<Entities::PhysicalEntity*> markedToDelete;
+      int decision;
+      bool keep_going;
+      const std::string backgroundPath;
+      std::string saveFilePath;
 
-    virtual void setPlayers(TheUndying* p1, ThePenitent* p2 = nullptr);
-    virtual void addPhysicalEntity(PhysicalEntity* ent);
-    virtual void generateEnemies();
+    public:
+      Level(const std::string background = "");
+      virtual ~Level();
 
-    
-    virtual void playFromStart();
-    virtual int exec();
+      virtual void init(Managers::GraphicsManager& g, Managers::EventManager& e);
 
-    const VectorF getPlayer1Center() const;
-    const VectorF getPlayer1Spawn() const;
-    const VectorF getItemSpawn() const;
-    const VectorF getBossSpawn() const;
-    CollisionManager* getCollisionManager();
-    EventManager* getEventManager() const;
-    GraphicsManager* getGraphicsManager() const;
+      virtual void setPlayers(Entities::TheUndying* p1, Entities::ThePenitent* p2 = nullptr);
+      virtual void addPhysicalEntity(Entities::PhysicalEntity* ent);
+      virtual void generateEnemies();
 
-    void markForDelete(PhysicalEntity* ent);
-    void endLevel();
+      
+      virtual void playFromStart();
+      virtual int exec();
 
-    void saveState() const;
-    void loadLastSaved();
-  };
+      const Utility::VectorF getPlayer1Center() const;
+      const Utility::VectorF getPlayer1Spawn() const;
+      const Utility::VectorF getItemSpawn() const;
+      const Utility::VectorF getBossSpawn() const;
+      Managers::CollisionManager* getCollisionManager();
+      Managers::EventManager* getEventManager() const;
+      Managers::GraphicsManager* getGraphicsManager() const;
 
+      void markForDelete(Entities::PhysicalEntity* ent);
+      void endLevel();
+
+      void saveState() const;
+      void loadLastSaved();
+    };
+
+  }
 }
 
 #endif

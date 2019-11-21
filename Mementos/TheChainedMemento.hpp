@@ -4,24 +4,31 @@
 #include "Memento.hpp"
 
 namespace DIM {
-  
-  class TheChainedMemento : public Memento {
-  private:
-    TheChainedMemento(float t = 0);
 
-    float time;
+  namespace Entities {
+    class TheChained;
+  }
 
-    float getTime() const;
-
-  public:
-    ~TheChainedMemento();
+  namespace Mementos {
     
-    void saveToFile(std::ostream& file) override;
-    static TheChainedMemento loadFromFile(std::istream& file);
+    class TheChainedMemento : public Memento {
+    private:
+      TheChainedMemento(float t = 0);
 
-    friend class TheChained;
-  };
+      float time;
 
+      float getTime() const;
+
+    public:
+      ~TheChainedMemento();
+      
+      void saveToFile(std::ostream& file) override;
+      static TheChainedMemento loadFromFile(std::istream& file);
+
+      friend class Entities::TheChained;
+    };
+
+  }
 }
 
 #endif

@@ -4,33 +4,40 @@
 #include "Memento.hpp"
 #include "../GeometricVector.hpp"
 
-namespace DIM
-{
-  class CasterMemento : public Memento {
-  private:
-    CasterMemento(VectorF pos = VectorF(0, 0), VectorF vel = VectorF(0, 0), float dly = 0, float max_vx = 0, float max_vy = 0);
+namespace DIM {
 
-    VectorF position;
-    VectorF velocity;
-    float delay;
-    float max_speed_x;
-    float max_speed_y;
+  namespace Entities {
+    class Caster;
+  }
 
-    VectorF getPosition() const;
-    VectorF getVelocity() const;
-    float getDelay() const;
-    float getMaxSpeedX() const;
-    float getMaxSpeedY() const;
+  namespace Mementos {
+      
+    class CasterMemento : public Memento {
+    private:
+      CasterMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF vel = Utility::VectorF(0, 0), float dly = 0, float max_vx = 0, float max_vy = 0);
 
-  public:
-    ~CasterMemento();
+      Utility::VectorF position;
+      Utility::VectorF velocity;
+      float delay;
+      float max_speed_x;
+      float max_speed_y;
 
-    void saveToFile(std::ostream& file) override;
-    static CasterMemento loadFromFile(std::istream& file);
+      Utility::VectorF getPosition() const;
+      Utility::VectorF getVelocity() const;
+      float getDelay() const;
+      float getMaxSpeedX() const;
+      float getMaxSpeedY() const;
 
-    friend class Caster;
-  };
+    public:
+      ~CasterMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static CasterMemento loadFromFile(std::istream& file);
+
+      friend class Entities::Caster;
+    };
   
-} // namespace DIM
+  }
+}
 
 #endif

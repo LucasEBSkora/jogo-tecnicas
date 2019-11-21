@@ -4,14 +4,17 @@
 #include "../WallTile.hpp"
 
 namespace DIM {
-  class TempleWallTile : public WallTile {
-  private:
+  namespace Tile {
+      
+    class TempleWallTile : public WallTile {
+    private:
 
-  public:
-    TempleWallTile();
-    ~TempleWallTile();
-  };
+    public:
+      TempleWallTile();
+      ~TempleWallTile();
+    };
 
+  }
 }
 
 #endif

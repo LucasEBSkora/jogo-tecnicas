@@ -23,17 +23,17 @@ namespace DIM {
       END_GAME,
     };
 
-    GraphicsManager graphics_man;
-    EventManager events_man;
+    Managers::GraphicsManager graphics_man;
+    Managers::EventManager events_man;
 
-    MainMenu menu;
-    PauseMenu pause;
+    Menus::MainMenu menu;
+    Menus::PauseMenu pause;
 
-    TheUndying player1;
-    ThePenitent player2;
+    Entities::TheUndying player1;
+    Entities::ThePenitent player2;
 
-    TempleLevel temple;
-    CavernLevel cavern;
+    Levels::TempleLevel temple;
+    Levels::CavernLevel cavern;
     
     GameState current;
     GameState unpause;
@@ -41,7 +41,7 @@ namespace DIM {
 
     void play();
 
-    void goToLevel(Level* level);
+    void goToLevel(Levels::Level* level);
 
     void mainMenu();
     void pauseMenu();

@@ -4,7 +4,9 @@
 #include "../../GraphicsManager.hpp"
 
 namespace DIM {
-    Tile::Tile(const char* Id, const char* Path, const VectorF Size) : ID{Id}, path{Path}, size{Size} {
+  namespace Tile {
+
+    Tile::Tile(const char* Id, const char* Path, const Utility::VectorF Size) : ID{Id}, path{Path}, size{Size} {
 
     }
 
@@ -12,7 +14,7 @@ namespace DIM {
 
     }
 
-    void Tile::initialize(GraphicsManager* graph, TileManager* Parent) {
+    void Tile::initialize(Managers::GraphicsManager* graph, TileManager* Parent) {
       graphicsManager = graph;
       parent = Parent;
 
@@ -20,7 +22,7 @@ namespace DIM {
     }
 
 
-    void Tile::draw(const VectorF at) const {
+    void Tile::draw(const Utility::VectorF at) const {
       if (graphicsManager == nullptr) {
         std::cout << "nao encontrado" << std::endl;
       }
@@ -31,9 +33,9 @@ namespace DIM {
       return ID;
     }
 
-    void Tile::collided(const std::string id, const VectorF positionOther, const VectorU positionMine) {
+    void Tile::collided(const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine) {
       //Default behavior is to ignore collisions
     }
 
-  
+  }
 }

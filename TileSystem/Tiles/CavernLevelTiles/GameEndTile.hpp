@@ -4,14 +4,17 @@
 #include "../LevelEndTile.hpp"
 
 namespace DIM {
-  class GameEndTile : public LevelEndTile {
-  private:
+  namespace Tile {
+      
+    class GameEndTile : public LevelEndTile {
+    private:
 
-  public:
-    GameEndTile();
-    ~GameEndTile();
-  };
+    public:
+      GameEndTile();
+      ~GameEndTile();
+    };
 
+  }
 }
 
 #endif

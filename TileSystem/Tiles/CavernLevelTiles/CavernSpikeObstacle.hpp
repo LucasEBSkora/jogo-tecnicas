@@ -4,14 +4,17 @@
 #include "../SpikeObstacle.hpp"
 
 namespace DIM {
-  class CavernSpikeObstacle : public SpikeObstacle {
-  private:
+  namespace Tile {
+      
+    class CavernSpikeObstacle : public SpikeObstacle {
+    private:
 
-  public:
-    CavernSpikeObstacle();
-    ~CavernSpikeObstacle();
-  };
+    public:
+      CavernSpikeObstacle();
+      ~CavernSpikeObstacle();
+    };
 
+  }
 }
 
 #endif

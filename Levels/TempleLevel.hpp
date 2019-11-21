@@ -4,18 +4,20 @@
 #include "Level.hpp"
 
 namespace DIM {
-  class TempleLevel : public Level {
+  namespace Levels {
 
-  private:
-    
-    int key_event_id;
-  public:
-    TempleLevel();
-    ~TempleLevel();
+    class TempleLevel : public Level {
+    private:
+      
+      int key_event_id;
+    public:
+      TempleLevel();
+      ~TempleLevel();
 
-    void init(GraphicsManager& g, EventManager& e) override;
-  };
+      void init(Managers::GraphicsManager& g, Managers::EventManager& e) override;
+    };
 
+  }
 }
 
 #endif

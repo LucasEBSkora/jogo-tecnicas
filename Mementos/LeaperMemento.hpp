@@ -4,35 +4,42 @@
 #include "Memento.hpp"
 #include "../GeometricVector.hpp"
 
-namespace DIM
-{
-  class LeaperMemento : public Memento {
-  private:
-    LeaperMemento(VectorF pos = VectorF(0, 0), VectorF vel = VectorF(0, 0), float dly = 0, float max_vx = 0, float max_vy = 0, bool jmp = false);
+namespace DIM {
 
-    VectorF position;
-    VectorF velocity;
-    float delay;
-    float max_speed_x;
-    float max_speed_y;
-    bool jumping;
+  namespace Entities {
+    class Leaper;
+  }
 
-    VectorF getPosition() const;
-    VectorF getVelocity() const;
-    float getDelay() const;
-    float getMaxSpeedX() const;
-    float getMaxSpeedY() const;
-    bool getJumping() const;
+  namespace Mementos {
+      
+    class LeaperMemento : public Memento {
+    private:
+      LeaperMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF vel = Utility::VectorF(0, 0), float dly = 0, float max_vx = 0, float max_vy = 0, bool jmp = false);
 
-  public:
-    ~LeaperMemento();
+      Utility::VectorF position;
+      Utility::VectorF velocity;
+      float delay;
+      float max_speed_x;
+      float max_speed_y;
+      bool jumping;
 
-    void saveToFile(std::ostream& file) override;
-    static LeaperMemento loadFromFile(std::istream& file);
+      Utility::VectorF getPosition() const;
+      Utility::VectorF getVelocity() const;
+      float getDelay() const;
+      float getMaxSpeedX() const;
+      float getMaxSpeedY() const;
+      bool getJumping() const;
 
-    friend class Leaper;
-  };
+    public:
+      ~LeaperMemento();
+
+      void saveToFile(std::ostream& file) override;
+      static LeaperMemento loadFromFile(std::istream& file);
+
+      friend class Entities::Leaper;
+    };
   
-} // namespace DIM
+  }
+}
 
 #endif

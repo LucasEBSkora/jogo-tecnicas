@@ -10,7 +10,7 @@ namespace DIM {
     
   }
 
-  void PhysicalEntityList::push(PhysicalEntity* ent) {
+  void PhysicalEntityList::push(Entities::PhysicalEntity* ent) {
     entities.push_back(ent);
   }
 
@@ -19,7 +19,7 @@ namespace DIM {
   }
 
 
-  void PhysicalEntityList::erase(PhysicalEntity* ent) {
+  void PhysicalEntityList::erase(Entities::PhysicalEntity* ent) {
 
     for (auto it = entities.begin(); it != entities.end(); ++it) {
       if ((*it) == ent) {
@@ -29,9 +29,9 @@ namespace DIM {
     }
   }
 
-  std::deque<PhysicalEntity*> PhysicalEntityList::asDeque() const {
+  std::deque<Entities::PhysicalEntity*> PhysicalEntityList::asDeque() const {
     
-    std::deque<PhysicalEntity*> deque;
+    std::deque<Entities::PhysicalEntity*> deque;
     for (auto& c : entities) {
       deque.push_front(c);
     }
@@ -39,7 +39,8 @@ namespace DIM {
     return deque;
   }
 
-  const std::list<PhysicalEntity*>& PhysicalEntityList::asStdList() const {
+  const std::list<Entities::PhysicalEntity*>& PhysicalEntityList::asStdList() const {
     return entities;
   }
+  
 }

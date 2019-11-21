@@ -3,22 +3,25 @@
 #include "../Levels/Level.hpp"
 
 namespace DIM {
+  namespace Entities {
 
-  Entity::Entity() : position{0.0f, 0.0f}, currentLevel{nullptr} {
+    Entity::Entity() : position{0.0f, 0.0f}, currentLevel{nullptr} {
+      
+    }
     
-  }
-  
-  Entity::~Entity() {
+    Entity::~Entity() {
 
-  }
+    }
 
-  void Entity::initializeGeneric(Level* level) {
+    void Entity::initializeGeneric(Levels::Level* level) {
+      
+      currentLevel = level;
+      initializeSpecific();
+    }
     
-    currentLevel = level;
-    initializeSpecific();
-  }
-  
-  void Entity::setLevel(Level* level) {
-    currentLevel = level;
+    void Entity::setLevel(Levels::Level* level) {
+      currentLevel = level;
+    }
+
   }
 }

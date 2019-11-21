@@ -2,60 +2,64 @@
 #define MAP_H
 
 namespace DIM {
-  template <typename TE>
-  class List {
-  private:
-    unsigned int size;
+  namespace Lists {
 
-    class ListElement {
-    private: 
-      ListElement* next;
-      ListElement* prev;
-      TE data;
-    public:
-      ListElement* getNext();
-      void setNext(ListElement* elem);
-      ListElement* getPrev();
-      void setPrev(ListElement* elem);
-      TE& getData();
-      void setData(const TE& elem);
-
-      ListElement();
-      ~ListElement();
-    };
-
-  ListElement* first;
-  ListElement* last;
-
-  public:
-    List();
-    ~List();
-    void addElementBack(const TE& newElement);
-    void addElementFront(const TE& newElement);
-    void removeFirstMatchingElement(const TE& element);
-    const unsigned int getSize() const;
-
-    class iterator {
+    template <typename TE>
+    class List {
     private:
-      ListElement* element;
-      iterator(ListElement* el);
+      unsigned int size;
+
+      class ListElement {
+      private: 
+        ListElement* next;
+        ListElement* prev;
+        TE data;
+      public:
+        ListElement* getNext();
+        void setNext(ListElement* elem);
+        ListElement* getPrev();
+        void setPrev(ListElement* elem);
+        TE& getData();
+        void setData(const TE& elem);
+
+        ListElement();
+        ~ListElement();
+      };
+
+    ListElement* first;
+    ListElement* last;
+
     public:
-      iterator(const iterator& other);
-      ~iterator();
-      TE& operator*();
-      bool operator==(const iterator& other);
-      bool operator!=(const iterator& other);
-      iterator& operator++();
-      iterator operator++(int);
-      friend class List;
+      List();
+      ~List();
+      void addElementBack(const TE& newElement);
+      void addElementFront(const TE& newElement);
+      void removeFirstMatchingElement(const TE& element);
+      const unsigned int getSize() const;
+
+      class iterator {
+      private:
+        ListElement* element;
+        iterator(ListElement* el);
+      public:
+        iterator(const iterator& other);
+        ~iterator();
+        TE& operator*();
+        bool operator==(const iterator& other);
+        bool operator!=(const iterator& other);
+        iterator& operator++();
+        iterator operator++(int);
+        friend class List;
+      };
+
+      iterator begin();
+      iterator end();
+
+      void clear();
+
     };
-
-    iterator begin();
-    iterator end();
-
-    void clear();
-
-  };
+    
+  }
 }
 
 #include "ListImplementation.hpp"

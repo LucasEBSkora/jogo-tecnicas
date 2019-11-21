@@ -17,51 +17,50 @@
 
 
 namespace DIM {
+  namespace Levels {
 
-  TempleLevel::TempleLevel() : Level("assets/TempleBackground.png"), key_event_id(0) {
-    // player1->setLevel(this);
-    // player2->setLevel(this);
-    // std::cout << player2->getLevel() << std::endl;
-    saveFilePath = "templeSave.txt";
-  }
-
-  TempleLevel::~TempleLevel() {
-    if (key_event_id != 0) {
-      events->removeKeyboardListener(key_event_id);
-      key_event_id = 0;
+    TempleLevel::TempleLevel() : Level("assets/TempleBackground.png"), key_event_id(0) {
+      saveFilePath = "templeSave.txt";
     }
-    entities.removeWithoutDestroying(player1);
-    entities.removeWithoutDestroying(player2);
 
-    player1 = nullptr;
-      player2 = nullptr;
-
-  }
-
-  void TempleLevel::init(GraphicsManager& g, EventManager& e) {
-    Level::init(g, e);
-    tileManager = new TileManager({
-      new TempleWallTile(),
-      new PlayerSpawnPoint(),
-      new TempleSpikeObstacle(),
-      new BulletObstacle(),
-      new GateToCavernTile()
-    }, 32.0f, "assets/temple.tilemap");
-    
-    tileManager->setLevel(this);
-    entities.addEntity(tileManager);
-    collisions.setTileManager(tileManager);
-    tileManager->initializeGeneric(this);
-
-    key_event_id = events->addKeyboardListener(
-      [this] (EventManager::Event e) {
-        if (e.getType() == EventManager::EventType::KeyPressed &&
-            e.getKey() == EventManager::Key::Escape) {
-          decision = 0;
-          keep_going = false;
-        }
+    TempleLevel::~TempleLevel() {
+      if (key_event_id != 0) {
+        events->removeKeyboardListener(key_event_id);
+        key_event_id = 0;
       }
-    );
-  }
+      entities.removeWithoutDestroying(player1);
+      entities.removeWithoutDestroying(player2);
 
+      player1 = nullptr;
+        player2 = nullptr;
+
+    }
+
+    void TempleLevel::init(Managers::GraphicsManager& g, Managers::EventManager& e) {
+      Level::init(g, e);
+      tileManager = new Tile::TileManager({
+        new Tile::TempleWallTile(),
+        new Tile::PlayerSpawnPoint(),
+        new Tile::TempleSpikeObstacle(),
+        new Tile::BulletObstacle(),
+        new Tile::GateToCavernTile()
+      }, 32.0f, "assets/temple.tilemap");
+      
+      tileManager->setLevel(this);
+      entities.addEntity(tileManager);
+      collisions.setTileManager(tileManager);
+      tileManager->initializeGeneric(this);
+
+      key_event_id = events->addKeyboardListener(
+        [this] (Managers::EventManager::Event e) {
+          if (e.getType() == Managers::EventManager::EventType::KeyPressed &&
+              e.getKey() == Managers::EventManager::Key::Escape) {
+            decision = 0;
+            keep_going = false;
+          }
+        }
+      );
+    }
+
+  }
 }
