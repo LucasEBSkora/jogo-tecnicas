@@ -35,7 +35,7 @@ namespace DIM {
 
     
 
-    TileManager( std::vector<Tile*> Tiles = std::vector<Tile*>(), float TileSide = 0.0f, const char *Path = nullptr);
+    TileManager( std::vector<Tile*> Tiles = std::vector<Tile*>(), float TileSide = 0.0f, const char* Path = nullptr);
     ~TileManager();
 
     
