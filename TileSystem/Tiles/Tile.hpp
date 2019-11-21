@@ -1,7 +1,7 @@
 #ifndef TILE_HPP
 #define TILE_HPP
 
-#include "../../Vector.hpp"
+#include "../../GeometricVector.hpp"
 #include "../../GraphicsManager.hpp"
 
 namespace DIM {

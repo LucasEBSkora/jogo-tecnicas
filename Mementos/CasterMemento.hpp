@@ -2,7 +2,7 @@
 #define CASTERMEMENTO_HPP
 
 #include "Memento.hpp"
-#include "../Vector.hpp"
+#include "../GeometricVector.hpp"
 
 namespace DIM
 {

@@ -2,7 +2,7 @@
 #define PROJECTILE_HPP
 
 #include "../PhysicalEntity.hpp"
-#include "../../Vector.hpp"
+#include "../../GeometricVector.hpp"
 #include <string>
 
 

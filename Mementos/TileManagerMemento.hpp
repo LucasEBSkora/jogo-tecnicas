@@ -3,7 +3,7 @@
 
 #include "Memento.hpp"
 // #include "../TileSystem/TileMap.hpp"
-#include "../Vector.hpp"
+#include "../GeometricVector.hpp"
 #include <vector>
 
 namespace DIM

@@ -10,10 +10,6 @@ namespace DIM {
   }
 
   ThePenitent::~ThePenitent() {
-    
-  }
-
-  void ThePenitent::unsubscribe() {
     if (movement_id != 0) {
       currentLevel->getEventManager()->removeMouseListener(movement_id);
       movement_id = 0;
