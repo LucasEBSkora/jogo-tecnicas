@@ -93,7 +93,7 @@ namespace DIM {
         pos = spawns[idx] + Utility::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
         
         enemy->setPosition(Utility::VectorF(pos.x, pos.y));
-        // std::cout << idx << std::endl;
+
         entities.addEntity(enemy);
         collisions.addToCollisions(enemy);
 
@@ -165,6 +165,15 @@ namespace DIM {
         entities.drawAll();
         graphics->display();
       }
+
+      for (Entities::PhysicalEntity* ent : markedToDelete) {
+
+        entities.removeWithoutDestroying(ent);
+        collisions.removeFromCollisions(ent);
+        delete ent;
+
+      }
+      markedToDelete.clear();
       return decision;
     }
 
