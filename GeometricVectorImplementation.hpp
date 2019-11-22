@@ -1,3 +1,4 @@
+#include <cmath>
 
 namespace DIM {
   namespace Utility {
