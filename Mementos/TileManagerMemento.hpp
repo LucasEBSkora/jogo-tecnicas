@@ -7,7 +7,7 @@
 
 namespace DIM {
   
-  namespace Tile {
+  namespace Tiles {
     class TileMap;
     class TileManager;
   }
@@ -17,7 +17,7 @@ namespace DIM {
     class TileManagerMemento : public Memento {
     private:
       TileManagerMemento();
-      TileManagerMemento(Tile::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns);
+      TileManagerMemento(Tiles::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns);
 
       Utility::VectorU tilesSize;
       short** tiles;
@@ -39,7 +39,7 @@ namespace DIM {
 
       void saveToFile(std::ostream& file) override;
       static TileManagerMemento loadFromFile(std::istream& file);
-      friend class Tile::TileManager;
+      friend class Tiles::TileManager;
     };
 
   } 

@@ -11,7 +11,7 @@
 
 namespace DIM {
 
-  namespace Tile {
+  namespace Tiles {
     class TileManager;
   }
 
@@ -37,7 +37,7 @@ namespace DIM {
       ThePenitentMemento* player2Memento;
       std::vector<std::pair<std::string, Memento*>> otherMementos;
       LevelMemento();
-      LevelMemento(Tile::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager);
+      LevelMemento(Tiles::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager);
 
       TileManagerMemento getTileManagerMemento() const;
       TheUndyingMemento getPlayer1Memento() const;

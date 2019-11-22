@@ -2,10 +2,10 @@
 #define TILEVECTOR_HPP
 
 #include <vector>
-#include "Tiles/Tile.hpp"
+#include "Tile.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
 
     class TileVector {
       private:

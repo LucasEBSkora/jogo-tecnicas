@@ -1,5 +1,5 @@
 #include "TileManagerMemento.hpp"
-#include "../TileSystem/TileMap.hpp"
+#include "../Tiles/TileMap.hpp"
 
 namespace DIM {
   namespace Mementos {
@@ -9,7 +9,7 @@ namespace DIM {
 
     }
     
-    TileManagerMemento::TileManagerMemento(Tile::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns) {
+    TileManagerMemento::TileManagerMemento(Tiles::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns) {
       tilesSize = tilemap.getSize();
       tiles = new short*[tilesSize.y];
       for (unsigned i = 0; i < tilesSize.y; ++i) {

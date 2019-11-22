@@ -1,10 +1,10 @@
 #ifndef BulletOBSTACLE_HPP
 #define BulletOBSTACLE_HPP
 
-#include "../Tile.hpp"
+#include "Tile.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
       
     class BulletObstacle : public Tile {
     private:

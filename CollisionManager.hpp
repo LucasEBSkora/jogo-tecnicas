@@ -2,7 +2,7 @@
 #define COLLISIONMANAGER_HPP
 
 #include "Entities/PhysicalEntity.hpp"
-#include "TileSystem/TileManager.hpp"
+#include "Tiles/TileManager.hpp"
 #include "PhysicalEntityList.hpp"
 
 namespace DIM {
@@ -11,7 +11,7 @@ namespace DIM {
     class CollisionManager {
     private:
       PhysicalEntityList collidables;
-      Tile::TileManager* tile_man;
+      Tiles::TileManager* tile_man;
 
       bool colliding(Entities::PhysicalEntity* e1, Entities::PhysicalEntity* e2);
     public:
@@ -21,7 +21,7 @@ namespace DIM {
       void addToCollisions(Entities::PhysicalEntity* ent);
       void removeFromCollisions(Entities::PhysicalEntity* ent);
       void removeAll();
-      void setTileManager(Tile::TileManager* manager);
+      void setTileManager(Tiles::TileManager* manager);
       const std::list<Entities::PhysicalEntity*>& getCollidables() const;
 
       void checkCollisions();

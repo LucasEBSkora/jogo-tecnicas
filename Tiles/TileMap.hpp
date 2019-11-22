@@ -4,7 +4,7 @@
 #include "../GeometricVector.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
       
     class TileManager;
     

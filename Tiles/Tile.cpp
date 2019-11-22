@@ -4,7 +4,7 @@
 #include "../../GraphicsManager.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
 
     Tile::Tile(const char* Id, const char* Path, const Utility::VectorF Size) : ID{Id}, path{Path}, size{Size} {
 
