@@ -1,7 +1,6 @@
 #ifndef GEOMETRICVECTOR_HPP
 #define GEOMETRICVECTOR_HPP
 
-#include <cmath>
 #include <ostream>
 
 namespace DIM {
