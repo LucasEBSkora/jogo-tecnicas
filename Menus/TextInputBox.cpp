@@ -42,14 +42,14 @@ namespace DIM {
 
     void TextInputBox::removeListeners() {
       if (keyboard_event_id != 0) {
-        events->removeMouseListener(keyboard_event_id);
+        events->removeKeyboardListener(keyboard_event_id);
         keyboard_event_id = 0;
       }
 
     }
     
     void TextInputBox::startStringCapture() {
-      events->addKeyboardListener([this](Managers::EventManager::Event e) {
+      keyboard_event_id = events->addKeyboardListener([this](Managers::EventManager::Event e) {
         if (e.getType() == Managers::EventManager::EventType::TextEntered) {
           if (str.size() <= 10) {
             char c = e.getChar();
@@ -73,7 +73,6 @@ namespace DIM {
     }
 
     std::string TextInputBox::getCapture() {
-      std::cout << "done: " << done << std::endl;
       if (!done) throw "nope";
       done = false;
       std::string cpy{str};

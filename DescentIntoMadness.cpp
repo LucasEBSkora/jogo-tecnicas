@@ -47,7 +47,6 @@ namespace DIM {
           cavernLevel();
           break;
         case GameState::LEADERBOARD:
-          leaderboard.addNewHighScore(4);
           leaderBoard();
           break;
         case GameState::EXTRA_LEVEL:
