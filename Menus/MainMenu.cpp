@@ -5,32 +5,26 @@
 namespace DIM {
   namespace Menus {
 
-    MainMenu::MainMenu() : keep_going(true), key_event_id(0), mouse_event_id(0),
-      return_val(0), twoPlayers{true} {
+    MainMenu::MainMenu() :  twoPlayers{true} {
       
     }
 
     MainMenu::~MainMenu() {
-      if (key_event_id != 0) {
-        events->removeKeyboardListener(key_event_id);
-        key_event_id = 0;
-      }
-      if (mouse_event_id != 0) {
-        events->removeMouseListener(mouse_event_id);
-        mouse_event_id = 0;
-      }
+
     }
 
     void MainMenu::init(Managers::GraphicsManager& g, Managers::EventManager& e) {
       Menu::init(g, e);
       Utility::VectorF viewsize = g.getViewSize();
       
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 1), 180, 30, 1, "New Temple Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 2), 220, 30, 2, "Load Last Temple Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 3), 180, 30, 3, "New Cavern Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 4), 220, 30, 4, "Load Last Cavern Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 5), 100, 30, 0, "Exit Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 6), 190, 30, 5, "Number of Players:"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 1), 180, 30, 1, "New Temple Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 2), 220, 30, 2, "Load Last Temple Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 3), 180, 30, 3, "New Cavern Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 4), 220, 30, 4, "Load Last Cavern Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 6), 190, 30, 7, "Thread Level"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 7), 190, 30, 6, "Leaderboard"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 5), 190, 30, 5, "Number of Players:"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 8), 100, 30, 0, "Exit Game"));
 
       for (auto& b : buttons) {
         b->initialize(g, e);
@@ -86,15 +80,7 @@ namespace DIM {
         graphics->display();
       }
 
-      if (key_event_id != 0) {
-        events->removeKeyboardListener(key_event_id);
-        key_event_id = 0;
-      }
-      
-      if (mouse_event_id != 0) {
-        events->removeMouseListener(mouse_event_id);
-        mouse_event_id = 0;
-      }
+      removeListeners();
       
       return return_val;
     }

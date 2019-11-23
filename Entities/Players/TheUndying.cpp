@@ -156,6 +156,10 @@ namespace DIM {
       deathCounter = memento.getDeathCounter();
     }
 
+    const unsigned int TheUndying::getDeathCounter() const {
+      return deathCounter;
+    }
+
   }
 }
 

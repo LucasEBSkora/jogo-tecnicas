@@ -3,25 +3,17 @@
 namespace DIM {
   namespace Menus {
 
-    PauseMenu::PauseMenu() : keep_going(true), key_event_id(0), mouse_event_id(0) {
+    PauseMenu::PauseMenu() {
       
     }
 
     PauseMenu::~PauseMenu() {
-      if (key_event_id != 0) {
-        events->removeKeyboardListener(key_event_id);
-        key_event_id = 0;
-      }
-      if (mouse_event_id != 0) {
-        events->removeMouseListener(mouse_event_id);
-        mouse_event_id = 0;
-      }
+      
     }
 
     void PauseMenu::init(Managers::GraphicsManager& g, Managers::EventManager& e) {
       Menu::init(g, e);
       Utility::VectorF viewsize = g.getViewSize();
-      // o tamanho não deveria ser manual
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 4 * 1), 140, 30, 0, "Resume"));
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 4 * 2), 160, 30, 1, "Save Game"));
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 4 * 3), 160, 30, 2, "Main Menu"));
@@ -66,15 +58,8 @@ namespace DIM {
         graphics->display();
       }
 
-      if (key_event_id != 0) {
-        events->removeKeyboardListener(key_event_id);
-        key_event_id = 0;
-      }
-      if (mouse_event_id != 0) {
-        events->removeMouseListener(mouse_event_id);
-        mouse_event_id = 0;
-      }
-
+      removeListeners();
+      
       return return_val;
     }
 

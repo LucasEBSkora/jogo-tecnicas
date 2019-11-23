@@ -3,10 +3,14 @@
 
 #include "GraphicsManager.hpp"
 #include "EventManager.hpp"
+
 #include "Menus/MainMenu.hpp"
 #include "Menus/PauseMenu.hpp"
+#include "Menus/LeaderBoard.hpp"
+
 #include "Levels/TempleLevel.hpp"
 #include "Levels/CavernLevel.hpp"
+
 #include "Entities/Players/TheUndying.hpp"
 #include "Entities/Players/ThePenitent.hpp"
 
@@ -21,6 +25,7 @@ namespace DIM {
       TEMPLE_LEVEL,
       CAVERN_LEVEL,
       END_GAME,
+      LEADERBOARD
     };
 
     Managers::GraphicsManager graphics_man;
@@ -28,6 +33,7 @@ namespace DIM {
 
     Menus::MainMenu menu;
     Menus::PauseMenu pause;
+    Menus::LeaderBoard leaderboard;
 
     Entities::TheUndying player1;
     Entities::ThePenitent player2;
@@ -45,6 +51,8 @@ namespace DIM {
 
     void mainMenu();
     void pauseMenu();
+    void leaderBoard();
+
     void templeLevel();
     void cavernLevel();
   public:

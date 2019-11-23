@@ -42,7 +42,11 @@ namespace DIM {
         case GameState::CAVERN_LEVEL:
           cavernLevel();
           break;
+        case GameState::LEADERBOARD:
+          leaderBoard();
+          break;
         case GameState::END_GAME:
+          leaderboard.addNewHighScore(player1.)
         default:
           playing = false;
           break;
@@ -75,6 +79,9 @@ namespace DIM {
       goToLevel(&cavern);
       cavern.loadLastSaved();
       
+    } else if (decisao == 7) {
+      current = GameState::LEADERBOARD;
+
     }
   }
 

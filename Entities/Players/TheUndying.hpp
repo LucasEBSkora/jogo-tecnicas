@@ -29,6 +29,8 @@ namespace DIM {
       
       Mementos::TheUndyingMemento createMemento() const;
       void loadMemento(Mementos::TheUndyingMemento memento);
+      
+      const unsigned int getDeathCounter() const;
     };
 
   }
