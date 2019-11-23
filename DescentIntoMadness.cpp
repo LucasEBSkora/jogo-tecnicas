@@ -45,6 +45,7 @@ namespace DIM {
           break;
         case GameState::LEADERBOARD:
           leaderBoard();
+          break;
         case GameState::EXTRA_LEVEL:
           extraLevel();
           break;
@@ -108,9 +109,12 @@ namespace DIM {
     }
   }
 
-    void DescentIntoMadness::leaderBoard() {
-    
+  void DescentIntoMadness::leaderBoard() {
+    int decisao = leaderboard.exec();
+    if (decisao == 0) {
+      current = GameState::MAIN_MENU;
     }
+  }
 
   void DescentIntoMadness::templeLevel() {
     int dec = temple.exec();

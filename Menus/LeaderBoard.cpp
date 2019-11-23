@@ -9,14 +9,14 @@ namespace DIM {
     }
 
     LeaderBoard::~LeaderBoard(){
-      if (key_event_id != 0) {
-        events->removeKeyboardListener(key_event_id);
-        key_event_id = 0;
-      }
-      if (mouse_event_id != 0) {
-        events->removeMouseListener(mouse_event_id);
-        mouse_event_id = 0;
-      }
+      // if (key_event_id != 0) {
+      //   events->removeKeyboardListener(key_event_id);
+      //   key_event_id = 0;
+      // }
+      // if (mouse_event_id != 0) {
+      //   events->removeMouseListener(mouse_event_id);
+      //   mouse_event_id = 0;
+      // } // já é feito isso no destrutor do Menu
     }
 
     void LeaderBoard::init(Managers::GraphicsManager& g, Managers::EventManager& e){

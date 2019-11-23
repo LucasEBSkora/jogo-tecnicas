@@ -21,8 +21,8 @@ namespace DIM {
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 2), 220, 30, 2, "Load Last Temple Game"));
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 3), 180, 30, 3, "New Cavern Game"));
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 4), 220, 30, 4, "Load Last Cavern Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 6), 190, 30, 7, "Thread Level"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 7), 190, 30, 6, "Leaderboard"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 6), 150, 30, 7, "Thread Level"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 7), 130, 30, 6, "Leaderboard"));
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 5), 190, 30, 5, "Number of Players:"));
       buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 9 * 8), 100, 30, 0, "Exit Game"));
 
