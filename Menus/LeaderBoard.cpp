@@ -25,7 +25,12 @@ namespace DIM {
     }
 
     const int LeaderBoard::exec(){
-      
+      return 0;
+    }
+
+
+    void LeaderBoard::addNewHighScore(const int deaths) {
+
     }
   }
 }

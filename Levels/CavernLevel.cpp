@@ -5,8 +5,6 @@
 #include "../Entities/TheMirrorOfHastur.hpp"
 #include "../Entities/Enemies/TheChained.hpp"
 
-
-
 namespace DIM {
   namespace Levels {
 

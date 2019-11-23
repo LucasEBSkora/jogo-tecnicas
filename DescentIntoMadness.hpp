@@ -13,6 +13,7 @@
 
 #include "Entities/Players/TheUndying.hpp"
 #include "Entities/Players/ThePenitent.hpp"
+#include "Concurrent/ExtraLevel.hpp"
 
 namespace DIM {
   
@@ -24,6 +25,7 @@ namespace DIM {
       PAUSE_MENU,
       TEMPLE_LEVEL,
       CAVERN_LEVEL,
+      EXTRA_LEVEL,
       END_GAME,
       LEADERBOARD
     };
@@ -40,6 +42,7 @@ namespace DIM {
 
     Levels::TempleLevel temple;
     Levels::CavernLevel cavern;
+    Concurrent::ExtraLevel extra;
     
     GameState current;
     GameState unpause;
@@ -55,6 +58,7 @@ namespace DIM {
 
     void templeLevel();
     void cavernLevel();
+    void extraLevel();
   public:
     DescentIntoMadness();
     ~DescentIntoMadness();

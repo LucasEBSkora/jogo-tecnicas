@@ -13,6 +13,7 @@ namespace DIM {
     pause.init(graphics_man, events_man);
     temple.init(graphics_man, events_man);
     cavern.init(graphics_man, events_man);
+    extra.init(graphics_man, events_man);
 
     player1.initializeGeneric(&temple); // só para usar o graphics manager e eventos
     player2.initializeGeneric(&temple);
@@ -44,9 +45,11 @@ namespace DIM {
           break;
         case GameState::LEADERBOARD:
           leaderBoard();
+        case GameState::EXTRA_LEVEL:
+          extraLevel();
           break;
         case GameState::END_GAME:
-          leaderboard.addNewHighScore(player1.)
+          leaderboard.addNewHighScore(player1.getDeathCounter());
         default:
           playing = false;
           break;
@@ -79,8 +82,12 @@ namespace DIM {
       goToLevel(&cavern);
       cavern.loadLastSaved();
       
-    } else if (decisao == 7) {
+    } else if (decisao == 6) {
       current = GameState::LEADERBOARD;
+    } else if (decisao == 7) {
+      unpause = current = GameState::EXTRA_LEVEL;
+      goToLevel(&extra);
+      extra.playFromStart();
 
     }
   }
@@ -101,6 +108,10 @@ namespace DIM {
     }
   }
 
+    void DescentIntoMadness::leaderBoard() {
+    
+    }
+
   void DescentIntoMadness::templeLevel() {
     int dec = temple.exec();
     if (dec == 0) current = GameState::PAUSE_MENU;
@@ -113,6 +124,14 @@ namespace DIM {
 
   void DescentIntoMadness::cavernLevel() {
     int dec = cavern.exec();
+    if (dec == 0) current = GameState::PAUSE_MENU;
+    else if (dec == 1) {
+      unpause = current = GameState::END_GAME;
+    } 
+  }
+
+  void DescentIntoMadness::extraLevel() {
+    int dec = extra.exec();
     if (dec == 0) current = GameState::PAUSE_MENU;
     else if (dec == 1) {
       unpause = current = GameState::END_GAME;

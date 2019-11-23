@@ -76,7 +76,7 @@ namespace DIM {
         for (auto& b : buttons) b->draw();
         Utility::VectorF viewsize = graphics->getViewSize();
       
-        graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), Utility::VectorF(viewsize.x * (1 + 0.3) / 2 , viewsize.y / 7 * 5.9) , 21 );
+        graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), Utility::VectorF(viewsize.x * (1 + 0.3) / 2 , viewsize.y / 9 * 4.85) , 21 );
         graphics->display();
       }
 
