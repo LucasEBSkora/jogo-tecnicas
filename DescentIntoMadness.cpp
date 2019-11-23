@@ -5,12 +5,15 @@
 namespace DIM {
 
   DescentIntoMadness::DescentIntoMadness() :
-    graphics_man(), events_man(), menu(), pause(), player1(), player2(), temple(), cavern(),
+    graphics_man(), events_man(), menu(), pause(), leaderboard(), player1(), player2(), temple(), cavern(),
     current(GameState::MAIN_MENU), unpause{GameState::END_GAME} {
     
     events_man.setGraphicsManager(graphics_man);
+    
     menu.init(graphics_man, events_man);
     pause.init(graphics_man, events_man);
+    leaderboard.init(graphics_man, events_man);
+    
     temple.init(graphics_man, events_man);
     cavern.init(graphics_man, events_man);
     extra.init(graphics_man, events_man);
@@ -44,6 +47,7 @@ namespace DIM {
           cavernLevel();
           break;
         case GameState::LEADERBOARD:
+          leaderboard.addNewHighScore(4);
           leaderBoard();
           break;
         case GameState::EXTRA_LEVEL:
@@ -51,6 +55,9 @@ namespace DIM {
           break;
         case GameState::END_GAME:
           leaderboard.addNewHighScore(player1.getDeathCounter());
+          current = GameState::LEADERBOARD;
+          break;
+        case GameState::EXIT:
         default:
           playing = false;
           break;
@@ -62,7 +69,7 @@ namespace DIM {
   void DescentIntoMadness::mainMenu() {
     int decisao = menu.exec();
     if (decisao == 0) {
-      current = GameState::END_GAME;
+      current = GameState::EXIT;
     } else if (decisao == 1) {
       unpause = current = GameState::TEMPLE_LEVEL;
       goToLevel(&temple);
@@ -138,7 +145,7 @@ namespace DIM {
     int dec = extra.exec();
     if (dec == 0) current = GameState::PAUSE_MENU;
     else if (dec == 1) {
-      unpause = current = GameState::END_GAME;
+      unpause = current = GameState::MAIN_MENU;
     } 
   }
   

@@ -31,7 +31,7 @@ namespace DIM {
       assets.clear();
     }
 
-    bool GraphicsManager::loadAsset(const std::string& path) {
+    const bool GraphicsManager::loadAsset(const std::string& path) {
       auto it = assets.find(path);
       if(it != assets.end()) {
         return true;
@@ -85,9 +85,6 @@ namespace DIM {
       sf::FloatRect bounding = txt.getGlobalBounds();
       txt.setOrigin(bounding.width / 2, bounding.height / 2);
       txt.setPosition(at.x, at.y);
-      // if (text == "Exit Game") {
-      //   std::cout << at.x << ' ' << at.y << ' ' << bounding.width << ' ' << bounding.height << ' ' << getMousePosInView().x << ' ' << getMousePosInView().y << std::endl;
-      // }
       window->draw(txt);
     }
 
@@ -95,9 +92,9 @@ namespace DIM {
       camera_pos = at - camera_size * .5;
     }
 
-    bool GraphicsManager::outOfSight(Utility::VectorF at, Utility::VectorF size) const {
+    const bool GraphicsManager::outOfSight(Utility::VectorF at, Utility::VectorF size) const {
       return (at.x + size.x < camera_pos.x ||
-              at.y + size.y < camera_pos.y || // y cresce para baixo? //é pra ser //blz
+              at.y + size.y < camera_pos.y || 
               at.x > camera_pos.x + camera_size.x ||
               at.y > camera_pos.y + camera_size.y);
     }
@@ -114,22 +111,22 @@ namespace DIM {
       window->clear(sf::Color(r, g, b));
     }
 
-    Utility::VectorF GraphicsManager::getViewSize() const {
+    const Utility::VectorF GraphicsManager::getViewSize() const {
       return camera_size;
     }
 
-    Utility::VectorF GraphicsManager::getMousePos() const {
+    const Utility::VectorF GraphicsManager::getMousePos() const {
       sf::Vector2i pos = sf::Mouse::getPosition(*window);
       return Utility::VectorF(pos.x, pos.y);
     }
 
-    Utility::VectorF GraphicsManager::getMousePosInView() const {
+    const Utility::VectorF GraphicsManager::getMousePosInView() const {
       sf::Vector2i pos = sf::Mouse::getPosition(*window);
       sf::Vector2u window_size = window->getSize();
       return Utility::VectorF(pos.x / static_cast<float>(window_size.x) * camera_size.x, pos.y / static_cast<float>(window_size.y) * camera_size.y) + camera_pos;
     }
 
-    Utility::VectorF GraphicsManager::getSizeOfAsset(const std::string& id) const {
+    const Utility::VectorF GraphicsManager::getSizeOfAsset(const std::string& id) const {
       sf::Texture* texture;
       auto it = assets.find(id);
       if (it == assets.end()) {
@@ -140,5 +137,6 @@ namespace DIM {
       sf::Vector2u size = texture->getSize();
       return Utility::VectorF(size.x, size.y);
     }
+
   }
 }

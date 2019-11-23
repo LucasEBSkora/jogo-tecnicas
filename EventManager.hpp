@@ -127,6 +127,7 @@ namespace DIM {
         Other = -1,
         KeyPressed = 0,
         KeyReleased,
+        TextEntered,
         MouseWheelScrolledUp,
         MouseWheelScrolledDown,
         MouseButtonPressed,
@@ -143,9 +144,10 @@ namespace DIM {
 
         void setEvent(sf::Event ev);
 
-        EventType getType() const;
-        MouseButton getMouseButton() const;
-        Key getKey() const;
+        const EventType getType() const;
+        const MouseButton getMouseButton() const;
+        const Key getKey() const;
+        const char getChar() const;
       };
 
     private:

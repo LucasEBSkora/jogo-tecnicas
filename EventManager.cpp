@@ -24,12 +24,14 @@ namespace DIM {
       event = ev;
     }
 
-    EventManager::EventType EventManager::Event::getType() const {
+    const EventManager::EventType EventManager::Event::getType() const {
       switch (event.type) {
         case sf::Event::EventType::KeyPressed:
           return EventType::KeyPressed;
         case sf::Event::EventType::KeyReleased:
           return EventType::KeyReleased;
+        case sf::Event::EventType::TextEntered:
+          return EventType::TextEntered;
         case sf::Event::EventType::MouseWheelScrolled:
         
           if (event.mouseWheelScroll.delta > 0) return EventType::MouseWheelScrolledUp;
@@ -44,12 +46,18 @@ namespace DIM {
       }
     }
 
-    EventManager::MouseButton EventManager::Event::getMouseButton() const {
+    const EventManager::MouseButton EventManager::Event::getMouseButton() const {
       return static_cast<EventManager::MouseButton>(event.mouseButton.button);
     }
 
-    EventManager::Key EventManager::Event::getKey() const {
+    const EventManager::Key EventManager::Event::getKey() const {
       return static_cast<EventManager::Key>(event.key.code);
+    }
+
+    const char EventManager::Event::getChar() const {
+      if (event.text.unicode < 128)
+      return static_cast<char> (event.text.unicode);
+      else return ' ';
     }
 
     EventManager::EventManager() : graphics_manager(nullptr),
@@ -119,7 +127,8 @@ namespace DIM {
         Event event_obj = Event(event);
         
         if (event_obj.getType() == EventType::KeyPressed ||
-            event_obj.getType() == EventType::KeyReleased) {
+            event_obj.getType() == EventType::KeyReleased ||
+            event_obj.getType() == EventType::TextEntered) {
           for (auto& f : keyboard_callbacks) {
             f.second(event_obj);
           }

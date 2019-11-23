@@ -6,7 +6,7 @@
 
 #include "Menus/MainMenu.hpp"
 #include "Menus/PauseMenu.hpp"
-#include "Menus/LeaderBoard.hpp"
+#include "Menus/LeaderBoardMenu.hpp"
 
 #include "Levels/TempleLevel.hpp"
 #include "Levels/CavernLevel.hpp"
@@ -27,6 +27,7 @@ namespace DIM {
       CAVERN_LEVEL,
       EXTRA_LEVEL,
       END_GAME,
+      EXIT,
       LEADERBOARD
     };
 
@@ -35,7 +36,7 @@ namespace DIM {
 
     Menus::MainMenu menu;
     Menus::PauseMenu pause;
-    Menus::LeaderBoard leaderboard;
+    Menus::LeaderBoardMenu leaderboard;
 
     Entities::TheUndying player1;
     Entities::ThePenitent player2;
