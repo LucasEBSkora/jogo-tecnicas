@@ -113,7 +113,7 @@ namespace DIM {
 
           if (tileMap[i][j] == -4) firstBossSpawnPointFound = Utility::VectorU(j, i);
 
-          if (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1) {
+          if (tileMap[i][j] == -5 || (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1)) {
             // enemy spawn point
             enemySpawns.push_back(Utility::VectorF(j, i - 1) * tileSide);
           }  

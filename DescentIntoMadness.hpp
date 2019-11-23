@@ -9,6 +9,7 @@
 #include "Levels/CavernLevel.hpp"
 #include "Entities/Players/TheUndying.hpp"
 #include "Entities/Players/ThePenitent.hpp"
+#include "Concurrent/ExtraLevel.hpp"
 
 namespace DIM {
   
@@ -34,6 +35,7 @@ namespace DIM {
 
     Levels::TempleLevel temple;
     Levels::CavernLevel cavern;
+    Concurrent::ExtraLevel extra;
     
     GameState current;
     GameState unpause;

@@ -8,7 +8,7 @@ namespace DIM {
   namespace Entities {
 
     class Caster : public Enemy {
-    private:
+    protected:
     
       static const float spellSpeed;
 

@@ -13,6 +13,7 @@ namespace DIM {
     pause.init(graphics_man, events_man);
     temple.init(graphics_man, events_man);
     cavern.init(graphics_man, events_man);
+    extra.init(graphics_man, events_man);
 
     player1.initializeGeneric(&temple); // só para usar o graphics manager e eventos
     player2.initializeGeneric(&temple);
@@ -67,8 +68,10 @@ namespace DIM {
 
     } else if (decisao == 3) {
       unpause = current = GameState::CAVERN_LEVEL;
-      goToLevel(&cavern);
-      cavern.playFromStart();
+      // goToLevel(&cavern);
+      // cavern.playFromStart();
+      goToLevel(&extra);
+      extra.playFromStart();
     
     } else if (decisao == 4) {
       unpause = current = GameState::CAVERN_LEVEL;
@@ -105,7 +108,7 @@ namespace DIM {
   }
 
   void DescentIntoMadness::cavernLevel() {
-    int dec = cavern.exec();
+    int dec = extra.exec();
     if (dec == 0) current = GameState::PAUSE_MENU;
     else if (dec == 1) {
       unpause = current = GameState::END_GAME;
