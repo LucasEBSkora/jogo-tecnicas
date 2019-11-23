@@ -1,7 +1,7 @@
 #ifndef TILEMANAGER_HPP
 #define TILEMANAGER_HPP
 
-#include "Tiles/Tile.hpp"
+#include "Tile.hpp"
 #include "TileVector.hpp"
 #include <tuple>
 #include "../Entities/Entity.hpp"
@@ -15,7 +15,7 @@ namespace DIM {
     class Level;
   }
 
-  namespace Tile {
+  namespace Tiles {
       
     enum PresetTiles {
       emptyTile = -1,

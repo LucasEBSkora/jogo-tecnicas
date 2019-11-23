@@ -1,12 +1,12 @@
 #include "BulletObstacle.hpp"
 
-#include "../../TileManager.hpp"
+#include "TileManager.hpp"
 #include <iostream>
-#include "../../../Levels/Level.hpp"
-#include "../../../Entities/Projectiles/Bullet.hpp"
+#include "../Levels/Level.hpp"
+#include "../Entities/Projectiles/Bullet.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
       
     BulletObstacle::BulletObstacle() : Tile("Wall", "assets/BulletObstacle.png"), delay(0) {
 

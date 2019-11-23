@@ -1,7 +1,7 @@
 #include "TileVector.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
   
     TileVector::TileVector(std::vector<Tile*> Tiles) : tiles{Tiles} {
 

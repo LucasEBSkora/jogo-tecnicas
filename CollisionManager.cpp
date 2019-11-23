@@ -41,7 +41,7 @@ namespace DIM {
       collidables.clear();
     }
 
-    void CollisionManager::setTileManager(Tile::TileManager* manager) {
+    void CollisionManager::setTileManager(Tiles::TileManager* manager) {
       tile_man = manager;
     }
 
@@ -59,7 +59,7 @@ namespace DIM {
         if (tile_man) {
           auto vec = tile_man->checkCollisions(current->getPos(), current->getSize(), current->getID());
           
-          for (Tile::IdPositionSizeTuple& el : vec) {
+          for (Tiles::IdPositionSizeTuple& el : vec) {
             current->collided(std::get<0>(el), std::get<1>(el), std::get<2>(el));
           }
         }

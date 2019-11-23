@@ -25,12 +25,13 @@ namespace DIM {
       Menu::init(g, e);
       Utility::VectorF viewsize = g.getViewSize();
       
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 1), 180, 30, 1, "New Temple Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 2), 220, 30, 2, "Load Last Temple Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 3), 180, 30, 3, "New Cavern Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 4), 220, 30, 4, "Load Last Cavern Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 5), 100, 30, 0, "Exit Game"));
-      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 7 * 6), 190, 30, 5, "Number of Players:"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 1), 180, 30, 1, "New Temple Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 2), 220, 30, 2, "Load Last Temple Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 3), 180, 30, 3, "New Cavern Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 4), 220, 30, 4, "Load Last Cavern Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 5), 220, 30, 6, "Extra Level (Threaded)"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 6), 100, 30, 0, "Exit Game"));
+      buttons.push_back(new Button(Utility::VectorF(viewsize.x / 2, viewsize.y / 8 * 7), 190, 30, 5, "Number of Players:"));
 
       for (auto& b : buttons) {
         b->initialize(g, e);
@@ -82,7 +83,7 @@ namespace DIM {
         for (auto& b : buttons) b->draw();
         Utility::VectorF viewsize = graphics->getViewSize();
       
-        graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), Utility::VectorF(viewsize.x * (1 + 0.3) / 2 , viewsize.y / 7 * 5.9) , 21 );
+        graphics->drawTextCentered( ((twoPlayers) ? "2" : "1"), Utility::VectorF(viewsize.x * (1 + 0.3) / 2 , viewsize.y / 8 * 6.9) , 21 );
         graphics->display();
       }
 

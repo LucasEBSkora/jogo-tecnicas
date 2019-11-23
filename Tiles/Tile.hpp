@@ -1,11 +1,11 @@
 #ifndef TILE_HPP
 #define TILE_HPP
 
-#include "../../GeometricVector.hpp"
-#include "../../GraphicsManager.hpp"
+#include "../GeometricVector.hpp"
+#include "../GraphicsManager.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
 
     class TileManager;
 

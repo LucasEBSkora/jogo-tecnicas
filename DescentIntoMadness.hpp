@@ -21,6 +21,7 @@ namespace DIM {
       PAUSE_MENU,
       TEMPLE_LEVEL,
       CAVERN_LEVEL,
+      EXTRA_LEVEL,
       END_GAME,
     };
 
@@ -49,6 +50,7 @@ namespace DIM {
     void pauseMenu();
     void templeLevel();
     void cavernLevel();
+    void extraLevel();
   public:
     DescentIntoMadness();
     ~DescentIntoMadness();

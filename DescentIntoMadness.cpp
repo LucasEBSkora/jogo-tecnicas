@@ -43,6 +43,9 @@ namespace DIM {
         case GameState::CAVERN_LEVEL:
           cavernLevel();
           break;
+        case GameState::EXTRA_LEVEL:
+          extraLevel();
+          break;
         case GameState::END_GAME:
         default:
           playing = false;
@@ -68,16 +71,19 @@ namespace DIM {
 
     } else if (decisao == 3) {
       unpause = current = GameState::CAVERN_LEVEL;
-      // goToLevel(&cavern);
-      // cavern.playFromStart();
-      goToLevel(&extra);
-      extra.playFromStart();
+      goToLevel(&cavern);
+      cavern.playFromStart();
     
     } else if (decisao == 4) {
       unpause = current = GameState::CAVERN_LEVEL;
       goToLevel(&cavern);
       cavern.loadLastSaved();
       
+    } else if (decisao == 6) {
+      unpause = current = GameState::EXTRA_LEVEL;
+      goToLevel(&extra);
+      extra.playFromStart();
+
     }
   }
 
@@ -108,6 +114,14 @@ namespace DIM {
   }
 
   void DescentIntoMadness::cavernLevel() {
+    int dec = cavern.exec();
+    if (dec == 0) current = GameState::PAUSE_MENU;
+    else if (dec == 1) {
+      unpause = current = GameState::END_GAME;
+    } 
+  }
+
+  void DescentIntoMadness::extraLevel() {
     int dec = extra.exec();
     if (dec == 0) current = GameState::PAUSE_MENU;
     else if (dec == 1) {

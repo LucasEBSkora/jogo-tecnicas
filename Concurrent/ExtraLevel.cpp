@@ -1,11 +1,6 @@
 #include "ExtraLevel.hpp"
 
-#include "../TileSystem/Tiles/CavernLevelTiles/HoleObstacle.hpp"
-#include "../TileSystem/Tiles/CavernLevelTiles/GameEndTile.hpp"
-#include "../TileSystem/Tiles/CavernLevelTiles/CavernSpikeObstacle.hpp"
-#include "../TileSystem/Tiles/CavernLevelTiles/CavernWallTile.hpp"
-
-#include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
+#include "../Tiles/Tile.hpp"
 
 #include "../RandomValueGenerator.hpp"
 
@@ -32,12 +27,12 @@ namespace DIM {
 
     void ExtraLevel::init(Managers::GraphicsManager& g, Managers::EventManager& e) {
       Level::init(g, e);
-      tileManager = new Tile::TileManager({
-        new Tile::CavernWallTile(),
-        new Tile::PlayerSpawnPoint(),
-        new Tile::CavernSpikeObstacle(),
-        new Tile::HoleObstacle(),
-        new Tile::GameEndTile()
+      tileManager = new Tiles::TileManager({
+        new Tiles::Tile("Wall", "assets/CavernWallTile.png"),
+        new Tiles::Tile("Wall", "assets/PlayerSpawnPoint.png"),
+        new Tiles::Tile("Spike", "assets/CavernSpikeObstacle.png"),
+        new Tiles::Tile("Hole", "assets/HoleObstacle.png"),
+        new Tiles::Tile("End", "assets/LevelEndTile.png")
       }, 32.0f, "assets/extralevel.tilemap");
       
       tileManager->setLevel(this);

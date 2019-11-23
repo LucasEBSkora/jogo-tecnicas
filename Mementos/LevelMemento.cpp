@@ -1,7 +1,7 @@
 #include "LevelMemento.hpp"
 #include <iostream>
 
-#include "../TileSystem/TileManager.hpp"
+#include "../Tiles/TileManager.hpp"
 #include "../Entities/Players/TheUndying.hpp"
 #include "../Entities/Players/ThePenitent.hpp"
 #include "../CollisionManager.hpp"
@@ -22,7 +22,7 @@ namespace DIM {
       
     }
 
-    LevelMemento::LevelMemento(Tile::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager) :
+    LevelMemento::LevelMemento(Tiles::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager) :
       tileManagerMemento(nullptr), player1Memento(nullptr), player2Memento(nullptr) {
       tileManagerMemento = new TileManagerMemento(tileManager->createMemento());
       player1Memento = new TheUndyingMemento(p1->createMemento());

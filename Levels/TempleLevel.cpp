@@ -2,13 +2,8 @@
 #include "../Entities/Players/TheUndying.hpp"
 #include "../Entities/Players/ThePenitent.hpp"
 
-
-#include "../TileSystem/Tiles/TempleLevelTiles/BulletObstacle.hpp"
-#include "../TileSystem/Tiles/TempleLevelTiles/GateToCavernTile.hpp"
-#include "../TileSystem/Tiles/TempleLevelTiles/TempleSpikeObstacle.hpp"
-#include "../TileSystem/Tiles/TempleLevelTiles/TempleWallTile.hpp"
-
-#include "../TileSystem/Tiles/PlayerSpawnPoint.hpp"
+#include "../Tiles/Tile.hpp"
+#include "../Tiles/BulletObstacle.hpp"
 
 #include "../Entities/Enemies/Leaper.hpp"
 #include "../Entities/Enemies/Caster.hpp"
@@ -38,12 +33,12 @@ namespace DIM {
 
     void TempleLevel::init(Managers::GraphicsManager& g, Managers::EventManager& e) {
       Level::init(g, e);
-      tileManager = new Tile::TileManager({
-        new Tile::TempleWallTile(),
-        new Tile::PlayerSpawnPoint(),
-        new Tile::TempleSpikeObstacle(),
-        new Tile::BulletObstacle(),
-        new Tile::GateToCavernTile()
+      tileManager = new Tiles::TileManager({
+        new Tiles::Tile("Wall", "assets/TempleWallTile.png"),
+        new Tiles::Tile("Wall", "assets/PlayerSpawnPoint.png"),
+        new Tiles::Tile("Spike", "assets/TempleSpikeObstacle.png"),
+        new Tiles::BulletObstacle(),
+        new Tiles::Tile("End", "assets/LevelEndTile.png")
       }, 32.0f, "assets/temple.tilemap");
       
       tileManager->setLevel(this);

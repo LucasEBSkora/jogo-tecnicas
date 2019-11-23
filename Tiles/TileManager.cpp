@@ -8,7 +8,7 @@
 #include "../Levels/Level.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
 
     TileManager::TileManager( std::vector<Tile*> Tiles, float TileSide, const char *Path) 
     : Entities::Entity(), tiles{Tiles}, tileSide{TileSide}, firstSpawnPointFound{0, 0}, firstItemSpawnPointFound{0,0},

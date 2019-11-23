@@ -9,7 +9,7 @@
 #include "../Entities/Players/ThePenitent.hpp"
 #include "../Entities/Players/TheUndying.hpp"
 #include "../Lists/EntityList.hpp"
-#include "../TileSystem/TileManager.hpp"
+#include "../Tiles/TileManager.hpp"
 #include "../Mementos/LevelMemento.hpp"
 
 namespace DIM {
@@ -29,7 +29,7 @@ namespace DIM {
       Lists::EntityList entities;
       Entities::TheUndying* player1;
       Entities::ThePenitent* player2;
-      Tile::TileManager* tileManager;
+      Tiles::TileManager* tileManager;
       std::set<Entities::PhysicalEntity*> markedToDelete;
       int decision;
       bool keep_going;

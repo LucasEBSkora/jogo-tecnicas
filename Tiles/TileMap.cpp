@@ -6,7 +6,7 @@
 #include "TileManager.hpp"
 
 namespace DIM {
-  namespace Tile {
+  namespace Tiles {
 
     TileMap::TileMap(const char* Path, TileManager* man) : tileMapSize{0, 0}, tileMap{nullptr},
       path{Path}, manager{man} {
