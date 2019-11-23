@@ -111,11 +111,11 @@ namespace DIM {
         std::get<1>(t.second) += lastElapsedTime;
       }
 
-      for (auto& t : timers_callbacks) {
-
-        if (std::get<1>(t.second) >= std::get<0>(t.second)) {
-          std::get<1>(t.second) -= std::get<0>(t.second);
-          std::get<2>(t.second)();
+      for (auto it = timers_callbacks.begin(); it != timers_callbacks.end(); /**/) {
+        auto current = it++;
+        if (std::get<1>(current->second) >= std::get<0>(current->second)) {
+          std::get<1>(current->second) -= std::get<0>(current->second);
+          std::get<2>(current->second)();
         }
       }
 
@@ -129,12 +129,14 @@ namespace DIM {
         if (event_obj.getType() == EventType::KeyPressed ||
             event_obj.getType() == EventType::KeyReleased ||
             event_obj.getType() == EventType::TextEntered) {
-          for (auto& f : keyboard_callbacks) {
-            f.second(event_obj);
+          for (auto it = keyboard_callbacks.begin(); it != keyboard_callbacks.end(); /**/) {
+            auto current = it++;
+            current->second(event_obj);
           }
         } else if (event_obj.getType() != EventType::Other) {
-          for (auto& f : mouse_callbacks) {
-            f.second(event_obj);
+          for (auto it = mouse_callbacks.begin(); it != mouse_callbacks.end(); /**/) {
+            auto current = it++;
+            current->second(event_obj);
           }
         }
       }
