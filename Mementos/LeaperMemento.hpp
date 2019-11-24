@@ -16,7 +16,6 @@ namespace DIM {
       
     class LeaperMemento : public Memento {
     private:
-      LeaperMemento(Utils::VectorF pos = Utils::VectorF(0, 0), Utils::VectorF vel = Utils::VectorF(0, 0), float dly = 0, float max_vx = 0, float max_vy = 0, bool jmp = false);
 
       Utils::VectorF position;
       Utils::VectorF velocity;
@@ -24,6 +23,8 @@ namespace DIM {
       float max_speed_x;
       float max_speed_y;
       bool jumping;
+      
+      LeaperMemento(Utils::VectorF pos = Utils::VectorF(0, 0), Utils::VectorF vel = Utils::VectorF(0, 0), float dly = 0, float max_vx = 0, float max_vy = 0, bool jmp = false);
 
       Utils::VectorF getPosition() const;
       Utils::VectorF getVelocity() const;

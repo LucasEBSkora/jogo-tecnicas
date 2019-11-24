@@ -77,15 +77,6 @@ namespace DIM {
       return graphics_manager;
     }
 
-    int EventManager::addTimer(float seconds, std::function<void()> callback) {
-      timers_callbacks[next_uid] = std::make_tuple(sf::seconds(seconds), sf::Time::Zero, callback);
-      return next_uid++;
-    }
-
-    void EventManager::removeTimer(int id) {
-      timers_callbacks.erase(id);
-    }
-
     int EventManager::addKeyboardListener(std::function<void(Event)> callback) {
       keyboard_callbacks[next_uid] = callback;
       return next_uid++;
@@ -106,18 +97,6 @@ namespace DIM {
 
     void EventManager::processEvents() {
       lastElapsedTime = clock.restart();
-
-      for (auto& t : timers_callbacks) {
-        std::get<1>(t.second) += lastElapsedTime;
-      }
-
-      for (auto it = timers_callbacks.begin(); it != timers_callbacks.end(); /**/) {
-        auto current = it++;
-        if (std::get<1>(current->second) >= std::get<0>(current->second)) {
-          std::get<1>(current->second) -= std::get<0>(current->second);
-          std::get<2>(current->second)();
-        }
-      }
 
       sf::Event event;
 
@@ -146,9 +125,5 @@ namespace DIM {
       return lastElapsedTime.asSeconds();
     }
 
-    void EventManager::resetTime() {
-      clock.restart();
-      lastElapsedTime = sf::Time::Zero;
-    }
   }
 }

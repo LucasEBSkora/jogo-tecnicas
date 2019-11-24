@@ -23,7 +23,7 @@ namespace DIM {
       buttons.push_back(new Button(Utils::VectorF(viewsize.x * 6.5 / 8, viewsize.y * 0.5 / 10 ), 160, 30, 0, "Main Menu"));
 
       for (auto& b : buttons) {
-        b->initialize(g, e);
+        b->initialize(g);
       }
 
       box.setCenter(Utils::VectorF(viewsize.x * 3/8, viewsize.y * 0.5 / 10));

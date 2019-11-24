@@ -19,7 +19,7 @@ namespace DIM {
       buttons.push_back(new Button(Utils::VectorF(viewsize.x / 2, viewsize.y / 4 * 3), 160, 30, 2, "Main Menu"));
 
       for (auto& b : buttons) {
-        b->initialize(g, e);
+        b->initialize(g);
       }
     }
 

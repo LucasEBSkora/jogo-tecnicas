@@ -158,7 +158,6 @@ namespace DIM {
 
       static int next_uid;
 
-      std::map<int, std::tuple<sf::Time, sf::Time, std::function<void()>>> timers_callbacks;
       std::map<int, std::function<void(Event)>> keyboard_callbacks;
       std::map<int, std::function<void(Event)>> mouse_callbacks;
 
@@ -169,9 +168,6 @@ namespace DIM {
       void setGraphicsManager(Managers::GraphicsManager& manager);
       Managers::GraphicsManager* getGraphicsManager() const;
       
-      int addTimer(float seconds, std::function<void()> callback);
-      void removeTimer(int id);
-
       int addKeyboardListener(std::function<void(Event)> callback);
       void removeKeyboardListener(int id);
 
@@ -182,7 +178,6 @@ namespace DIM {
 
       float getLastElapsedTime() const;
 
-      void resetTime();
     };
   }
 }

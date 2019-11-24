@@ -13,7 +13,6 @@ namespace DIM {
       my_id = id;
       text = txt;
       graphics_manager = nullptr;
-      event_man = nullptr;
     }
     
     Button::~Button() {
@@ -29,9 +28,8 @@ namespace DIM {
       }
     }
 
-    void Button::initialize(Managers::GraphicsManager& g, Managers::EventManager& e) {
+    void Button::initialize(Managers::GraphicsManager& g) {
       graphics_manager = &g;
-      event_man = &e;
     }
     
     bool Button::isInside(Utils::VectorF pos) const {

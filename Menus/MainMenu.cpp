@@ -27,7 +27,7 @@ namespace DIM {
       buttons.push_back(new Button(Utils::VectorF(viewsize.x / 2, viewsize.y / 9 * 8), 100, 30, 0, "Exit Game"));
 
       for (auto& b : buttons) {
-        b->initialize(g, e);
+        b->initialize(g);
       }
     }
 

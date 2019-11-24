@@ -16,7 +16,7 @@ namespace DIM {
       bool colliding(Entities::PhysicalEntity* e1, Entities::PhysicalEntity* e2);
     public:
       CollisionManager();
-      virtual ~CollisionManager();
+      ~CollisionManager();
 
       void addToCollisions(Entities::PhysicalEntity* ent);
       void removeFromCollisions(Entities::PhysicalEntity* ent);
