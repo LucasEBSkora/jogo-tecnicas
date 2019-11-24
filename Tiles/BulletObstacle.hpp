@@ -1,5 +1,5 @@
-#ifndef BulletOBSTACLE_HPP
-#define BulletOBSTACLE_HPP
+#ifndef BULLETOBSTACLE_HPP
+#define BULLETOBSTACLE_HPP
 
 #include "Tile.hpp"
 

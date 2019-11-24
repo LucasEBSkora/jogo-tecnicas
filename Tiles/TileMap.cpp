@@ -81,7 +81,7 @@ namespace DIM {
 
     }
 
-    TileMap::TileMapLine::TileMapLine() {
+    TileMap::TileMapLine::~TileMapLine() {
 
     }
 
