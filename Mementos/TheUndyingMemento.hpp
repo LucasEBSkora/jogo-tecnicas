@@ -7,7 +7,9 @@
 namespace DIM {
 
   namespace Entities {
-    class TheUndying;
+    namespace Mobs {
+      class TheUndying;
+    }
   }
 
   namespace Mementos {
@@ -36,7 +38,7 @@ namespace DIM {
       void saveToFile(std::ostream& file) override;
       static TheUndyingMemento loadFromFile(std::istream& file);
 
-      friend class Entities::TheUndying;
+      friend class Entities::Mobs::TheUndying;
     };
 
   } 

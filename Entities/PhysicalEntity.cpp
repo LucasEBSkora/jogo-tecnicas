@@ -5,7 +5,7 @@
 namespace DIM {
   namespace Entities {
 
-    PhysicalEntity::PhysicalEntity() : Entity(), width(0), height(0), adjusts(0, 0) {
+    PhysicalEntity::PhysicalEntity(const char* Path) : Entity(Path), width(0), height(0), adjusts(0, 0) {
       
     }
 

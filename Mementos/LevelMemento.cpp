@@ -22,7 +22,7 @@ namespace DIM {
       
     }
 
-    LevelMemento::LevelMemento(Tiles::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager) :
+    LevelMemento::LevelMemento(Tiles::TileManager* const tileManager, Entities::Mobs::TheUndying* const p1, Entities::Mobs::ThePenitent* const p2, const Managers::CollisionManager* collisionManager) :
       tileManagerMemento(nullptr), player1Memento(nullptr), player2Memento(nullptr) {
       tileManagerMemento = new TileManagerMemento(tileManager->createMemento());
       player1Memento = new TheUndyingMemento(p1->createMemento());
@@ -30,17 +30,17 @@ namespace DIM {
       for (Entities::PhysicalEntity* e : collisionManager->getCollidables()) {
         if (e == p1 || e == p2) continue;
         if (e->getID() == "Bullet") {
-          otherMementos.emplace_back("Bullet", new BulletMemento(static_cast<Entities::Bullet*>(e)->createMemento()));
+          otherMementos.emplace_back("Bullet", new BulletMemento(static_cast<Entities::Projectiles::Bullet*>(e)->createMemento()));
         } else if (e->getID() == "Spell") {
-          otherMementos.emplace_back("Spell", new SpellMemento(static_cast<Entities::Spell*>(e)->createMemento()));
+          otherMementos.emplace_back("Spell", new SpellMemento(static_cast<Entities::Projectiles::Spell*>(e)->createMemento()));
         } else if (e->getID() == "Caster") {
-          otherMementos.emplace_back("Caster", new CasterMemento(static_cast<Entities::Caster*>(e)->createMemento()));
+          otherMementos.emplace_back("Caster", new CasterMemento(static_cast<Entities::Mobs::Caster*>(e)->createMemento()));
         } else if (e->getID() == "Leaper") {
-          otherMementos.emplace_back("Leaper", new LeaperMemento(static_cast<Entities::Leaper*>(e)->createMemento()));
+          otherMementos.emplace_back("Leaper", new LeaperMemento(static_cast<Entities::Mobs::Leaper*>(e)->createMemento()));
         } else if (e->getID() == "Mirror") {
           otherMementos.emplace_back("Mirror", new TheMirrorOfHasturMemento(static_cast<Entities::TheMirrorOfHastur*>(e)->createMemento()));
         } else if (e->getID() == "Boss") {
-          otherMementos.emplace_back("Boss", new TheChainedMemento(static_cast<Entities::TheChained*>(e)->createMemento()));
+          otherMementos.emplace_back("Boss", new TheChainedMemento(static_cast<Entities::Mobs::TheChained*>(e)->createMemento()));
         }
       }
     }

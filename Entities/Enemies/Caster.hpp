@@ -6,27 +6,29 @@
 
 namespace DIM {
   namespace Entities {
+    namespace Mobs {
 
-    class Caster : public Enemy {
-    protected:
-    
-      static const float spellSpeed;
+      class Caster : public Enemy {
+      protected:
+      
+        static const float spellSpeed;
 
-      float max_speed_x;
-      float max_speed_y;
-      int delay;
-    public:
-      Caster();
-      ~Caster();
+        float max_speed_x;
+        float max_speed_y;
+        int delay;
+      public:
+        Caster();
+        ~Caster();
 
-      void update(float elapsedTime) override;
+        void update(float elapsedTime) override;
 
-      void collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) override;
-      void adjust() override;
+        void collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) override;
+        void adjust() override;
 
-      Mementos::CasterMemento createMemento() const;
-      void loadMemento(Mementos::CasterMemento memento);
-    };
+        Mementos::CasterMemento createMemento() const;
+        void loadMemento(Mementos::CasterMemento memento);
+      };
+    }
 
   }
 }

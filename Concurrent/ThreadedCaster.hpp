@@ -7,7 +7,7 @@
 namespace DIM {
   namespace Concurrent {
 
-    class ThreadedCaster : public Thread, public Entities::Caster {
+    class ThreadedCaster : public Thread, public Entities::Mobs::Caster {
     private:
       bool keep_going;
       bool paused;

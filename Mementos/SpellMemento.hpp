@@ -7,7 +7,9 @@
 namespace DIM {
 
   namespace Entities {
-    class Spell;
+    namespace Projectiles {
+      class Spell;
+    }
   }
 
   namespace Mementos {
@@ -28,7 +30,7 @@ namespace DIM {
       void saveToFile(std::ostream& file) override;
       static SpellMemento loadFromFile(std::istream& file);
 
-      friend class Entities::Spell;
+      friend class Entities::Projectiles::Spell;
     };
   
   }

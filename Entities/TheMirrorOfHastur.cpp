@@ -6,8 +6,7 @@
 namespace DIM {
   namespace Entities {
 
-    TheMirrorOfHastur::TheMirrorOfHastur() : PhysicalEntity(), boundToPlayer{false},
-      path{"assets/TheMirrorOfHastur.png"} {
+    TheMirrorOfHastur::TheMirrorOfHastur() : PhysicalEntity("assets/TheMirrorOfHastur.png"), boundToPlayer{false} {
       id = std::string("Mirror");
     }
 
@@ -34,14 +33,6 @@ namespace DIM {
           boundToPlayer = true;
         }
 
-    }
-
-    void TheMirrorOfHastur::draw() const {
-      if (currentLevel != nullptr) {
-        currentLevel->getGraphicsManager()->draw(path, position);
-      } else {
-        std::cout << "desenhando objeto nao inicializado\n";
-      }
     }
 
     const bool TheMirrorOfHastur::isBound() const {

@@ -5,18 +5,16 @@
 
 namespace DIM {
   namespace Entities {
+    namespace Mobs {
 
-    class Enemy : public Mob {
-    private:
-      const std::string path;
-
-    public:
-      Enemy(const std::string path = "");
-      virtual ~Enemy();
-      
-      virtual void draw() const override;
-      virtual void initializeSpecific() override;
-    };
+      class Enemy : public Mob {
+      public:
+        Enemy(const char* path = nullptr);
+        virtual ~Enemy();
+        
+        virtual void initializeSpecific() override;
+      };
+    }
 
   }
 }

@@ -38,8 +38,8 @@ namespace DIM {
     Menus::PauseMenu pause;
     Menus::LeaderBoardMenu leaderboard;
 
-    Entities::TheUndying player1;
-    Entities::ThePenitent player2;
+    Entities::Mobs::TheUndying player1;
+    Entities::Mobs::ThePenitent player2;
 
     Levels::TempleLevel temple;
     Levels::CavernLevel cavern;

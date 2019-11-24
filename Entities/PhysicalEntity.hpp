@@ -15,7 +15,7 @@ namespace DIM {
       std::string id;
       Utils::VectorF adjusts;
     public:
-      PhysicalEntity();
+      PhysicalEntity(const char* Path = nullptr);
       virtual ~PhysicalEntity();
 
       virtual void collided(std::string Id, Utils::VectorF positionOther, Utils::VectorF size) = 0;

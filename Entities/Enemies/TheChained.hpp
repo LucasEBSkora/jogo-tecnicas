@@ -7,28 +7,30 @@
 
 namespace DIM {
   namespace Entities {
-  
-    class TheChained : public Enemy {
-    private:
-      const Utils::VectorF spellSpeed;
-      TheMirrorOfHastur* mirror;
-      const float delay;
-      float time;
-      const unsigned nProjectiles;
+    namespace Mobs {
 
-    public:
-      TheChained(TheMirrorOfHastur* m = nullptr);
-      ~TheChained();
-      void initializeSpecific() override;
+      class TheChained : public Enemy {
+      private:
+        const Utils::VectorF spellSpeed;
+        TheMirrorOfHastur* mirror;
+        const float delay;
+        float time;
+        const unsigned nProjectiles;
 
-      void update(float elapsedTime) override;
-      void collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) override;
+      public:
+        TheChained(TheMirrorOfHastur* m = nullptr);
+        ~TheChained();
+        void initializeSpecific() override;
 
-      void setMirror(TheMirrorOfHastur* m);
+        void update(float elapsedTime) override;
+        void collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) override;
 
-      Mementos::TheChainedMemento createMemento() const;
-      void loadMemento(Mementos::TheChainedMemento memento);
-    };
+        void setMirror(TheMirrorOfHastur* m);
+
+        Mementos::TheChainedMemento createMemento() const;
+        void loadMemento(Mementos::TheChainedMemento memento);
+      };
+    }
 
   }
 }

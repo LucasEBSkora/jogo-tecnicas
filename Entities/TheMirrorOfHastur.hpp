@@ -12,7 +12,7 @@ namespace DIM {
     private:
       bool boundToPlayer;
       Utils::VectorF initialPosition;
-      const char* path;
+
 
     public:
       TheMirrorOfHastur();
@@ -21,7 +21,6 @@ namespace DIM {
       void initializeSpecific() override;
       void update(float elapsedTime) override;
       void collided(std::string id, Utils::VectorF positionOther, Utils::VectorF size) override;
-      void draw() const override;
       const bool isBound() const;
 
       Mementos::TheMirrorOfHasturMemento createMemento() const;

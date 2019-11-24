@@ -37,7 +37,7 @@ namespace DIM {
       ThePenitentMemento* player2Memento;
       std::vector<std::pair<std::string, Memento*>> otherMementos;
       LevelMemento();
-      LevelMemento(Tiles::TileManager* const tileManager, Entities::TheUndying* const p1, Entities::ThePenitent* const p2, const Managers::CollisionManager* collisionManager);
+      LevelMemento(Tiles::TileManager* const tileManager, Entities::Mobs::TheUndying* const p1, Entities::Mobs::ThePenitent* const p2, const Managers::CollisionManager* collisionManager);
 
       TileManagerMemento getTileManagerMemento() const;
       TheUndyingMemento getPlayer1Memento() const;

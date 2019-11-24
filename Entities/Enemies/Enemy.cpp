@@ -6,28 +6,22 @@
 
 namespace DIM {
   namespace Entities {
+    namespace Mobs {
 
-    Enemy::Enemy(const std::string path) : path{path} {
-      
-    }
-
-    Enemy::~Enemy() {
-
-    }
-
-    void Enemy::draw() const {
-      if (currentLevel != nullptr) {
-        currentLevel->getGraphicsManager()->draw(path, position);
-      } else {
-        std::cout << "desenhando objeto nao inicializado\n";
+      Enemy::Enemy(const char* path) : Mob(path) {
+        
       }
-    }
 
-    void Enemy::initializeSpecific() {
-      currentLevel->getGraphicsManager()->loadAsset(path);
-      Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
-      width = size.x;
-      height = size.y;
+      Enemy::~Enemy() {
+
+      }
+
+      void Enemy::initializeSpecific() {
+        currentLevel->getGraphicsManager()->loadAsset(path);
+        Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
+        width = size.x;
+        height = size.y;
+      }
     }
 
   }

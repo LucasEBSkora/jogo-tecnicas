@@ -10,16 +10,21 @@ namespace DIM {
   }
   
   namespace Entities {
+
+    namespace Mobs {
+
+      class Mob : public PhysicalEntity {
+      protected:
+        Utils::VectorF velocity;
+      public:
+        Mob(const char* path = nullptr);
+        virtual ~Mob();
+        
+        void setPosition(Utils::VectorF pos);
+      };
+
+    }
     
-    class Mob : public PhysicalEntity {
-    protected:
-      Utils::VectorF velocity;
-    public:
-      Mob();
-      virtual ~Mob();
-      
-      void setPosition(Utils::VectorF pos);
-    };
 
   }
 }

@@ -3,17 +3,19 @@
 
 namespace DIM {
   namespace Entities {
+    namespace Mobs {
 
-    Mob::Mob() : PhysicalEntity(), velocity{0,0} {
-      
-    }
+      Mob::Mob(const char* path) : PhysicalEntity(path), velocity{0,0} {
+        
+      }
 
-    Mob::~Mob() {
+      Mob::~Mob() {
 
-    }
+      }
 
-    void Mob::setPosition(Utils::VectorF pos) {
-      position = pos;
+      void Mob::setPosition(Utils::VectorF pos) {
+        position = pos;
+      }
     }
 
   }

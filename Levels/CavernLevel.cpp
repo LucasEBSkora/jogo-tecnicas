@@ -59,7 +59,7 @@ namespace DIM {
 
       Entities::TheMirrorOfHastur* ent = new Entities::TheMirrorOfHastur();
 
-      Entities::TheChained* boss = new Entities::TheChained(ent);
+      Entities::Mobs::TheChained* boss = new Entities::Mobs::TheChained(ent);
 
       addPhysicalEntity(boss);
       addPhysicalEntity(ent);

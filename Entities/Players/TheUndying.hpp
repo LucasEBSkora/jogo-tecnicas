@@ -6,32 +6,33 @@
 
 namespace DIM {
   namespace Entities {
-    
-    //Player 1
-    class TheUndying : public Mob {
-    private:
-      float max_speed_x;
-      float max_speed_y;
-      int movement_id;
-      bool pressed[2];
-      bool jumping;
-      unsigned int deathCounter;
-    public:
-      TheUndying();
-      ~TheUndying();
-
-      void update(float elapsedTime) override;
-      void draw() const override;
-      void initializeSpecific() override;
-
-      void collided(std::string Id, Utils::VectorF position, Utils::VectorF size) override;
-      void adjust() override;
+    namespace Mobs {
       
-      Mementos::TheUndyingMemento createMemento() const;
-      void loadMemento(Mementos::TheUndyingMemento memento);
-      
-      const unsigned int getDeathCounter() const;
-    };
+      //Player 1
+      class TheUndying : public Mob {
+      private:
+        float max_speed_x;
+        float max_speed_y;
+        int movement_id;
+        bool pressed[2];
+        bool jumping;
+        unsigned int deathCounter;
+      public:
+        TheUndying();
+        ~TheUndying();
+
+        void update(float elapsedTime) override;
+        void initializeSpecific() override;
+
+        void collided(std::string Id, Utils::VectorF position, Utils::VectorF size) override;
+        void adjust() override;
+        
+        Mementos::TheUndyingMemento createMemento() const;
+        void loadMemento(Mementos::TheUndyingMemento memento);
+        
+        const unsigned int getDeathCounter() const;
+      };
+    }
 
   }
 }

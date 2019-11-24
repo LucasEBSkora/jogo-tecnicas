@@ -13,6 +13,8 @@ namespace DIM {
 
     class Entity {
     protected:
+
+      const char* path;
       
       Utils::VectorF position;
       Levels::Level* currentLevel;
@@ -20,11 +22,11 @@ namespace DIM {
       virtual void initializeSpecific() = 0;
 
     public:
-      Entity();
+      Entity(const char* Path = nullptr);
       virtual ~Entity();
 
       virtual void update(float elapsedTime) = 0;
-      virtual void draw() const = 0;
+      virtual void draw() const;
       void setLevel(Levels::Level* level);
       void initializeGeneric(Levels::Level* currentLevel);
 

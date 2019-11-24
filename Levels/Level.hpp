@@ -27,8 +27,8 @@ namespace DIM {
       Managers::EventManager* events;
       Managers::CollisionManager collisions;
       Lists::EntityList entities;
-      Entities::TheUndying* player1;
-      Entities::ThePenitent* player2;
+      Entities::Mobs::TheUndying* player1;
+      Entities::Mobs::ThePenitent* player2;
       Tiles::TileManager* tileManager;
       std::set<Entities::PhysicalEntity*> markedToDelete;
       int decision;
@@ -42,7 +42,8 @@ namespace DIM {
 
       virtual void init(Managers::GraphicsManager& g, Managers::EventManager& e);
 
-      virtual void setPlayers(Entities::TheUndying* p1, Entities::ThePenitent* p2 = nullptr);
+      virtual void setPlayers(Entities::Mobs::TheUndying* p1, Entities::Mobs::ThePenitent* p2);
+      virtual void setPlayers(Entities::Mobs::TheUndying* p1);
       virtual void addPhysicalEntity(Entities::PhysicalEntity* ent);
       virtual void generateEnemies();
 

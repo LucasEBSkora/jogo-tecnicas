@@ -77,7 +77,7 @@ namespace DIM {
       for (int i = 0; i < nEnemies; ++i) {
         
         int idx = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
-        Entities::Enemy* enemy = new Entities::Leaper();
+        Entities::Mobs::Enemy* enemy = new Entities::Mobs::Leaper();
         enemy->setLevel(this);
         enemy->initializeGeneric(this);
         Utils::VectorF pos = spawns[idx] + Utils::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
@@ -87,7 +87,7 @@ namespace DIM {
         collisions.addToCollisions(enemy);
 
         idx = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
-        enemy = new Entities::Caster();
+        enemy = new Entities::Mobs::Caster();
         enemy->setLevel(this);
         enemy->initializeGeneric(this);
         pos = spawns[idx] + Utils::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
@@ -106,14 +106,21 @@ namespace DIM {
       collisions.addToCollisions(ent);
     }
 
-    void Level::setPlayers(Entities::TheUndying* p1, Entities::ThePenitent* p2) {
+    void Level::setPlayers(Entities::Mobs::TheUndying* p1, Entities::Mobs::ThePenitent* p2) {
       
       player1 = p1;
-      if (p2 == nullptr) {
-        entities.removeWithoutDestroying(player2);
-        collisions.removeFromCollisions(player2);
-      }
+      
+      entities.removeWithoutDestroying(player2);
+      collisions.removeFromCollisions(player2);
+      
       player2 = p2;
+      
+    }
+
+    void Level::setPlayers(Entities::Mobs::TheUndying* p1) {
+      
+      player1 = p1;
+      player2 = nullptr;
       
     }
 
@@ -214,22 +221,22 @@ namespace DIM {
         }
 
         Entities::TheMirrorOfHastur* mirror = nullptr;
-        Entities::TheChained* boss = nullptr;
+        Entities::Mobs::TheChained* boss = nullptr;
         for (std::pair<std::string, Mementos::Memento*>& p : memento.getOtherEntitiesMemento()) {
           if (p.first == "Bullet") {
-            Entities::Bullet* bullet = new Entities::Bullet;
+            Entities::Projectiles::Bullet* bullet = new Entities::Projectiles::Bullet;
             bullet->loadMemento(*static_cast<Mementos::BulletMemento*>(p.second));
             addPhysicalEntity(bullet);
           } else if (p.first == "Spell") {
-            Entities::Spell* spell = new Entities::Spell;
+            Entities::Projectiles::Spell* spell = new Entities::Projectiles::Spell;
             spell->loadMemento(*static_cast<Mementos::SpellMemento*>(p.second));
             addPhysicalEntity(spell);
           } else if (p.first == "Caster") {
-            Entities::Caster* caster = new Entities::Caster;
+            Entities::Mobs::Caster* caster = new Entities::Mobs::Caster;
             caster->loadMemento(*static_cast<Mementos::CasterMemento*>(p.second));
             addPhysicalEntity(caster);
           } else if (p.first == "Leaper") {
-            Entities::Leaper* leaper = new Entities::Leaper;
+            Entities::Mobs::Leaper* leaper = new Entities::Mobs::Leaper;
             leaper->loadMemento(*static_cast<Mementos::LeaperMemento*>(p.second));
             addPhysicalEntity(leaper);
           } else if (p.first == "Mirror") {
@@ -237,7 +244,7 @@ namespace DIM {
             mirror->loadMemento(*static_cast<Mementos::TheMirrorOfHasturMemento*>(p.second));
             addPhysicalEntity(mirror);
           } else if (p.first == "Boss") {
-            boss = new Entities::TheChained(nullptr);
+            boss = new Entities::Mobs::TheChained(nullptr);
             boss->loadMemento(*static_cast<Mementos::TheChainedMemento*>(p.second));
             addPhysicalEntity(boss);
           }
