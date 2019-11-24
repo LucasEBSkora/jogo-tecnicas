@@ -3,7 +3,7 @@
 namespace DIM {
   namespace Mementos {
 
-    CasterMemento::CasterMemento(Utility::VectorF pos, Utility::VectorF vel, float dly, float max_vx, float max_vy) {
+    CasterMemento::CasterMemento(Utils::VectorF pos, Utils::VectorF vel, float dly, float max_vx, float max_vy) {
       position = pos;
       velocity = vel;
       delay = dly;
@@ -11,11 +11,11 @@ namespace DIM {
       max_speed_y = max_vy;
     }
 
-    Utility::VectorF CasterMemento::getPosition() const {
+    Utils::VectorF CasterMemento::getPosition() const {
       return position;
     }
 
-    Utility::VectorF CasterMemento::getVelocity() const {
+    Utils::VectorF CasterMemento::getVelocity() const {
       return velocity;
     }
 

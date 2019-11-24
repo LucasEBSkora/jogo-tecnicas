@@ -3,12 +3,12 @@
 namespace DIM {
   namespace Mementos {
 
-    TheMirrorOfHasturMemento::TheMirrorOfHasturMemento(Utility::VectorF pos, bool bound) {
+    TheMirrorOfHasturMemento::TheMirrorOfHasturMemento(Utils::VectorF pos, bool bound) {
       position = pos;
       boundToPlayer = bound;
     }
 
-    Utility::VectorF TheMirrorOfHasturMemento::getPosition() const {
+    Utils::VectorF TheMirrorOfHasturMemento::getPosition() const {
       return position;
     }
 

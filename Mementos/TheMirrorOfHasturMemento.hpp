@@ -14,12 +14,12 @@ namespace DIM {
       
     class TheMirrorOfHasturMemento : public Memento {
     private:
-      TheMirrorOfHasturMemento(Utility::VectorF pos = Utility::VectorF(0, 0), bool bound = false);
+      TheMirrorOfHasturMemento(Utils::VectorF pos = Utils::VectorF(0, 0), bool bound = false);
 
-      Utility::VectorF position;
+      Utils::VectorF position;
       bool boundToPlayer;
 
-      Utility::VectorF getPosition() const;
+      Utils::VectorF getPosition() const;
       bool getBoundToPlayer() const;
 
     public:

@@ -6,7 +6,7 @@
 namespace DIM {
   namespace Entities {
 
-    Projectile::Projectile(Utility::VectorF position, Utility::VectorF Speed, const char* Path) 
+    Projectile::Projectile(Utils::VectorF position, Utils::VectorF Speed, const char* Path) 
     : speed{Speed}, path{Path}  {
         id = "Projectile";
         setPos(position);
@@ -31,12 +31,12 @@ namespace DIM {
 
     void Projectile::initializeSpecific() {
       currentLevel->getGraphicsManager()->loadAsset(path);
-      Utility::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
+      Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
       width = size.x;
       height = size.y;
     }
 
-    void Projectile::collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void Projectile::collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) {
       destroySelf();
     }
 
@@ -45,7 +45,7 @@ namespace DIM {
     }
 
     
-    void Projectile::setSpeed(Utility::VectorF Speed) {
+    void Projectile::setSpeed(Utils::VectorF Speed) {
       speed = Speed;
     }
 

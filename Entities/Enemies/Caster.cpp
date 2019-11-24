@@ -11,10 +11,10 @@ namespace DIM {
 
     const float Caster::spellSpeed{50};  
 
-    Caster::Caster() : Enemy("assets/Caster.png"), delay(4000 + Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(200, 1400)) {
+    Caster::Caster() : Enemy("assets/Caster.png"), delay(4000 + Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(200, 1400)) {
       id = std::string("Caster");
-      max_speed_x = 20 + Utility::RandomValueGenerator::getInstance()->getRandomFloatInRange(-8, 8);
-      max_speed_y = 40 + Utility::RandomValueGenerator::getInstance()->getRandomFloatInRange(-15, 15);
+      max_speed_x = 20 + Utils::RandomValueGenerator::getInstance()->getRandomFloatInRange(-8, 8);
+      max_speed_y = 40 + Utils::RandomValueGenerator::getInstance()->getRandomFloatInRange(-15, 15);
     }
 
     Caster::~Caster() {
@@ -23,7 +23,7 @@ namespace DIM {
 
     void Caster::update(float elapsedTime) {
 
-      Utility::VectorF player = currentLevel->getPlayer1Center();
+      Utils::VectorF player = currentLevel->getPlayer1Center();
 
       velocity.x = ((player.x < position.x + width / 2) ? -1 : 1) * max_speed_x;
 
@@ -37,9 +37,9 @@ namespace DIM {
         --delay;
       } else {
     
-        delay = Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(1200, 2800);
+        delay = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(1200, 2800);
 
-        Utility::VectorF direction = (player - position -  getSize() * (0.5));
+        Utils::VectorF direction = (player - position -  getSize() * (0.5));
     
         if (direction.module() < 300) {
           
@@ -48,11 +48,11 @@ namespace DIM {
 
       }
 
-      position += velocity * elapsedTime * Utility::RandomValueGenerator::getInstance()->getRandomFloatInRange(0.5, 1.5); 
+      position += velocity * elapsedTime * Utils::RandomValueGenerator::getInstance()->getRandomFloatInRange(0.5, 1.5); 
       
     }
 
-    void Caster::collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void Caster::collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) {
 
       if (other_id == "Wall" || other_id == "Spawn" || other_id == "Spike") {
         float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(position.x + static_cast<float>(width) / 2 - positionOther.x - size.x / 2);
@@ -76,7 +76,7 @@ namespace DIM {
 
     void Caster::adjust() {
       if (adjusts.y < 0) {
-        velocity = Utility::VectorF();
+        velocity = Utils::VectorF();
         velocity.y = 0;
         velocity.x = 0;
       } else if (adjusts.y > 0) {

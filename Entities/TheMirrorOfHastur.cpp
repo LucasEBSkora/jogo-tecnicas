@@ -17,7 +17,7 @@ namespace DIM {
 
     void TheMirrorOfHastur::initializeSpecific() {
       currentLevel->getGraphicsManager()->loadAsset(path);
-      Utility::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
+      Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
       width = size.x;
       height = size.y;
       initialPosition = currentLevel->getItemSpawn();
@@ -28,7 +28,7 @@ namespace DIM {
       else position = currentLevel->getPlayer1Center();
     }
 
-    void TheMirrorOfHastur::collided(std::string id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void TheMirrorOfHastur::collided(std::string id, Utils::VectorF positionOther, Utils::VectorF size) {
         
         if (id == "Player1" || id == "Player2") {
           boundToPlayer = true;

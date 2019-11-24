@@ -13,7 +13,7 @@ namespace DIM {
     public:
       BulletObstacle();
       ~BulletObstacle();
-      void collided(const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine) override;
+      void collided(const std::string id, const Utils::VectorF positionOther, const Utils::VectorU positionMine) override;
     };
 
   }

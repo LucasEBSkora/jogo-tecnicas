@@ -7,7 +7,7 @@
 namespace DIM {
 
   namespace Menus {
-    TextInputBox::TextInputBox(const unsigned short maxlenght, Utility::VectorF pos, unsigned int font) 
+    TextInputBox::TextInputBox(const unsigned short maxlenght, Utils::VectorF pos, unsigned int font) 
     : graph{nullptr}, events{nullptr}, keyboard_event_id{0}, centerPosition{pos}, fontSize{font}, 
     maxLenght{maxlenght}, done{false}, str{""}  {
 
@@ -23,7 +23,7 @@ namespace DIM {
       events = &e;
     }
 
-    void TextInputBox::setCenter(const Utility::VectorF pos) {
+    void TextInputBox::setCenter(const Utils::VectorF pos) {
       centerPosition = pos;
     }
 

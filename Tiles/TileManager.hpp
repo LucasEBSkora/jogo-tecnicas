@@ -22,37 +22,37 @@ namespace DIM {
       forbbidenSpawn = -2,
     };
       
-    typedef std::tuple<std::string, Utility::VectorF, Utility::VectorF> IdPositionSizeTuple;
+    typedef std::tuple<std::string, Utils::VectorF, Utils::VectorF> IdPositionSizeTuple;
 
     class TileManager : public Entities::Entity {
     private:
       TileVector tiles;
       float tileSide;
-      Utility::VectorU firstSpawnPointFound;
-      Utility::VectorU firstItemSpawnPointFound;
-      Utility::VectorU firstBossSpawnPointFound;
+      Utils::VectorU firstSpawnPointFound;
+      Utils::VectorU firstItemSpawnPointFound;
+      Utils::VectorU firstBossSpawnPointFound;
       const char* path;
       TileMap& tileMap;
       void initializeSpecific() override;
-      std::vector<Utility::VectorF> enemySpawns;
+      std::vector<Utils::VectorF> enemySpawns;
 
     public:
       TileManager( std::vector<Tile*> Tiles = std::vector<Tile*>(), float TileSide = 0.0f, const char* Path = nullptr);
       ~TileManager();
 
-      std::vector<IdPositionSizeTuple> checkCollisions(Utility::VectorF at, Utility::VectorF size, std::string id);
+      std::vector<IdPositionSizeTuple> checkCollisions(Utils::VectorF at, Utils::VectorF size, std::string id);
       
       void update(float elapsedTime) override;
       void draw() const override;
 
       const TileMap* getTileMap() const;
       
-      Utility::VectorF getWorldSize() const;
-      Utility::VectorF getPlayerSpawnPosition() const;
-      Utility::VectorF getItemSpawnPosition() const;
-      Utility::VectorF getBossSpawnPosition() const;
+      Utils::VectorF getWorldSize() const;
+      Utils::VectorF getPlayerSpawnPosition() const;
+      Utils::VectorF getItemSpawnPosition() const;
+      Utils::VectorF getBossSpawnPosition() const;
       Levels::Level* getLevel() const;
-      const std::vector<Utility::VectorF>& getEnemySpawns() const;
+      const std::vector<Utils::VectorF>& getEnemySpawns() const;
 
       void regenRandomTiles();
 

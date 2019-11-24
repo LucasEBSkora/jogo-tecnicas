@@ -25,7 +25,7 @@ namespace DIM {
 
     void Enemy::initializeSpecific() {
       currentLevel->getGraphicsManager()->loadAsset(path);
-      Utility::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
+      Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset(path);
       width = size.x;
       height = size.y;
     }

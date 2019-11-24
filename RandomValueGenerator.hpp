@@ -2,7 +2,7 @@
 #define RANDOMVALUEGENERATOR_HPP
 
 namespace DIM {
-  namespace Utility {
+  namespace Utils {
 
     class RandomValueGenerator {
       private:

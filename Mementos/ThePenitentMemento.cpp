@@ -3,13 +3,13 @@
 namespace DIM {
   namespace Mementos {
 
-    ThePenitentMemento::ThePenitentMemento(Utility::VectorF pos, float ang, float rad) {
+    ThePenitentMemento::ThePenitentMemento(Utils::VectorF pos, float ang, float rad) {
       position = pos;
       angle = ang;
       radius = rad;
     }
 
-    Utility::VectorF ThePenitentMemento::getPosition() const {
+    Utils::VectorF ThePenitentMemento::getPosition() const {
       return position;
     }
 

@@ -6,7 +6,7 @@
 namespace DIM {
   namespace Tiles {
 
-    Tile::Tile(const char* Id, const char* Path, const Utility::VectorF Size) : ID{Id}, path{Path}, size{Size} {
+    Tile::Tile(const char* Id, const char* Path, const Utils::VectorF Size) : ID{Id}, path{Path}, size{Size} {
 
     }
 
@@ -22,7 +22,7 @@ namespace DIM {
     }
 
 
-    void Tile::draw(const Utility::VectorF at) const {
+    void Tile::draw(const Utils::VectorF at) const {
       if (graphicsManager == nullptr) {
         std::cout << "nao encontrado" << std::endl;
       }
@@ -33,7 +33,7 @@ namespace DIM {
       return ID;
     }
 
-    void Tile::collided(const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine) {
+    void Tile::collided(const std::string id, const Utils::VectorF positionOther, const Utils::VectorU positionMine) {
       //Default behavior is to ignore collisions
     }
 

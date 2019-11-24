@@ -20,7 +20,7 @@ namespace DIM {
       void draw() const override;
       void initializeSpecific() override;
 
-      void collided(std::string Id, Utility::VectorF position, Utility::VectorF size) override;
+      void collided(std::string Id, Utils::VectorF position, Utils::VectorF size) override;
       
       Mementos::ThePenitentMemento createMemento() const;
       void loadMemento(Mementos::ThePenitentMemento memento);

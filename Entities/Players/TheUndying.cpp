@@ -45,7 +45,7 @@ namespace DIM {
 
     void TheUndying::initializeSpecific() {
       currentLevel->getGraphicsManager()->loadAsset("assets/TheUndying.png");
-      Utility::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/TheUndying.png");
+      Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/TheUndying.png");
       width = size.x;
       height = size.y;
       movement_id = currentLevel->getEventManager()->addKeyboardListener(
@@ -91,7 +91,7 @@ namespace DIM {
       );
     }
 
-    void TheUndying::collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void TheUndying::collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) {
       
 
       if (other_id == "Spike" || other_id == "Bullet" || other_id == "Spell" || other_id == "Caster" || other_id == "Leaper" || other_id == "Hole") {
@@ -100,10 +100,10 @@ namespace DIM {
         ++deathCounter;
         if (deathCounter > 0) std::cout << " (" << deathCounter << " times)";
         std::cout << std::endl;
-        Utility::VectorF spawn = currentLevel->getPlayer1Spawn();
+        Utils::VectorF spawn = currentLevel->getPlayer1Spawn();
 
         position = spawn;
-        velocity = Utility::VectorF();
+        velocity = Utils::VectorF();
         for (int i = 0; i < 2; ++i) {
           pressed[i] = false;
         }

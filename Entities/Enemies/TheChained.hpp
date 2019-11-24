@@ -10,7 +10,7 @@ namespace DIM {
   
     class TheChained : public Enemy {
     private:
-      const Utility::VectorF spellSpeed;
+      const Utils::VectorF spellSpeed;
       TheMirrorOfHastur* mirror;
       const float delay;
       float time;
@@ -22,7 +22,7 @@ namespace DIM {
       void initializeSpecific() override;
 
       void update(float elapsedTime) override;
-      void collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) override;
+      void collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) override;
 
       void setMirror(TheMirrorOfHastur* m);
 

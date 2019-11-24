@@ -4,7 +4,7 @@
 #include <ostream>
 
 namespace DIM {
-  namespace Utility {
+  namespace Utils {
 
     template <typename T>
     class GeometricVector {

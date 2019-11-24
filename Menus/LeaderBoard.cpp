@@ -10,7 +10,7 @@
 namespace DIM {
   namespace Menus {
 
-    LeaderBoard::LeaderBoard(Utility::VectorF pos, Utility::VectorF Size, unsigned int font) : mouse_event_id{0}, path{"high.score"}, 
+    LeaderBoard::LeaderBoard(Utils::VectorF pos, Utils::VectorF Size, unsigned int font) : mouse_event_id{0}, path{"high.score"}, 
     position{pos}, size{Size}, fontSize{font}, offset{0} {
       loadScores();
     }
@@ -44,7 +44,7 @@ namespace DIM {
     }
 
     void LeaderBoard::draw() const {
-      Utility::VectorF positionText = position + Utility::VectorF(size.x/2, 0);      
+      Utils::VectorF positionText = position + Utils::VectorF(size.x/2, 0);      
       unsigned int skip = offset;
       for( auto p : scores) {
           if (skip > 0) {
@@ -54,7 +54,7 @@ namespace DIM {
           std::stringstream str;
           str << p.first << " - " << p.second << std::endl;
           graph->drawTextCentered(str.str(), positionText, fontSize);
-          positionText += Utility::VectorF(0, fontSize);
+          positionText += Utils::VectorF(0, fontSize);
           if (positionText.y >= size.y) break;
       }
     }
@@ -74,11 +74,11 @@ namespace DIM {
       });
     }
 
-    void LeaderBoard::setPosition(const Utility::VectorF pos) {
+    void LeaderBoard::setPosition(const Utils::VectorF pos) {
       position = pos;
     }
 
-    void LeaderBoard::setSize(const Utility::VectorF s) {
+    void LeaderBoard::setSize(const Utils::VectorF s) {
       size = s;
     }
 

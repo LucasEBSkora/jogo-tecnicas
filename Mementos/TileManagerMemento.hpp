@@ -17,21 +17,21 @@ namespace DIM {
     class TileManagerMemento : public Memento {
     private:
       TileManagerMemento();
-      TileManagerMemento(Tiles::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns);
+      TileManagerMemento(Tiles::TileMap& tilemap, Utils::VectorU playerSpawn, Utils::VectorU itemSpawn, Utils::VectorU bossSpawn, std::vector<Utils::VectorF> enSpawns);
 
-      Utility::VectorU tilesSize;
+      Utils::VectorU tilesSize;
       short** tiles;
 
-      Utility::VectorU firstSpawnPointFound;
-      Utility::VectorU firstItemSpawnPointFound;
-      Utility::VectorU firstBossSpawnPointFound;
-      std::vector<Utility::VectorF> enemySpawns;
+      Utils::VectorU firstSpawnPointFound;
+      Utils::VectorU firstItemSpawnPointFound;
+      Utils::VectorU firstBossSpawnPointFound;
+      std::vector<Utils::VectorF> enemySpawns;
 
       short getTileAt(unsigned i, unsigned j) const;
-      Utility::VectorU getFirstSpawnPointFound() const;
-      Utility::VectorU getFirstItemSpawnPointFound() const;
-      Utility::VectorU getFirstBossSpawnPointFound() const;
-      std::vector<Utility::VectorF> getEnemySpawns() const;
+      Utils::VectorU getFirstSpawnPointFound() const;
+      Utils::VectorU getFirstItemSpawnPointFound() const;
+      Utils::VectorU getFirstBossSpawnPointFound() const;
+      std::vector<Utils::VectorF> getEnemySpawns() const;
 
     public:
       TileManagerMemento(const TileManagerMemento& other);

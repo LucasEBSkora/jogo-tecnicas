@@ -11,9 +11,9 @@ namespace DIM {
     private:
 
     public:
-      Spell(Utility::VectorF position = Utility::VectorF(0.0f, 0.0f), Utility::VectorF speed = Utility::VectorF(0.0f, 0.0f));
+      Spell(Utils::VectorF position = Utils::VectorF(0.0f, 0.0f), Utils::VectorF speed = Utils::VectorF(0.0f, 0.0f));
       ~Spell();
-      void collided(std::string other_id, Utility::VectorF position, Utility::VectorF size) override;
+      void collided(std::string other_id, Utils::VectorF position, Utils::VectorF size) override;
       
       Mementos::SpellMemento createMemento() const;
       void loadMemento(Mementos::SpellMemento memento);

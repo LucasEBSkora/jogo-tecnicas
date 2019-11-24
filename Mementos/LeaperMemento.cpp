@@ -3,7 +3,7 @@
 namespace DIM {
   namespace Mementos {
 
-    LeaperMemento::LeaperMemento(Utility::VectorF pos, Utility::VectorF vel, float dly, float max_vx, float max_vy, bool jmp) {
+    LeaperMemento::LeaperMemento(Utils::VectorF pos, Utils::VectorF vel, float dly, float max_vx, float max_vy, bool jmp) {
       position = pos;
       velocity = vel;
       delay = dly;
@@ -12,11 +12,11 @@ namespace DIM {
       jumping = jmp;
     }
 
-    Utility::VectorF LeaperMemento::getPosition() const {
+    Utils::VectorF LeaperMemento::getPosition() const {
       return position;
     }
 
-    Utility::VectorF LeaperMemento::getVelocity() const {
+    Utils::VectorF LeaperMemento::getVelocity() const {
       return velocity;
     }
 

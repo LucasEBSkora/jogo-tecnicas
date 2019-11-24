@@ -4,7 +4,7 @@
 namespace DIM {
   namespace Mementos {
     
-    TheUndyingMemento::TheUndyingMemento(Utility::VectorF pos, Utility::VectorF vel, float max_vx, float max_vy, bool jmp, unsigned int deaths) {
+    TheUndyingMemento::TheUndyingMemento(Utils::VectorF pos, Utils::VectorF vel, float max_vx, float max_vy, bool jmp, unsigned int deaths) {
       position = pos;
       velocity = vel;
       max_speed_x = max_vx;
@@ -13,11 +13,11 @@ namespace DIM {
       deathCounter = deaths;
     }
 
-    Utility::VectorF TheUndyingMemento::getPosition() const {
+    Utils::VectorF TheUndyingMemento::getPosition() const {
       return position;
     }
 
-    Utility::VectorF TheUndyingMemento::getVelocity() const {
+    Utils::VectorF TheUndyingMemento::getVelocity() const {
       return velocity;
     }
     

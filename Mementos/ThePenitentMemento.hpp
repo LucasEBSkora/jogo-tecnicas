@@ -14,13 +14,13 @@ namespace DIM {
   
     class ThePenitentMemento : public Memento {
     private:
-      ThePenitentMemento(Utility::VectorF pos = Utility::VectorF(0, 0), float ang = 0, float rad = 0);
+      ThePenitentMemento(Utils::VectorF pos = Utils::VectorF(0, 0), float ang = 0, float rad = 0);
 
-      Utility::VectorF position;
+      Utils::VectorF position;
       float angle;
       float radius;
 
-      Utility::VectorF getPosition() const;
+      Utils::VectorF getPosition() const;
       float getAngle() const;
       float getRadius() const;
       

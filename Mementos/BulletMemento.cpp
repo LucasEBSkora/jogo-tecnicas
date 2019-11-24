@@ -3,17 +3,17 @@
 namespace DIM {
   namespace Mementos {
     
-    BulletMemento::BulletMemento(Utility::VectorF pos, Utility::VectorF spd, float dly) {
+    BulletMemento::BulletMemento(Utils::VectorF pos, Utils::VectorF spd, float dly) {
       position = pos;
       speed = spd;
       delay = dly;
     }
 
-    Utility::VectorF BulletMemento::getPosition() const {
+    Utils::VectorF BulletMemento::getPosition() const {
       return position;
     }
 
-    Utility::VectorF BulletMemento::getSpeed() const {
+    Utils::VectorF BulletMemento::getSpeed() const {
       return speed;
     }
 

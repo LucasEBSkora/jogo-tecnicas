@@ -14,7 +14,7 @@ namespace DIM {
     class Entity {
     protected:
       
-      Utility::VectorF position;
+      Utils::VectorF position;
       Levels::Level* currentLevel;
 
       virtual void initializeSpecific() = 0;

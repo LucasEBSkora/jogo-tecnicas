@@ -20,7 +20,7 @@ namespace DIM {
 
     void TheChained::initializeSpecific() {
       Enemy::initializeSpecific();
-      position = currentLevel->getBossSpawn() - Utility::VectorF(width, height) * 0.5;
+      position = currentLevel->getBossSpawn() - Utils::VectorF(width, height) * 0.5;
     }
 
     void TheChained::update(float elapsedTime) {
@@ -33,14 +33,14 @@ namespace DIM {
 
         if (!mirror->isBound() && (currentLevel->getPlayer1Center() - position).module() < 250.0f ) {
           for (unsigned int i = 0; i < nProjectiles; ++i) {
-            currentLevel->addPhysicalEntity(new Spell(position + Utility::VectorF(-8, -32.0f + 8 * (i)), spellSpeed));
+            currentLevel->addPhysicalEntity(new Spell(position + Utils::VectorF(-8, -32.0f + 8 * (i)), spellSpeed));
           }
         }
       }
       
     }
 
-    void TheChained::collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void TheChained::collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) {
         //doesn't actually collide
     }
 

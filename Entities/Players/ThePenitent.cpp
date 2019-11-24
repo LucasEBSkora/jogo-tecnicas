@@ -20,9 +20,9 @@ namespace DIM {
     }
 
     void ThePenitent::update(float elapsedTime) {
-      Utility::VectorF p1_pos = currentLevel->getPlayer1Center();
+      Utils::VectorF p1_pos = currentLevel->getPlayer1Center();
       
-      position = p1_pos + Utility::VectorF(std::cos(angle), std::sin(angle)) * radius - Utility::VectorF(width, height) * (0.5);
+      position = p1_pos + Utils::VectorF(std::cos(angle), std::sin(angle)) * radius - Utils::VectorF(width, height) * (0.5);
     }
 
     void ThePenitent::draw() const {
@@ -35,7 +35,7 @@ namespace DIM {
 
     void ThePenitent::initializeSpecific() {
       currentLevel->getGraphicsManager()->loadAsset("assets/ThePenitent.png");
-      Utility::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/ThePenitent.png");
+      Utils::VectorF size = currentLevel->getGraphicsManager()->getSizeOfAsset("assets/ThePenitent.png");
       width = size.x;
       height = size.y;
       
@@ -50,7 +50,7 @@ namespace DIM {
       );
     }
 
-    void ThePenitent::collided(std::string Id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void ThePenitent::collided(std::string Id, Utils::VectorF positionOther, Utils::VectorF size) {
       
     }
 

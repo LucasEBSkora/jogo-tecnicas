@@ -15,26 +15,26 @@ namespace DIM {
       std::map<std::string, sf::Texture*> assets;
       sf::RenderWindow* window;
       sf::View view;
-      Utility::VectorF camera_pos;
-      Utility::VectorF camera_size;
+      Utils::VectorF camera_pos;
+      Utils::VectorF camera_size;
       sf::Font font;
-      const bool outOfSight(Utility::VectorF at, Utility::VectorF size) const;
+      const bool outOfSight(Utils::VectorF at, Utils::VectorF size) const;
 
     public:
       GraphicsManager();
       ~GraphicsManager();
       const bool loadAsset(const std::string& path);
-      void draw(const std::string& id, Utility::VectorF at) const;
-      void drawRect(Utility::VectorF at, Utility::VectorF size, int r, int g, int b) const;
-      void drawTextCentered(const std::string& text, Utility::VectorF at, unsigned size) const;
-      void centerCamera(Utility::VectorF at);
+      void draw(const std::string& id, Utils::VectorF at) const;
+      void drawRect(Utils::VectorF at, Utils::VectorF size, int r, int g, int b) const;
+      void drawTextCentered(const std::string& text, Utils::VectorF at, unsigned size) const;
+      void centerCamera(Utils::VectorF at);
       sf::Window* getWindow() const;
       void display() const;
       void clear(int r, int g, int b) const;
-      const Utility::VectorF getViewSize() const;
-      const Utility::VectorF getMousePos() const;
-      const Utility::VectorF getMousePosInView() const;
-      const Utility::VectorF getSizeOfAsset(const std::string& id) const;
+      const Utils::VectorF getViewSize() const;
+      const Utils::VectorF getMousePos() const;
+      const Utils::VectorF getMousePosInView() const;
+      const Utils::VectorF getSizeOfAsset(const std::string& id) const;
 
     };
     

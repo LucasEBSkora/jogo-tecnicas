@@ -12,9 +12,9 @@ namespace DIM {
       float delay;
     
     public:
-      Bullet(Utility::VectorF position = Utility::VectorF(0.0f, 0.0f), Utility::VectorF Speed = Utility::VectorF(0.0f, 0.0f));
+      Bullet(Utils::VectorF position = Utils::VectorF(0.0f, 0.0f), Utils::VectorF Speed = Utils::VectorF(0.0f, 0.0f));
       ~Bullet();
-      void collided(std::string Id, Utility::VectorF position, Utility::VectorF size) override;
+      void collided(std::string Id, Utils::VectorF position, Utils::VectorF size) override;
       void update(float elapsedTime) override;
       
       Mementos::BulletMemento createMemento() const;

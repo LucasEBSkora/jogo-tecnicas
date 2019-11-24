@@ -50,10 +50,10 @@ namespace DIM {
       virtual void playFromStart();
       virtual int exec();
 
-      const Utility::VectorF getPlayer1Center() const;
-      const Utility::VectorF getPlayer1Spawn() const;
-      const Utility::VectorF getItemSpawn() const;
-      const Utility::VectorF getBossSpawn() const;
+      const Utils::VectorF getPlayer1Center() const;
+      const Utils::VectorF getPlayer1Spawn() const;
+      const Utils::VectorF getItemSpawn() const;
+      const Utils::VectorF getBossSpawn() const;
       Managers::CollisionManager* getCollisionManager();
       Managers::EventManager* getEventManager() const;
       Managers::GraphicsManager* getGraphicsManager() const;

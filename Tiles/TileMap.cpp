@@ -59,7 +59,7 @@ namespace DIM {
 
             file >> first >> second;
 
-            tileMap[i][j] = (Utility::RandomValueGenerator::getInstance()->getRandomBool(50)) ? first : second; //50% chance of being the first, 50% of being the second
+            tileMap[i][j] = (Utils::RandomValueGenerator::getInstance()->getRandomBool(50)) ? first : second; //50% chance of being the first, 50% of being the second
           
             ++j;
           } else if (('0' <= file.peek() && file.peek() <= '9') || file.peek() == '-') { //if it is a normal number, just saves it in the matrix
@@ -102,7 +102,7 @@ namespace DIM {
       }
     }
 
-    const Utility::VectorU TileMap::getSize() const {
+    const Utils::VectorU TileMap::getSize() const {
       return tileMapSize;
     }
 

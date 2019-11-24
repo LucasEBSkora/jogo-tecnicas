@@ -73,11 +73,11 @@ namespace DIM {
 
       player1->setPosition(getPlayer1Spawn());
 
-      std::vector<Utility::VectorF> spawns = tileManager->getEnemySpawns();
+      std::vector<Utils::VectorF> spawns = tileManager->getEnemySpawns();
       int n_casters = std::min(static_cast<int>(spawns.size()), 4);
 
       for (int i = 0; i < n_casters; ++i) {
-        int idx = Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+        int idx = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
         casters.push_back(new ThreadedCaster(spawns[idx]));
         spawns.erase(std::next(spawns.begin(), idx));
       }

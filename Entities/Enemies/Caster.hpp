@@ -21,7 +21,7 @@ namespace DIM {
 
       void update(float elapsedTime) override;
 
-      void collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) override;
+      void collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) override;
       void adjust() override;
 
       Mementos::CasterMemento createMemento() const;

@@ -13,17 +13,17 @@ namespace DIM {
       int width;
       int height;
       std::string id;
-      Utility::VectorF adjusts;
+      Utils::VectorF adjusts;
     public:
       PhysicalEntity();
       virtual ~PhysicalEntity();
 
-      virtual void collided(std::string Id, Utility::VectorF positionOther, Utility::VectorF size) = 0;
+      virtual void collided(std::string Id, Utils::VectorF positionOther, Utils::VectorF size) = 0;
       virtual void adjust();
 
-      Utility::VectorF getPos() const;
-      void setPos(Utility::VectorF pos);
-      Utility::VectorF getSize() const;
+      Utils::VectorF getPos() const;
+      void setPos(Utils::VectorF pos);
+      Utils::VectorF getSize() const;
       std::string getID() const;
       Levels::Level* getLevel() const;
     };

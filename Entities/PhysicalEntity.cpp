@@ -15,19 +15,19 @@ namespace DIM {
 
     void PhysicalEntity::adjust() {
       position += adjusts;
-      adjusts = Utility::VectorF(0, 0);
+      adjusts = Utils::VectorF(0, 0);
     }
 
-    Utility::VectorF PhysicalEntity::getPos() const {
+    Utils::VectorF PhysicalEntity::getPos() const {
       return position;
     }
 
-    void PhysicalEntity::setPos(Utility::VectorF pos) {
+    void PhysicalEntity::setPos(Utils::VectorF pos) {
       position = pos;
     }
 
-    Utility::VectorF PhysicalEntity::getSize() const {
-      return Utility::VectorF(width, height);
+    Utils::VectorF PhysicalEntity::getSize() const {
+      return Utils::VectorF(width, height);
     }
 
     std::string PhysicalEntity::getID() const {

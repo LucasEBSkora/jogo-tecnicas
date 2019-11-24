@@ -12,7 +12,7 @@ namespace DIM {
 
     }
 
-    void Mob::setPosition(Utility::VectorF pos) {
+    void Mob::setPosition(Utils::VectorF pos) {
       position = pos;
     }
 

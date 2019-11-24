@@ -6,8 +6,8 @@
 namespace DIM {
   namespace Menus {
 
-    Button::Button(Utility::VectorF center, int w, int h, int id, const std::string& txt) {
-      position = center - Utility::VectorF(w, h) * 0.5;
+    Button::Button(Utils::VectorF center, int w, int h, int id, const std::string& txt) {
+      position = center - Utils::VectorF(w, h) * 0.5;
       width = w;
       height = h;
       my_id = id;
@@ -22,8 +22,8 @@ namespace DIM {
 
     void Button::draw() const {
       if (graphics_manager != nullptr) {
-        graphics_manager->drawRect(position, Utility::VectorF(width, height), 80, 80, 80);
-        graphics_manager->drawTextCentered(text, position + Utility::VectorF(width, height) * 0.5 - Utility::VectorF(1.0f, 3.0f), height*.7);
+        graphics_manager->drawRect(position, Utils::VectorF(width, height), 80, 80, 80);
+        graphics_manager->drawTextCentered(text, position + Utils::VectorF(width, height) * 0.5 - Utils::VectorF(1.0f, 3.0f), height*.7);
       } else {
         std::cout << "desenhando objeto nao inicializado\n";
       }
@@ -34,7 +34,7 @@ namespace DIM {
       event_man = &e;
     }
     
-    bool Button::isInside(Utility::VectorF pos) const {
+    bool Button::isInside(Utils::VectorF pos) const {
       return (position.x <= pos.x && pos.x <= position.x + width &&
               position.y <= pos.y && pos.y <= position.y + height);
     }

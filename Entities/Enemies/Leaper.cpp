@@ -9,8 +9,8 @@ namespace DIM {
       
     Leaper::Leaper() : Enemy("assets/Leaper.png"), jumping(false), delay(0) {
       id = std::string("Leaper");
-      max_speed_x = 60 + Utility::RandomValueGenerator::getInstance()->getRandomFloatInRange(-25, 10);
-      max_speed_y = 230 + Utility::RandomValueGenerator::getInstance()->getRandomFloatInRange(-40, 40);
+      max_speed_x = 60 + Utils::RandomValueGenerator::getInstance()->getRandomFloatInRange(-25, 10);
+      max_speed_y = 230 + Utils::RandomValueGenerator::getInstance()->getRandomFloatInRange(-40, 40);
     }
 
     Leaper::~Leaper() {
@@ -18,12 +18,12 @@ namespace DIM {
     }
 
     void Leaper::update(float elapsedTime) {
-      Utility::VectorF player = currentLevel->getPlayer1Center();
+      Utils::VectorF player = currentLevel->getPlayer1Center();
       if (!jumping) {
         if (delay != 0) {
           --delay;
         } else {
-          delay = Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(800, 1200);
+          delay = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(800, 1200);
           jumping = true;
           velocity.x = max_speed_x * (player.x > position.x + width / 2 ? 1 : -1);
           velocity.y -= 2 * max_speed_y;
@@ -42,7 +42,7 @@ namespace DIM {
 
 
 
-    void Leaper::collided(std::string other_id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void Leaper::collided(std::string other_id, Utils::VectorF positionOther, Utils::VectorF size) {
 
       if (other_id == "Wall" || other_id == "Spawn" || other_id == "Spike") {
         float dist_x = (static_cast<float>(width) + size.x) / 2 - std::abs(position.x + static_cast<float>(width) / 2 - positionOther.x - size.x / 2);
@@ -70,7 +70,7 @@ namespace DIM {
     void Leaper::adjust() {
       if (adjusts.y < 0) {
         jumping = false;
-        velocity = Utility::VectorF();
+        velocity = Utils::VectorF();
       } else if (adjusts.y > 0) {
         velocity.y = 0;
       }

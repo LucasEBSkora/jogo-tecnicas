@@ -11,7 +11,7 @@ namespace DIM {
     class TileMap {
       
       private:
-        Utility::VectorU tileMapSize;
+        Utils::VectorU tileMapSize;
         short** tileMap;
         const char* path;
         TileManager* manager;
@@ -20,7 +20,7 @@ namespace DIM {
         TileMap(const char* Path = nullptr, TileManager* man = nullptr);
         ~TileMap();
         void loadTileMap(const char* path);
-        const Utility::VectorU getSize() const;
+        const Utils::VectorU getSize() const;
         void drawTileMap() const;
         TileManager* getTileManager() const;
         void setTileAt(unsigned i, unsigned j, short tile);

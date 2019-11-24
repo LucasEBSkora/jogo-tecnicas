@@ -13,7 +13,7 @@ namespace DIM {
       bool paused;
       void run();
     public:
-      ThreadedCaster(Utility::VectorF pos);
+      ThreadedCaster(Utils::VectorF pos);
       ~ThreadedCaster();
 
       void stopRunning();

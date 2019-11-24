@@ -9,7 +9,7 @@ namespace DIM {
 
     }
     
-    TileManagerMemento::TileManagerMemento(Tiles::TileMap& tilemap, Utility::VectorU playerSpawn, Utility::VectorU itemSpawn, Utility::VectorU bossSpawn, std::vector<Utility::VectorF> enSpawns) {
+    TileManagerMemento::TileManagerMemento(Tiles::TileMap& tilemap, Utils::VectorU playerSpawn, Utils::VectorU itemSpawn, Utils::VectorU bossSpawn, std::vector<Utils::VectorF> enSpawns) {
       tilesSize = tilemap.getSize();
       tiles = new short*[tilesSize.y];
       for (unsigned i = 0; i < tilesSize.y; ++i) {
@@ -45,19 +45,19 @@ namespace DIM {
       return tiles[i][j];
     }
 
-    Utility::VectorU TileManagerMemento::getFirstSpawnPointFound() const {
+    Utils::VectorU TileManagerMemento::getFirstSpawnPointFound() const {
       return firstSpawnPointFound;
     }
 
-    Utility::VectorU TileManagerMemento::getFirstItemSpawnPointFound() const {
+    Utils::VectorU TileManagerMemento::getFirstItemSpawnPointFound() const {
       return firstItemSpawnPointFound;
     }
 
-    Utility::VectorU TileManagerMemento::getFirstBossSpawnPointFound() const {
+    Utils::VectorU TileManagerMemento::getFirstBossSpawnPointFound() const {
       return firstBossSpawnPointFound;
     }
 
-    std::vector<Utility::VectorF> TileManagerMemento::getEnemySpawns() const {
+    std::vector<Utils::VectorF> TileManagerMemento::getEnemySpawns() const {
       return enemySpawns;
     }
     

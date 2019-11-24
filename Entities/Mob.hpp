@@ -13,12 +13,12 @@ namespace DIM {
     
     class Mob : public PhysicalEntity {
     protected:
-      Utility::VectorF velocity;
+      Utils::VectorF velocity;
     public:
       Mob();
       virtual ~Mob();
       
-      void setPosition(Utility::VectorF pos);
+      void setPosition(Utils::VectorF pos);
     };
 
   }

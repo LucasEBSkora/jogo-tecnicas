@@ -5,7 +5,7 @@
 namespace DIM {
   namespace Entities {
 
-    Spell::Spell(Utility::VectorF position, Utility::VectorF speed) : Projectile(position, speed, "assets/Spell.png")  { 
+    Spell::Spell(Utils::VectorF position, Utils::VectorF speed) : Projectile(position, speed, "assets/Spell.png")  { 
 
       id = "Spell";
     }
@@ -15,7 +15,7 @@ namespace DIM {
     }
 
 
-    void Spell::collided(std::string other_id, Utility::VectorF position, Utility::VectorF size) {
+    void Spell::collided(std::string other_id, Utils::VectorF position, Utils::VectorF size) {
       
       if (other_id != "Caster" && other_id != "Projectile" && other_id != "Boss" && other_id != "Spell") Projectile::collided(other_id, position, size);
     }

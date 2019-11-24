@@ -3,16 +3,16 @@
 namespace DIM {
   namespace Mementos {
   
-    SpellMemento::SpellMemento(Utility::VectorF pos, Utility::VectorF spd) {
+    SpellMemento::SpellMemento(Utils::VectorF pos, Utils::VectorF spd) {
       position = pos;
       speed = spd;
     }
 
-    Utility::VectorF SpellMemento::getPosition() const {
+    Utils::VectorF SpellMemento::getPosition() const {
       return position;
     }
 
-    Utility::VectorF SpellMemento::getSpeed() const {
+    Utils::VectorF SpellMemento::getSpeed() const {
       return speed;
     }
     

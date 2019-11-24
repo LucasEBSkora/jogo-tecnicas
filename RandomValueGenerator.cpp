@@ -5,7 +5,7 @@
 #include <ctime>
 
 namespace DIM {
-  namespace Utility {
+  namespace Utils {
     
     RandomValueGenerator* RandomValueGenerator::instance{nullptr};  
     

@@ -14,18 +14,18 @@ namespace DIM {
     
       const char* ID;
       const char* path;
-      Utility::VectorF size;
+      Utils::VectorF size;
 
       Managers::GraphicsManager* graphicsManager;
       TileManager* parent;
     
     public:
-      Tile(const char* Id = nullptr, const char* Path = nullptr, const Utility::VectorF Size = Utility::VectorF(32.0f, 32.0f));
+      Tile(const char* Id = nullptr, const char* Path = nullptr, const Utils::VectorF Size = Utils::VectorF(32.0f, 32.0f));
       virtual ~Tile();
 
-      virtual void collided(const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine);
+      virtual void collided(const std::string id, const Utils::VectorF positionOther, const Utils::VectorU positionMine);
       virtual void initialize(Managers::GraphicsManager* graph, TileManager* Parent);
-      virtual void draw(Utility::VectorF at) const;
+      virtual void draw(Utils::VectorF at) const;
       const std::string getID() const;
     };
 

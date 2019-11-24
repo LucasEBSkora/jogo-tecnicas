@@ -14,13 +14,13 @@ namespace DIM {
       
     class SpellMemento : public Memento {
     private:
-      SpellMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF spd = Utility::VectorF(0, 0));
+      SpellMemento(Utils::VectorF pos = Utils::VectorF(0, 0), Utils::VectorF spd = Utils::VectorF(0, 0));
 
-      Utility::VectorF position;
-      Utility::VectorF speed;
+      Utils::VectorF position;
+      Utils::VectorF speed;
 
-      Utility::VectorF getPosition() const;
-      Utility::VectorF getSpeed() const;
+      Utils::VectorF getPosition() const;
+      Utils::VectorF getSpeed() const;
 
     public:
       ~SpellMemento();

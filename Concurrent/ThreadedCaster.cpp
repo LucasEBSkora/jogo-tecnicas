@@ -44,7 +44,7 @@ namespace DIM {
       }
     }
 
-    ThreadedCaster::ThreadedCaster(Utility::VectorF pos) : keep_going{true}, paused{false} {
+    ThreadedCaster::ThreadedCaster(Utils::VectorF pos) : keep_going{true}, paused{false} {
       position = pos;
     }
 

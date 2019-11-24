@@ -25,13 +25,13 @@ namespace DIM {
       tiles.initializeAll(currentLevel->getGraphicsManager(), this);
     }
 
-    std::vector<IdPositionSizeTuple> TileManager::checkCollisions(Utility::VectorF at, Utility::VectorF size, std::string id) {
+    std::vector<IdPositionSizeTuple> TileManager::checkCollisions(Utils::VectorF at, Utils::VectorF size, std::string id) {
 
-      Utility::VectorF op(at + size);
+      Utils::VectorF op(at + size);
 
-      Utility::VectorU start(static_cast<unsigned int>(floor(at.x/tileSide)), static_cast<unsigned int>(floor(at.y/tileSide)));
+      Utils::VectorU start(static_cast<unsigned int>(floor(at.x/tileSide)), static_cast<unsigned int>(floor(at.y/tileSide)));
       
-      Utility::VectorU end(static_cast<unsigned int>(floor(op.x/tileSide)), static_cast<unsigned int>(floor(op.y/tileSide)));
+      Utils::VectorU end(static_cast<unsigned int>(floor(op.x/tileSide)), static_cast<unsigned int>(floor(op.y/tileSide)));
       
       std::vector<IdPositionSizeTuple> vec;
 
@@ -44,8 +44,8 @@ namespace DIM {
             short tileId = tileMap[i][j];
             if (tileId >= 0) {
               
-              vec.push_back( IdPositionSizeTuple(tiles[tileId]->getID(), Utility::VectorF(j*tileSide, i*tileSide), Utility::VectorF(tileSide, tileSide)));
-              tiles[tileId]->collided(id, at, Utility::VectorU(i,j));
+              vec.push_back( IdPositionSizeTuple(tiles[tileId]->getID(), Utils::VectorF(j*tileSide, i*tileSide), Utils::VectorF(tileSide, tileSide)));
+              tiles[tileId]->collided(id, at, Utils::VectorU(i,j));
             }
           }
         }
@@ -62,28 +62,28 @@ namespace DIM {
     void TileManager::draw() const {
       for (unsigned i = 0; i < tileMap.getSize().y; ++i) {
         for (unsigned j = 0; j < tileMap.getSize().x; ++j) {
-          if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(Utility::VectorF((j)*tileSide, (i)*tileSide));
+          if (tileMap[i][j] >= 0) tiles[tileMap[i][j]]->draw(Utils::VectorF((j)*tileSide, (i)*tileSide));
         }
       }
     }
 
-    Utility::VectorF TileManager::getWorldSize() const {
-      return Utility::VectorF(tileMap.getSize().x, tileMap.getSize().y) * tileSide;
+    Utils::VectorF TileManager::getWorldSize() const {
+      return Utils::VectorF(tileMap.getSize().x, tileMap.getSize().y) * tileSide;
     }
 
-    Utility::VectorF TileManager::getPlayerSpawnPosition() const {
+    Utils::VectorF TileManager::getPlayerSpawnPosition() const {
       
-      return Utility::VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide + Utility::VectorF(32.0f, 32.0f) * .5;
+      return Utils::VectorF(firstSpawnPointFound.x, firstSpawnPointFound.y) * tileSide + Utils::VectorF(32.0f, 32.0f) * .5;
     }
 
-    Utility::VectorF TileManager::getItemSpawnPosition() const {
+    Utils::VectorF TileManager::getItemSpawnPosition() const {
       
-      return Utility::VectorF(firstItemSpawnPointFound.x, firstItemSpawnPointFound.y) * tileSide + Utility::VectorF(32.0f, 32.0f) * .5;
+      return Utils::VectorF(firstItemSpawnPointFound.x, firstItemSpawnPointFound.y) * tileSide + Utils::VectorF(32.0f, 32.0f) * .5;
     }
 
-    Utility::VectorF TileManager::getBossSpawnPosition() const {
+    Utils::VectorF TileManager::getBossSpawnPosition() const {
       
-      return Utility::VectorF(firstBossSpawnPointFound.x, firstBossSpawnPointFound.y) * tileSide + Utility::VectorF(32.0f, 32.0f) * .5;
+      return Utils::VectorF(firstBossSpawnPointFound.x, firstBossSpawnPointFound.y) * tileSide + Utils::VectorF(32.0f, 32.0f) * .5;
     }
 
     Levels::Level* TileManager::getLevel() const {
@@ -94,7 +94,7 @@ namespace DIM {
       return &tileMap;
     }
 
-    const std::vector<Utility::VectorF>& TileManager::getEnemySpawns() const {
+    const std::vector<Utils::VectorF>& TileManager::getEnemySpawns() const {
       return enemySpawns;
     }
 
@@ -106,16 +106,16 @@ namespace DIM {
           
           if (tileMap[i][j] == 1 && tileMap[i-1][j] < 0) {
             // found spawn point
-            firstSpawnPointFound = Utility::VectorU(j, i - 1);
+            firstSpawnPointFound = Utils::VectorU(j, i - 1);
           } 
 
-          if (tileMap[i][j] == -3) firstItemSpawnPointFound = Utility::VectorU(j, i);
+          if (tileMap[i][j] == -3) firstItemSpawnPointFound = Utils::VectorU(j, i);
 
-          if (tileMap[i][j] == -4) firstBossSpawnPointFound = Utility::VectorU(j, i);
+          if (tileMap[i][j] == -4) firstBossSpawnPointFound = Utils::VectorU(j, i);
 
           if (tileMap[i][j] == -5 || (i > 0 && tileMap[i][j] == 0 && tileMap[i-1][j] == -1)) {
             // enemy spawn point
-            enemySpawns.push_back(Utility::VectorF(j, i - 1) * tileSide);
+            enemySpawns.push_back(Utils::VectorF(j, i - 1) * tileSide);
           }  
         }
       }

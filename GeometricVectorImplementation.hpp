@@ -1,7 +1,7 @@
 #include <cmath>
 
 namespace DIM {
-  namespace Utility {
+  namespace Utils {
 
     template <typename T>
     GeometricVector<T>::GeometricVector(const GeometricVector<T>& other) : x{other.x}, y{other.y} {

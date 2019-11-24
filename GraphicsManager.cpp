@@ -19,7 +19,7 @@ namespace DIM {
       window->setView(view);
       font.loadFromFile("assets/CantoraOne-Regular.ttf");
 
-      camera_size = Utility::VectorF(width, height);
+      camera_size = Utils::VectorF(width, height);
     }
 
     GraphicsManager::~GraphicsManager() {
@@ -46,7 +46,7 @@ namespace DIM {
       }
     }
 
-    void GraphicsManager::draw(const std::string& id, Utility::VectorF at) const {
+    void GraphicsManager::draw(const std::string& id, Utils::VectorF at) const {
       
       sf::Texture* texture;
       auto it = assets.find(id);
@@ -57,7 +57,7 @@ namespace DIM {
       texture = it->second;
       sf::Vector2u size = texture->getSize();
       
-      if (!outOfSight(at, Utility::VectorF(size.x, size.y))) {
+      if (!outOfSight(at, Utils::VectorF(size.x, size.y))) {
         at -= camera_pos;
         sf::Sprite sprite;
         sprite.setTexture(*texture);
@@ -67,7 +67,7 @@ namespace DIM {
 
     }
 
-    void GraphicsManager::drawRect(Utility::VectorF at, Utility::VectorF size, int r, int g, int b) const {
+    void GraphicsManager::drawRect(Utils::VectorF at, Utils::VectorF size, int r, int g, int b) const {
       if (!outOfSight(at, size)) {
         at -= camera_pos;
         sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(size.x, size.y));
@@ -78,7 +78,7 @@ namespace DIM {
       }
     }
 
-    void GraphicsManager::drawTextCentered(const std::string& text, Utility::VectorF at, unsigned size) const {
+    void GraphicsManager::drawTextCentered(const std::string& text, Utils::VectorF at, unsigned size) const {
       sf::Text txt = sf::Text(text, font);
       txt.setCharacterSize(size);
       txt.setFillColor(sf::Color::White);
@@ -88,11 +88,11 @@ namespace DIM {
       window->draw(txt);
     }
 
-    void GraphicsManager::centerCamera(Utility::VectorF at) {
+    void GraphicsManager::centerCamera(Utils::VectorF at) {
       camera_pos = at - camera_size * .5;
     }
 
-    const bool GraphicsManager::outOfSight(Utility::VectorF at, Utility::VectorF size) const {
+    const bool GraphicsManager::outOfSight(Utils::VectorF at, Utils::VectorF size) const {
       return (at.x + size.x < camera_pos.x ||
               at.y + size.y < camera_pos.y || 
               at.x > camera_pos.x + camera_size.x ||
@@ -111,22 +111,22 @@ namespace DIM {
       window->clear(sf::Color(r, g, b));
     }
 
-    const Utility::VectorF GraphicsManager::getViewSize() const {
+    const Utils::VectorF GraphicsManager::getViewSize() const {
       return camera_size;
     }
 
-    const Utility::VectorF GraphicsManager::getMousePos() const {
+    const Utils::VectorF GraphicsManager::getMousePos() const {
       sf::Vector2i pos = sf::Mouse::getPosition(*window);
-      return Utility::VectorF(pos.x, pos.y);
+      return Utils::VectorF(pos.x, pos.y);
     }
 
-    const Utility::VectorF GraphicsManager::getMousePosInView() const {
+    const Utils::VectorF GraphicsManager::getMousePosInView() const {
       sf::Vector2i pos = sf::Mouse::getPosition(*window);
       sf::Vector2u window_size = window->getSize();
-      return Utility::VectorF(pos.x / static_cast<float>(window_size.x) * camera_size.x, pos.y / static_cast<float>(window_size.y) * camera_size.y) + camera_pos;
+      return Utils::VectorF(pos.x / static_cast<float>(window_size.x) * camera_size.x, pos.y / static_cast<float>(window_size.y) * camera_size.y) + camera_pos;
     }
 
-    const Utility::VectorF GraphicsManager::getSizeOfAsset(const std::string& id) const {
+    const Utils::VectorF GraphicsManager::getSizeOfAsset(const std::string& id) const {
       sf::Texture* texture;
       auto it = assets.find(id);
       if (it == assets.end()) {
@@ -135,7 +135,7 @@ namespace DIM {
       }
       texture = it->second;
       sf::Vector2u size = texture->getSize();
-      return Utility::VectorF(size.x, size.y);
+      return Utils::VectorF(size.x, size.y);
     }
 
   }

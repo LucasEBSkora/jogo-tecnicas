@@ -14,17 +14,17 @@ namespace DIM {
       
     class TheUndyingMemento : public Memento {
     private:
-      TheUndyingMemento(Utility::VectorF pos = Utility::VectorF(0, 0), Utility::VectorF vel = Utility::VectorF(0, 0), float max_vx = 0, float max_vy = 0, bool jmp = false, unsigned int deaths = 0);
+      TheUndyingMemento(Utils::VectorF pos = Utils::VectorF(0, 0), Utils::VectorF vel = Utils::VectorF(0, 0), float max_vx = 0, float max_vy = 0, bool jmp = false, unsigned int deaths = 0);
 
-      Utility::VectorF position;
-      Utility::VectorF velocity;
+      Utils::VectorF position;
+      Utils::VectorF velocity;
       float max_speed_x;
       float max_speed_y;
       bool jumping;
       unsigned int deathCounter;
 
-      Utility::VectorF getPosition() const;
-      Utility::VectorF getVelocity() const;
+      Utils::VectorF getPosition() const;
+      Utils::VectorF getVelocity() const;
       float getMaxSpeedX() const;
       float getMaxSpeedY() const;
       bool getJumping() const;

@@ -3,7 +3,7 @@
 namespace DIM {
   namespace Entities {
 
-    Bullet::Bullet(Utility::VectorF position, Utility::VectorF speed) : Projectile(position, speed, "assets/Bullet.png"), delay{0.2f}  { 
+    Bullet::Bullet(Utils::VectorF position, Utils::VectorF speed) : Projectile(position, speed, "assets/Bullet.png"), delay{0.2f}  { 
       id = "Bullet";
     }
     
@@ -11,7 +11,7 @@ namespace DIM {
 
     }
 
-    void Bullet::collided(std::string Id, Utility::VectorF positionOther, Utility::VectorF size) {
+    void Bullet::collided(std::string Id, Utils::VectorF positionOther, Utils::VectorF size) {
       if (Id == "Player1" || Id == "Player2")
         Projectile::collided(Id, position, size);
       else if (delay <= 0) 

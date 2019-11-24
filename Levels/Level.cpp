@@ -32,20 +32,20 @@ namespace DIM {
       graphics->loadAsset(backgroundPath);
     }
 
-    const Utility::VectorF Level::getPlayer1Center() const {
+    const Utils::VectorF Level::getPlayer1Center() const {
       if (player1 == nullptr) std::cout << "segfaulting agora" << std::endl;
       return player1->getPos() + player1->getSize() * .5;
     }
 
-    const Utility::VectorF Level::getPlayer1Spawn() const {
+    const Utils::VectorF Level::getPlayer1Spawn() const {
       return tileManager->getPlayerSpawnPosition() - player1->getSize() * .5;
     }
 
-    const Utility::VectorF Level::getItemSpawn() const {
+    const Utils::VectorF Level::getItemSpawn() const {
       return tileManager->getItemSpawnPosition();
     }
 
-    const Utility::VectorF Level::getBossSpawn() const {
+    const Utils::VectorF Level::getBossSpawn() const {
       return tileManager->getBossSpawnPosition();
     }
 
@@ -71,28 +71,28 @@ namespace DIM {
     }
 
     void Level::generateEnemies() {
-      std::vector<Utility::VectorF> spawns = tileManager->getEnemySpawns();
-      int nEnemies = Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(5, 10);
+      std::vector<Utils::VectorF> spawns = tileManager->getEnemySpawns();
+      int nEnemies = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(5, 10);
       
       for (int i = 0; i < nEnemies; ++i) {
         
-        int idx = Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+        int idx = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
         Entities::Enemy* enemy = new Entities::Leaper();
         enemy->setLevel(this);
         enemy->initializeGeneric(this);
-        Utility::VectorF pos = spawns[idx] + Utility::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+        Utils::VectorF pos = spawns[idx] + Utils::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
 
-        enemy->setPosition(Utility::VectorF(pos.x, pos.y));
+        enemy->setPosition(Utils::VectorF(pos.x, pos.y));
         entities.addEntity(enemy);
         collisions.addToCollisions(enemy);
 
-        idx = Utility::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
+        idx = Utils::RandomValueGenerator::getInstance()->getRandomIntInRange(0, spawns.size());
         enemy = new Entities::Caster();
         enemy->setLevel(this);
         enemy->initializeGeneric(this);
-        pos = spawns[idx] + Utility::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
+        pos = spawns[idx] + Utils::VectorF(32.0f, 32.0f) * .5 - enemy->getSize() * .5;
         
-        enemy->setPosition(Utility::VectorF(pos.x, pos.y));
+        enemy->setPosition(Utils::VectorF(pos.x, pos.y));
 
         entities.addEntity(enemy);
         collisions.addToCollisions(enemy);

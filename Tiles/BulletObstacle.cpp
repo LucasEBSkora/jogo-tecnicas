@@ -18,7 +18,7 @@ namespace DIM {
 
     }
 
-    void BulletObstacle::collided( const std::string id, const Utility::VectorF positionOther, const Utility::VectorU positionMine) {
+    void BulletObstacle::collided( const std::string id, const Utils::VectorF positionOther, const Utils::VectorU positionMine) {
 
       if (id == "Player1") {
         if (delay != 0) {
@@ -64,12 +64,12 @@ namespace DIM {
 
         if (foundLeft) {
           //create arrow at (i, j-k) going right
-          Entities::Bullet* bullet = new Entities::Bullet(Utility::VectorF((j - k + 1.5) * size.x, (i + .5) * size.y), Utility::VectorF(100, 0));
+          Entities::Bullet* bullet = new Entities::Bullet(Utils::VectorF((j - k + 1.5) * size.x, (i + .5) * size.y), Utils::VectorF(100, 0));
           map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
         } else if (foundRight) {
           //create arrow at (i, j+k) going left
-          Entities::Bullet* bullet = new Entities::Bullet(Utility::VectorF((j + k - .5) * size.x, (i + .5) * size.y), Utility::VectorF(-100, 0));
+          Entities::Bullet* bullet = new Entities::Bullet(Utils::VectorF((j + k - .5) * size.x, (i + .5) * size.y), Utils::VectorF(-100, 0));
           map->getTileManager()->getLevel()->addPhysicalEntity(bullet);
 
         }
