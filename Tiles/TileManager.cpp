@@ -4,7 +4,7 @@
 #include <fstream>
 #include <stdlib.h>
 
-#include "../RandomValueGenerator.hpp"
+#include "../Utils/RandomValueGenerator.hpp"
 #include "../Levels/Level.hpp"
 
 namespace DIM {

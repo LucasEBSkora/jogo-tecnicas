@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 
 

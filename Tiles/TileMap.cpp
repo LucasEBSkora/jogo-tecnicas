@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "../RandomValueGenerator.hpp"
+#include "../Utils/RandomValueGenerator.hpp"
 #include "TileManager.hpp"
 
 namespace DIM {

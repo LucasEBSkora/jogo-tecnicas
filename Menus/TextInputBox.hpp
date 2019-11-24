@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
 

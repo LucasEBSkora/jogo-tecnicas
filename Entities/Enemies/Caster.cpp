@@ -4,7 +4,7 @@
 
 #include "../../Levels/Level.hpp"
 #include "../Projectiles/Spell.hpp"
-#include "../../RandomValueGenerator.hpp"
+#include "../../Utils/RandomValueGenerator.hpp"
 
 namespace DIM {
   namespace Entities {

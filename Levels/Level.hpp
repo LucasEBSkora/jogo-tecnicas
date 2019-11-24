@@ -2,9 +2,9 @@
 #define LEVEL_HPP
 
 #include <set>
-#include "../GraphicsManager.hpp"
-#include "../EventManager.hpp"
-#include "../CollisionManager.hpp"
+#include "../Managers/GraphicsManager.hpp"
+#include "../Managers/EventManager.hpp"
+#include "../Managers/CollisionManager.hpp"
 #include "../Entities/Entity.hpp"
 #include "../Entities/Players/ThePenitent.hpp"
 #include "../Entities/Players/TheUndying.hpp"

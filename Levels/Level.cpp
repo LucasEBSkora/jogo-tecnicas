@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "../RandomValueGenerator.hpp"
+#include "../Utils/RandomValueGenerator.hpp"
 
 #include "../Entities/Enemies/Leaper.hpp"
 #include "../Entities/Enemies/Caster.hpp"

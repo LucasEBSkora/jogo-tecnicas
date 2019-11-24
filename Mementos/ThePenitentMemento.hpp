@@ -2,7 +2,7 @@
 #define THEPENITENTMEMENTO_HPP
 
 #include "Memento.hpp"
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
 

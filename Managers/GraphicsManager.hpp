@@ -5,7 +5,7 @@
 #include <map>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
   namespace Managers {

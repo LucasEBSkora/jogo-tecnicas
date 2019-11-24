@@ -1,7 +1,7 @@
 #ifndef TILEMAP_HPP
 #define TILEMAP_HPP
 
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
   namespace Tiles {

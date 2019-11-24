@@ -1,6 +1,6 @@
 #include "TextInputBox.hpp"
 
-#include "../EventManager.hpp"
+#include "../Managers/EventManager.hpp"
 
 #include <iostream>
 

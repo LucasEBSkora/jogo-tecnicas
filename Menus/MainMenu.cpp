@@ -1,5 +1,5 @@
 #include "MainMenu.hpp"
-#include "../EventManager.hpp"
+#include "../Managers/EventManager.hpp"
 #include <iostream>
 
 namespace DIM {

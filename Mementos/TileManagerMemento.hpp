@@ -2,7 +2,7 @@
 #define TILEMANAGERMEMENTO_HPP
 
 #include "Memento.hpp"
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 #include <vector>
 
 namespace DIM {

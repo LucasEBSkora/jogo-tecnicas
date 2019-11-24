@@ -1,6 +1,5 @@
 #include "RandomValueGenerator.hpp"
 
-
 #include <cstdlib>
 #include <ctime>
 
@@ -37,7 +36,7 @@ namespace DIM {
     }
 
     // tanto o primeiro quanto o segundo argumentos estão incluídos
-    float RandomValueGenerator::getRandomFloatInRange(float min, int max) const {
+    float RandomValueGenerator::getRandomFloatInRange(float min, float max) const {
       if (min == max) return min;
       else if (min >= max) return 0;
       else {

@@ -1,7 +1,7 @@
 #include "Button.hpp"
 #include <iostream>
 #include "../Levels/Level.hpp"
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
   namespace Menus {

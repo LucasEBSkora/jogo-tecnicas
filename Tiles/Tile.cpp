@@ -1,7 +1,7 @@
 #include "Tile.hpp"
 
 #include <iostream>
-#include "../../GraphicsManager.hpp"
+#include "../../Managers/GraphicsManager.hpp"
 
 namespace DIM {
   namespace Tiles {

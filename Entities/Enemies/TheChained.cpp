@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../../RandomValueGenerator.hpp"
+#include "../../Utils/RandomValueGenerator.hpp"
 #include "../../Levels/Level.hpp"
 #include "../Projectiles/Spell.hpp"
 #include "../TheMirrorOfHastur.hpp"

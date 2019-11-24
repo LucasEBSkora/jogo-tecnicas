@@ -2,8 +2,8 @@
 #define BUTTON_HPP
 
 #include <string>
-#include "../GraphicsManager.hpp"
-#include "../EventManager.hpp"
+#include "../Managers/GraphicsManager.hpp"
+#include "../Managers/EventManager.hpp"
 
 namespace DIM {
   namespace Menus {

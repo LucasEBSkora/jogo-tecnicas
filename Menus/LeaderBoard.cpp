@@ -4,8 +4,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "../EventManager.hpp"
-#include "../GraphicsManager.hpp"
+#include "../Managers/EventManager.hpp"
+#include "../Managers/GraphicsManager.hpp"
 
 namespace DIM {
   namespace Menus {

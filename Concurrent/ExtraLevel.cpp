@@ -2,7 +2,7 @@
 
 #include "../Tiles/Tile.hpp"
 
-#include "../RandomValueGenerator.hpp"
+#include "../Utils/RandomValueGenerator.hpp"
 
 #include <iterator>
 

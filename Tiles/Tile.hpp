@@ -1,8 +1,8 @@
 #ifndef TILE_HPP
 #define TILE_HPP
 
-#include "../GeometricVector.hpp"
-#include "../GraphicsManager.hpp"
+#include "../Utils/GeometricVector.hpp"
+#include "../Managers/GraphicsManager.hpp"
 
 namespace DIM {
   namespace Tiles {

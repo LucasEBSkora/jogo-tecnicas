@@ -1,7 +1,7 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
 

@@ -5,7 +5,7 @@
 #include "TileVector.hpp"
 #include <tuple>
 #include "../Entities/Entity.hpp"
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 #include "TileMap.hpp"
 #include "../Mementos/TileManagerMemento.hpp"
 

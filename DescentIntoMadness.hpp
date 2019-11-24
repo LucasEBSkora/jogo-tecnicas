@@ -1,8 +1,8 @@
 #ifndef DESCENTINTOMADNESS_HPP
 #define DESCENTINTOMADNESS_HPP
 
-#include "GraphicsManager.hpp"
-#include "EventManager.hpp"
+#include "Managers/GraphicsManager.hpp"
+#include "Managers/EventManager.hpp"
 
 #include "Menus/MainMenu.hpp"
 #include "Menus/PauseMenu.hpp"

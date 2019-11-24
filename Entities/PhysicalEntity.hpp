@@ -3,7 +3,7 @@
 
 #include "Entity.hpp"
 #include <string>
-#include "../GeometricVector.hpp"
+#include "../Utils/GeometricVector.hpp"
 
 namespace DIM {
   namespace Entities {

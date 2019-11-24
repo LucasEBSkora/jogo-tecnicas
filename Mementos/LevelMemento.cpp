@@ -4,7 +4,7 @@
 #include "../Tiles/TileManager.hpp"
 #include "../Entities/Players/TheUndying.hpp"
 #include "../Entities/Players/ThePenitent.hpp"
-#include "../CollisionManager.hpp"
+#include "../Managers/CollisionManager.hpp"
 
 #include "../Entities/Enemies/Leaper.hpp"
 #include "../Entities/Enemies/Caster.hpp"

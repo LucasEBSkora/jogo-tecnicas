@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "../../Levels/Level.hpp"
-#include "../../RandomValueGenerator.hpp"
+#include "../../Utils/RandomValueGenerator.hpp"
 
 namespace DIM {
   namespace Entities {

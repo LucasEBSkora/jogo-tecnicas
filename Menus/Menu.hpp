@@ -2,8 +2,8 @@
 #define MENU_HPP
 
 #include "Button.hpp"
-#include "../GraphicsManager.hpp"
-#include "../EventManager.hpp"
+#include "../Managers/GraphicsManager.hpp"
+#include "../Managers/EventManager.hpp"
 #include <vector>
 
 namespace DIM {

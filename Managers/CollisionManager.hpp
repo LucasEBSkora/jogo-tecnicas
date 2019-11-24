@@ -3,7 +3,7 @@
 
 #include "Entities/PhysicalEntity.hpp"
 #include "Tiles/TileManager.hpp"
-#include "PhysicalEntityList.hpp"
+#include "../Entities/PhysicalEntityList.hpp"
 
 namespace DIM {
   namespace Managers {
