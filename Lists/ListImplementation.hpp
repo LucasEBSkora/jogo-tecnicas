@@ -2,70 +2,78 @@
 namespace DIM {
   namespace Lists {
 
+    template <typename TF>
     template <typename TE>
-    List<TE>::ListElement::ListElement() {
+    List<TF>::ListElement<TE>::ListElement() {
       next = nullptr;
       prev = nullptr;
     }
 
+    template <typename TF>
     template <typename TE>
-    List<TE>::ListElement::~ListElement() {
+    List<TF>::ListElement<TE>::~ListElement() {
       next = nullptr;
       prev = nullptr;
     }
 
+    template <typename TF>
     template <typename TE>
-    typename List<TE>::ListElement* List<TE>::ListElement::getNext() {
+    typename List<TF>::template ListElement<TE>* List<TF>::ListElement<TE>::getNext() {
       return next;
     }
 
+    template <typename TF>
     template <typename TE>
-    void List<TE>::ListElement::setNext(ListElement* elem) {
+    void List<TF>::ListElement<TE>::setNext(ListElement<TE>* elem) {
       next = elem;
     }
 
+    template <typename TF>
     template <typename TE>
-    typename List<TE>::ListElement* List<TE>::ListElement::getPrev() {
+    typename List<TF>::template ListElement<TE>* List<TF>::ListElement<TE>::getPrev() {
       return prev;
     }
 
+    template <typename TF>
     template <typename TE>
-    void List<TE>::ListElement::setPrev(ListElement* elem) {
+    void List<TF>::ListElement<TE>::setPrev(ListElement<TE>* elem) {
       prev = elem;
     }
 
+    template <typename TF>
     template <typename TE>
-    TE& List<TE>::ListElement::getData() {
+    TE& List<TF>::ListElement<TE>::getData() {
       return data;
     }
 
+    template <typename TF>
     template <typename TE>
-    void List<TE>::ListElement::setData(const TE& elem) {
+    void List<TF>::ListElement<TE>::setData(const TE& elem) {
       data = elem;
     }
 
-    template <typename TE>
-    List<TE>::List() {
+    template <typename TF>
+    List<TF>::List() {
       first = nullptr;
       last = nullptr;
       size = 0;
     }
 
-    template <typename TE>
-    List<TE>::~List() {
+    template <typename TF>
+    List<TF>::~List() {
       clear();
     }
 
-    template <typename TE>
-    void List<TE>::addElementBack(const TE& newElement) {
+    template <typename TF>
+    void List<TF>::addElementBack(const TF& newElement) {
       ++size;
       if (first == nullptr) {
-        ListElement* elem = new ListElement();
+        ListElement<TF>* elem = new ListElement<TF>();
         elem->setData(newElement);
         first = elem;
         last = elem;
       } else {
-        ListElement* elem = new ListElement();
+        ListElement<TF>* elem = new ListElement<TF>();
         elem->setData(newElement);
         last->setNext(elem);
         elem->setPrev(last);
@@ -73,16 +81,16 @@ namespace DIM {
       }
     }
     
-    template <typename TE>
-    void List<TE>::addElementFront(const TE& newElement) {
+    template <typename TF>
+    void List<TF>::addElementFront(const TF& newElement) {
       ++size;
       if (first == nullptr) {
-        ListElement* elem = new ListElement();
+        ListElement<TF>* elem = new ListElement<TF>();
         elem->setData(newElement);
         first = elem;
         last = elem;
       } else {
-        ListElement* elem = new ListElement();
+        ListElement<TF>* elem = new ListElement<TF>();
         elem->setData(newElement);
         first->setPrev(elem);
         elem->setNext(first);
@@ -90,12 +98,12 @@ namespace DIM {
       }
     }
     
-    template <typename TE>
-    void List<TE>::removeFirstMatchingElement(const TE& element) {
+    template <typename TF>
+    void List<TF>::removeFirstMatchingElement(const TF& element) {
       if (first == nullptr) {
         return;
       } else {
-        ListElement* aux = first;
+        ListElement<TF>* aux = first;
         while (aux != nullptr && aux->getData() != element) {
           aux = aux->getNext();
         }
@@ -110,67 +118,67 @@ namespace DIM {
       }
     }
 
-    template <typename TE>
-    List<TE>::iterator::iterator(List<TE>::ListElement* el) {
+    template <typename TF>
+    List<TF>::iterator::iterator(List<TF>::ListElement<TF>* el) {
       element = el;
     }
 
-    template <typename TE>
-    List<TE>::iterator::iterator(const List<TE>::iterator& other) {
+    template <typename TF>
+    List<TF>::iterator::iterator(const List<TF>::iterator& other) {
       element = other.element;
     }
 
-    template <typename TE>
-    List<TE>::iterator::~iterator() {
+    template <typename TF>
+    List<TF>::iterator::~iterator() {
       element = nullptr;
     }
 
-    template <typename TE>
-    TE& List<TE>::iterator::operator*() {
+    template <typename TF>
+    TF& List<TF>::iterator::operator*() {
       return element->getData();
     }
 
-    template <typename TE>
-    bool List<TE>::iterator::operator==(const iterator& other) {
+    template <typename TF>
+    bool List<TF>::iterator::operator==(const iterator& other) {
       return element == other.element;
     }
 
-    template <typename TE>
-    bool List<TE>::iterator::operator!=(const iterator& other) {
+    template <typename TF>
+    bool List<TF>::iterator::operator!=(const iterator& other) {
       return !(*this == other);
     }
 
-    template <typename TE>
-    typename List<TE>::iterator& List<TE>::iterator::operator++() {
+    template <typename TF>
+    typename List<TF>::iterator& List<TF>::iterator::operator++() {
       if (element != nullptr) {
         element = element->getNext();
       }
       return *this;
     }
 
-    template <typename TE>
-    typename List<TE>::iterator List<TE>::iterator::operator++(int) {
-      ListElement* ret = element;
+    template <typename TF>
+    typename List<TF>::iterator List<TF>::iterator::operator++(int) {
+      ListElement<TF>* ret = element;
       if (element != nullptr) {
         element = element->getNext();
       }
       return iterator(ret);
     }
 
-    template <typename TE>
-    typename List<TE>::iterator List<TE>::begin() {
+    template <typename TF>
+    typename List<TF>::iterator List<TF>::begin() {
       return iterator(first);
     }
 
-    template <typename TE>
-    typename List<TE>::iterator List<TE>::end() {
+    template <typename TF>
+    typename List<TF>::iterator List<TF>::end() {
       return iterator(nullptr);
     }
 
-    template <typename TE>
-    void List<TE>::clear() {
+    template <typename TF>
+    void List<TF>::clear() {
       while (first != nullptr) {
-        ListElement* aux = first->getNext();
+        ListElement<TF>* aux = first->getNext();
         delete first;
         first = aux;
       }
@@ -178,8 +186,8 @@ namespace DIM {
       last = nullptr;
     }
     
-    template <typename TE>
-    const unsigned int List<TE>::getSize() const {
+    template <typename TF>
+    const unsigned int List<TF>::getSize() const {
       return size;
     }
 

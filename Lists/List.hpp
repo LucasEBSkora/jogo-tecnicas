@@ -4,21 +4,22 @@
 namespace DIM {
   namespace Lists {
 
-    template <typename TE>
+    template <typename TF>
     class List {
     private:
       unsigned int size;
 
+      template <typename TE>
       class ListElement {
       private: 
-        ListElement* next;
-        ListElement* prev;
+        ListElement<TE>* next;
+        ListElement<TE>* prev;
         TE data;
       public:
-        ListElement* getNext();
-        void setNext(ListElement* elem);
-        ListElement* getPrev();
-        void setPrev(ListElement* elem);
+        ListElement<TE>* getNext();
+        void setNext(ListElement<TE>* elem);
+        ListElement<TE>* getPrev();
+        void setPrev(ListElement<TE>* elem);
         TE& getData();
         void setData(const TE& elem);
 
@@ -26,25 +27,25 @@ namespace DIM {
         ~ListElement();
       };
 
-    ListElement* first;
-    ListElement* last;
+    ListElement<TF>* first;
+    ListElement<TF>* last;
 
     public:
       List();
       ~List();
-      void addElementBack(const TE& newElement);
-      void addElementFront(const TE& newElement);
-      void removeFirstMatchingElement(const TE& element);
+      void addElementBack(const TF& newElement);
+      void addElementFront(const TF& newElement);
+      void removeFirstMatchingElement(const TF& element);
       const unsigned int getSize() const;
 
       class iterator {
       private:
-        ListElement* element;
-        iterator(ListElement* el);
+        ListElement<TF>* element;
+        iterator(ListElement<TF>* el);
       public:
         iterator(const iterator& other);
         ~iterator();
-        TE& operator*();
+        TF& operator*();
         bool operator==(const iterator& other);
         bool operator!=(const iterator& other);
         iterator& operator++();

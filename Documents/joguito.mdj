@@ -470,7 +470,7 @@
 											"fillColor": "#fff0ce",
 											"font": "Arial;13;1",
 											"left": 101,
-											"top": 598,
+											"top": 590,
 											"width": 759,
 											"height": 13,
 											"text": "Lists"
@@ -511,7 +511,7 @@
 									"fillColor": "#fff0ce",
 									"font": "Arial;13;0",
 									"left": 96,
-									"top": 591,
+									"top": 583,
 									"width": 769,
 									"height": 25,
 									"stereotypeLabel": {
@@ -550,9 +550,9 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 96,
-							"top": 576,
+							"top": 568,
 							"width": 769,
-							"height": 697,
+							"height": 705,
 							"nameCompartment": {
 								"$ref": "AAAAAAFuW37preX3fF0="
 							}
@@ -35085,7 +35085,7 @@
 											"top": 278,
 											"width": 399.234375,
 											"height": 13,
-											"text": "«Create»+GeometricVector(other: const Geometric<T>&)",
+											"text": "«Create»+GeometricVector(other: const GeometricVector<T>&)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -35247,7 +35247,7 @@
 											"top": 413,
 											"width": 399.234375,
 											"height": 13,
-											"text": "+operator*(v: GeometricVector): GeometricVector",
+											"text": "+operator*(a: int): GeometricVector",
 											"horizontalAlignment": 0
 										},
 										{
@@ -35265,7 +35265,7 @@
 											"top": 428,
 											"width": 399.234375,
 											"height": 13,
-											"text": "+operator*(v: GeometricVector): GeometricVector",
+											"text": "+operator*(f: float): GeometricVector",
 											"horizontalAlignment": 0
 										},
 										{
@@ -35283,7 +35283,7 @@
 											"top": 443,
 											"width": 399.234375,
 											"height": 13,
-											"text": "+operator*(v: GeometricVector): GeometricVector",
+											"text": "+operator*(b: double): GeometricVector",
 											"horizontalAlignment": 0
 										},
 										{
@@ -45447,7 +45447,7 @@
 														"$ref": "AAAAAAFui5NYfw4WtM4="
 													},
 													"name": "other",
-													"type": "const Geometric<T>&"
+													"type": "const GeometricVector<T>&"
 												}
 											]
 										},
@@ -45691,10 +45691,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFui5fnUoFLGcA="
 													},
-													"name": "v",
-													"type": {
-														"$ref": "AAAAAAFufArc07qwFRA="
-													}
+													"name": "a",
+													"type": "int"
 												},
 												{
 													"_type": "UMLParameter",
@@ -45723,10 +45721,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFui5f1BoYVnNE="
 													},
-													"name": "v",
-													"type": {
-														"$ref": "AAAAAAFufArc07qwFRA="
-													}
+													"name": "f",
+													"type": "float"
 												},
 												{
 													"_type": "UMLParameter",
@@ -45755,10 +45751,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFui5f60Ii+muk="
 													},
-													"name": "v",
-													"type": {
-														"$ref": "AAAAAAFufArc07qwFRA="
-													}
+													"name": "b",
+													"type": "double"
 												},
 												{
 													"_type": "UMLParameter",

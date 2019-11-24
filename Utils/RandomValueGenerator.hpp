@@ -20,5 +20,4 @@ namespace DIM {
   }
 }
 
-
 #endif
