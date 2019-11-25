@@ -51,6 +51,23 @@ namespace DIM {
         }
       }
 
+      /* - Versão alternativa usando try/catch
+      try {
+        for (unsigned i = start.y; i <= end.y; ++i) {
+          for (unsigned j = start.x; j <= end.x; ++j) {
+            short tileId = tileMap[i][j];
+            if (tileId >= 0) {
+              
+              vec.push_back( IdPositionSizeTuple(tiles[tileId]->getID(), Utils::VectorF(j*tileSide, i*tileSide), Utils::VectorF(tileSide, tileSide)));
+              tiles[tileId]->collided(id, at, Utils::VectorU(i,j));
+            }
+          }
+        }
+      } catch (std::string s) {
+        std::cout << "Error! Out of bounds" << std::endl;
+      }
+      */
+
       return vec;
     }
 
