@@ -8,6 +8,7 @@ namespace DIM {
     namespace Mobs {
 
       TheUndying::TheUndying() : Mob("assets/TheUndying.png"), movement_id(0), pressed(), jumping(false), deathCounter{0} {
+        id = "Player1";
         max_speed_x = 80;
         max_speed_y = 330;
       }
