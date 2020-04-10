@@ -86,6 +86,7 @@
     "any": "cpp",
     "strstream": "cpp",
     "complex": "cpp",
-    "cfenv": "cpp"
+    "cfenv": "cpp",
+    "future": "cpp"
   }
 }
